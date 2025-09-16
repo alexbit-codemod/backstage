@@ -25,7 +25,7 @@ import {
 } from './authServiceFactory';
 import { base64url, decodeJwt } from 'jose';
 import { discoveryServiceFactory } from '../discovery';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import { toInternalBackstageCredentials } from './helpers';
 import { PluginTokenHandler } from './plugin/PluginTokenHandler';
@@ -74,13 +74,17 @@ describe('authServiceFactory', () => {
 
   it('should not support tokens issued with legacy auth', async () => {
     server.use(
-      rest.get(
+      http.get(
         'http://localhost:7007/api/catalog/.backstage/auth/v1/jwks.json',
-        (_req, res, ctx) => res(ctx.status(404)),
+        () => {HttpResponse.text(
+{status: 404,
+})},
       ),
-      rest.get(
+      http.get(
         'http://localhost:7007/api/search/.backstage/auth/v1/jwks.json',
-        (_req, res, ctx) => res(ctx.status(404)),
+        () => {HttpResponse.text(
+{status: 404,
+})},
       ),
     );
 
@@ -118,15 +122,19 @@ describe('authServiceFactory', () => {
     const catalogAuth = await tester.getSubject('catalog');
 
     server.use(
-      rest.get(
+      http.get(
         'http://localhost:7007/api/catalog/.backstage/auth/v1/jwks.json',
-        async (_req, res, ctx) =>
-          res(ctx.json(await catalogAuth.listPublicServiceKeys())),
+        async () =>
+          {HttpResponse.json(
+await catalogAuth.listPublicServiceKeys(),
+)},
       ),
-      rest.get(
+      http.get(
         'http://localhost:7007/api/search/.backstage/auth/v1/jwks.json',
-        async (_req, res, ctx) =>
-          res(ctx.json(await searchAuth.listPublicServiceKeys())),
+        async () =>
+          {HttpResponse.json(
+await searchAuth.listPublicServiceKeys(),
+)},
       ),
     );
 
@@ -155,9 +163,11 @@ describe('authServiceFactory', () => {
 
   it('should issue a service token for the new system even if the target plugin does not support it', async () => {
     server.use(
-      rest.get(
+      http.get(
         'http://localhost:7007/api/permission/.backstage/auth/v1/jwks.json',
-        (_req, res, ctx) => res(ctx.status(404)),
+        () => {HttpResponse.text(
+{status: 404,
+})},
       ),
     );
 
@@ -193,11 +203,11 @@ describe('authServiceFactory', () => {
      }
     */
     server.use(
-      rest.get(
+      http.get(
         'http://localhost:7007/api/auth/.well-known/jwks.json',
-        (_req, res, ctx) =>
-          res(
-            ctx.json({
+        () =>
+          {HttpResponse.json(
+{
               keys: [
                 {
                   kty: 'EC',
@@ -208,8 +218,8 @@ describe('authServiceFactory', () => {
                   alg: 'ES256',
                 },
               ],
-            }),
-          ),
+            },
+)},
       ),
     );
 
@@ -297,11 +307,11 @@ describe('authServiceFactory', () => {
      }
     */
     server.use(
-      rest.get(
+      http.get(
         'http://localhost:7007/api/auth/.well-known/jwks.json',
-        (_req, res, ctx) =>
-          res(
-            ctx.json({
+        () =>
+          {HttpResponse.json(
+{
               keys: [
                 {
                   kty: 'EC',
@@ -312,27 +322,35 @@ describe('authServiceFactory', () => {
                   alg: 'ES256',
                 },
               ],
-            }),
-          ),
+            },
+)},
       ),
-      rest.get(
+      http.get(
         'http://localhost:7007/api/catalog/.backstage/auth/v1/jwks.json',
-        async (_req, res, ctx) =>
-          res(ctx.json(await catalogAuth.listPublicServiceKeys())),
+        async () =>
+          {HttpResponse.json(
+await catalogAuth.listPublicServiceKeys(),
+)},
       ),
-      rest.get(
+      http.get(
         'http://localhost:7007/api/search/.backstage/auth/v1/jwks.json',
-        async (_req, res, ctx) =>
-          res(ctx.json(await searchAuth.listPublicServiceKeys())),
+        async () =>
+          {HttpResponse.json(
+await searchAuth.listPublicServiceKeys(),
+)},
       ),
-      rest.get(
+      http.get(
         'http://localhost:7007/api/permission/.backstage/auth/v1/jwks.json',
-        async (_req, res, ctx) =>
-          res(ctx.json(await permissionAuth.listPublicServiceKeys())),
+        async () =>
+          {HttpResponse.json(
+await permissionAuth.listPublicServiceKeys(),
+)},
       ),
-      rest.get(
+      http.get(
         'http://localhost:7007/api/kubernetes/.backstage/auth/v1/jwks.json',
-        (_req, res, ctx) => res(ctx.status(404)),
+        () => {HttpResponse.text(
+{status: 404,
+})},
       ),
     );
 

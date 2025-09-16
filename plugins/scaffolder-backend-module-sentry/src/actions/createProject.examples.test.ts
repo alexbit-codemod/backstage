@@ -21,7 +21,7 @@ import { ActionContext } from '@backstage/plugin-scaffolder-node';
 import { JsonObject } from '@backstage/types';
 import { randomBytes } from 'crypto';
 import { setupServer } from 'msw/node';
-import { HttpResponse, http } from 'msw';
+import { HttpResponse, http } from "msw";
 import { createSentryCreateProjectAction } from './createProject';
 import yaml from 'yaml';
 import { examples } from './createProject.examples';
@@ -75,7 +75,8 @@ describe('sentry:project:create action', () => {
     worker.use(
       http.post(
         `https://sentry.io/api/0/teams/${input.organizationSlug}/${input.teamSlug}/projects/`,
-        async ({ request }) => {
+        async ({request}) => {
+ let request = request;
           expect(request.headers.get('Authorization')).toBe(
             `Bearer b15711beb516e1e910d2ede554dc1bf725654ef3c75e5a9106de9aec13d4gf93`,
           );
@@ -119,7 +120,8 @@ describe('sentry:project:create action', () => {
     worker.use(
       http.post(
         `https://sentry.io/api/0/teams/${input.organizationSlug}/${input.teamSlug}/projects/`,
-        async ({ request }) => {
+        async ({request}) => {
+ let request = request;
           expect(request.headers.get('Authorization')).toBe(
             `Bearer a14711beb516e1e910d2ede554dc1bf725654ef3c75e5a9106de9aec13d5df96`,
           );
@@ -164,7 +166,8 @@ describe('sentry:project:create action', () => {
     worker.use(
       http.post(
         `https://sentry.io/api/0/teams/${input.organizationSlug}/${input.teamSlug}/projects/`,
-        async ({ request }) => {
+        async ({request}) => {
+ let request = request;
           expect(request.headers.get('Authorization')).toBe(
             `Bearer c25711beb516e1e910d2ede554dc1bf725654ef3c75e5a9106de9aec13d5de85`,
           );
@@ -214,7 +217,8 @@ describe('sentry:project:create action', () => {
     worker.use(
       http.post(
         `https://sentry.io/api/0/teams/${input.organizationSlug}/${input.teamSlug}/projects/`,
-        async ({ request }) => {
+        async ({request}) => {
+ let request = request;
           expect(request.headers.get('Authorization')).toBe(
             `Bearer ${sentryScaffolderConfigToken}`,
           );
@@ -255,7 +259,8 @@ describe('sentry:project:create action', () => {
     worker.use(
       http.post(
         `https://sentry.io/api/0/teams/${input.organizationSlug}/${input.teamSlug}/projects/`,
-        async ({ request }) => {
+        async ({request}) => {
+ let request = request;
           expect(request.headers.get('Authorization')).toBe(
             `Bearer c16711beb516e1e910d2ede554dc1bf725654ef3c75e5a9106de9aec13d6gf94`,
           );

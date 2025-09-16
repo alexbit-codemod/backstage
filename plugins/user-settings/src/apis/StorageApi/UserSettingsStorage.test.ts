@@ -25,7 +25,7 @@ import {
   mockApis,
   registerMswTestHooks,
 } from '@backstage/test-utils';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import { UserSettingsStorage } from './UserSettingsStorage';
 
@@ -83,10 +83,12 @@ describe('Persistent Storage API', () => {
     const storage = createPersistentStorage();
 
     server.use(
-      rest.get(
+      http.get(
         `${mockBaseUrl}/buckets/:bucket/keys/:key`,
-        async (_req, res, ctx) => {
-          return res(ctx.json({ value: 'a' }));
+        async () => {
+          return HttpResponse.json(
+{ value: 'a' },
+);
         },
       ),
     );
@@ -104,15 +106,18 @@ describe('Persistent Storage API', () => {
     const dummyValue = 'a';
 
     server.use(
-      rest.put(
+      http.put(
         `${mockBaseUrl}/buckets/:bucket/keys/:key`,
-        async (req, res, ctx) => {
+        async ({request}) => {
+ let req = request;
           const body = await req.json();
           const data = { value: dummyValue };
 
           expect(body).toEqual(data);
 
-          return res(ctx.json(data));
+          return HttpResponse.json(
+data,
+);
         },
       ),
     );
@@ -128,14 +133,17 @@ describe('Persistent Storage API', () => {
     };
 
     server.use(
-      rest.put(
+      http.put(
         `${mockBaseUrl}/buckets/:bucket/keys/:key`,
-        async (req, res, ctx) => {
+        async ({request}) => {
+ let req = request;
           const body = await req.json();
           const data = { value: dummyValue };
           expect(body).toEqual(data);
 
-          return res(ctx.json(data));
+          return HttpResponse.json(
+data,
+);
         },
       ),
     );
@@ -178,14 +186,17 @@ describe('Persistent Storage API', () => {
     const mockData = { hello: 'im a great new value' };
 
     server.use(
-      rest.put(
+      http.put(
         `${mockBaseUrl}/buckets/:bucket/keys/:key`,
-        async (req, res, ctx) => {
+        async ({request}) => {
+ let req = request;
           const body = await req.json();
           const data = { value: mockData };
           expect(body).toEqual(data);
 
-          return res(ctx.json(data));
+          return HttpResponse.json(
+data,
+);
         },
       ),
     );
@@ -221,10 +232,12 @@ describe('Persistent Storage API', () => {
     const selectedKeyNextHandler = jest.fn();
 
     server.use(
-      rest.delete(
+      http.delete(
         `${mockBaseUrl}/buckets/:bucket/keys/:key`,
-        async (_req, res, ctx) => {
-          return res(ctx.status(204));
+        async () => {
+          return HttpResponse.text(
+{status: 204,
+});
         },
       ),
     );
@@ -258,27 +271,32 @@ describe('Persistent Storage API', () => {
     const selectedKeyNextHandler = jest.fn();
 
     server.use(
-      rest.put(
+      http.put(
         `${mockBaseUrl}/buckets/:bucket/keys/:key`,
-        async (req, res, ctx) => {
-          const { bucket, key } = req.params;
+        async ({request}) => {
+ let req = request;
+          const { bucket, key } = params;
           const { value } = await req.json();
 
           expect(bucket).toEqual('default.profile.something.deep');
           expect(key).toEqual('test2');
 
-          return res(ctx.json({ value }));
+          return HttpResponse.json(
+{ value },
+);
         },
       ),
-      rest.get(
+      http.get(
         `${mockBaseUrl}/buckets/:bucket/keys/:key`,
-        async (req, res, ctx) => {
-          const { bucket, key } = req.params;
+        async () => {
+          const { bucket, key } = params;
 
           expect(bucket).toEqual('default.profile/something');
           expect(key).toEqual('deep/test2');
 
-          return res(ctx.status(404));
+          return HttpResponse.text(
+{status: 404,
+});
         },
       ),
     );
@@ -321,13 +339,15 @@ describe('Persistent Storage API', () => {
     });
 
     server.use(
-      rest.get(
+      http.get(
         `${mockBaseUrl}/buckets/:bucket/keys/:key`,
-        async (req, res, ctx) => {
-          const { bucket, key } = req.params;
+        async () => {
+          const { bucket, key } = params;
           expect(bucket).toEqual('Test.Mock.Thing');
           expect(key).toEqual('key');
-          return res(ctx.text('{ invalid: json string }'));
+          return HttpResponse.text(
+'{ invalid: json string }',
+);
         },
       ),
     );
@@ -358,10 +378,12 @@ describe('Persistent Storage API', () => {
     const data = { foo: 'bar', baz: [{ foo: 'bar' }] };
 
     server.use(
-      rest.get(
+      http.get(
         `${mockBaseUrl}/buckets/:bucket/keys/:key`,
-        async (_req, res, ctx) => {
-          return res(ctx.json({ value: data }));
+        async () => {
+          return HttpResponse.json(
+{ value: data },
+);
         },
       ),
     );

@@ -16,7 +16,7 @@
 
 import { registerMswTestHooks } from '@backstage/backend-test-utils';
 import { BitbucketServerIntegrationConfig } from '@backstage/integration';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import {
   BitbucketServerClient,
@@ -59,13 +59,16 @@ describe('BitbucketServerClient', () => {
 
   it('listProjects', async () => {
     server.use(
-      rest.get(`${config.apiBaseUrl}/projects`, (req, res, ctx) => {
+      http.get(`${config.apiBaseUrl}/projects`, ({request}) => {
+ let req = request;
         if (
           req.headers.get('authorization') !== 'Basic dGVzdC11c2VyOnRlc3QtcHc='
         ) {
-          return res(ctx.status(400));
+          return HttpResponse.text(
+{status: 400,
+});
         }
-        const response: BitbucketServerPagedResponse<BitbucketServerProject> = {
+        const response: BitbucketServerPagedResponse<any, BitbucketServerProject> = {
           size: 1,
           limit: 25,
           isLastPage: true,
@@ -96,16 +99,19 @@ describe('BitbucketServerClient', () => {
 
   it('listRepositories', async () => {
     server.use(
-      rest.get(
+      http.get(
         `${config.apiBaseUrl}/projects/test-project/repos`,
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           if (
             req.headers.get('authorization') !==
             'Basic dGVzdC11c2VyOnRlc3QtcHc='
           ) {
-            return res(ctx.status(400));
+            return HttpResponse.text(
+{status: 400,
+});
           }
-          const response: BitbucketServerPagedResponse<BitbucketServerRepository> =
+          const response: BitbucketServerPagedResponse<any, BitbucketServerRepository> =
             {
               size: 1,
               limit: 25,
@@ -158,14 +164,17 @@ describe('BitbucketServerClient', () => {
 
   it('getFile', async () => {
     server.use(
-      rest.get(
+      http.get(
         `${config.apiBaseUrl}/projects/test-project/repos/test-repo/raw/catalog-info.yaml`,
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           if (
             req.headers.get('authorization') !==
             'Basic dGVzdC11c2VyOnRlc3QtcHc='
           ) {
-            return res(ctx.status(400));
+            return HttpResponse.text(
+{status: 400,
+});
           }
 
           return res(ctx.text(catalogInfoFile));
@@ -183,14 +192,17 @@ describe('BitbucketServerClient', () => {
 
   it('getRepository', async () => {
     server.use(
-      rest.get(
+      http.get(
         `${config.apiBaseUrl}/projects/test-project/repos/test-repo`,
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           if (
             req.headers.get('authorization') !==
             'Basic dGVzdC11c2VyOnRlc3QtcHc='
           ) {
-            return res(ctx.status(400));
+            return HttpResponse.text(
+{status: 400,
+});
           }
           const response: BitbucketServerRepository = {
             project: {
@@ -227,10 +239,12 @@ describe('BitbucketServerClient', () => {
 
   it('getRepository no repo', async () => {
     server.use(
-      rest.get(
+      http.get(
         `${config.apiBaseUrl}/projects/test-project/repos/wrong-repo`,
-        (_, res, ctx) => {
-          return res(ctx.status(404));
+        () => {
+          return HttpResponse.text(
+{status: 404,
+});
         },
       ),
     );
@@ -250,14 +264,17 @@ describe('BitbucketServerClient', () => {
 
   it('getDefaultBranch success', async () => {
     server.use(
-      rest.get(
+      http.get(
         `${config.apiBaseUrl}/projects/test-project/repos/test-repo/default-branch`,
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           if (
             req.headers.get('authorization') !==
             'Basic dGVzdC11c2VyOnRlc3QtcHc='
           ) {
-            return res(ctx.status(400));
+            return HttpResponse.text(
+{status: 400,
+});
           }
           const response: BitbucketServerDefaultBranch = {
             id: 'refs/heads/master',
@@ -282,10 +299,12 @@ describe('BitbucketServerClient', () => {
 
   it('getDefaultBranch endpoint', async () => {
     server.use(
-      rest.get(
+      http.get(
         `${config.apiBaseUrl}/projects/test-project/repos/wrong-repo/default-branch`,
-        (_, res, ctx) => {
-          return res(ctx.status(404));
+        () => {
+          return HttpResponse.text(
+{status: 404,
+});
         },
       ),
     );

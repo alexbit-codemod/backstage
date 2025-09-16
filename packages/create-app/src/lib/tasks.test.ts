@@ -33,7 +33,7 @@ import {
   createMockDirectory,
   registerMswTestHooks,
 } from '@backstage/backend-test-utils';
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse, delay } from "msw";
 import { setupServer } from 'msw/node';
 
 jest.spyOn(Task, 'log').mockReturnValue(undefined);
@@ -407,7 +407,7 @@ describe('tasks', () => {
         http.get(
           'https://raw.githubusercontent.com/backstage/backstage/master/packages/create-app/seed-yarn.lock',
           () =>
-            HttpResponse.text(`# the-lockfile-header
+            {HttpResponse.text(`# the-lockfile-header
 
 // some comments
 // in the file
@@ -417,7 +417,7 @@ describe('tasks', () => {
 // a comment about the entry
 "@backstage/cli@1.0.0":
   some info
-`),
+`)},
         ),
       );
 
@@ -439,7 +439,7 @@ describe('tasks', () => {
       worker.use(
         http.get(
           'https://raw.githubusercontent.com/backstage/backstage/master/packages/create-app/seed-yarn.lock',
-          () => new HttpResponse(null, { status: 404 }),
+          () => {new HttpResponse(null, { status: 404 })},
         ),
       );
 
@@ -454,7 +454,7 @@ describe('tasks', () => {
       worker.use(
         http.get(
           'https://raw.githubusercontent.com/backstage/backstage/master/packages/create-app/seed-yarn.lock',
-          () => delay(5000),
+          () => {delay(5000)},
         ),
       );
 

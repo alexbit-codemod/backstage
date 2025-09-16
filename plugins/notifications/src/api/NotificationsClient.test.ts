@@ -15,7 +15,7 @@
  */
 
 import { MockFetchApi, registerMswTestHooks } from '@backstage/test-utils';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import { NotificationsClient } from './NotificationsClient';
 import { Notification } from '@backstage/plugin-notifications-common';
@@ -51,8 +51,10 @@ describe('NotificationsClient', () => {
 
     it('should fetch notifications from correct endpoint', async () => {
       server.use(
-        rest.get(`${mockBaseUrl}/notifications`, (_, res, ctx) =>
-          res(ctx.json(expectedResp)),
+        http.get(`${mockBaseUrl}/notifications`, () =>
+          {HttpResponse.json(
+expectedResp,
+)},
         ),
       );
       const response = await client.getNotifications();
@@ -61,11 +63,14 @@ describe('NotificationsClient', () => {
 
     it('should fetch notifications with options', async () => {
       server.use(
-        rest.get(`${mockBaseUrl}/notifications`, (req, res, ctx) => {
-          expect(req.url.search).toBe(
+        http.get(`${mockBaseUrl}/notifications`, ({request}) => {
+ let req = request;
+          expect(new URL(req.url).search).toBe(
             '?limit=10&offset=0&search=find+me&read=true&createdAfter=1970-01-01T00%3A00%3A00.005Z',
           );
-          return res(ctx.json(expectedResp));
+          return HttpResponse.json(
+expectedResp,
+);
         }),
       );
       const response = await client.getNotifications({
@@ -80,9 +85,12 @@ describe('NotificationsClient', () => {
 
     it('should fetch notifications of the topic', async () => {
       server.use(
-        rest.get(`${mockBaseUrl}/notifications`, (req, res, ctx) => {
-          expect(req.url.search).toBe(`?limit=10&offset=0&topic=${testTopic}`);
-          return res(ctx.json(expectedResp));
+        http.get(`${mockBaseUrl}/notifications`, ({request}) => {
+ let req = request;
+          expect(new URL(req.url).search).toBe(`?limit=10&offset=0&topic=${testTopic}`);
+          return HttpResponse.json(
+expectedResp,
+);
         }),
       );
 
@@ -96,9 +104,12 @@ describe('NotificationsClient', () => {
 
     it('should omit unselected fetch options', async () => {
       server.use(
-        rest.get(`${mockBaseUrl}/notifications`, (req, res, ctx) => {
-          expect(req.url.search).toBe('?limit=10');
-          return res(ctx.json(expectedResp));
+        http.get(`${mockBaseUrl}/notifications`, ({request}) => {
+ let req = request;
+          expect(new URL(req.url).search).toBe('?limit=10');
+          return HttpResponse.json(
+expectedResp,
+);
         }),
       );
       const response = await client.getNotifications({
@@ -110,9 +121,11 @@ describe('NotificationsClient', () => {
 
     it('should fetch single notification', async () => {
       server.use(
-        rest.get(`${mockBaseUrl}/notifications/:id`, (req, res, ctx) => {
-          expect(req.params.id).toBe('acdaa8ca-262b-43c1-b74b-de06e5f3b3c7');
-          return res(ctx.json(testNotification));
+        http.get(`${mockBaseUrl}/notifications/:id`, () => {
+          expect(params.id).toBe('acdaa8ca-262b-43c1-b74b-de06e5f3b3c7');
+          return HttpResponse.json(
+testNotification,
+);
         }),
       );
 
@@ -124,8 +137,10 @@ describe('NotificationsClient', () => {
 
     it('should fetch status from correct endpoint', async () => {
       server.use(
-        rest.get(`${mockBaseUrl}/status`, (_, res, ctx) =>
-          res(ctx.json({ read: 1, unread: 1 })),
+        http.get(`${mockBaseUrl}/status`, () =>
+          {HttpResponse.json(
+{ read: 1, unread: 1 },
+)},
         ),
       );
       const response = await client.getStatus();
@@ -134,13 +149,16 @@ describe('NotificationsClient', () => {
 
     it('should update notifications', async () => {
       server.use(
-        rest.post(
+        http.post(
           `${mockBaseUrl}/notifications/update`,
-          async (req, res, ctx) => {
+          async ({request}) => {
+ let req = request;
             expect(await req.json()).toEqual({
               ids: ['acdaa8ca-262b-43c1-b74b-de06e5f3b3c7'],
             });
-            return res(ctx.json(expectedResp));
+            return HttpResponse.json(
+expectedResp,
+);
           },
         ),
       );
@@ -156,8 +174,10 @@ describe('NotificationsClient', () => {
 
     it('should fetch topics from correct endpoint', async () => {
       server.use(
-        rest.get(`${mockBaseUrl}/topics`, (_, res, ctx) =>
-          res(ctx.json(expectedResp)),
+        http.get(`${mockBaseUrl}/topics`, () =>
+          {HttpResponse.json(
+expectedResp,
+)},
         ),
       );
       const response = await client.getTopics();
@@ -166,11 +186,14 @@ describe('NotificationsClient', () => {
 
     it('should fetch topics with options', async () => {
       server.use(
-        rest.get(`${mockBaseUrl}/topics`, (req, res, ctx) => {
-          expect(req.url.search).toBe(
+        http.get(`${mockBaseUrl}/topics`, ({request}) => {
+ let req = request;
+          expect(new URL(req.url).search).toBe(
             '?search=find+me&read=true&createdAfter=1970-01-01T00%3A00%3A00.005Z',
           );
-          return res(ctx.json(expectedResp));
+          return HttpResponse.json(
+expectedResp,
+);
         }),
       );
 

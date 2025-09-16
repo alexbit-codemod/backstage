@@ -17,13 +17,7 @@
 import { ANNOTATION_KUBERNETES_AUTH_PROVIDER } from '@backstage/plugin-kubernetes-common';
 import { KubernetesClientBasedFetcher } from './KubernetesFetcher';
 import { ObjectToFetch } from '@backstage/plugin-kubernetes-node';
-import {
-  MockedRequest,
-  RestContext,
-  ResponseTransformer,
-  compose,
-  rest,
-} from 'msw';
+import { MockedRequest, RestContext, ResponseTransformer, compose, http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import {
   createMockDirectory,
@@ -73,7 +67,7 @@ describe('KubernetesFetcher', () => {
   registerMswTestHooks(worker);
 
   const labels = (req: MockedRequest): object => {
-    const selectorParam = req.url.searchParams.get('labelSelector');
+    const selectorParam = new URL(req.url).searchParams.get('labelSelector');
     if (selectorParam) {
       const [key, value] = selectorParam.split('=');
       return { [key]: value };
@@ -121,24 +115,20 @@ describe('KubernetesFetcher', () => {
       expectedResult: any,
     ) => {
       worker.use(
-        rest.get('http://localhost:9999/api/v1/pods', (req, res, ctx) =>
-          res(
-            checkToken(req, ctx, 'token'),
-            withLabels(req, ctx, {
-              items: [{ metadata: { name: 'pod-name' } }],
-            }),
-          ),
+        http.get('http://localhost:9999/api/v1/pods', () =>
+          {HttpResponse.text(
+)},
         ),
-        rest.get('http://localhost:9999/api/v1/services', (_, res, ctx) => {
-          return res(
-            ctx.status(errorResponse.response.statusCode),
-            ctx.json({
+        http.get('http://localhost:9999/api/v1/services', () => {
+          return HttpResponse.json(
+{
               kind: 'Status',
               apiVersion: 'v1',
               status: 'Failure',
               code: errorResponse.response.statusCode,
-            }),
-          );
+            },
+{status: errorResponse.response.statusCode,
+});
         }),
       );
 
@@ -181,25 +171,17 @@ describe('KubernetesFetcher', () => {
 
     it('should support clusters with a base path', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'http://localhost:9999/k8s/clusters/1234/api/v1/pods',
-          (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                items: [{ metadata: { name: 'pod-name' } }],
-              }),
-            ),
+          () =>
+            {HttpResponse.text(
+)},
         ),
-        rest.get(
+        http.get(
           'http://localhost:9999/k8s/clusters/1234/api/v1/services',
-          (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                items: [{ metadata: { name: 'service-name' } }],
-              }),
-            ),
+          () =>
+            {HttpResponse.text(
+)},
         ),
       );
 
@@ -246,14 +228,11 @@ describe('KubernetesFetcher', () => {
     });
     it('localKubectlProxy authProvider fetches resources correctly', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'http://localhost:9999/k8s/clusters/1234/api/v1/services',
-          (req, res, ctx) =>
-            res(
-              withLabels(req, ctx, {
-                items: [{ metadata: { name: 'service-name' } }],
-              }),
-            ),
+          () =>
+            {HttpResponse.text(
+)},
         ),
       );
 
@@ -298,21 +277,13 @@ describe('KubernetesFetcher', () => {
     });
     it('should return pods, services', async () => {
       worker.use(
-        rest.get('http://localhost:9999/api/v1/pods', (req, res, ctx) =>
-          res(
-            checkToken(req, ctx, 'token'),
-            withLabels(req, ctx, {
-              items: [{ metadata: { name: 'pod-name' } }],
-            }),
-          ),
+        http.get('http://localhost:9999/api/v1/pods', () =>
+          {HttpResponse.text(
+)},
         ),
-        rest.get('http://localhost:9999/api/v1/services', (req, res, ctx) =>
-          res(
-            checkToken(req, ctx, 'token'),
-            withLabels(req, ctx, {
-              items: [{ metadata: { name: 'service-name' } }],
-            }),
-          ),
+        http.get('http://localhost:9999/api/v1/services', () =>
+          {HttpResponse.text(
+)},
         ),
       );
 
@@ -359,34 +330,19 @@ describe('KubernetesFetcher', () => {
     });
     it('should return pods, services and customobjects', async () => {
       worker.use(
-        rest.get('http://localhost:9999/api/v1/pods', (req, res, ctx) =>
-          res(
-            checkToken(req, ctx, 'token'),
-            withLabels(req, ctx, {
-              kind: 'PodList',
-              items: [{ metadata: { name: 'pod-name' } }],
-            }),
-          ),
+        http.get('http://localhost:9999/api/v1/pods', () =>
+          {HttpResponse.text(
+)},
         ),
-        rest.get('http://localhost:9999/api/v1/services', (req, res, ctx) =>
-          res(
-            checkToken(req, ctx, 'token'),
-            withLabels(req, ctx, {
-              kind: 'ServiceList',
-              items: [{ metadata: { name: 'service-name' } }],
-            }),
-          ),
+        http.get('http://localhost:9999/api/v1/services', () =>
+          {HttpResponse.text(
+)},
         ),
-        rest.get(
+        http.get(
           'http://localhost:9999/apis/some-group/v2/things',
-          (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                kind: 'ThingList',
-                items: [{ metadata: { name: 'something-else' } }],
-              }),
-            ),
+          () =>
+            {HttpResponse.text(
+)},
         ),
       );
 
@@ -469,16 +425,13 @@ describe('KubernetesFetcher', () => {
     it('should return pods and unauthorized error, logging a warning', async () => {
       const warn = jest.spyOn(logger, 'warn');
       worker.use(
-        rest.get('http://localhost:9999/api/v1/pods', (req, res, ctx) =>
-          res(
-            checkToken(req, ctx, 'token'),
-            withLabels(req, ctx, {
-              items: [{ metadata: { name: 'pod-name' } }],
-            }),
-          ),
+        http.get('http://localhost:9999/api/v1/pods', () =>
+          {HttpResponse.text(
+)},
         ),
-        rest.get('http://localhost:9999/api/v1/services', (req, res, ctx) =>
-          res(checkToken(req, ctx, 'other-token')),
+        http.get('http://localhost:9999/api/v1/services', () =>
+          {HttpResponse.text(
+)},
         ),
       );
 
@@ -555,18 +508,14 @@ describe('KubernetesFetcher', () => {
     });
     it('fails on a network error', async () => {
       worker.use(
-        rest.get('http://badurl.does.not.exist/api/v1/pods', (_, res) =>
-          res.networkError('getaddrinfo ENOTFOUND badurl.does.not.exist'),
+        http.get('http://badurl.does.not.exist/api/v1/pods', () =>
+          {res.networkError('getaddrinfo ENOTFOUND badurl.does.not.exist')},
         ),
-        rest.get(
+        http.get(
           'http://badurl.does.not.exist/api/v1/services',
-          (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                items: [{ metadata: { name: 'service-name' } }],
-              }),
-            ),
+          () =>
+            {HttpResponse.text(
+)},
         ),
       );
 
@@ -589,21 +538,13 @@ describe('KubernetesFetcher', () => {
     });
     it('should respect labelSelector', async () => {
       worker.use(
-        rest.get('http://localhost:9999/api/v1/pods', (req, res, ctx) =>
-          res(
-            checkToken(req, ctx, 'token'),
-            withLabels(req, ctx, {
-              items: [{ metadata: { name: 'pod-name' } }],
-            }),
-          ),
+        http.get('http://localhost:9999/api/v1/pods', () =>
+          {HttpResponse.text(
+)},
         ),
-        rest.get('http://localhost:9999/api/v1/services', (req, res, ctx) =>
-          res(
-            checkToken(req, ctx, 'token'),
-            withLabels(req, ctx, {
-              items: [{ metadata: { name: 'service-name' } }],
-            }),
-          ),
+        http.get('http://localhost:9999/api/v1/services', () =>
+          {HttpResponse.text(
+)},
         ),
       );
 
@@ -671,13 +612,9 @@ describe('KubernetesFetcher', () => {
 
       it('should trust specified caData', async () => {
         worker.use(
-          rest.get('https://localhost:9999/api/v1/pods', (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                items: [{ metadata: { name: 'pod-name' } }],
-              }),
-            ),
+          http.get('https://localhost:9999/api/v1/pods', () =>
+            {HttpResponse.text(
+)},
           ),
         );
 
@@ -708,13 +645,9 @@ describe('KubernetesFetcher', () => {
       });
       it('should use default chain of trust when caData is unspecified', async () => {
         worker.use(
-          rest.get('https://localhost:9999/api/v1/pods', (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                items: [{ metadata: { name: 'pod-name' } }],
-              }),
-            ),
+          http.get('https://localhost:9999/api/v1/pods', () =>
+            {HttpResponse.text(
+)},
           ),
         );
 
@@ -745,13 +678,9 @@ describe('KubernetesFetcher', () => {
       describe('with a CA file on disk', () => {
         it('should trust contents of specified caFile', async () => {
           worker.use(
-            rest.get('https://localhost:9999/api/v1/pods', (req, res, ctx) =>
-              res(
-                checkToken(req, ctx, 'token'),
-                withLabels(req, ctx, {
-                  items: [{ metadata: { name: 'pod-name' } }],
-                }),
-              ),
+            http.get('https://localhost:9999/api/v1/pods', () =>
+              {HttpResponse.text(
+)},
             ),
           );
 
@@ -783,13 +712,9 @@ describe('KubernetesFetcher', () => {
       });
       it('should accept unauthorized certs when skipTLSVerify is set', async () => {
         worker.use(
-          rest.get('https://localhost:9999/api/v1/pods', (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                items: [{ metadata: { name: 'pod-name' } }],
-              }),
-            ),
+          http.get('https://localhost:9999/api/v1/pods', () =>
+            {HttpResponse.text(
+)},
           ),
         );
 
@@ -821,13 +746,9 @@ describe('KubernetesFetcher', () => {
 
       it('fetchObjectsForService authenticates with k8s using x509 client cert from authentication strategy', async () => {
         worker.use(
-          rest.get('https://localhost:9999/api/v1/pods', (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                items: [{ metadata: { name: 'pod-name' } }],
-              }),
-            ),
+          http.get('https://localhost:9999/api/v1/pods', () =>
+            {HttpResponse.text(
+)},
           ),
         );
 
@@ -870,48 +791,17 @@ describe('KubernetesFetcher', () => {
 
       it('fetchPodMetricsByNamespaces authenticates with k8s using x509 client cert from authentication strategy', async () => {
         worker.use(
-          rest.get(
+          http.get(
             'https://localhost:9999/api/v1/namespaces/:namespace/pods',
-            (req, res, ctx) =>
-              res(
-                withLabels(req, ctx, {
-                  items: [
-                    {
-                      metadata: { name: 'pod-name' },
-                      spec: {
-                        containers: [
-                          {
-                            name: 'container-name',
-                            resources: {
-                              requests: { cpu: '500m', memory: '512M' },
-                              limits: { cpu: '1000m', memory: '1G' },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                }),
-              ),
+            () =>
+              {HttpResponse.text(
+)},
           ),
-          rest.get(
+          http.get(
             'https://localhost:9999/apis/metrics.k8s.io/v1beta1/namespaces/:namespace/pods',
-            (req, res, ctx) =>
-              res(
-                withLabels(req, ctx, {
-                  items: [
-                    {
-                      metadata: { name: 'pod-name' },
-                      containers: [
-                        {
-                          name: 'container-name',
-                          usage: { cpu: '0', memory: '0' },
-                        },
-                      ],
-                    },
-                  ],
-                }),
-              ),
+            () =>
+              {HttpResponse.text(
+)},
           ),
         );
 
@@ -945,25 +835,17 @@ describe('KubernetesFetcher', () => {
 
     it('should use namespace if provided', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'http://localhost:9999/api/v1/namespaces/some-namespace/pods',
-          (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                items: [{ metadata: { name: 'pod-name' } }],
-              }),
-            ),
+          () =>
+            {HttpResponse.text(
+)},
         ),
-        rest.get(
+        http.get(
           'http://localhost:9999/api/v1/namespaces/some-namespace/services',
-          (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                items: [{ metadata: { name: 'service-name' } }],
-              }),
-            ),
+          () =>
+            {HttpResponse.text(
+)},
         ),
       );
 
@@ -1047,13 +929,9 @@ describe('KubernetesFetcher', () => {
         process.env.KUBERNETES_SERVICE_HOST = '10.10.10.10';
         process.env.KUBERNETES_SERVICE_PORT = '443';
         worker.use(
-          rest.get('https://10.10.10.10/api/v1/pods', (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'allowed-token'),
-              withLabels(req, ctx, {
-                items: [{ metadata: { name: 'pod-name' } }],
-              }),
-            ),
+          http.get('https://10.10.10.10/api/v1/pods', () =>
+            {HttpResponse.text(
+)},
           ),
         );
 
@@ -1110,50 +988,17 @@ describe('KubernetesFetcher', () => {
 
     it('should return pod metrics', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'http://localhost:9999/api/v1/namespaces/:namespace/pods',
-          (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                items: [
-                  {
-                    metadata: { name: 'pod-name' },
-                    spec: {
-                      containers: [
-                        {
-                          name: 'container-name',
-                          resources: {
-                            requests: { cpu: '500m', memory: '512M' },
-                            limits: { cpu: '1000m', memory: '1G' },
-                          },
-                        },
-                      ],
-                    },
-                  },
-                ],
-              }),
-            ),
+          () =>
+            {HttpResponse.text(
+)},
         ),
-        rest.get(
+        http.get(
           'http://localhost:9999/apis/metrics.k8s.io/v1beta1/namespaces/:namespace/pods',
-          (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                items: [
-                  {
-                    metadata: { name: 'pod-name' },
-                    containers: [
-                      {
-                        name: 'container-name',
-                        usage: { cpu: '0', memory: '0' },
-                      },
-                    ],
-                  },
-                ],
-              }),
-            ),
+          () =>
+            {HttpResponse.text(
+)},
         ),
       );
 
@@ -1173,74 +1018,41 @@ describe('KubernetesFetcher', () => {
     });
     it('should return pod metrics and error', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'http://localhost:9999/api/v1/namespaces/ns-a/pods',
-          (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                items: [
-                  {
-                    metadata: { name: 'pod-name' },
-                    spec: {
-                      containers: [
-                        {
-                          name: 'container-name',
-                          resources: {
-                            requests: { cpu: '500m', memory: '512M' },
-                            limits: { cpu: '1000m', memory: '1G' },
-                          },
-                        },
-                      ],
-                    },
-                  },
-                ],
-              }),
-            ),
+          () =>
+            {HttpResponse.text(
+)},
         ),
-        rest.get(
+        http.get(
           'http://localhost:9999/apis/metrics.k8s.io/v1beta1/namespaces/ns-a/pods',
-          (req, res, ctx) =>
-            res(
-              checkToken(req, ctx, 'token'),
-              withLabels(req, ctx, {
-                items: [
-                  {
-                    metadata: { name: 'pod-name' },
-                    containers: [
-                      {
-                        name: 'container-name',
-                        usage: { cpu: '0', memory: '0' },
-                      },
-                    ],
-                  },
-                ],
-              }),
-            ),
+          () =>
+            {HttpResponse.text(
+)},
         ),
-        rest.get(
+        http.get(
           'http://localhost:9999/api/v1/namespaces/ns-b/pods',
-          (_, res, ctx) =>
-            res(
-              ctx.status(404),
-              ctx.json({
+          () =>
+            {HttpResponse.json(
+{
                 kind: 'Status',
                 apiVersion: 'v1',
                 code: 404,
-              }),
-            ),
+              },
+{status: 404,
+})},
         ),
-        rest.get(
+        http.get(
           'http://localhost:9999/apis/metrics.k8s.io/v1beta1/namespaces/ns-b/pods',
-          (_, res, ctx) =>
-            res(
-              ctx.status(404),
-              ctx.json({
+          () =>
+            {HttpResponse.json(
+{
                 kind: 'Status',
                 apiVersion: 'v1',
                 code: 404,
-              }),
-            ),
+              },
+{status: 404,
+})},
         ),
       );
 

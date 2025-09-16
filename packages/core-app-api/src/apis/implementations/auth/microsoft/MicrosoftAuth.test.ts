@@ -21,7 +21,7 @@ import { ConfigReader } from '@backstage/config';
 import { microsoftAuthApiRef } from '@backstage/core-plugin-api';
 import { registerMswTestHooks } from '@backstage/test-utils';
 import { setupServer } from 'msw/node';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 
 describe('MicrosoftAuth', () => {
   const server = setupServer();
@@ -37,18 +37,19 @@ describe('MicrosoftAuth', () => {
   describe('with a refresh token', () => {
     beforeEach(() => {
       server.use(
-        rest.get(
+        http.get(
           'http://backstage.test/api/auth/microsoft/refresh',
-          async (req, res, ctx) => {
-            const scopeParam = req.url.searchParams.get('scope');
-            return res(
-              ctx.json({
+          async ({request}) => {
+ let req = request;
+            const scopeParam = new URL(req.url).searchParams.get('scope');
+            return HttpResponse.json(
+{
                 providerInfo: {
                   accessToken: `token:${scopeParam}`,
                   scope: scopeParam || 'grant-resource/scope',
                 },
-              }),
-            );
+              },
+);
           },
         ),
       );
@@ -108,12 +109,11 @@ describe('MicrosoftAuth', () => {
         ),
       });
       server.use(
-        rest.get(
+        http.get(
           'http://backstage.test/api/auth/microsoft/refresh',
-          (_, res, ctx) => {
-            return res(
-              ctx.status(401),
-              ctx.json({
+          () => {
+            return HttpResponse.json(
+{
                 error: {
                   name: 'AuthenticationError',
                   message:
@@ -130,8 +130,9 @@ describe('MicrosoftAuth', () => {
                 response: {
                   statusCode: 401,
                 },
-              }),
-            );
+              },
+{status: 401,
+});
           },
         ),
       );

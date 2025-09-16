@@ -33,7 +33,7 @@ import {
 import { PinnipedHelper, PinnipedParameters } from './PinnipedHelper';
 import { HEADER_KUBERNETES_CLUSTER } from '@backstage/plugin-kubernetes-backend';
 import { JsonObject } from '@backstage/types';
-import { rest } from 'msw';
+import { http , passthrough, HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import { ExtendedHttpServer } from '@backstage/backend-defaults/rootHttpRouter';
 
@@ -154,8 +154,10 @@ describe('Pinniped - tokenCredentialRequest', () => {
   describe('TLS Clusters', () => {
     it('Should get certs data from Concierge', async () => {
       worker.use(
-        rest.get('https://my.cluster.url/api/v1/namespaces', (_, res, ctx) => {
-          return res(ctx.json({ items: [] }));
+        http.get('https://my.cluster.url/api/v1/namespaces', () => {
+          return HttpResponse.json(
+{ items: [] },
+);
         }),
       );
 
@@ -163,11 +165,11 @@ describe('Pinniped - tokenCredentialRequest', () => {
       const myKey = 'MOCKKey';
 
       worker.use(
-        rest.post(
+        http.post(
           'https://my.cluster.url/apis/login.concierge.pinniped.dev/v1alpha1/tokencredentialrequests',
-          (_, res, ctx) => {
-            return res(
-              ctx.json({
+          () => {
+            return HttpResponse.json(
+{
                 status: {
                   credential: {
                     clientKeyData: myKey,
@@ -175,8 +177,8 @@ describe('Pinniped - tokenCredentialRequest', () => {
                     expirationTimestamp: '2024-01-04T14:30:30.373Z',
                   },
                 },
-              }),
-            );
+              },
+);
           },
         ),
       );
@@ -189,7 +191,7 @@ describe('Pinniped - tokenCredentialRequest', () => {
           'ClusterID Specific Token',
         );
 
-      worker.use(rest.all(proxyEndpointRequest.url, req => req.passthrough()));
+      worker.use(http.all(proxyEndpointRequest.url, () => {passthrough()}));
 
       const result = await proxyEndpointRequest;
 
@@ -203,8 +205,10 @@ describe('Pinniped - tokenCredentialRequest', () => {
 
     it('Should get certs data from TMC-flavoured Pinniped', async () => {
       worker.use(
-        rest.get('https://my.cluster.url/api/v1/namespaces', (_, res, ctx) => {
-          return res(ctx.json({ items: [] }));
+        http.get('https://my.cluster.url/api/v1/namespaces', () => {
+          return HttpResponse.json(
+{ items: [] },
+);
         }),
       );
 
@@ -212,11 +216,11 @@ describe('Pinniped - tokenCredentialRequest', () => {
       const myKey = 'MOCKKey2';
 
       worker.use(
-        rest.post(
+        http.post(
           'https://my.cluster.url/apis/login.concierge.pinniped.tmc.cloud.vmware.com/v1alpha1/tokencredentialrequests',
-          (_, res, ctx) => {
-            return res(
-              ctx.json({
+          () => {
+            return HttpResponse.json(
+{
                 status: {
                   credential: {
                     clientKeyData: myKey,
@@ -224,8 +228,8 @@ describe('Pinniped - tokenCredentialRequest', () => {
                     expirationTimestamp: '2024-01-04T14:30:30.373Z',
                   },
                 },
-              }),
-            );
+              },
+);
           },
         ),
       );
@@ -334,7 +338,7 @@ describe('Pinniped - tokenCredentialRequest', () => {
           'ClusterID Specific Token',
         );
 
-      worker.use(rest.all(proxyEndpointRequest.url, req => req.passthrough()));
+      worker.use(http.all(proxyEndpointRequest.url, () => {passthrough()}));
 
       const result = await proxyEndpointRequest;
 
@@ -348,17 +352,19 @@ describe('Pinniped - tokenCredentialRequest', () => {
 
     it('Should get an error when Concierge return an error', async () => {
       worker.use(
-        rest.get('https://my.cluster.url/api/v1/namespaces', (_, res, ctx) => {
-          return res(ctx.json({ items: [] }));
+        http.get('https://my.cluster.url/api/v1/namespaces', () => {
+          return HttpResponse.json(
+{ items: [] },
+);
         }),
       );
 
       worker.use(
-        rest.post(
+        http.post(
           'https://my.cluster.url/apis/login.concierge.pinniped.dev/v1alpha1/tokencredentialrequests',
-          (_, res, ctx) => {
-            return res(
-              ctx.json({
+          () => {
+            return HttpResponse.json(
+{
                 kind: 'TokenCredentialRequest',
                 apiVersion: 'login.concierge.pinniped.dev/v1alpha1',
                 metadata: {
@@ -374,8 +380,8 @@ describe('Pinniped - tokenCredentialRequest', () => {
                 status: {
                   message: 'authentication failed',
                 },
-              }),
-            );
+              },
+);
           },
         ),
       );
@@ -388,7 +394,7 @@ describe('Pinniped - tokenCredentialRequest', () => {
           'ClusterID Specific Token',
         );
 
-      worker.use(rest.all(proxyEndpointRequest.url, req => req.passthrough()));
+      worker.use(http.all(proxyEndpointRequest.url, () => {passthrough()}));
 
       const result = await proxyEndpointRequest;
 

@@ -1,3 +1,4 @@
+import { passthrough } from "msw"; 
 /*
  * Copyright 2021 The Backstage Authors
  *
@@ -168,7 +169,7 @@ export async function createRouter(
   });
 
   router.get('/query', async (req, res) => {
-    const parseResult = requestSchema.passthrough().safeParse(req.query);
+    const parseResult = passthrough().safeParse(req.query);
 
     if (!parseResult.success) {
       throw new InputError(`Invalid query string: ${parseResult.error}`);

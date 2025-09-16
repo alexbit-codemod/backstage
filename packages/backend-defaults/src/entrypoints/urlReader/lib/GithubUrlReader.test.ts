@@ -25,7 +25,7 @@ import {
   registerMswTestHooks,
 } from '@backstage/backend-test-utils';
 import fs from 'fs-extra';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import path from 'path';
 import { NotFoundError, NotModifiedError } from '@backstage/errors';
@@ -111,20 +111,21 @@ describe('GithubUrlReader', () => {
       });
 
       worker.use(
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/contents/main',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('authorization')).toBe(
               mockHeaders.Authorization,
             );
             expect(req.headers.get('otherheader')).toBe(
               mockHeaders.otherheader,
             );
-            return res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/x-gzip'),
-              ctx.body('foo'),
-            );
+            return HttpResponse.text(
+'foo',
+{status: 200,
+headers: {"Content-Type":"application/x-gzip"},
+});
           },
         ),
       );
@@ -152,20 +153,21 @@ describe('GithubUrlReader', () => {
       });
 
       worker.use(
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/contents/main',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('authorization')).toBe(
               mockHeaders.Authorization,
             );
             expect(req.headers.get('otherheader')).toBe(
               mockHeaders.otherheader,
             );
-            return res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/x-gzip'),
-              ctx.body('foo'),
-            );
+            return HttpResponse.text(
+'foo',
+{status: 200,
+headers: {"Content-Type":"application/x-gzip"},
+});
           },
         ),
       );
@@ -188,9 +190,10 @@ describe('GithubUrlReader', () => {
       });
 
       worker.use(
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/contents/main',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('authorization')).toBe(
               mockHeaders.Authorization,
             );
@@ -198,11 +201,11 @@ describe('GithubUrlReader', () => {
               mockHeaders.otherheader,
             );
             expect(req.headers.get('if-none-match')).toBe('foo');
-            return res(
-              ctx.status(304),
-              ctx.set('Content-Type', 'application/x-gzip'),
-              ctx.body('foo'),
-            );
+            return HttpResponse.text(
+'foo',
+{status: 304,
+headers: {"Content-Type":"application/x-gzip"},
+});
           },
         ),
       );
@@ -219,16 +222,14 @@ describe('GithubUrlReader', () => {
       expect.assertions(1);
 
       worker.use(
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/contents/main',
-          (_req, res, ctx) => {
-            return res(
-              ctx.status(403),
-              ctx.set('X-RateLimit-Remaining', '0'),
-              ctx.body(
-                '{"message": "API rate limit exceeded for xxx.xxx.xxx.xxx..."}',
-              ),
-            );
+          () => {
+            return HttpResponse.text(
+'{"message": "API rate limit exceeded for xxx.xxx.xxx.xxx..."}',
+{status: 403,
+headers: {"X-RateLimit-Remaining":"0"},
+});
           },
         ),
       );
@@ -249,19 +250,14 @@ describe('GithubUrlReader', () => {
       });
 
       worker.use(
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/contents/main',
-          (_req, res, ctx) => {
-            return res(
-              ctx.status(200),
-              ctx.set('Etag', 'foo'),
-              ctx.set(
-                'Last-Modified',
-                new Date('2021-01-01T00:00:00Z').toUTCString(),
-              ),
-
-              ctx.body('bar'),
-            );
+          () => {
+            return HttpResponse.text(
+'bar',
+{status: 200,
+headers: {"Etag":"foo","Last-Modified":"ew Date('2021-01-01T00:00:00Z').toUTCString("},
+});
           },
         ),
       );
@@ -283,13 +279,16 @@ describe('GithubUrlReader', () => {
       });
 
       worker.use(
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/contents/main',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('authorization')).toBe(
               'Bearer overridentoken',
             );
-            return res(ctx.status(200));
+            return HttpResponse.text(
+{status: 200,
+});
           },
         ),
       );
@@ -342,75 +341,71 @@ describe('GithubUrlReader', () => {
 
     beforeEach(() => {
       worker.use(
-        rest.get('https://api.github.com/repos/backstage/mock', (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json(reposGithubApiResponse),
-          ),
+        http.get('https://api.github.com/repos/backstage/mock', () =>
+          {HttpResponse.json(
+reposGithubApiResponse,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
-        rest.get(
+        http.get(
           'https://api.github.com/repos/backstage/mock/commits/main/status',
-          (req, res, ctx) => {
-            if (req.url.searchParams.get('per_page') === '0') {
-              return res(
-                ctx.status(200),
-                ctx.set('Content-Type', 'application/json'),
-                ctx.json(commitStatusGithubResponse),
-              );
+          ({request}) => {
+ let req = request;
+            if (new URL(req.url).searchParams.get('per_page') === '0') {
+              return HttpResponse.json(
+commitStatusGithubResponse,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+});
             }
 
             return res(ctx.status(500));
           },
         ),
-        rest.get(
+        http.get(
           'https://api.github.com/repos/backstage/mock/tarball/etag123abc',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/x-gzip'),
-              ctx.set(
-                'content-disposition',
-                'attachment; filename=backstage-mock-etag123.tar.gz',
-              ),
-              ctx.body(repoBuffer),
-            ),
+          () =>
+            {HttpResponse.text(
+repoBuffer,
+{status: 200,
+headers: {"Content-Type":"application/x-gzip","content-disposition":"attachment; filename=backstage-mock-etag123.tar.gz"},
+})},
         ),
-        rest.get(
+        http.get(
           'https://api.github.com/repos/backstage/mock/commits/branchDoesNotExist/status',
-          (_, res, ctx) => res(ctx.status(404)),
+          () => {HttpResponse.text(
+{status: 404,
+})},
         ),
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/tarball/etag123abc',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/x-gzip'),
-              ctx.set(
-                'content-disposition',
-                'attachment; filename=backstage-mock-etag123.tar.gz',
-              ),
-              ctx.body(repoBuffer),
-            ),
+          () =>
+            {HttpResponse.text(
+repoBuffer,
+{status: 200,
+headers: {"Content-Type":"application/x-gzip","content-disposition":"attachment; filename=backstage-mock-etag123.tar.gz"},
+})},
         ),
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json(reposGheApiResponse),
-            ),
+          () =>
+            {HttpResponse.json(
+reposGheApiResponse,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/commits/main/status',
-          (req, res, ctx) => {
-            if (req.url.searchParams.get('per_page') === '0') {
-              return res(
-                ctx.status(200),
-                ctx.set('Content-Type', 'application/json'),
-                ctx.json(commitStatusGheResponse),
-              );
+          ({request}) => {
+ let req = request;
+            if (new URL(req.url).searchParams.get('per_page') === '0') {
+              return HttpResponse.json(
+commitStatusGheResponse,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+});
             }
 
             return res(ctx.status(500));
@@ -464,24 +459,21 @@ describe('GithubUrlReader', () => {
       });
 
       worker.use(
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/tarball/etag123abc',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('authorization')).toBe(
               mockHeaders.Authorization,
             );
             expect(req.headers.get('otherheader')).toBe(
               mockHeaders.otherheader,
             );
-            return res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/x-gzip'),
-              ctx.set(
-                'content-disposition',
-                'attachment; filename=backstage-mock-etag123.tar.gz',
-              ),
-              ctx.body(repoBuffer),
-            );
+            return HttpResponse.text(
+repoBuffer,
+{status: 200,
+headers: {"Content-Type":"application/x-gzip","content-disposition":"attachment; filename=backstage-mock-etag123.tar.gz"},
+});
           },
         ),
       );
@@ -503,36 +495,34 @@ describe('GithubUrlReader', () => {
       });
 
       worker.use(
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/commits/main/status',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('authorization')).toBe(
               'Bearer overridentoken',
             );
 
-            return res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json(commitStatusGheResponse),
-            );
+            return HttpResponse.json(
+commitStatusGheResponse,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+});
           },
         ),
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/tarball/etag123abc',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('authorization')).toBe(
               'Bearer overridentoken',
             );
 
-            return res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/x-gzip'),
-              ctx.set(
-                'content-disposition',
-                'attachment; filename=backstage-mock-etag123.tar.gz',
-              ),
-              ctx.body(repoBuffer),
-            );
+            return HttpResponse.text(
+repoBuffer,
+{status: 200,
+headers: {"Content-Type":"application/x-gzip","content-disposition":"attachment; filename=backstage-mock-etag123.tar.gz"},
+});
           },
         ),
       );
@@ -710,31 +700,23 @@ describe('GithubUrlReader', () => {
     // Tarballs
     beforeEach(() => {
       worker.use(
-        rest.get(
+        http.get(
           'https://api.github.com/repos/backstage/mock/tarball/etag123abc',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/x-gzip'),
-              ctx.set(
-                'content-disposition',
-                'attachment; filename=backstage-mock-etag123.tar.gz',
-              ),
-              ctx.body(repoBuffer),
-            ),
+          () =>
+            {HttpResponse.text(
+repoBuffer,
+{status: 200,
+headers: {"Content-Type":"application/x-gzip","content-disposition":"attachment; filename=backstage-mock-etag123.tar.gz"},
+})},
         ),
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/tarball/etag123abc',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/x-gzip'),
-              ctx.set(
-                'content-disposition',
-                'attachment; filename=backstage-mock-etag123.tar.gz',
-              ),
-              ctx.body(repoBuffer),
-            ),
+          () =>
+            {HttpResponse.text(
+repoBuffer,
+{status: 200,
+headers: {"Content-Type":"application/x-gzip","content-disposition":"attachment; filename=backstage-mock-etag123.tar.gz"},
+})},
         ),
       );
     });
@@ -766,21 +748,21 @@ describe('GithubUrlReader', () => {
       } as Partial<GhRepoResponse>;
 
       worker.use(
-        rest.get('https://api.github.com/repos/backstage/mock', (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json(githubResponse),
-          ),
+        http.get('https://api.github.com/repos/backstage/mock', () =>
+          {HttpResponse.json(
+githubResponse,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json(gheResponse),
-            ),
+          () =>
+            {HttpResponse.json(
+gheResponse,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
       );
     });
@@ -803,37 +785,41 @@ describe('GithubUrlReader', () => {
       } as Partial<GhCombinedCommitStatusResponse>;
 
       worker.use(
-        rest.get(
+        http.get(
           'https://api.github.com/repos/backstage/mock/commits/main/status',
-          (req, res, ctx) => {
-            if (req.url.searchParams.get('per_page') === '0') {
-              return res(
-                ctx.status(200),
-                ctx.set('Content-Type', 'application/json'),
-                ctx.json(githubResponse),
-              );
+          ({request}) => {
+ let req = request;
+            if (new URL(req.url).searchParams.get('per_page') === '0') {
+              return HttpResponse.json(
+githubResponse,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+});
             }
 
             return res(ctx.status(500));
           },
         ),
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/commits/main/status',
-          (req, res, ctx) => {
-            if (req.url.searchParams.get('per_page') === '0') {
-              return res(
-                ctx.status(200),
-                ctx.set('Content-Type', 'application/json'),
-                ctx.json(gheCommitsResponse),
-              );
+          ({request}) => {
+ let req = request;
+            if (new URL(req.url).searchParams.get('per_page') === '0') {
+              return HttpResponse.json(
+gheCommitsResponse,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+});
             }
 
             return res(ctx.status(500));
           },
         ),
-        rest.get(
+        http.get(
           'https://api.github.com/repos/backstage/mock/commits/branchDoesNotExist/status',
-          (_, res, ctx) => res(ctx.status(404)),
+          () => {HttpResponse.text(
+{status: 404,
+})},
         ),
       );
     });
@@ -849,41 +835,41 @@ describe('GithubUrlReader', () => {
       } as Partial<GhBlobResponse>;
 
       worker.use(
-        rest.get(
+        http.get(
           'https://api.github.com/repos/backstage/mock/git/blobs/1',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json(blob1Response),
-            ),
+          () =>
+            {HttpResponse.json(
+blob1Response,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
-        rest.get(
+        http.get(
           'https://api.github.com/repos/backstage/mock/git/blobs/3',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json(blob3Response),
-            ),
+          () =>
+            {HttpResponse.json(
+blob3Response,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/git/blobs/1',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json(blob1Response),
-            ),
+          () =>
+            {HttpResponse.json(
+blob1Response,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/git/blobs/3',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json(blob3Response),
-            ),
+          () =>
+            {HttpResponse.json(
+blob3Response,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
       );
     });
@@ -939,17 +925,17 @@ describe('GithubUrlReader', () => {
     // eslint-disable-next-line jest/expect-expect
     it('succeeds on github when going via repo listing', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://api.github.com/repos/backstage/mock/git/trees/etag123abc',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json({
+          () =>
+            {HttpResponse.json(
+{
                 truncated: false,
                 tree: githubTreeContents,
-              } as Partial<GhTreeResponse>),
-            ),
+              } as Partial<any, GhTreeResponse>,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
       );
       await runTests(githubProcessor, 'https://github.com');
@@ -958,17 +944,17 @@ describe('GithubUrlReader', () => {
     // eslint-disable-next-line jest/expect-expect
     it('succeeds on github when going via readTree', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://api.github.com/repos/backstage/mock/git/trees/etag123abc',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json({
+          () =>
+            {HttpResponse.json(
+{
                 truncated: true,
                 tree: [],
-              } as Partial<GhTreeResponse>),
-            ),
+              } as Partial<any, GhTreeResponse>,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
       );
       await runTests(githubProcessor, 'https://github.com');
@@ -977,17 +963,17 @@ describe('GithubUrlReader', () => {
     // eslint-disable-next-line jest/expect-expect
     it('succeeds on ghe when going via repo listing', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/git/trees/etag123abc',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json({
+          () =>
+            {HttpResponse.json(
+{
                 truncated: false,
                 tree: gheTreeContents,
-              } as Partial<GhTreeResponse>),
-            ),
+              } as Partial<any, GhTreeResponse>,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
       );
       await runTests(gheProcessor, 'https://ghe.github.com');
@@ -997,34 +983,36 @@ describe('GithubUrlReader', () => {
       expect.assertions(2);
 
       worker.use(
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/commits/main/status',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('authorization')).toBe(
               'Bearer overridentoken',
             );
 
-            return res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json(gheCommitsResponse),
-            );
+            return HttpResponse.json(
+gheCommitsResponse,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+});
           },
         ),
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/git/trees/etag123abc',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('authorization')).toBe(
               'Bearer overridentoken',
             );
-            return res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json({
+            return HttpResponse.json(
+{
                 truncated: true,
                 tree: [],
-              } as Partial<GhTreeResponse>),
-            );
+              } as Partial<any, GhTreeResponse>,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+});
           },
         ),
       );
@@ -1038,17 +1026,17 @@ describe('GithubUrlReader', () => {
     // eslint-disable-next-line jest/expect-expect
     it('succeeds on ghe when going via readTree', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://ghe.github.com/api/v3/repos/backstage/mock/git/trees/etag123abc',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json({
+          () =>
+            {HttpResponse.json(
+{
                 truncated: true,
                 tree: [],
-              } as Partial<GhTreeResponse>),
-            ),
+              } as Partial<any, GhTreeResponse>,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
       );
       await runTests(gheProcessor, 'https://ghe.github.com');

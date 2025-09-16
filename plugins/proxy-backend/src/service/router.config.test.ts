@@ -27,7 +27,7 @@ import {
   MutableConfigSource,
   StaticConfigSource,
 } from '@backstage/config-loader';
-import { HttpResponse, http, passthrough } from 'msw';
+import { HttpResponse, http, passthrough } from "msw";
 import { setupServer } from 'msw/node';
 
 // this test is stored in its own file to work around the mocked
@@ -74,11 +74,12 @@ describe('createRouter reloadable configuration', () => {
 
       server.use(
         http.all(`${baseUrl}/*`, passthrough),
-        http.get('https://non-existing-example.com/*', req =>
-          HttpResponse.json({
+        http.get('https://non-existing-example.com/*', ({request}) =>
+          {
+ let req = request;HttpResponse.json({
             url: req.request.url.toString(),
             headers: req.request.headers,
-          }),
+          })},
         ),
       );
 

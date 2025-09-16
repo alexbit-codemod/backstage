@@ -25,7 +25,7 @@ import { randomBytes } from 'crypto';
 import { SignJWT, exportJWK, generateKeyPair } from 'jose';
 import { DateTime } from 'luxon';
 import { v4 as uuid } from 'uuid';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 
 // Simplified copy of TokenFactory in @backstage/plugin-auth-backend
@@ -126,11 +126,13 @@ describe('ExternalTokenHandler', () => {
     });
 
     server.use(
-      rest.get(
+      http.get(
         'https://example.com/.well-known/jwks.json',
-        async (_, res, ctx) => {
+        async () => {
           const keys = await factory.listPublicKeys();
-          return res(ctx.json(keys));
+          return HttpResponse.json(
+keys,
+);
         },
       ),
     );

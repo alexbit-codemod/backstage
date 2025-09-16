@@ -17,7 +17,7 @@
 import { DefaultEventsService } from './DefaultEventsService';
 import { EventParams } from './EventParams';
 import { EVENTS_NOTIFY_TIMEOUT_HEADER } from './EventsService';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import {
   mockServices,
@@ -129,19 +129,21 @@ describe('DefaultEventsService', () => {
       });
 
       mswServer.use(
-        rest.put(
+        http.put(
           'http://localhost:0/api/events/bus/v1/subscriptions/a.tester',
-          (_req, res, ctx) => res(ctx.status(200)),
+          () => {HttpResponse.text(
+{status: 200,
+})},
         ),
-        rest.get(
+        http.get(
           'http://localhost:0/api/events/bus/v1/subscriptions/a.tester/events',
-          (_req, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.json({
+          () =>
+            {HttpResponse.json(
+{
                 events: [{ topic: 'test', payload: { foo: 'bar' } }],
-              }),
-            ),
+              },
+{status: 200,
+})},
         ),
       );
 
@@ -180,29 +182,29 @@ describe('DefaultEventsService', () => {
       });
 
       mswServer.use(
-        rest.put(
+        http.put(
           'http://localhost:0/api/events/bus/v1/subscriptions/a.tester',
-          (_req, res, ctx) => res(ctx.status(200)),
+          () => {HttpResponse.text(
+{status: 200,
+})},
         ),
         // The first and third calls result in a blocking 202 that is resolved after 100ms
         // The second and fourth calls result in a 200 with an event
         // The fifth call blocks until the end of the test
         // No more than 5 calls should be made
-        rest.get(
+        http.get(
           'http://localhost:0/api/events/bus/v1/subscriptions/a.tester/events',
-          (_req, res, ctx) => {
+          () => {
             callCount += 1;
             if (callCount === 1 || callCount === 3) {
-              return res(
-                ctx.status(202),
-                ctx.body(
-                  new ReadableStream({
+              return HttpResponse.text(
+new ReadableStream({
                     start(controller) {
                       setTimeout(() => controller.close(), 100);
                     },
                   }),
-                ),
-              );
+{status: 202,
+});
             } else if (callCount === 2 || callCount === 4) {
               return res(
                 ctx.status(200),
@@ -268,29 +270,29 @@ describe('DefaultEventsService', () => {
       });
 
       mswServer.use(
-        rest.put(
+        http.put(
           'http://localhost:0/api/events/bus/v1/subscriptions/a.tester',
-          (_req, res, ctx) => res(ctx.status(200)),
+          () => {HttpResponse.text(
+{status: 200,
+})},
         ),
         // The first and third calls result in a blocking 202 that is resolved after 100ms
         // The second and fourth calls result in a 200 with an event
         // The fifth call blocks until the end of the test
         // No more than 5 calls should be made
-        rest.get(
+        http.get(
           'http://localhost:0/api/events/bus/v1/subscriptions/a.tester/events',
-          (_req, res, ctx) => {
+          () => {
             callCount += 1;
             if (callCount === 1 || callCount === 3) {
-              return res(
-                ctx.status(202),
-                ctx.body(
-                  new ReadableStream({
+              return HttpResponse.text(
+new ReadableStream({
                     start(controller) {
                       setTimeout(() => controller.close(), 100);
                     },
                   }),
-                ),
-              );
+{status: 202,
+});
             } else if (callCount === 2 || callCount === 4) {
               return res(
                 ctx.status(200),
@@ -358,11 +360,13 @@ describe('DefaultEventsService', () => {
 
       let calledApi = false;
       mswServer.use(
-        rest.put(
+        http.put(
           'http://localhost:0/api/events/bus/v1/subscriptions/a.tester',
-          (_req, res, ctx) => {
+          () => {
             calledApi = true;
-            res(ctx.status(200));
+            HttpResponse.text(
+{status: 200,
+});
           },
         ),
       );
@@ -393,9 +397,11 @@ describe('DefaultEventsService', () => {
       });
 
       mswServer.use(
-        rest.put(
+        http.put(
           'http://localhost:0/api/events/bus/v1/subscriptions/a.tester',
-          (_req, res, ctx) => res(ctx.status(404)),
+          () => {HttpResponse.text(
+{status: 404,
+})},
         ),
       );
 
@@ -432,9 +438,11 @@ describe('DefaultEventsService', () => {
       });
 
       mswServer.use(
-        rest.put(
+        http.put(
           'http://localhost:0/api/events/bus/v1/subscriptions/a.tester',
-          (_req, res, ctx) => res(ctx.status(404)),
+          () => {HttpResponse.text(
+{status: 404,
+})},
         ),
       );
 
