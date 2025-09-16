@@ -20,7 +20,7 @@ import {
 } from '@backstage/backend-test-utils';
 import { ConfigReader } from '@backstage/config';
 import { SignJWT, exportJWK, generateKeyPair } from 'jose';
-import { HttpResponse, http } from 'msw';
+import { HttpResponse, http } from "msw";
 import { setupServer } from 'msw/node';
 import { createRequest } from 'node-mocks-http';
 import { v4 as uuid } from 'uuid';

@@ -1,3 +1,4 @@
+import { passthrough } from "msw"; 
 /*
  * Copyright 2021 The Backstage Authors
  *

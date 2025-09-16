@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import {
   AzurePrOptions,
   AzurePrResult,
@@ -29,18 +29,18 @@ import { setupServer } from 'msw/node';
 import { registerMswTestHooks } from '@backstage/test-utils';
 
 function mockRepoEndpoint() {
-  return rest.get(
+  return http.get(
     'https://dev.azure.com/acme/project/_apis/git/repositories/:path',
-    (req, res, ctx) => {
-      const { path } = req.params;
+    () => {
+      const { path } = params;
       if (path === 'success') {
-        return res(
-          ctx.json({
+        return HttpResponse.json(
+{
             id: '01',
             name: 'success',
             defaultBranch: 'refs/heads/master',
-          }),
-        );
+          },
+);
       }
       if (path === 'not-found') {
         return res(
@@ -56,18 +56,19 @@ function mockRepoEndpoint() {
 }
 
 function mockRefsEndpoint() {
-  return rest.get(
+  return http.get(
     'https://dev.azure.com/acme/project/_apis/git/repositories/:repo/refs',
-    (req, res, ctx) => {
-      const filter = req.url.searchParams.get('filter');
-      const { repo } = req.params;
+    ({request}) => {
+ let req = request;
+      const filter = new URL(req.url).searchParams.get('filter');
+      const { repo } = params;
       if (repo !== 'success') {
-        return res(
-          ctx.status(404),
-          ctx.json({
+        return HttpResponse.json(
+{
             message: 'repository not found',
-          }),
-        );
+          },
+{status: 404,
+});
       }
       if (filter === 'heads/main') {
         const result = {
@@ -86,13 +87,13 @@ function mockRefsEndpoint() {
 }
 
 function mockPushEndpoint() {
-  return rest.post(
+  return http.post(
     'https://dev.azure.com/acme/project/_apis/git/repositories/:repo/pushes',
-    (req, res, ctx) => {
-      const { repo } = req.params;
+    () => {
+      const { repo } = params;
       if (repo === 'success') {
-        return res(
-          ctx.json({
+        return HttpResponse.json(
+{
             refUpdates: [
               {
                 repositoryId: '01',
@@ -101,8 +102,8 @@ function mockPushEndpoint() {
                 newObjectId: '0000000000000000000000000000000000000001',
               },
             ],
-          } satisfies { refUpdates: AzureRefUpdate[] }),
-        );
+          } satisfies { refUpdates: AzureRefUpdate[] },
+);
       }
 
       if (repo === 'error') {
@@ -125,20 +126,20 @@ function mockPushEndpoint() {
 }
 
 function mockPrEndpoint() {
-  return rest.post(
+  return http.post(
     'https://dev.azure.com/acme/project/_apis/git/repositories/:repo/pullrequests',
-    (req, res, ctx) => {
-      const { repo } = req.params;
+    () => {
+      const { repo } = params;
       if (repo === 'success') {
-        return res(
-          ctx.json({
+        return HttpResponse.json(
+{
             pullRequestId: 'PR01',
             repository: {
               name: 'success',
               webUrl: 'https://example.com',
             },
-          } satisfies AzurePrResult),
-        );
+          } satisfies AzurePrResult,
+);
       }
 
       return res(

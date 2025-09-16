@@ -27,7 +27,7 @@ jest.mock('@backstage/plugin-scaffolder-node', () => {
 });
 
 import { createPublishBitbucketServerAction } from './bitbucketServer';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import { registerMswTestHooks } from '@backstage/backend-test-utils';
 import { ScmIntegrations } from '@backstage/integration';
@@ -80,19 +80,18 @@ describe('publish:bitbucketServer', () => {
   it(`should ${examples[0].description}`, async () => {
     expect.assertions(3);
     server.use(
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: false,
             name: 'repo',
             defaultBranch: 'master',
           });
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -106,8 +105,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     );
@@ -134,22 +135,21 @@ describe('publish:bitbucketServer', () => {
   it(`should ${examples[1].description}`, async () => {
     expect.assertions(3);
     server.use(
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe(
             `Bearer ${yaml.parse(examples[1].example).steps[0].input.token}`,
           );
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: false,
             name: 'repo',
             defaultBranch: 'main',
             description: 'This is a test repository',
           });
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -163,8 +163,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     );
@@ -202,22 +204,21 @@ describe('publish:bitbucketServer', () => {
   it(`should ${examples[2].description}`, async () => {
     expect.assertions(3);
     server.use(
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe(
             `Bearer ${yaml.parse(examples[2].example).steps[0].input.token}`,
           );
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: true,
             name: 'repo',
             defaultBranch: 'main',
             description: 'This is a test repository',
           });
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -231,8 +232,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     );
@@ -271,22 +274,21 @@ describe('publish:bitbucketServer', () => {
     expect.assertions(3);
 
     const handlers = [
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe(
             `Bearer ${yaml.parse(examples[3].example).steps[0].input.token}`,
           );
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: true,
             name: 'repo',
             defaultBranch: 'develop',
             description: 'This is a test repository',
           });
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -300,19 +302,20 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
-      rest.put(
+      http.put(
         'https://hosted.bitbucket.com/rest/git-lfs/admin/projects/project/repos/repo/enabled',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual('');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          expect(await request.clone().json()).toEqual('');
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -326,8 +329,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     ];
@@ -368,22 +373,21 @@ describe('publish:bitbucketServer', () => {
     expect.assertions(3);
 
     const handlers = [
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe(
             `Bearer ${yaml.parse(examples[4].example).steps[0].input.token}`,
           );
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: true,
             name: 'repo',
             defaultBranch: 'develop',
             description: 'This is a test repository',
           });
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -397,19 +401,20 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
-      rest.put(
+      http.put(
         'https://hosted.bitbucket.com/rest/git-lfs/admin/projects/project/repos/repo/enabled',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual('');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          expect(await request.clone().json()).toEqual('');
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -423,8 +428,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     ];
@@ -464,19 +471,18 @@ describe('publish:bitbucketServer', () => {
     expect.assertions(3);
 
     const handlers = [
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe(`Bearer thing`);
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: false,
             name: 'repo',
             defaultBranch: 'master',
           });
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -490,19 +496,20 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
-      rest.put(
+      http.put(
         'https://hosted.bitbucket.com/rest/git-lfs/admin/projects/project/repos/repo/enabled',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual('');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          expect(await request.clone().json()).toEqual('');
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -516,8 +523,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     ];
@@ -558,19 +567,18 @@ describe('publish:bitbucketServer', () => {
     expect.assertions(5);
 
     const handlers = [
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: false,
             name: 'repo',
             defaultBranch: 'master',
           });
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -587,19 +595,20 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
-      rest.put(
+      http.put(
         'https://hosted.bitbucket.com/rest/git-lfs/admin/projects/project/repos/repo/enabled',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual('');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          expect(await request.clone().json()).toEqual('');
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -613,8 +622,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     ];
@@ -654,19 +665,18 @@ describe('publish:bitbucketServer', () => {
     expect.assertions(3);
 
     const handlers = [
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer custom-token');
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: false,
             name: 'repo',
             defaultBranch: 'master',
           });
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -683,19 +693,20 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
-      rest.put(
+      http.put(
         'https://hosted.bitbucket.com/rest/git-lfs/admin/projects/project/repos/repo/enabled',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual('');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          expect(await request.clone().json()).toEqual('');
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -709,8 +720,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     ];
@@ -747,19 +760,18 @@ describe('publish:bitbucketServer', () => {
     expect.assertions(3);
 
     const handlers = [
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: false,
             name: 'repo',
             defaultBranch: 'master',
           });
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -776,19 +788,20 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
-      rest.put(
+      http.put(
         'https://hosted.bitbucket.com/rest/git-lfs/admin/projects/project/repos/repo/enabled',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual('');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          expect(await request.clone().json()).toEqual('');
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -802,8 +815,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     ];
@@ -840,19 +855,18 @@ describe('publish:bitbucketServer', () => {
     expect.assertions(3);
 
     const handlers = [
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: true,
             name: 'repo',
             defaultBranch: 'master',
           });
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -869,19 +883,20 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
-      rest.put(
+      http.put(
         'https://hosted.bitbucket.com/rest/git-lfs/admin/projects/project/repos/repo/enabled',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual('');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          expect(await request.clone().json()).toEqual('');
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -895,8 +910,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     ];
@@ -933,21 +950,20 @@ describe('publish:bitbucketServer', () => {
     expect.assertions(5);
 
     const handlers = [
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer custom-token');
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: false,
             name: 'repo',
             description: 'A fully customized repository',
             defaultBranch: 'development',
           });
 
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -964,19 +980,20 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
-      rest.put(
+      http.put(
         'https://hosted.bitbucket.com/rest/git-lfs/admin/projects/project/repos/repo/enabled',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer custom-token');
-          expect(req.body).toEqual('');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          expect(await request.clone().json()).toEqual('');
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -990,8 +1007,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     ];
@@ -1028,20 +1047,19 @@ describe('publish:bitbucketServer', () => {
     expect.assertions(3);
 
     const handlers = [
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: false,
             name: 'repo',
             defaultBranch: 'main',
           });
 
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -1058,19 +1076,20 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
-      rest.put(
+      http.put(
         'https://hosted.bitbucket.com/rest/git-lfs/admin/projects/project/repos/repo/enabled',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer custom-token');
-          expect(req.body).toEqual('');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          expect(await request.clone().json()).toEqual('');
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -1084,8 +1103,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     ];
@@ -1124,21 +1145,20 @@ describe('publish:bitbucketServer', () => {
     expect.assertions(3);
 
     const handlers = [
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: true,
             name: 'repo',
             defaultBranch: 'master',
             description: 'A public repository with a custom description',
           });
 
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -1155,19 +1175,20 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
-      rest.put(
+      http.put(
         'https://hosted.bitbucket.com/rest/git-lfs/admin/projects/project/repos/repo/enabled',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer custom-token');
-          expect(req.body).toEqual('');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          expect(await request.clone().json()).toEqual('');
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -1181,8 +1202,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     ];
@@ -1221,22 +1244,21 @@ describe('publish:bitbucketServer', () => {
     expect.assertions(3);
 
     const handlers = [
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe(
             'Bearer custom-auth-token',
           );
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: false,
             name: 'repo',
             defaultBranch: 'master',
           });
 
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -1253,19 +1275,20 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
-      rest.put(
+      http.put(
         'https://hosted.bitbucket.com/rest/git-lfs/admin/projects/project/repos/repo/enabled',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer custom-token');
-          expect(req.body).toEqual('');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          expect(await request.clone().json()).toEqual('');
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -1279,8 +1302,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     ];
@@ -1319,20 +1344,19 @@ describe('publish:bitbucketServer', () => {
     expect.assertions(3);
 
     const handlers = [
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: false,
             name: 'repo',
             defaultBranch: 'master',
           });
 
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -1349,19 +1373,20 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
-      rest.put(
+      http.put(
         'https://hosted.bitbucket.com/rest/git-lfs/admin/projects/project/repos/repo/enabled',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer custom-token');
-          expect(req.body).toEqual('');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          expect(await request.clone().json()).toEqual('');
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -1375,8 +1400,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     ];
@@ -1415,20 +1442,19 @@ describe('publish:bitbucketServer', () => {
     expect.assertions(5);
 
     const handlers = [
-      rest.post(
+      http.post(
         'https://hosted.bitbucket.com/rest/api/1.0/projects/project/repos',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual({
+          expect(await request.clone().json()).toEqual({
             public: false,
             name: 'repo',
             defaultBranch: 'master',
           });
 
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -1445,19 +1471,20 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
-      rest.put(
+      http.put(
         'https://hosted.bitbucket.com/rest/git-lfs/admin/projects/project/repos/repo/enabled',
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer thing');
-          expect(req.body).toEqual('');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json({
+          expect(await request.clone().json()).toEqual('');
+          return HttpResponse.json(
+{
               links: {
                 self: [
                   {
@@ -1471,8 +1498,10 @@ describe('publish:bitbucketServer', () => {
                   },
                 ],
               },
-            }),
-          );
+            },
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     ];

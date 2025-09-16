@@ -1,3 +1,4 @@
+import { passthrough } from "msw"; 
 /*
  * Copyright 2025 The Backstage Authors
  *
@@ -51,7 +52,7 @@ Each entity is identified by a unique entity reference, which is a string of the
           name: z.string().describe('The name of the entity to query'),
         }),
       // TODO: is there a better way to do this?
-      output: z => z.object({}).passthrough(),
+      output: z => passthrough(),
     },
     action: async ({ input, credentials }) => {
       const filter: Record<string, string> = { 'metadata.name': input.name };

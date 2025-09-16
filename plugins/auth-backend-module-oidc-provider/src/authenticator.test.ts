@@ -26,7 +26,7 @@ import { setupServer } from 'msw/node';
 import { registerMswTestHooks } from '@backstage/backend-test-utils';
 import { ConfigReader } from '@backstage/config';
 import { JWK, SignJWT, exportJWK, generateKeyPair } from 'jose';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import express from 'express';
 import { custom } from 'openid-client';
 
@@ -69,33 +69,40 @@ describe('oidcAuthenticator', () => {
 
   beforeEach(() => {
     mswServer.use(
-      rest.get(
+      http.get(
         'https://oidc.test/.well-known/openid-configuration',
-        (_req, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json(issuerMetadata),
-          ),
+        () =>
+          {HttpResponse.json(
+issuerMetadata,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
       ),
-      rest.get('https://oidc.test/jwks.json', async (_req, res, ctx) =>
-        res(ctx.status(200), ctx.json({ keys: [{ ...publicKey }] })),
+      http.get('https://oidc.test/jwks.json', async () =>
+        {HttpResponse.json(
+{ keys: [{ ...publicKey }] },
+{status: 200,
+})},
       ),
-      rest.get(
+      http.get(
         'https://oidc.test/oauth2/authorize',
-        async (req, _res, _ctx) => {
+        async ({request}) => {
+ let req = request;
           nonce =
-            new URL(req.url).searchParams.get('nonce') ??
+            new URL(new URL(req.url)).searchParams.get('nonce') ??
             'nonceGeneratedByAuthServer';
         },
       ),
-      rest.post('https://oidc.test/oauth2/token', async (req, res, ctx) => {
+      http.post('https://oidc.test/oauth2/token', async ({request}) => {
+ let req = request;
         const formBody = new URLSearchParams(await req.text());
         if (
           formBody.get('grant_type') === 'refresh_token' &&
           revokedTokenMap[formBody.get('refresh_token') as string]
         ) {
-          return res(ctx.json({}));
+          return HttpResponse.json(
+{},
+);
         }
 
         const keyPair = await generateKeyPair('RS256');
@@ -126,27 +133,30 @@ describe('oidcAuthenticator', () => {
             : ctx.status(401),
         );
       }),
-      rest.get(
+      http.get(
         'https://oidc.test/idp/userinfo.openid',
-        async (_req, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.json({
+        async () =>
+          {HttpResponse.json(
+{
               sub: 'test',
               name: 'Alice Adams',
               given_name: 'Alice',
               family_name: 'Adams',
               email: 'alice@test.com',
               picture: 'http://testPictureUrl/photo.jpg',
-            }),
-          ),
+            },
+{status: 200,
+})},
       ),
-      rest.post(
+      http.post(
         'https://oidc.test/oauth2/revoke_token',
-        async (req, res, ctx) => {
+        async ({request}) => {
+ let req = request;
           const formBody = new URLSearchParams(await req.text());
           revokedTokenMap[formBody.get('token') as string] = true;
-          return res(ctx.status(200));
+          return HttpResponse.text(
+{status: 200,
+});
         },
       ),
     );
@@ -567,17 +577,17 @@ describe('oidcAuthenticator', () => {
 
       // override .well-known endpoint response, set revocation_endpoint to undefined
       mswServer.use(
-        rest.get(
+        http.get(
           'https://oidc.test/.well-known/openid-configuration',
-          (_req, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/json'),
-              ctx.json({
+          () =>
+            {HttpResponse.json(
+{
                 ...issuerMetadata,
                 revocation_endpoint: undefined,
-              }),
-            ),
+              },
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
       );
 

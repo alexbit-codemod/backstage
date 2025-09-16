@@ -24,7 +24,7 @@ import {
   registerMswTestHooks,
 } from '@backstage/backend-test-utils';
 import fs from 'fs-extra';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import path from 'path';
 import { NotModifiedError } from '@backstage/errors';
@@ -61,15 +61,16 @@ describe('BitbucketCloudUrlReader', () => {
   describe('readUrl', () => {
     it('should be able to readUrl via buffer without ETag', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://api.bitbucket.org/2.0/repositories/backstage-verification/test-template/src/master/template.yaml',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('If-None-Match')).toBeNull();
-            return res(
-              ctx.status(200),
-              ctx.body('foo'),
-              ctx.set('ETag', 'etag-value'),
-            );
+            return HttpResponse.text(
+'foo',
+{status: 200,
+headers: {"ETag":"etag-value"},
+});
           },
         ),
       );
@@ -83,15 +84,16 @@ describe('BitbucketCloudUrlReader', () => {
 
     it('should be able to readUrl via stream without ETag', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://api.bitbucket.org/2.0/repositories/backstage-verification/test-template/src/master/template.yaml',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('If-None-Match')).toBeNull();
-            return res(
-              ctx.status(200),
-              ctx.body('foo'),
-              ctx.set('ETag', 'etag-value'),
-            );
+            return HttpResponse.text(
+'foo',
+{status: 200,
+headers: {"ETag":"etag-value"},
+});
           },
         ),
       );
@@ -105,13 +107,16 @@ describe('BitbucketCloudUrlReader', () => {
 
     it('should be able to readUrl with matching ETag', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://api.bitbucket.org/2.0/repositories/backstage-verification/test-template/src/master/template.yaml',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('If-None-Match')).toBe(
               'matching-etag-value',
             );
-            return res(ctx.status(304));
+            return HttpResponse.text(
+{status: 304,
+});
           },
         ),
       );
@@ -126,17 +131,18 @@ describe('BitbucketCloudUrlReader', () => {
 
     it('should be able to readUrl without matching ETag', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://api.bitbucket.org/2.0/repositories/backstage-verification/test-template/src/master/template.yaml',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('If-None-Match')).toBe(
               'previous-etag-value',
             );
-            return res(
-              ctx.status(200),
-              ctx.body('foo'),
-              ctx.set('ETag', 'new-etag-value'),
-            );
+            return HttpResponse.text(
+'foo',
+{status: 200,
+headers: {"ETag":"new-etag-value"},
+});
           },
         ),
       );
@@ -152,19 +158,16 @@ describe('BitbucketCloudUrlReader', () => {
 
     it('should be able to readUrl via buffer without If-Modified-Since', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://api.bitbucket.org/2.0/repositories/backstage-verification/test-template/src/master/template.yaml',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('If-None-Match')).toBeNull();
-            return res(
-              ctx.status(200),
-              ctx.body('foo'),
-              ctx.set('ETag', 'etag-value'),
-              ctx.set(
-                'Last-Modified',
-                new Date('2020-01-01T00:00:00Z').toUTCString(),
-              ),
-            );
+            return HttpResponse.text(
+'foo',
+{status: 200,
+headers: {"ETag":"etag-value","Last-Modified":"ew Date('2020-01-01T00:00:00Z').toUTCString("},
+});
           },
         ),
       );
@@ -179,13 +182,16 @@ describe('BitbucketCloudUrlReader', () => {
 
     it('should be throw not modified when If-Modified-Since returns a 304', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://api.bitbucket.org/2.0/repositories/backstage-verification/test-template/src/master/template.yaml',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('If-Modified-Since')).toBe(
               new Date('1999 12 31 23:59:59 GMT').toUTCString(),
             );
-            return res(ctx.status(304));
+            return HttpResponse.text(
+{status: 304,
+});
           },
         ),
       );
@@ -200,20 +206,18 @@ describe('BitbucketCloudUrlReader', () => {
 
     it('should be able to readUrl when If-Modified-Since is before Last-Modified', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://api.bitbucket.org/2.0/repositories/backstage-verification/test-template/src/master/template.yaml',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('If-Modified-Since')).toBe(
               new Date('1999 12 31 23:59:59 GMT').toUTCString(),
             );
-            return res(
-              ctx.status(200),
-              ctx.set(
-                'Last-Modified',
-                new Date('2020-01-01T00:00:00Z').toUTCString(),
-              ),
-              ctx.body('foo'),
-            );
+            return HttpResponse.text(
+'foo',
+{status: 200,
+headers: {"Last-Modified":"ew Date('2020-01-01T00:00:00Z').toUTCString("},
+});
           },
         ),
       );
@@ -248,41 +252,37 @@ describe('BitbucketCloudUrlReader', () => {
 
     beforeEach(() => {
       worker.use(
-        rest.get(
+        http.get(
           'https://api.bitbucket.org/2.0/repositories/backstage/mock',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.json({
+          () =>
+            {HttpResponse.json(
+{
                 mainbranch: {
                   type: 'branch',
                   name: 'master',
                 },
-              }),
-            ),
+              },
+{status: 200,
+})},
         ),
-        rest.get(
+        http.get(
           'https://bitbucket.org/backstage/mock/get/master.tar.gz',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/zip'),
-              ctx.set(
-                'content-disposition',
-                'attachment; filename=backstage-mock-12ab34cd56ef.tar.gz',
-              ),
-              ctx.body(repoBuffer),
-            ),
+          () =>
+            {HttpResponse.text(
+repoBuffer,
+{status: 200,
+headers: {"Content-Type":"application/zip","content-disposition":"attachment; filename=backstage-mock-12ab34cd56ef.tar.gz"},
+})},
         ),
-        rest.get(
+        http.get(
           'https://api.bitbucket.org/2.0/repositories/backstage/mock/commits/master',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.json({
+          () =>
+            {HttpResponse.json(
+{
                 values: [{ hash: '12ab34cd56ef78gh90ij12kl34mn56op78qr90st' }],
-              }),
-            ),
+              },
+{status: 200,
+})},
         ),
       );
     });
@@ -376,41 +376,37 @@ describe('BitbucketCloudUrlReader', () => {
 
     beforeEach(() => {
       worker.use(
-        rest.get(
+        http.get(
           'https://api.bitbucket.org/2.0/repositories/backstage/mock',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.json({
+          () =>
+            {HttpResponse.json(
+{
                 mainbranch: {
                   type: 'branch',
                   name: 'master',
                 },
-              }),
-            ),
+              },
+{status: 200,
+})},
         ),
-        rest.get(
+        http.get(
           'https://bitbucket.org/backstage/mock/get/master.tar.gz',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/zip'),
-              ctx.set(
-                'content-disposition',
-                'attachment; filename=backstage-mock-12ab34cd56ef.tar.gz',
-              ),
-              ctx.body(repoBuffer),
-            ),
+          () =>
+            {HttpResponse.text(
+repoBuffer,
+{status: 200,
+headers: {"Content-Type":"application/zip","content-disposition":"attachment; filename=backstage-mock-12ab34cd56ef.tar.gz"},
+})},
         ),
-        rest.get(
+        http.get(
           'https://api.bitbucket.org/2.0/repositories/backstage/mock/commits/master',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.json({
+          () =>
+            {HttpResponse.json(
+{
                 values: [{ hash: '12ab34cd56ef78gh90ij12kl34mn56op78qr90st' }],
-              }),
-            ),
+              },
+{status: 200,
+})},
         ),
       );
     });
@@ -454,15 +450,16 @@ describe('BitbucketCloudUrlReader', () => {
 
     it('should work for exact URLs', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://api.bitbucket.org/2.0/repositories/backstage-verification/test-template/src/master/template.yaml',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('If-None-Match')).toBeNull();
-            return res(
-              ctx.status(200),
-              ctx.body('foo'),
-              ctx.set('ETag', 'etag-value'),
-            );
+            return HttpResponse.text(
+'foo',
+{status: 200,
+headers: {"ETag":"etag-value"},
+});
           },
         ),
       );

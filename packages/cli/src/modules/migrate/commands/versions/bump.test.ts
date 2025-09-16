@@ -21,7 +21,7 @@ import bump, { bumpBackstageJsonVersion, createVersionFinder } from './bump';
 import { registerMswTestHooks, withLogCollector } from '@backstage/test-utils';
 import { YarnInfoInspectData } from '../../../../lib/versioning/packages';
 import { setupServer } from 'msw/node';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { NotFoundError } from '@backstage/errors';
 import {
   MockDirectory,
@@ -187,15 +187,15 @@ describe('bump', () => {
 
     jest.spyOn(runObj, 'run').mockResolvedValue(undefined);
     worker.use(
-      rest.get(
+      http.get(
         'https://versions.backstage.io/v1/tags/main/manifest.json',
-        (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.json({
+        () =>
+          {HttpResponse.json(
+{
               packages: [],
-            }),
-          ),
+            },
+{status: 200,
+})},
       ),
     );
     const { log: logs } = await withLogCollector(['log', 'warn'], async () => {
@@ -280,15 +280,15 @@ describe('bump', () => {
 
     jest.spyOn(runObj, 'run').mockResolvedValue(undefined);
     worker.use(
-      rest.get(
+      http.get(
         'https://versions.backstage.io/v1/tags/main/manifest.json',
-        (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.json({
+        () =>
+          {HttpResponse.json(
+{
               packages: [],
-            }),
-          ),
+            },
+{status: 200,
+})},
       ),
     );
     const { log: logs } = await withLogCollector(['log', 'warn'], async () => {
@@ -376,12 +376,11 @@ describe('bump', () => {
 
     jest.spyOn(runObj, 'run').mockResolvedValue(undefined);
     worker.use(
-      rest.get(
+      http.get(
         'https://versions.backstage.io/v1/tags/main/manifest.json',
-        (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.json({
+        () =>
+          {HttpResponse.json(
+{
               releaseVersion: '0.0.1',
               packages: [
                 {
@@ -393,8 +392,9 @@ describe('bump', () => {
                   version: '3.0.0',
                 },
               ],
-            }),
-          ),
+            },
+{status: 200,
+})},
       ),
     );
     const { log: logs } = await withLogCollector(['log', 'warn'], async () => {
@@ -480,12 +480,11 @@ describe('bump', () => {
 
     jest.spyOn(runObj, 'run').mockResolvedValue(undefined);
     worker.use(
-      rest.get(
+      http.get(
         'https://versions.backstage.io/v1/tags/main/manifest.json',
-        (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.json({
+        () =>
+          {HttpResponse.json(
+{
               releaseVersion: '0.0.1',
               packages: [
                 {
@@ -497,8 +496,9 @@ describe('bump', () => {
                   version: '3.0.0',
                 },
               ],
-            }),
-          ),
+            },
+{status: 200,
+})},
       ),
     );
     const { log: logs } = await withLogCollector(['log', 'warn'], async () => {
@@ -590,9 +590,12 @@ describe('bump', () => {
 
     jest.spyOn(runObj, 'run').mockResolvedValue(undefined);
     worker.use(
-      rest.get(
+      http.get(
         'https://versions.backstage.io/v1/releases/999.0.1/manifest.json',
-        (_, res, ctx) => res(ctx.status(404), ctx.json({})),
+        () => {HttpResponse.json(
+{},
+{status: 404,
+})},
       ),
     );
     const { log: logs } = await withLogCollector(['log', 'warn'], async () => {
@@ -659,12 +662,11 @@ describe('bump', () => {
 
     jest.spyOn(runObj, 'run').mockResolvedValue(undefined);
     worker.use(
-      rest.get(
+      http.get(
         'https://versions.backstage.io/v1/tags/main/manifest.json',
-        (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.json({
+        () =>
+          {HttpResponse.json(
+{
               releaseVersion: '1.0.0',
               packages: [
                 {
@@ -676,15 +678,15 @@ describe('bump', () => {
                   version: '3.0.0',
                 },
               ],
-            }),
-          ),
+            },
+{status: 200,
+})},
       ),
-      rest.get(
+      http.get(
         'https://versions.backstage.io/v1/tags/next/manifest.json',
-        (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.json({
+        () =>
+          {HttpResponse.json(
+{
               releaseVersion: '1.0.0-next.1',
               packages: [
                 {
@@ -696,8 +698,9 @@ describe('bump', () => {
                   version: '2.0.0',
                 },
               ],
-            }),
-          ),
+            },
+{status: 200,
+})},
       ),
     );
     const { log: logs } = await withLogCollector(['log', 'warn'], async () => {
@@ -766,15 +769,15 @@ describe('bump', () => {
 
     jest.spyOn(runObj, 'run').mockResolvedValue(undefined);
     worker.use(
-      rest.get(
+      http.get(
         'https://versions.backstage.io/v1/tags/main/manifest.json',
-        (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.json({
+        () =>
+          {HttpResponse.json(
+{
               packages: [],
-            }),
-          ),
+            },
+{status: 200,
+})},
       ),
     );
     const { log: logs } = await withLogCollector(['log', 'warn'], async () => {
@@ -875,15 +878,15 @@ describe('bump', () => {
     mockFetchPackageInfo.mockRejectedValue(new NotFoundError('Nope'));
     jest.spyOn(runObj, 'run').mockResolvedValue(undefined);
     worker.use(
-      rest.get(
+      http.get(
         'https://versions.backstage.io/v1/tags/main/manifest.json',
-        (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.json({
+        () =>
+          {HttpResponse.json(
+{
               packages: [],
-            }),
-          ),
+            },
+{status: 200,
+})},
       ),
     );
     const { log: logs } = await withLogCollector(['log', 'warn'], async () => {

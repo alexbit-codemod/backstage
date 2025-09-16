@@ -26,7 +26,7 @@ import {
   readGerritIntegrationConfig,
 } from '@backstage/integration';
 import { JsonObject } from '@backstage/types';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import fs from 'fs-extra';
 import path from 'path';
@@ -156,13 +156,13 @@ describe.skip('GerritUrlReader', () => {
     const responseBuffer = Buffer.from('Apache License');
     it('should be able to read file contents as buffer', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://gerrit.com/projects/web%2Fproject/branches/master/files/LICENSE/content',
-          (_, res, ctx) => {
-            return res(
-              ctx.status(200),
-              ctx.body(responseBuffer.toString('base64')),
-            );
+          () => {
+            return HttpResponse.text(
+responseBuffer.toString('base64'),
+{status: 200,
+});
           },
         ),
       );
@@ -175,13 +175,13 @@ describe.skip('GerritUrlReader', () => {
     });
     it('should be able to read file contents of a commit as buffer', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://gerrit.com/projects/web%2Fproject/commits/f775f9119c313c7ffc890d7908a45997273434d5/files/LICENSE/content',
-          (_, res, ctx) => {
-            return res(
-              ctx.status(200),
-              ctx.body(responseBuffer.toString('base64')),
-            );
+          () => {
+            return HttpResponse.text(
+responseBuffer.toString('base64'),
+{status: 200,
+});
           },
         ),
       );
@@ -193,13 +193,13 @@ describe.skip('GerritUrlReader', () => {
     });
     it('should be able to read file contents as stream', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://gerrit.com/projects/web%2Fproject/branches/master/files/LICENSE/content',
-          (_, res, ctx) => {
-            return res(
-              ctx.status(200),
-              ctx.body(responseBuffer.toString('base64')),
-            );
+          () => {
+            return HttpResponse.text(
+responseBuffer.toString('base64'),
+{status: 200,
+});
           },
         ),
       );
@@ -213,10 +213,11 @@ describe.skip('GerritUrlReader', () => {
 
     it('should raise NotFoundError on 404.', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://gerrit.com/projects/web%2Fproject/branches/master/files/LICENSE/content',
-          (_, res, ctx) => {
-            return res(ctx.status(404, 'File not found.'));
+          () => {
+            return HttpResponse.text(
+);
           },
         ),
       );
@@ -232,10 +233,11 @@ describe.skip('GerritUrlReader', () => {
 
     it('should throw an error on non 404 errors.', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://gerrit.com/projects/web%2Fproject/branches/master/files/LICENSE/content',
-          (_, res, ctx) => {
-            return res(ctx.status(500, 'Error!!!'));
+          () => {
+            return HttpResponse.text(
+);
           },
         ),
       );
@@ -281,44 +283,32 @@ describe.skip('GerritUrlReader', () => {
       spy.mockImplementation(() => mockDir.path);
 
       worker.use(
-        rest.get(
+        http.get(
           'https://gerrit.com/gitiles/app/web/\\+archive/refs/heads/master.tar.gz',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/x-gzip'),
-              ctx.set(
-                'content-disposition',
-                'attachment; filename=web-refs/heads/master.tar.gz',
-              ),
-              ctx.body(repoArchiveBuffer),
-            ),
+          () =>
+            {HttpResponse.text(
+repoArchiveBuffer,
+{status: 200,
+headers: {"Content-Type":"application/x-gzip","content-disposition":"attachment; filename=web-refs/heads/master.tar.gz"},
+})},
         ),
-        rest.get(
+        http.get(
           'https://gerrit.com/gitiles/app/web/\\+archive/refs/heads/master/docs.tar.gz',
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/x-gzip'),
-              ctx.set(
-                'content-disposition',
-                'attachment; filename=web-refs/heads/master-docs.tar.gz',
-              ),
-              ctx.body(repoArchiveDocsBuffer),
-            ),
+          () =>
+            {HttpResponse.text(
+repoArchiveDocsBuffer,
+{status: 200,
+headers: {"Content-Type":"application/x-gzip","content-disposition":"attachment; filename=web-refs/heads/master-docs.tar.gz"},
+})},
         ),
-        rest.get(
+        http.get(
           `https://gerrit.com/gitiles/app/web/\\+archive/${sha}.tar.gz`,
-          (_, res, ctx) =>
-            res(
-              ctx.status(200),
-              ctx.set('Content-Type', 'application/x-gzip'),
-              ctx.set(
-                'content-disposition',
-                'attachment; filename=web-refs/heads/master.tar.gz',
-              ),
-              ctx.body(repoArchiveBuffer),
-            ),
+          () =>
+            {HttpResponse.text(
+repoArchiveBuffer,
+{status: 200,
+headers: {"Content-Type":"application/x-gzip","content-disposition":"attachment; filename=web-refs/heads/master.tar.gz"},
+})},
         ),
       );
     });
@@ -329,8 +319,11 @@ describe.skip('GerritUrlReader', () => {
 
     it('reads the wanted files correctly using gitiles.', async () => {
       worker.use(
-        rest.get(branchAPIUrl, (_, res, ctx) => {
-          return res(ctx.status(200), ctx.body(branchAPIresponse));
+        http.get(branchAPIUrl, () => {
+          return HttpResponse.text(
+branchAPIresponse,
+{status: 200,
+});
         }),
       );
 
@@ -352,8 +345,11 @@ describe.skip('GerritUrlReader', () => {
 
     it('throws NotModifiedError for matching etags.', async () => {
       worker.use(
-        rest.get(branchAPIUrl, (_, res, ctx) => {
-          return res(ctx.status(200), ctx.body(branchAPIresponse));
+        http.get(branchAPIUrl, () => {
+          return HttpResponse.text(
+branchAPIresponse,
+{status: 200,
+});
         }),
       );
 
@@ -364,8 +360,9 @@ describe.skip('GerritUrlReader', () => {
 
     it('throws ResponseError if branch info not found.', async () => {
       worker.use(
-        rest.get(branchAPIUrl, (_, res, ctx) => {
-          return res(ctx.status(404, 'Not found.'));
+        http.get(branchAPIUrl, () => {
+          return HttpResponse.text(
+);
         }),
       );
 
@@ -378,8 +375,9 @@ describe.skip('GerritUrlReader', () => {
 
     it('should throw on failures while getting branch info.', async () => {
       worker.use(
-        rest.get(branchAPIUrl, (_, res, ctx) => {
-          return res(ctx.status(500, 'Error'));
+        http.get(branchAPIUrl, () => {
+          return HttpResponse.text(
+);
         }),
       );
 
@@ -388,8 +386,11 @@ describe.skip('GerritUrlReader', () => {
 
     it('should returns wanted files with a subpath using gitiles', async () => {
       worker.use(
-        rest.get(branchAPIUrl, (_, res, ctx) => {
-          return res(ctx.status(200), ctx.body(branchAPIresponse));
+        http.get(branchAPIUrl, () => {
+          return HttpResponse.text(
+branchAPIresponse,
+{status: 200,
+});
         }),
       );
 
@@ -440,30 +441,30 @@ describe.skip('GerritUrlReader', () => {
 
     beforeEach(async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://gerrit.com/projects/app%2Fweb/branches/master/files/catalog-info.yaml/content',
-          (_, res, ctx) => {
-            return res(
-              ctx.status(200),
-              ctx.body(Buffer.from('Backstage manifest').toString('base64')),
-            );
+          () => {
+            return HttpResponse.text(
+Buffer.from('Backstage manifest').toString('base64'),
+{status: 200,
+});
           },
         ),
       );
       worker.use(
-        rest.get(
+        http.get(
           'https://gerrit.com/gitiles/app/web/\\+/refs/heads/master/',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             if (
-              req.url.searchParams.has('format', 'JSON') &&
-              req.url.searchParams.has('recursive')
+              new URL(req.url).searchParams.has('format', 'JSON') &&
+              new URL(req.url).searchParams.has('recursive')
             ) {
-              return res(
-                ctx.status(200),
-                ctx.set('Content-Type', 'application/json'),
-                ctx.set('content-disposition', 'attachment'),
-                ctx.body(treeRecursiveResponse),
-              );
+              return HttpResponse.text(
+treeRecursiveResponse,
+{status: 200,
+headers: {"Content-Type":"application/json","content-disposition":"attachment"},
+});
             }
 
             return res(ctx.status(404));
@@ -478,13 +479,13 @@ describe.skip('GerritUrlReader', () => {
 
     it('should return a single file when given an exact URL', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://gerrit.com/projects/web%2Fproject/branches/master/files/LICENSE/content',
-          (_, res, ctx) => {
-            return res(
-              ctx.status(200),
-              ctx.body(responseBuffer.toString('base64')),
-            );
+          () => {
+            return HttpResponse.text(
+responseBuffer.toString('base64'),
+{status: 200,
+});
           },
         ),
       );
@@ -504,10 +505,11 @@ describe.skip('GerritUrlReader', () => {
 
     it('should return empty list of files for not found files.', async () => {
       worker.use(
-        rest.get(
+        http.get(
           'https://gerrit.com/projects/web%2Fproject/branches/master/files/LICENSE/content',
-          (_, res, ctx) => {
-            return res(ctx.status(404, 'File not found.'));
+          () => {
+            return HttpResponse.text(
+);
           },
         ),
       );
@@ -521,8 +523,11 @@ describe.skip('GerritUrlReader', () => {
 
     it('reads the wanted files correctly using gitiles.', async () => {
       worker.use(
-        rest.get(branchAPIUrl, (_, res, ctx) => {
-          return res(ctx.status(200), ctx.body(branchAPIresponse));
+        http.get(branchAPIUrl, () => {
+          return HttpResponse.text(
+branchAPIresponse,
+{status: 200,
+});
         }),
       );
 
@@ -548,8 +553,11 @@ describe.skip('GerritUrlReader', () => {
 
     it('throws NotModifiedError for matching etags.', async () => {
       worker.use(
-        rest.get(branchAPIUrl, (_, res, ctx) => {
-          return res(ctx.status(200), ctx.body(branchAPIresponse));
+        http.get(branchAPIUrl, () => {
+          return HttpResponse.text(
+branchAPIresponse,
+{status: 200,
+});
         }),
       );
 
@@ -560,8 +568,9 @@ describe.skip('GerritUrlReader', () => {
 
     it('should throw on failures while getting branch info.', async () => {
       worker.use(
-        rest.get(branchAPIUrl, (_, res, ctx) => {
-          return res(ctx.status(500, 'Error'));
+        http.get(branchAPIUrl, () => {
+          return HttpResponse.text(
+);
         }),
       );
 

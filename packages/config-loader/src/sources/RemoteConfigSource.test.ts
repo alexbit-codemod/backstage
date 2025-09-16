@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { registerMswTestHooks } from '@backstage/backend-test-utils';
 import { setupServer } from 'msw/node';
 import { RemoteConfigSource } from './RemoteConfigSource';
@@ -26,15 +26,15 @@ describe('RemoteConfigSource', () => {
 
   it('should load config from a remote URL', async () => {
     worker.use(
-      rest.get('http://localhost/config.yaml', (_req, res, ctx) =>
-        res(
-          ctx.body(`
+      http.get('http://localhost/config.yaml', () =>
+        {HttpResponse.text(
+`
 app:
   title: Example App
   substituted: \${VALUE}
   escaped: \$\${VALUE}
-`),
-        ),
+`,
+)},
       ),
     );
 
@@ -61,18 +61,16 @@ app:
 
   it('should load and parse config from a remote URL', async () => {
     worker.use(
-      rest.get('http://localhost/config.json', (_req, res, ctx) =>
-        res(
-          ctx.body(
-            JSON.stringify({
+      http.get('http://localhost/config.json', () =>
+        {HttpResponse.text(
+JSON.stringify({
               app: {
                 title: 'Example App',
                 substituted: 'x',
-                escaped: '$${VALUE}',
+                escaped: '${VALUE}',
               },
             }),
-          ),
-        ),
+)},
       ),
     );
 
@@ -102,10 +100,12 @@ app:
     let fetched = false;
 
     worker.use(
-      rest.get('http://localhost/config.yaml', (_req, res, ctx) => {
+      http.get('http://localhost/config.yaml', () => {
         if (!fetched) {
           fetched = true;
-          return res(ctx.body('x: 1'));
+          return HttpResponse.text(
+'x: 1',
+);
         }
         return res(ctx.body('x: 2'));
       }),

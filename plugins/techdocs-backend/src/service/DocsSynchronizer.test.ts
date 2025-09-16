@@ -30,7 +30,7 @@ import {
   mockServices,
   registerMswTestHooks,
 } from '@backstage/backend-test-utils';
-import { http, HttpResponse } from 'msw';
+import { http, HttpResponse } from "msw";
 import { setupServer } from 'msw/node';
 
 jest.mock('../DocsBuilder');
@@ -95,7 +95,7 @@ describe('DocsSynchronizer', () => {
     worker.use(
       http.get(
         'http://backstage.local/api/techdocs/static/docs/default/component/test/techdocs_metadata.json',
-        () => HttpResponse.json({ build_timestamp: 123 }),
+        () => {HttpResponse.json({ build_timestamp: 123 })},
       ),
     );
   });

@@ -25,7 +25,7 @@ import {
   OAuthState,
 } from '@backstage/plugin-auth-node';
 import { SignJWT } from 'jose';
-import { http, HttpResponse } from 'msw';
+import { http, HttpResponse } from "msw";
 import { setupServer } from 'msw/node';
 
 import {
@@ -78,10 +78,11 @@ describe('vmwareCloudAuthenticator', () => {
     server.use(
       http.post(
         'https://console.cloud.vmware.com/csp/gateway/am/api/auth/token',
-        ({ request }) =>
-          request.headers.get('Authorization')
+        ({request}) =>
+          {
+ let request = request;request.headers.get('Authorization')
             ? HttpResponse.json(authResponse)
-            : HttpResponse.json(null, { status: 500 }),
+            : HttpResponse.json(null, { status: 500 })},
       ),
     );
 
@@ -331,10 +332,10 @@ describe('vmwareCloudAuthenticator', () => {
         http.post(
           'https://console.cloud.vmware.com/csp/gateway/am/api/auth/token',
           () =>
-            HttpResponse.json({
+            {HttpResponse.json({
               access_token: 'accessToken',
               id_token: inadequateIdToken,
-            }),
+            })},
         ),
       );
 

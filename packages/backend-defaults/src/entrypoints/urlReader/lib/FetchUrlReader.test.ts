@@ -20,7 +20,7 @@ import {
   mockServices,
   registerMswTestHooks,
 } from '@backstage/backend-test-utils';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import { FetchUrlReader } from './FetchUrlReader';
 import { DefaultReadTreeResponseFactory } from './tree';
@@ -38,13 +38,13 @@ describe('FetchUrlReader', () => {
 
   beforeEach(() => {
     worker.use(
-      rest.get('https://backstage.io/some-resource', (req, res, ctx) => {
+      http.get('https://backstage.io/some-resource', ({request}) => {
+ let req = request;
         if (req.headers.get('if-none-match') === 'foo') {
-          return res(
-            ctx.status(304),
-            ctx.set('Content-Type', 'text/plain'),
-            ctx.set('etag', 'foo'),
-          );
+          return HttpResponse.text(
+{status: 304,
+headers: {"Content-Type":"text/plain","etag":"foo"},
+});
         }
 
         if (
@@ -72,14 +72,19 @@ describe('FetchUrlReader', () => {
     );
 
     worker.use(
-      rest.get('https://backstage.io/not-exists', (_req, res, ctx) => {
-        return res(ctx.status(404));
+      http.get('https://backstage.io/not-exists', () => {
+        return HttpResponse.text(
+{status: 404,
+});
       }),
     );
 
     worker.use(
-      rest.get('https://backstage.io/error', (_req, res, ctx) => {
-        return res(ctx.status(500), ctx.body('An internal error occurred'));
+      http.get('https://backstage.io/error', () => {
+        return HttpResponse.text(
+'An internal error occurred',
+{status: 500,
+});
       }),
     );
   });
@@ -229,11 +234,14 @@ describe('FetchUrlReader', () => {
       expect.assertions(1);
 
       worker.use(
-        rest.get(
+        http.get(
           'https://backstage.io/requires-authentication',
-          (req, res, ctx) => {
+          ({request}) => {
+ let req = request;
             expect(req.headers.get('authorization')).toBe('Bearer mytoken');
-            return res(ctx.status(200));
+            return HttpResponse.text(
+{status: 200,
+});
           },
         ),
       );

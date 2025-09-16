@@ -15,7 +15,7 @@
  */
 
 import { registerMswTestHooks } from '@backstage/test-utils';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import {
   DEFAULTS,
@@ -105,12 +105,12 @@ describe('ProxiedSignInIdentity', () => {
       }
       worker.events.on('request:match', serverCalled);
       worker.use(
-        rest.get('http://example.com/api/auth/foo/refresh', (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json(makeToken()),
-          ),
+        http.get('http://example.com/api/auth/foo/refresh', () =>
+          {HttpResponse.json(
+makeToken(),
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
       );
 
@@ -187,12 +187,12 @@ describe('ProxiedSignInIdentity', () => {
 
       worker.events.on('request:match', serverCalled);
       worker.use(
-        rest.get('http://example.com/api/auth/foo/refresh', (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json(dummySessionResponse),
-          ),
+        http.get('http://example.com/api/auth/foo/refresh', () =>
+          {HttpResponse.json(
+dummySessionResponse,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
       );
 
@@ -227,12 +227,12 @@ describe('ProxiedSignInIdentity', () => {
 
       worker.events.on('request:match', serverCalled);
       worker.use(
-        rest.get('http://example.com/api/auth/foo/refresh', (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json(dummySessionResponse),
-          ),
+        http.get('http://example.com/api/auth/foo/refresh', () =>
+          {HttpResponse.json(
+dummySessionResponse,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
       );
 
@@ -265,12 +265,12 @@ describe('ProxiedSignInIdentity', () => {
 
       worker.events.on('request:match', serverCalled);
       worker.use(
-        rest.get('http://example.com/api/auth/foo/refresh', (_, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json(dummySessionResponse),
-          ),
+        http.get('http://example.com/api/auth/foo/refresh', () =>
+          {HttpResponse.json(
+dummySessionResponse,
+{status: 200,
+headers: {"Content-Type":"application/json"},
+})},
         ),
       );
 

@@ -23,7 +23,7 @@ import {
 } from '@backstage/backend-test-utils';
 import { ResponseError } from '@backstage/errors';
 import { JsonObject } from '@backstage/types';
-import { HttpResponse, http, passthrough } from 'msw';
+import { HttpResponse, http, passthrough } from "msw";
 import { setupServer } from 'msw/node';
 
 // this test is stored in its own file to work around the mocked
@@ -88,7 +88,8 @@ describe('credentials', () => {
       const baseUrl = `http://localhost:${backend.server.port()}`;
       worker.use(
         http.all(`${baseUrl}/*`, passthrough),
-        http.get('http://target.com/*', req => {
+        http.get('http://target.com/*', ({request}) => {
+ let req = request;
           const auth = req.request.headers.get('authorization');
           return HttpResponse.json({
             payload: { forwardedAuthorization: auth ?? false },

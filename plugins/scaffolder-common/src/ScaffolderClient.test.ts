@@ -20,7 +20,7 @@ import {
   mockApis,
   registerMswTestHooks,
 } from '@backstage/test-utils';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import { ScaffolderClient } from './ScaffolderClient';
 import { fetchEventSource } from '@microsoft/fetch-event-source';
@@ -159,16 +159,17 @@ describe('api', () => {
 
       it('should work', async () => {
         server.use(
-          rest.get(
+          http.get(
             `${mockBaseUrl}/v2/tasks/:taskId/events`,
-            (req, res, ctx) => {
-              const { taskId } = req.params;
-              const after = req.url.searchParams.get('after');
+            ({request}) => {
+ let req = request;
+              const { taskId } = params;
+              const after = new URL(req.url).searchParams.get('after');
 
               if (taskId === 'a-random-task-id') {
                 if (!after) {
-                  return res(
-                    ctx.json([
+                  return HttpResponse.json(
+[
                       {
                         id: 1,
                         taskId: 'a-random-id',
@@ -176,8 +177,8 @@ describe('api', () => {
                         createdAt: '',
                         body: { message: 'My log message' },
                       },
-                    ]),
-                  );
+                    ],
+);
                 } else if (after === '1') {
                   return res(
                     ctx.json([
@@ -227,19 +228,20 @@ describe('api', () => {
         expect.assertions(3);
 
         server.use(
-          rest.get(
+          http.get(
             `${mockBaseUrl}/v2/tasks/:taskId/events`,
-            (req, res, ctx) => {
-              const { taskId } = req.params;
+            ({request}) => {
+ let req = request;
+              const { taskId } = params;
 
-              const after = req.url.searchParams.get('after');
+              const after = new URL(req.url).searchParams.get('after');
 
               // use assertion to make sure it is not called after unsubscribing
               expect(after).toBe(null);
 
               if (taskId === 'a-random-task-id') {
-                return res(
-                  ctx.json([
+                return HttpResponse.json(
+[
                     {
                       id: 1,
                       taskId: 'a-random-id',
@@ -247,8 +249,8 @@ describe('api', () => {
                       createdAt: '',
                       body: { message: 'My log message' },
                     },
-                  ]),
-                );
+                  ],
+);
               }
 
               return res(ctx.status(500));
@@ -284,14 +286,14 @@ describe('api', () => {
         const called = jest.fn();
 
         server.use(
-          rest.get(
+          http.get(
             `${mockBaseUrl}/v2/tasks/:taskId/events`,
-            (_req, res, ctx) => {
+            () => {
               called();
 
               if (called.mock.calls.length > 1) {
-                return res(
-                  ctx.json([
+                return HttpResponse.json(
+[
                     {
                       id: 2,
                       taskId: 'a-random-id',
@@ -299,8 +301,8 @@ describe('api', () => {
                       createdAt: '',
                       body: { message: 'Finished!' },
                     },
-                  ]),
-                );
+                  ],
+);
               }
 
               return res(ctx.status(500));
@@ -333,17 +335,18 @@ describe('api', () => {
   describe('listTasks', () => {
     it('should list all tasks', async () => {
       server.use(
-        rest.get(`${mockBaseUrl}/v2/tasks`, (req, res, ctx) => {
-          const createdBy = req.url.searchParams.get('createdBy');
+        http.get(`${mockBaseUrl}/v2/tasks`, ({request}) => {
+ let req = request;
+          const createdBy = new URL(req.url).searchParams.get('createdBy');
 
           if (createdBy) {
-            return res(
-              ctx.json([
+            return HttpResponse.json(
+[
                 {
                   createdBy,
                 },
-              ]),
-            );
+              ],
+);
           }
 
           return res(
@@ -365,19 +368,19 @@ describe('api', () => {
 
     it('should list tasks with limit and offset', async () => {
       server.use(
-        rest.get(
+        http.get(
           `${mockBaseUrl}/v2/tasks?limit=5&offset=0`,
-          (_req, res, ctx) => {
-            return res(
-              ctx.json([
+          () => {
+            return HttpResponse.json(
+[
                 {
                   createdBy: null,
                 },
                 {
                   createdBy: null,
                 },
-              ]),
-            );
+              ],
+);
           },
         ),
       );
@@ -392,19 +395,20 @@ describe('api', () => {
 
     it('should list task using the current user as owner', async () => {
       server.use(
-        rest.get(`${mockBaseUrl}/v2/tasks`, (req, res, ctx) => {
-          const createdBy = req.url.searchParams.get('createdBy');
+        http.get(`${mockBaseUrl}/v2/tasks`, ({request}) => {
+ let req = request;
+          const createdBy = new URL(req.url).searchParams.get('createdBy');
 
           if (createdBy) {
-            return res(
-              ctx.json({
+            return HttpResponse.json(
+{
                 tasks: [
                   {
                     createdBy,
                   },
                 ],
-              }),
-            );
+              },
+);
           }
 
           return res(

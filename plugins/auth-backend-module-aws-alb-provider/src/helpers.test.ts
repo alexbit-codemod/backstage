@@ -17,7 +17,7 @@
 import * as crypto from 'crypto';
 import { JWTHeaderParameters, UnsecuredJWT } from 'jose';
 import NodeCache from 'node-cache';
-import { http, HttpResponse } from 'msw';
+import { http, HttpResponse } from "msw";
 import { setupServer } from 'msw/node';
 import { registerMswTestHooks } from '@backstage/backend-test-utils';
 import { PassportProfile } from '@backstage/plugin-auth-node';
@@ -45,13 +45,13 @@ describe.each([
       http.get(
         url,
         () =>
-          new HttpResponse(
+          {new HttpResponse(
             `-----BEGIN PUBLIC KEY-----
 MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEnuN4LlaJhaUpx+qZFTzYCrSBLk0I
 yOlxJ2VW88mLAQGJ7HPAvOdylxZsItMnzCuqNzZvie8m/NJsOjhDncVkrw==
 -----END PUBLIC KEY-----
 `,
-          ),
+          )},
       ),
     );
   });

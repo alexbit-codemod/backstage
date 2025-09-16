@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import { registerMswTestHooks } from '@backstage/backend-test-utils';
 import { createBitbucketPipelinesRunAction } from './bitbucketCloudPipelinesRun';
@@ -78,15 +78,16 @@ describe('bitbucket:pipelines:run', () => {
   it('should call the bitbucket api for running a pipeline with integration credentials', async () => {
     expect.assertions(1);
     worker.use(
-      rest.post(
+      http.post(
         `https://api.bitbucket.org/2.0/repositories/${workspace}/${repo_slug}/pipelines`,
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Basic dTpw');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json(responseJson),
-          );
+          return HttpResponse.json(
+responseJson,
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     );
@@ -100,15 +101,16 @@ describe('bitbucket:pipelines:run', () => {
   it('should call the bitbucket api for running a pipeline with input token', async () => {
     expect.assertions(1);
     worker.use(
-      rest.post(
+      http.post(
         `https://api.bitbucket.org/2.0/repositories/${workspace}/${repo_slug}/pipelines`,
-        (req, res, ctx) => {
+        ({request}) => {
+ let req = request;
           expect(req.headers.get('Authorization')).toBe('Bearer abc');
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json(responseJson),
-          );
+          return HttpResponse.json(
+responseJson,
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     );
@@ -121,14 +123,14 @@ describe('bitbucket:pipelines:run', () => {
 
   it('should call outputs with the correct data', async () => {
     worker.use(
-      rest.post(
+      http.post(
         `https://api.bitbucket.org/2.0/repositories/${workspace}/${repo_slug}/pipelines`,
-        (_, res, ctx) => {
-          return res(
-            ctx.status(201),
-            ctx.set('Content-Type', 'application/json'),
-            ctx.json(responseJson),
-          );
+        () => {
+          return HttpResponse.json(
+responseJson,
+{status: 201,
+headers: {"Content-Type":"application/json"},
+});
         },
       ),
     );

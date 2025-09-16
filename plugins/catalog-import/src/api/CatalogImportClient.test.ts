@@ -59,7 +59,7 @@ import { ScmAuthApi } from '@backstage/integration-react';
 import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';
 import { MockFetchApi, registerMswTestHooks } from '@backstage/test-utils';
 import { Octokit } from '@octokit/rest';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import {
   AzurePrOptions,
@@ -298,16 +298,16 @@ describe('CatalogImportClient', () => {
         },
       });
       server.use(
-        rest.post(`${mockBaseUrl}/analyze-location`, (req, res, ctx) => {
-          expect(req.body).toEqual({
+        http.post(`${mockBaseUrl}/analyze-location`, () => {
+          expect(await request.clone().json()).toEqual({
             location: {
               target: 'https://github.com/backstage/backstage',
               type: 'url',
             },
           });
 
-          return res(
-            ctx.json({
+          return HttpResponse.json(
+{
               generateEntities: [],
               existingEntityFiles: [
                 {
@@ -359,8 +359,8 @@ describe('CatalogImportClient', () => {
                   },
                 },
               ],
-            }),
-          );
+            },
+);
         }),
       );
 
@@ -399,16 +399,16 @@ describe('CatalogImportClient', () => {
       });
 
       server.use(
-        rest.post(`${mockBaseUrl}/analyze-location`, (req, res, ctx) => {
-          expect(req.body).toEqual({
+        http.post(`${mockBaseUrl}/analyze-location`, () => {
+          expect(await request.clone().json()).toEqual({
             location: {
               target: 'https://github.com/backstage/backstage',
               type: 'url',
             },
           });
 
-          return res(
-            ctx.json({
+          return HttpResponse.json(
+{
               generateEntities: [
                 {
                   entity: {
@@ -419,8 +419,8 @@ describe('CatalogImportClient', () => {
                 },
               ],
               existingEntityFiles: [],
-            }),
-          );
+            },
+);
         }),
       );
 
@@ -470,8 +470,8 @@ describe('CatalogImportClient', () => {
       );
 
       server.use(
-        rest.post(`${mockBaseUrl}/analyze-location`, (req, res, ctx) => {
-          expect(req.body).toEqual({
+        http.post(`${mockBaseUrl}/analyze-location`, () => {
+          expect(await request.clone().json()).toEqual({
             location: {
               target: 'https://github.com/acme-corp/our-awesome-api',
               type: 'url',
@@ -479,8 +479,8 @@ describe('CatalogImportClient', () => {
             catalogFilename: 'anvil.yaml',
           });
 
-          return res(
-            ctx.json({
+          return HttpResponse.json(
+{
               generateEntities: [],
               existingEntityFiles: [
                 {
@@ -516,8 +516,8 @@ describe('CatalogImportClient', () => {
                   },
                 },
               ],
-            }),
-          );
+            },
+);
         }),
       );
 

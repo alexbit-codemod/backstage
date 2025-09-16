@@ -15,7 +15,7 @@
  */
 
 import { registerMswTestHooks } from '@backstage/test-utils';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import { NotificationPayload } from '@backstage/plugin-notifications-common';
 import {
@@ -55,7 +55,8 @@ describe('DefaultNotificationService', () => {
       };
 
       server.use(
-        rest.post('http://example.com', async (req, res, ctx) => {
+        http.post('http://example.com', async ({request}) => {
+ let req = request;
           const json = await req.json();
           expect(json).toEqual(body);
           expect(req.headers.get('Authorization')).toBe(
@@ -64,7 +65,9 @@ describe('DefaultNotificationService', () => {
               targetPluginId: 'notifications',
             }),
           );
-          return res(ctx.status(200));
+          return HttpResponse.text(
+{status: 200,
+});
         }),
       );
       await expect(service.send(body)).resolves.toBeUndefined();
@@ -77,7 +80,8 @@ describe('DefaultNotificationService', () => {
       };
 
       server.use(
-        rest.post('http://example.com', async (req, res, ctx) => {
+        http.post('http://example.com', async ({request}) => {
+ let req = request;
           const json = await req.json();
           expect(json).toEqual(body);
           expect(req.headers.get('Authorization')).toBe(
@@ -86,7 +90,9 @@ describe('DefaultNotificationService', () => {
               targetPluginId: 'notifications',
             }),
           );
-          return res(ctx.status(400));
+          return HttpResponse.text(
+{status: 400,
+});
         }),
       );
       await expect(service.send(body)).rejects.toThrow(

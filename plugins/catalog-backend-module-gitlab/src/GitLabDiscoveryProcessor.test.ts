@@ -20,7 +20,7 @@ import {
 } from '@backstage/backend-test-utils';
 import { ConfigReader } from '@backstage/config';
 import { LocationSpec } from '@backstage/plugin-catalog-node';
-import { rest, RestRequest } from 'msw';
+import { http, RestRequest , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import { GitLabDiscoveryProcessor, parseUrl } from './GitLabDiscoveryProcessor';
 import { GitLabProject } from './lib';
@@ -66,18 +66,22 @@ function setupFakeServer(
   assertion?: (r: RestRequest) => any,
 ) {
   server.use(
-    rest.get(url, (req, res, ctx) => {
+    http.get(url, ({request}) => {
+ let req = request;
       // Send the request to the assertion to give the test an opportunity to inspect the parameters.
       if (assertion !== undefined) {
         assertion(req);
       }
 
       if (req.headers.get('authorization') !== 'Bearer test-token') {
-        return res(ctx.status(401), ctx.json({}));
+        return HttpResponse.json(
+{},
+{status: 401,
+});
       }
-      const page = req.url.searchParams.get('page');
-      const include_subgroups = req.url.searchParams.get('include_subgroups');
-      const archived = req.url.searchParams.get('archived');
+      const page = new URL(req.url).searchParams.get('page');
+      const include_subgroups = new URL(req.url).searchParams.get('include_subgroups');
+      const archived = new URL(req.url).searchParams.get('archived');
       const response = listProjectsCallback({
         page: parseInt(page!, 10),
         include_subgroups: include_subgroups === 'true',
@@ -85,7 +89,7 @@ function setupFakeServer(
       });
 
       // Filter the fake results based on the `last_activity_after` parameter
-      const last_activity_after = req.url.searchParams.get(
+      const last_activity_after = new URL(req.url).searchParams.get(
         'last_activity_after',
       );
       const filteredData = response.data
@@ -101,22 +105,23 @@ function setupFakeServer(
         ctx.json(filteredData),
       );
     }),
-    rest.head(
+    http.head(
       `${API_URL}/projects/:project_path/repository/files/:file_path`,
-      (req, res, ctx) => {
+      ({request}) => {
+ let req = request;
         if (req.headers.get('authorization') !== 'Bearer test-token') {
-          return res(
-            ctx.status(401),
-            ctx.json({ message: '401 Unauthorized' }),
-          );
+          return HttpResponse.json(
+{ message: '401 Unauthorized' },
+{status: 401,
+});
         }
-        const ref = req.url.searchParams.get('ref');
+        const ref = new URL(req.url).searchParams.get('ref');
 
         if (ref === 'main' || ref === 'master') {
           return res(ctx.status(200));
         }
 
-        if (EXISTING_PROJECT_PATH === req.params.project_path) {
+        if (EXISTING_PROJECT_PATH === params.project_path) {
           return res(ctx.status(200));
         }
 

@@ -28,7 +28,7 @@ import {
   DEFAULT_OBJECTS,
 } from './KubernetesFanOutHandler';
 import { KubernetesClientBasedFetcher } from './KubernetesFetcher';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import {
   mockServices,
@@ -1217,17 +1217,23 @@ describe('KubernetesFanOutHandler', () => {
         const pods = [{ metadata: { name: 'pod-name' } }];
         const services = [{ metadata: { name: 'service-name' } }];
         worker.use(
-          rest.get('https://works/api/v1/pods', (_, res, ctx) =>
-            res(ctx.json({ items: pods })),
+          http.get('https://works/api/v1/pods', () =>
+            {HttpResponse.json(
+{ items: pods },
+)},
           ),
-          rest.get('https://works/api/v1/services', (_, res, ctx) =>
-            res(ctx.json({ items: services })),
+          http.get('https://works/api/v1/services', () =>
+            {HttpResponse.json(
+{ items: services },
+)},
           ),
-          rest.get('https://fails/api/v1/pods', (_, res) =>
-            res.networkError('socket error'),
+          http.get('https://fails/api/v1/pods', () =>
+            {res.networkError('socket error')},
           ),
-          rest.get('https://fails/api/v1/services', (_, res, ctx) =>
-            res(ctx.json({ items: services })),
+          http.get('https://fails/api/v1/services', () =>
+            {HttpResponse.json(
+{ items: services },
+)},
           ),
         );
 

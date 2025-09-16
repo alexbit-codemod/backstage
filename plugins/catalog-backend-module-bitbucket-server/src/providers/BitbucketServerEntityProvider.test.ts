@@ -31,7 +31,7 @@ import {
   EntityProviderConnection,
   locationSpecToLocationEntity,
 } from '@backstage/plugin-catalog-node';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import {
   BitbucketServerEntityProvider,
@@ -83,25 +83,23 @@ function setupStubs(
 ) {
   // Stub projects
   server.use(
-    rest.get(`${baseUrl}/rest/api/1.0/projects`, (_, res, ctx) => {
-      return res(
-        ctx.json(
-          pagedResponse(
+    http.get(`${baseUrl}/rest/api/1.0/projects`, () => {
+      return HttpResponse.json(
+pagedResponse(
             projects.map(p => {
               return { key: p.key };
             }),
           ),
-        ),
-      );
+);
     }),
   );
 
   for (const project of projects) {
     // Stub list repositories
     server.use(
-      rest.get(
+      http.get(
         `${baseUrl}/rest/api/1.0/projects/${project.key}/repos`,
-        (_, res, ctx) => {
+        () => {
           const response = [];
           for (const repo of project.repos) {
             response.push({
@@ -117,7 +115,9 @@ function setupStubs(
               defaultBranch: defaultBranch,
             });
           }
-          return res(ctx.json(pagedResponse(response)));
+          return HttpResponse.json(
+pagedResponse(response),
+);
         },
       ),
     );
@@ -130,9 +130,9 @@ const test1RepoUrl = `https://${host}/projects/TEST/repos/test1/browse`;
 
 function setupRepositoryReqHandler(defaultBranch: string) {
   server.use(
-    rest.get(
+    http.get(
       `https://${host}/rest/api/1.0/projects/TEST/repos/test1`,
-      (_, res, ctx) => {
+      () => {
         const response = {
           slug: 'test1',
           id: 1,
@@ -158,7 +158,9 @@ function setupRepositoryReqHandler(defaultBranch: string) {
           },
           defaultBranch: defaultBranch,
         };
-        return res(ctx.json(response));
+        return HttpResponse.json(
+response,
+);
       },
     ),
   );
@@ -670,16 +672,20 @@ describe('BitbucketServerEntityProvider', () => {
 
   it('do not add locations when validateLocationsExist and catalog-info does not exist', async () => {
     server.use(
-      rest.get(
+      http.get(
         `https://${host}/rest/api/1.0/projects/project-test/repos/repo-test/raw/catalog-info.yaml`,
-        (_, res, ctx) => {
-          return res(ctx.status(404));
+        () => {
+          return HttpResponse.text(
+{status: 404,
+});
         },
       ),
-      rest.get(
+      http.get(
         `https://${host}/rest/api/1.0/projects/other-project/repos/other-repo/raw/catalog-info.yaml`,
-        (_, res, ctx) => {
-          return res(ctx.status(200));
+        () => {
+          return HttpResponse.text(
+{status: 200,
+});
         },
       ),
     );

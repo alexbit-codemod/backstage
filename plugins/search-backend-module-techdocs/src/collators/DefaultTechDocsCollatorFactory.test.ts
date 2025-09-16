@@ -21,7 +21,7 @@ import {
   mockServices,
   registerMswTestHooks,
 } from '@backstage/backend-test-utils';
-import { rest } from 'msw';
+import { http , HttpResponse} from "msw"
 import { setupServer } from 'msw/node';
 import { Readable } from 'stream';
 import { DefaultTechDocsCollatorFactory } from './DefaultTechDocsCollatorFactory';
@@ -108,18 +108,22 @@ describe('DefaultTechDocsCollatorFactory', () => {
       collator = await factory.getCollator();
 
       worker.use(
-        rest.get(
+        http.get(
           'http://test-backend/static/docs/default/Component/test-entity-with-docs/search/search_index.json',
-          (_, res, ctx) => res(ctx.status(200), ctx.json(mockSearchDocIndex)),
+          () => {HttpResponse.json(
+mockSearchDocIndex,
+{status: 200,
+})},
         ),
-        rest.get('http://test-backend/entities', (req, res, ctx) => {
+        http.get('http://test-backend/entities', ({request}) => {
+ let req = request;
           // Imitate offset/limit pagination.
           const offset = parseInt(
-            req.url.searchParams.get('offset') || '0',
+            new URL(req.url).searchParams.get('offset') || '0',
             10,
           );
           const limit = parseInt(
-            req.url.searchParams.get('limit') || '500',
+            new URL(req.url).searchParams.get('limit') || '500',
             10,
           );
 
@@ -127,7 +131,10 @@ describe('DefaultTechDocsCollatorFactory', () => {
           if (limit === 50) {
             // Return 50 copies of invalid entities on the first request.
             if (offset === 0) {
-              return res(ctx.status(200), ctx.json(Array(50).fill({})));
+              return HttpResponse.json(
+Array(50).fill({}),
+{status: 200,
+});
             }
             // Then just the regular 2 on the second.
             return res(ctx.status(200), ctx.json(expectedEntities));
