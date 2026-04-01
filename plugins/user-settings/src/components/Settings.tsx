@@ -17,7 +17,10 @@
 import SettingsIcon from '@material-ui/icons/Settings';
 import { settingsRouteRef } from '../plugin';
 import { SidebarItem } from '@backstage/core-components';
-import { useRouteRef, IconComponent } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import { userSettingsTranslationRef } from '../translation';
 

@@ -23,7 +23,9 @@ import {
 import { catalogApiRef } from '../../api';
 import { useCallback } from 'react';
 import useAsync from 'react-use/esm/useAsync';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Each distinct state that the dialog can be in at any given time.

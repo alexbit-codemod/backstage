@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { OAuthApi } from '@backstage/core-plugin-api';
+import {
+  OAuthApi,
+} from "@backstage/frontend-plugin-api";
 import { KubernetesRequestBody } from '@backstage/plugin-kubernetes-common';
 import { KubernetesAuthProvider } from './types';
 

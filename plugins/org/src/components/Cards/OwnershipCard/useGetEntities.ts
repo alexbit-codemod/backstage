@@ -28,7 +28,9 @@ import {
   humanizeEntityRef,
 } from '@backstage/plugin-catalog-react';
 import limiterFactory from 'p-limit';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import useAsync from 'react-use/esm/useAsync';
 import qs from 'qs';
 import { EntityRelationAggregation } from '../types';

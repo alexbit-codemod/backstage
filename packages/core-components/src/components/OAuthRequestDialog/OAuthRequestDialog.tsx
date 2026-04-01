@@ -25,10 +25,10 @@ import { useMemo, useState } from 'react';
 import useObservable from 'react-use/esm/useObservable';
 import LoginRequestListItem from './LoginRequestListItem';
 import {
-  useApi,
   configApiRef,
   oauthRequestApiRef,
-} from '@backstage/core-plugin-api';
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import Typography from '@material-ui/core/Typography';
 import { coreComponentsTranslationRef } from '../../translation';
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';

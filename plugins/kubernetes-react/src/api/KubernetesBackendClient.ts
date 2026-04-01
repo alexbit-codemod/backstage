@@ -21,7 +21,10 @@ import {
   WorkloadsByEntityRequest,
   CustomObjectsByEntityRequest,
 } from '@backstage/plugin-kubernetes-common';
-import { DiscoveryApi, FetchApi } from '@backstage/core-plugin-api';
+import {
+  DiscoveryApi,
+  FetchApi,
+} from "@backstage/frontend-plugin-api";
 import { stringifyEntityRef } from '@backstage/catalog-model';
 import { KubernetesAuthProvidersApi } from '../kubernetes-auth-provider';
 import { NotFoundError } from '@backstage/errors';

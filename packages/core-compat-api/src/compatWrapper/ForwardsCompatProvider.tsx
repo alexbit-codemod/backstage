@@ -19,7 +19,7 @@ import {
   ApiRef,
   AppContext,
   useApp,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   AnyRouteRefParams,
   SwappableComponentRef,

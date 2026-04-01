@@ -26,10 +26,10 @@ import {
   useSidebarPinState,
 } from '@backstage/core-components';
 import {
-  useApi,
   discoveryApiRef,
   fetchApiRef,
-} from '@backstage/core-plugin-api';
+  useApi,
+} from "@backstage/frontend-plugin-api";
 
 import {
   createFrontendPlugin,

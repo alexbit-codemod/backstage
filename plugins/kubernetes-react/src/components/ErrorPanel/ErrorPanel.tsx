@@ -19,9 +19,9 @@ import Typography from '@material-ui/core/Typography';
 import { ClusterObjects } from '@backstage/plugin-kubernetes-common';
 import { WarningPanel } from '@backstage/core-components';
 import {
-  useTranslationRef,
   TranslationFunction,
-} from '@backstage/core-plugin-api/alpha';
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesReactTranslationRef } from '../../translation';
 
 const clustersWithErrorsToErrorMessage = (

@@ -16,7 +16,9 @@
 import useAsync from 'react-use/esm/useAsync';
 
 import { ContainerScope } from './types';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesProxyApiRef } from '../../../api/types';
 
 /**

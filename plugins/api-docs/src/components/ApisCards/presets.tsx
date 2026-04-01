@@ -29,7 +29,7 @@ import { ApiDefinitionDialog } from '../ApiDefinitionDialog';
 import {
   TranslationFunction,
   useTranslationRef,
-} from '@backstage/core-plugin-api/alpha';
+} from "@backstage/frontend-plugin-api";
 import { apiDocsTranslationRef } from '../../translation';
 
 /** @deprecated Use `getApiEntityColumnConfig` instead. */

@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 import Typography from '@material-ui/core/Typography';
-import { configApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { ReactNode } from 'react';
 
 type CompanyLogoProps = {

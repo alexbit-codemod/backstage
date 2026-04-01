@@ -26,27 +26,24 @@ import {
   DEFAULT_FORMATTER_NAME,
 } from '@backstage/plugin-kubernetes-react';
 import {
-  createApiFactory,
-  createPlugin,
-  createRouteRef,
+  ApiBlueprint,
+  createRoutableExtension,
   discoveryApiRef,
+  fetchApiRef,
   gitlabAuthApiRef,
   googleAuthApiRef,
   microsoftAuthApiRef,
   oktaAuthApiRef,
   oneloginAuthApiRef,
-  createRoutableExtension,
-  fetchApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";import { createRouteRef , createFrontendPlugin} from '@backstage/frontend-plugin-api';
 
-export const rootCatalogKubernetesRouteRef = createRouteRef({
-  id: 'kubernetes',
-});
 
-export const kubernetesPlugin = createPlugin({
-  id: 'kubernetes',
+export const rootCatalogKubernetesRouteRef = createRouteRef();
+
+export const kubernetesPlugin = createFrontendPlugin({
+  pluginId: 'kubernetes',
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: kubernetesApiRef,
       deps: {
         discoveryApi: discoveryApiRef,
@@ -59,8 +56,8 @@ export const kubernetesPlugin = createPlugin({
           fetchApi,
           kubernetesAuthProvidersApi,
         }),
-    }),
-    createApiFactory({
+    }) }),
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: kubernetesProxyApiRef,
       deps: {
         kubernetesApi: kubernetesApiRef,
@@ -69,8 +66,8 @@ export const kubernetesPlugin = createPlugin({
         new KubernetesProxyClient({
           kubernetesApi,
         }),
-    }),
-    createApiFactory({
+    }) }),
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: kubernetesAuthProvidersApiRef,
       deps: {
         gitlabAuthApi: gitlabAuthApiRef,
@@ -100,8 +97,8 @@ export const kubernetesPlugin = createPlugin({
           oidcProviders,
         });
       },
-    }),
-    createApiFactory({
+    }) }),
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: kubernetesClusterLinkFormatterApiRef,
       deps: { googleAuthApi: googleAuthApiRef },
       factory: deps => {
@@ -111,7 +108,7 @@ export const kubernetesPlugin = createPlugin({
           defaultFormatterName: DEFAULT_FORMATTER_NAME,
         });
       },
-    }),
+    }) }),
   ],
   routes: {
     entityContent: rootCatalogKubernetesRouteRef,

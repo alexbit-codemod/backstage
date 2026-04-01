@@ -16,27 +16,26 @@
 
 import { PropsWithChildren } from 'react';
 import {
-  createPlugin,
-  createRouteRef,
-  createRoutableExtension,
   createComponentExtension,
-} from '@backstage/core-plugin-api';
+  createRoutableExtension,
+} from "@backstage/frontend-plugin-api";
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import {
   traverseElementTree,
   childDiscoverer,
   routeElementDiscoverer,
 } from '../extensions/traversal';
-import { pluginCollector } from './collectors';
+import { pluginCollector } from './collectors';import { createRouteRef , createFrontendPlugin} from '@backstage/frontend-plugin-api';
+
 
 const mockConfig = () => ({ id: 'foo' });
 const MockComponent = ({ children }: PropsWithChildren<{ path?: string }>) => (
   <>{children}</>
 );
 
-const pluginA = createPlugin({ id: 'my-plugin-a' });
-const pluginB = createPlugin({ id: 'my-plugin-b' });
-const pluginC = createPlugin({ id: 'my-plugin-c' });
+const pluginA = createFrontendPlugin({ pluginId: 'my-plugin-a' });
+const pluginB = createFrontendPlugin({ pluginId: 'my-plugin-b' });
+const pluginC = createFrontendPlugin({ pluginId: 'my-plugin-c' });
 
 const ref1 = createRouteRef(mockConfig());
 const ref2 = createRouteRef(mockConfig());

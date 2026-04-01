@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { useApiHolder } from '@backstage/core-plugin-api';
+import {
+  useApiHolder,
+} from "@backstage/frontend-plugin-api";
 import { JsonObject, JsonValue } from '@backstage/types';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';

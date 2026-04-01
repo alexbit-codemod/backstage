@@ -15,7 +15,9 @@
  */
 
 import { Page, Header, Content } from '@backstage/core-components';
-import { useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 import { FieldExtensionOptions } from '@backstage/plugin-scaffolder-react';
 

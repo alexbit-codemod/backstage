@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { configApiRef, errorApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  errorApiRef,
+} from "@backstage/frontend-plugin-api";
 import { catalogApiRef } from '@backstage/plugin-catalog-react';
 import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';
 import {

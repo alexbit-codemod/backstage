@@ -15,12 +15,12 @@
  */
 
 import {
-  oneloginAuthApiRef,
-  OAuthRequestApi,
   AuthProviderInfo,
   ConfigApi,
   DiscoveryApi,
-} from '@backstage/core-plugin-api';
+  OAuthRequestApi,
+  oneloginAuthApiRef,
+} from "@backstage/frontend-plugin-api";
 import { OAuth2 } from '../oauth2';
 
 /**

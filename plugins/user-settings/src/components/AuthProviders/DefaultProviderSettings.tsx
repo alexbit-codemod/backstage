@@ -17,17 +17,17 @@
 import Star from '@material-ui/icons/Star';
 import { ProviderSettingsItem } from './ProviderSettingsItem';
 import {
+  atlassianAuthApiRef,
+  bitbucketAuthApiRef,
+  bitbucketServerAuthApiRef,
   githubAuthApiRef,
   gitlabAuthApiRef,
   googleAuthApiRef,
-  oktaAuthApiRef,
   microsoftAuthApiRef,
-  bitbucketAuthApiRef,
-  bitbucketServerAuthApiRef,
-  atlassianAuthApiRef,
+  oktaAuthApiRef,
   oneloginAuthApiRef,
   openshiftAuthApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { userSettingsTranslationRef } from '../../translation';
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 

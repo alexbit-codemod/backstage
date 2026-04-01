@@ -19,7 +19,9 @@ import { ErrorPanel, InfoCard, Progress } from '@backstage/core-components';
 import { useNotificationsApi } from '../../hooks';
 import { NotificationSettings } from '@backstage/plugin-notifications-common';
 import { notificationsApiRef } from '../../api';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 import { notificationsTranslationRef } from '../../translation';
 import { UserNotificationSettingsPanel } from './UserNotificationSettingsPanel';

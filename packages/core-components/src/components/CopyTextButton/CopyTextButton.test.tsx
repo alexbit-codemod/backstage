@@ -17,7 +17,9 @@
 import { act, fireEvent } from '@testing-library/react';
 import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
 import { CopyTextButton } from './CopyTextButton';
-import { errorApiRef } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+} from "@backstage/frontend-plugin-api";
 import { default as useCopyToClipboardUnmocked } from 'react-use/esm/useCopyToClipboard';
 
 jest.mock('popper.js', () => {

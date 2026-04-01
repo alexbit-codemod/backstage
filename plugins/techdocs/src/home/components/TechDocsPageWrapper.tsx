@@ -17,7 +17,10 @@
 import { ReactNode, FC } from 'react';
 
 import { PageWithHeader } from '@backstage/core-components';
-import { useApi, configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Props for {@link TechDocsPageWrapper}

@@ -33,7 +33,9 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { Form } from '@backstage/plugin-scaffolder-react/alpha';
 import { FieldExtensionOptions } from '@backstage/plugin-scaffolder-react';
 

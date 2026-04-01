@@ -17,7 +17,10 @@
 import List from '@material-ui/core/List';
 import { EmptyProviders } from './EmptyProviders';
 import { DefaultProviderSettings } from './DefaultProviderSettings';
-import { configApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { InfoCard } from '@backstage/core-components';
 import { userSettingsTranslationRef } from '../../translation';
 import { useTranslationRef } from '@backstage/frontend-plugin-api';

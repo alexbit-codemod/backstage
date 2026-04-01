@@ -17,7 +17,9 @@
 import { ApiEntity } from '@backstage/catalog-model';
 import Typography from '@material-ui/core/Typography';
 import { apiDocsConfigRef } from '../../config';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * @public

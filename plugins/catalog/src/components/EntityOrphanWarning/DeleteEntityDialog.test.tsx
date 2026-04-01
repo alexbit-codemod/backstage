@@ -22,7 +22,9 @@ import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';
 import { catalogApiRef } from '@backstage/plugin-catalog-react';
 import { screen, waitFor } from '@testing-library/react';
 import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
-import { alertApiRef } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+} from "@backstage/frontend-plugin-api";
 import { mockApis } from '@backstage/frontend-test-utils';
 
 describe('DeleteEntityDialog', () => {

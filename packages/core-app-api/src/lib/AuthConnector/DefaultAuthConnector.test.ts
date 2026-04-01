@@ -22,7 +22,9 @@ import { registerMswTestHooks } from '@backstage/test-utils';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
 import { ConfigReader } from '@backstage/config';
-import { ConfigApi } from '@backstage/core-plugin-api';
+import {
+  ConfigApi,
+} from "@backstage/frontend-plugin-api";
 
 jest.mock('../loginPopup', () => {
   return {

@@ -15,7 +15,10 @@
  */
 
 import { InfoCard } from '@backstage/core-components';
-import { configApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';

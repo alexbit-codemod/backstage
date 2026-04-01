@@ -19,7 +19,10 @@ import {
   RELATION_OWNED_BY,
   stringifyEntityRef,
 } from '@backstage/catalog-model';
-import { identityApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  identityApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useMemo } from 'react';
 import useAsync from 'react-use/esm/useAsync';
 import { getEntityRelations } from '../utils/getEntityRelations';

@@ -18,7 +18,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { CodeSnippet } from '@backstage/core-components';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { catalogTranslationRef } from '../../alpha/translation';
 
 const ENTITY_YAML = `metadata:

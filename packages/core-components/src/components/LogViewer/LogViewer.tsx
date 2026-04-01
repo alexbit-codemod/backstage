@@ -15,7 +15,9 @@
  */
 
 import { lazy, Suspense } from 'react';
-import { useApp } from '@backstage/core-plugin-api';
+import {
+  useApp,
+} from "@backstage/frontend-plugin-api";
 
 const RealLogViewer = lazy(() =>
   import('./RealLogViewer').then(m => ({ default: m.RealLogViewer })),

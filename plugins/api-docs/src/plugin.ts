@@ -19,20 +19,20 @@ import { defaultDefinitionWidgets } from './components/ApiDefinitionCard';
 import { apiDocsConfigRef } from './config';
 import { registerComponentRouteRef, rootRoute } from './routes';
 import {
-  createApiFactory,
+  ApiBlueprint,
   createComponentExtension,
-  createPlugin,
   createRoutableExtension,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 /** @public */
-export const apiDocsPlugin = createPlugin({
-  id: 'api-docs',
+export const apiDocsPlugin = createFrontendPlugin({
+  pluginId: 'api-docs',
   routes: {
     root: rootRoute,
   },
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: apiDocsConfigRef,
       deps: {},
       factory: () => {
@@ -43,7 +43,7 @@ export const apiDocsPlugin = createPlugin({
           },
         };
       },
-    }),
+    }) }),
   ],
   externalRoutes: {
     registerApi: registerComponentRouteRef,

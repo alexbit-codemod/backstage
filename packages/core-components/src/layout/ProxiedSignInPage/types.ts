@@ -17,7 +17,7 @@
 import {
   BackstageIdentityResponse,
   ProfileInfo,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { z } from 'zod/v3';
 
 export const proxiedSessionSchema = z.object({

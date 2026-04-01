@@ -15,7 +15,9 @@
  */
 
 import { Config } from '@backstage/config';
-import { IdentityApi } from '@backstage/core-plugin-api';
+import {
+  IdentityApi,
+} from "@backstage/frontend-plugin-api";
 import { FetchMiddleware } from './types';
 
 /**

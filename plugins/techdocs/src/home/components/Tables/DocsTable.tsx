@@ -16,7 +16,11 @@
 
 import useCopyToClipboard from 'react-use/esm/useCopyToClipboard';
 
-import { configApiRef, useApi, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { Entity } from '@backstage/catalog-model';
 import { rootDocsRouteRef } from '../../../routes';
 import {

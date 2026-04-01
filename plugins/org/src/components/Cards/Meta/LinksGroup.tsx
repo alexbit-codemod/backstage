@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 import { EntityLink } from '@backstage/catalog-model';
-import { IconComponent, useApp } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+  useApp,
+} from "@backstage/frontend-plugin-api";
 import LanguageIcon from '@material-ui/icons/Language';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';

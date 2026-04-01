@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import { signalApiRef } from '../api';
-import { useApiHolder } from '@backstage/core-plugin-api';
+import {
+  useApiHolder,
+} from "@backstage/frontend-plugin-api";
 import { JsonObject } from '@backstage/types';
 import { useEffect, useMemo, useState } from 'react';
 

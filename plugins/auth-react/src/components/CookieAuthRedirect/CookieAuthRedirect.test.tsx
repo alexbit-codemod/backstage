@@ -20,7 +20,9 @@ import {
   renderInTestApp,
   mockApis,
 } from '@backstage/test-utils';
-import { identityApiRef } from '@backstage/core-plugin-api';
+import {
+  identityApiRef,
+} from "@backstage/frontend-plugin-api";
 import { CookieAuthRedirect } from './CookieAuthRedirect';
 
 describe('CookieAuthRedirect', () => {

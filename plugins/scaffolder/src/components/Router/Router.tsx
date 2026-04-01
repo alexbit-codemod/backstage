@@ -61,7 +61,9 @@ import {
 } from '../../alpha/components/TemplateEditorPage';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { templateManagementPermission } from '@backstage/plugin-scaffolder-common/alpha';
-import { useApp } from '@backstage/core-plugin-api';
+import {
+  useApp,
+} from "@backstage/frontend-plugin-api";
 import { OpaqueFormField } from '@internal/scaffolder';
 import { TemplatingExtensionsPage } from '../TemplatingExtensionsPage';
 import { FormField } from '@backstage/plugin-scaffolder-react/alpha';

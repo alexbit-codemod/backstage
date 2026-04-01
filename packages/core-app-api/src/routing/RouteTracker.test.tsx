@@ -21,24 +21,17 @@ import { RouteTracker } from './RouteTracker';
 import { Link, MemoryRouter, Route, Routes } from 'react-router-dom';
 import {
   analyticsApiRef,
-  createPlugin,
-  createRouteRef,
-} from '@backstage/core-plugin-api';
-import { MATCH_ALL_ROUTE } from './collectors';
+} from "@backstage/frontend-plugin-api";
+import { MATCH_ALL_ROUTE } from './collectors';import { createRouteRef , createFrontendPlugin} from '@backstage/frontend-plugin-api';
+
 
 describe('RouteTracker', () => {
-  const routeRef0 = createRouteRef({
-    id: 'home:root',
-  });
-  const routeRef1 = createRouteRef({
-    id: 'route1',
-  });
-  const routeRef2 = createRouteRef({
-    id: 'route2',
-  });
-  const plugin0 = createPlugin({ id: 'home' });
-  const plugin1 = createPlugin({ id: 'plugin1' });
-  const plugin2 = createPlugin({ id: 'plugin2' });
+  const routeRef0 = createRouteRef();
+  const routeRef1 = createRouteRef();
+  const routeRef2 = createRouteRef();
+  const plugin0 = createFrontendPlugin({ pluginId: 'home' });
+  const plugin1 = createFrontendPlugin({ pluginId: 'plugin1' });
+  const plugin2 = createFrontendPlugin({ pluginId: 'plugin2' });
 
   const routeObjects: BackstageRouteObject[] = [
     {

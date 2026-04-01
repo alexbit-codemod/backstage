@@ -22,7 +22,7 @@ import {
   IdentityApi,
   StorageApi,
   StorageValueSnapshot,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { ResponseError } from '@backstage/errors';
 import { JsonValue, Observable } from '@backstage/types';
 import { SignalApi, SignalSubscriber } from '@backstage/plugin-signals-react';

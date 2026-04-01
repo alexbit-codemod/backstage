@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 import { useCallback, useState } from 'react';
-import { useApi, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useApi,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { notificationsApiRef } from '../api';
 import { rootRouteRef } from '../routes';
 

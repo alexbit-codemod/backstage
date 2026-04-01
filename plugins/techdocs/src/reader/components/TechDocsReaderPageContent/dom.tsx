@@ -26,7 +26,11 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 
 import { CompoundEntityRef } from '@backstage/catalog-model';
-import { configApiRef, useAnalytics, useApi } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useAnalytics,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { scmIntegrationsApiRef } from '@backstage/integration-react';
 
 import {

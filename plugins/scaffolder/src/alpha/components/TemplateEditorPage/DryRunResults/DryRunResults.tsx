@@ -26,7 +26,9 @@ import { useEffect, useState } from 'react';
 import { useDryRun } from '../DryRunContext';
 import { DryRunResultsList } from './DryRunResultsList';
 import { DryRunResultsView } from './DryRunResultsView';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { scaffolderTranslationRef } from '../../../../translation';
 
 const useStyles = makeStyles(theme => ({

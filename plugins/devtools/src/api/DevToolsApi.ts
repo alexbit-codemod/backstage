@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   ConfigInfo,
   DevToolsInfo,
@@ -25,9 +28,7 @@ import {
   TriggerScheduledTask,
 } from '@backstage/plugin-devtools-common/alpha';
 
-export const devToolsApiRef = createApiRef<DevToolsApi>({
-  id: 'plugin.devtools.service',
-});
+export const devToolsApiRef = createApiRef<DevToolsApi>().with({ id: 'plugin.devtools.service', pluginId: "devtools" });
 
 export interface DevToolsApi {
   getConfig(): Promise<ConfigInfo | undefined>;

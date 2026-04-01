@@ -19,7 +19,7 @@ import {
   errorApiRef,
   identityApiRef,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import TextField from '@material-ui/core/TextField';
 import { MyGroupsPickerProps, MyGroupsPickerSchema } from './schema';
 import Autocomplete, {

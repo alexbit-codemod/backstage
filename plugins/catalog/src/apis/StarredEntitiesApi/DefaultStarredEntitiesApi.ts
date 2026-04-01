@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { StorageApi } from '@backstage/core-plugin-api';
+import {
+  StorageApi,
+} from "@backstage/frontend-plugin-api";
 import { StarredEntitiesApi } from '@backstage/plugin-catalog-react';
 import { Observable } from '@backstage/types';
 import ObservableImpl from 'zen-observable';

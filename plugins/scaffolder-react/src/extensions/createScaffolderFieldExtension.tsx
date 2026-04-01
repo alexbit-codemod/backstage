@@ -21,7 +21,10 @@ import {
   FieldExtensionUiSchema,
   CustomFieldExtensionSchema,
 } from './types';
-import { Extension, attachComponentData } from '@backstage/core-plugin-api';
+import {
+  Extension,
+  attachComponentData,
+} from "@backstage/frontend-plugin-api";
 import { UIOptionsType } from '@rjsf/utils';
 import { FIELD_EXTENSION_KEY, FIELD_EXTENSION_WRAPPER_KEY } from './keys';
 

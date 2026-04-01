@@ -30,7 +30,9 @@ import {
   TestApiProvider,
   mockApis,
 } from '@backstage/test-utils';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 
 import { rootRouteRef } from '../../routes';
 

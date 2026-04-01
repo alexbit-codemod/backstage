@@ -35,7 +35,9 @@ import { Events } from '../Events';
 import { LinkButton } from '@backstage/core-components';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesReactTranslationRef } from '../../../translation';
 
 const useStyles = makeStyles((theme: Theme) =>

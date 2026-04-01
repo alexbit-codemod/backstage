@@ -28,7 +28,7 @@ import {
   identityApiRef,
   useApi,
   useRouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import useAsync from 'react-use/esm/useAsync';
 import {
   catalogApiRef,

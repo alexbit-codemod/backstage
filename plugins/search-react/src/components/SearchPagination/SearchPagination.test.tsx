@@ -27,7 +27,9 @@ import { searchApiRef } from '../../api';
 import { SearchContextProvider } from '../../context';
 
 import { SearchPagination } from './SearchPagination';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 
 describe('SearchPagination', () => {
   const configApiMock = mockApis.config({

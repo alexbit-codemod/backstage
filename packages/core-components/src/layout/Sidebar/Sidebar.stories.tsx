@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { createRouteRef } from '@backstage/core-plugin-api';
+import { createRouteRef } from '@backstage/frontend-plugin-api';
 import { wrapInTestApp } from '@backstage/test-utils';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
@@ -37,9 +37,7 @@ import {
 import { SidebarSubmenu } from './SidebarSubmenu';
 import { SidebarSubmenuItem } from './SidebarSubmenuItem';
 
-const routeRef = createRouteRef({
-  id: 'storybook.test-route',
-});
+const routeRef = createRouteRef();
 
 export default {
   title: 'Layout/Sidebar',

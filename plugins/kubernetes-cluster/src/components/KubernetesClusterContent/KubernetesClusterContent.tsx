@@ -25,7 +25,9 @@ import {
 import { WarningPanel } from '@backstage/core-components';
 import { kubernetesClustersReadPermission } from '@backstage/plugin-kubernetes-common';
 import { RequirePermission } from '@backstage/plugin-permission-react';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesClusterTranslationRef } from '../../translation';
 
 const ContentGrid = () => {

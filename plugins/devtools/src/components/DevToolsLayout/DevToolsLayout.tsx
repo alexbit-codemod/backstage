@@ -18,7 +18,7 @@ import { Header, Page, RoutedTabs } from '@backstage/core-components';
 import {
   attachComponentData,
   useElementFilter,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { TabProps } from '@material-ui/core/Tab';
 import { ElementType, ReactNode } from 'react';
 

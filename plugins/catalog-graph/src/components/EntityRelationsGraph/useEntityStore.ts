@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import { Entity, stringifyEntityRef } from '@backstage/catalog-model';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { catalogApiRef } from '@backstage/plugin-catalog-react';
 import { useCallback, useRef, useState } from 'react';
 import useAsyncFn from 'react-use/esm/useAsyncFn';

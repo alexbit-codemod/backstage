@@ -17,12 +17,12 @@
 import { useEffect } from 'react';
 import { matchRoutes, useLocation } from 'react-router-dom';
 import {
-  useAnalytics,
   AnalyticsContext,
-  RouteRef,
   AnalyticsEventAttributes,
   BackstagePlugin,
-} from '@backstage/core-plugin-api';
+  RouteRef,
+  useAnalytics,
+} from "@backstage/frontend-plugin-api";
 import { BackstageRouteObject } from './types';
 
 /**

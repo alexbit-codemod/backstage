@@ -18,7 +18,9 @@ import { createMocks } from 'react-idle-timer';
 // eslint-disable-next-line no-restricted-imports
 import { MessageChannel } from 'node:worker_threads';
 import { ApiProvider } from '@backstage/core-app-api';
-import { identityApiRef } from '@backstage/core-plugin-api';
+import {
+  identityApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   TestApiRegistry,
   renderInTestApp,

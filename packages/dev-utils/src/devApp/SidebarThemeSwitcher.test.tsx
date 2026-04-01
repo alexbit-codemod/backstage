@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { AppThemeApi, appThemeApiRef } from '@backstage/core-plugin-api';
+import {
+  AppThemeApi,
+  appThemeApiRef,
+} from "@backstage/frontend-plugin-api";
 import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
 import userEvent from '@testing-library/user-event';
 import ObservableImpl from 'zen-observable';

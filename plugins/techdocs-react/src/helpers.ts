@@ -25,7 +25,9 @@ import {
   TECHDOCS_EXTERNAL_ANNOTATION,
   TECHDOCS_EXTERNAL_PATH_ANNOTATION,
 } from '@backstage/plugin-techdocs-common';
-import { RouteFunc } from '@backstage/core-plugin-api';
+import {
+  RouteFunc,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Lower-case entity triplets by default, but allow override.

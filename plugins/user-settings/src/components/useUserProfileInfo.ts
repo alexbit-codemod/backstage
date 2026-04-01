@@ -15,11 +15,11 @@
  */
 
 import {
+  ProfileInfo,
   alertApiRef,
   identityApiRef,
-  ProfileInfo,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { useEffect } from 'react';
 import useAsync from 'react-use/esm/useAsync';
 import { catalogApiRef } from '@backstage/plugin-catalog-react';

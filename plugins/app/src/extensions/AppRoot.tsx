@@ -49,7 +49,7 @@ import {
   configApiRef,
   identityApiRef,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 // eslint-disable-next-line @backstage/no-relative-monorepo-imports
 import { isProtectedApp } from '../../../../packages/core-app-api/src/app/isProtectedApp';
 import { BrowserRouter } from 'react-router-dom';

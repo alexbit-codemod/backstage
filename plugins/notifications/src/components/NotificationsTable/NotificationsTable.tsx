@@ -25,7 +25,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Notification } from '@backstage/plugin-notifications-common';
 import { useConfirm } from 'material-ui-confirm';
 import BroadcastIcon from '@material-ui/icons/RssFeed';
-import { alertApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import {
   Link,
   Table,

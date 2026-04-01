@@ -22,7 +22,10 @@ import {
   Page,
   useSidebarPinState,
 } from '@backstage/core-components';
-import { configApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { CatalogSearchResultListItem } from '@backstage/plugin-catalog';
 import {
   CATALOG_FILTER_EXISTS,

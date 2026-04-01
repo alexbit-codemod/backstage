@@ -15,7 +15,10 @@
  */
 
 import { Select } from '@backstage/core-components';
-import { alertApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import Box from '@material-ui/core/Box';
 import { useEffect, useMemo, useState } from 'react';
 import { EntityKindFilter } from '../../filters';

@@ -19,7 +19,7 @@ import {
   ExternalRouteRef,
   RouteRef,
   SubRouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   createVersionedValueMap,
   createVersionedContext,

@@ -26,7 +26,7 @@ import DocsIcon from '@material-ui/icons/InsertDriveFile';
 import { JsonValue } from '@backstage/types';
 import { Link } from '@backstage/core-components';
 import { TestApiProvider, wrapInTestApp } from '@backstage/test-utils';
-import { createPlugin, createRouteRef } from '@backstage/core-plugin-api';
+import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
 import { SearchQuery, SearchResultSet } from '@backstage/plugin-search-common';
 
 import { DefaultResultListItem } from '../DefaultResultListItem';
@@ -39,11 +39,10 @@ import {
   SearchResultGroup,
   SearchResultGroupTextFilterField,
   SearchResultGroupSelectFilterField,
-} from './SearchResultGroup';
+} from './SearchResultGroup';import { createRouteRef } from '@backstage/frontend-plugin-api';
 
-const routeRef = createRouteRef({
-  id: 'storybook.search.results.group.route',
-});
+
+const routeRef = createRouteRef();
 
 const searchApiMock = new MockSearchApi({
   results: [
@@ -357,7 +356,7 @@ export const WithResultItemExtensions = () => {
   const [query] = useState<Partial<SearchQuery>>({
     types: ['techdocs'],
   });
-  const plugin = createPlugin({ id: 'plugin' });
+  const plugin = createFrontendPlugin({ pluginId: 'plugin' });
   const DefaultSearchResultGroupItem = plugin.provide(
     createSearchResultListItemExtension({
       name: 'DefaultResultListItem',

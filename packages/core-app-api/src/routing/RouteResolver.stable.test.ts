@@ -15,16 +15,16 @@
  */
 
 import {
-  createRouteRef,
-  createSubRouteRef,
-  createExternalRouteRef,
+  BackstagePlugin,
   ExternalRouteRef,
   RouteRef,
   SubRouteRef,
-  BackstagePlugin,
-} from '@backstage/core-plugin-api';
+  createExternalRouteRef,
+  createSubRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { RouteResolver } from './RouteResolver';
-import { MATCH_ALL_ROUTE } from './collectors';
+import { MATCH_ALL_ROUTE } from './collectors';import { createRouteRef, createSubRouteRef, createExternalRouteRef } from '@backstage/frontend-plugin-api';
+
 
 jest.mock('react-router', () => jest.requireActual('react-router-stable'));
 jest.mock('react-router-dom', () =>
@@ -38,38 +38,20 @@ const rest = {
   plugins: new Set<BackstagePlugin>(),
 };
 
-const ref1 = createRouteRef({ id: 'rr1' });
-const ref2 = createRouteRef({ id: 'rr2', params: ['x'] });
-const ref3 = createRouteRef({ id: 'rr3', params: ['y'] });
-const subRef1 = createSubRouteRef({
-  id: 'srr1',
-  parent: ref1,
-  path: '/foo',
-});
-const subRef2 = createSubRouteRef({
-  id: 'srr2',
-  parent: ref1,
-  path: '/foo/:a',
-});
-const subRef3 = createSubRouteRef({
-  id: 'srr3',
-  parent: ref2,
-  path: '/bar',
-});
-const subRef4 = createSubRouteRef({
-  id: 'srr4',
-  parent: ref2,
-  path: '/bar/:a',
-});
-const externalRef1 = createExternalRouteRef({ id: 'err1' });
+const ref1 = createRouteRef();
+const ref2 = createRouteRef({ , params: ['x'] });
+const ref3 = createRouteRef({ , params: ['y'] });
+const subRef1 = createSubRouteRef({ parent: ref1, path: '/foo' });
+const subRef2 = createSubRouteRef({ parent: ref1, path: '/foo/:a' });
+const subRef3 = createSubRouteRef({ parent: ref2, path: '/bar' });
+const subRef4 = createSubRouteRef({ parent: ref2, path: '/bar/:a' });
+const externalRef1 = createExternalRouteRef({  });
 const externalRef2 = createExternalRouteRef({
-  id: 'err2',
-  optional: true,
+  ,
 });
-const externalRef3 = createExternalRouteRef({ id: 'err3', params: ['x'] });
+const externalRef3 = createExternalRouteRef({ , params: ['x'] });
 const externalRef4 = createExternalRouteRef({
-  id: 'err4',
-  optional: true,
+  ,
   params: ['x'],
 });
 

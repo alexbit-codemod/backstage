@@ -31,7 +31,9 @@ import {
   createExtensionInput,
   createFrontendModule,
 } from '@backstage/frontend-plugin-api';
-import { getComponentData } from '@backstage/core-plugin-api';
+import {
+  getComponentData,
+} from "@backstage/frontend-plugin-api";
 import { collectLegacyRoutes } from './collectLegacyRoutes';
 import { compatWrapper } from './compatWrapper';
 

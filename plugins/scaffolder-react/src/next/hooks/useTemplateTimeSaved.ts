@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { catalogApiRef } from '@backstage/plugin-catalog-react';
 import { Duration } from 'luxon';
 import useAsync from 'react-use/lib/useAsync';

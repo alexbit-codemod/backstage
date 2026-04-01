@@ -22,7 +22,9 @@ import {
 } from '@backstage/test-utils';
 import { catalogApiRef, entityRouteRef } from '@backstage/plugin-catalog-react';
 import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';
-import { identityApiRef } from '@backstage/core-plugin-api';
+import {
+  identityApiRef,
+} from "@backstage/frontend-plugin-api";
 import { ListTasksPage } from './ListTasksPage';
 import {
   ScaffolderApi,

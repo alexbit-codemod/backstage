@@ -21,12 +21,12 @@ import {
 } from '@backstage/integration-react';
 import {
   AnyApiFactory,
+  ApiBlueprint,
   configApiRef,
-  createApiFactory,
   discoveryApiRef,
   fetchApiRef,
   identityApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { AuthProxyDiscoveryApi } from './AuthProxyDiscoveryApi';
 import { formDecoratorsApiRef } from '@backstage/plugin-scaffolder/alpha';
 import { DefaultScaffolderFormDecoratorsApi } from '@backstage/plugin-scaffolder/alpha';
@@ -35,18 +35,18 @@ import { scaffolderApiRef } from '@backstage/plugin-scaffolder-react';
 import { ScaffolderClient } from '@backstage/plugin-scaffolder';
 
 export const apis: AnyApiFactory[] = [
-  createApiFactory({
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: discoveryApiRef,
     deps: { configApi: configApiRef },
     factory: ({ configApi }) => AuthProxyDiscoveryApi.fromConfig(configApi),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: scmIntegrationsApiRef,
     deps: { configApi: configApiRef },
     factory: ({ configApi }) => ScmIntegrationsApi.fromConfig(configApi),
-  }),
+  }) }),
 
-  createApiFactory({
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: scaffolderApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -62,16 +62,16 @@ export const apis: AnyApiFactory[] = [
         scmIntegrationsApi,
         identityApi,
       }),
-  }),
+  }) }),
 
-  createApiFactory({
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: formDecoratorsApiRef,
     deps: {},
     factory: () =>
       DefaultScaffolderFormDecoratorsApi.create({
         decorators: [mockDecorator],
       }),
-  }),
+  }) }),
 
   ScmAuth.createDefaultApiFactory(),
 ];

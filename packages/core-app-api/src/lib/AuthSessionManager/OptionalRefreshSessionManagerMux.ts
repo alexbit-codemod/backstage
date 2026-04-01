@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { SessionState } from '@backstage/core-plugin-api';
+import {
+  SessionState,
+} from "@backstage/frontend-plugin-api";
 import { Observable } from '@backstage/types';
 import {
   SessionManager,

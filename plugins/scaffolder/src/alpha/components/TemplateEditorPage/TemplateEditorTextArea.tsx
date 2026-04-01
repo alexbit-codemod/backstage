@@ -28,7 +28,9 @@ import { useKeyboardEvent } from '@react-hookz/web';
 import CodeMirror from '@uiw/react-codemirror';
 import { useMemo } from 'react';
 import { useDirectoryEditor } from './DirectoryEditorContext';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { scaffolderTranslationRef } from '../../../translation';
 
 const useStyles = makeStyles(theme => ({

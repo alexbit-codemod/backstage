@@ -15,7 +15,9 @@
  */
 
 import { ComponentEntity, RELATION_OWNED_BY } from '@backstage/catalog-model';
-import { identityApiRef } from '@backstage/core-plugin-api';
+import {
+  identityApiRef,
+} from "@backstage/frontend-plugin-api";
 import { TestApiProvider, mockApis } from '@backstage/test-utils';
 import { renderHook, waitFor } from '@testing-library/react';
 import { ReactNode } from 'react';

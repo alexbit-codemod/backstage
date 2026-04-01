@@ -31,7 +31,9 @@ import {
 } from '@backstage/plugin-kubernetes-common';
 import { EmptyState, Progress } from '@backstage/core-components';
 import { RequireKubernetesPermissions } from './RequireKubernetesPermissions';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesTranslationRef } from './alpha/translation';
 
 type KubernetesContentProps = {

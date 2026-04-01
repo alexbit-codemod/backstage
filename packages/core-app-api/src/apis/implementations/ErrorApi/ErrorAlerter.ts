@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 import {
+  AlertApi,
   ErrorApi,
   ErrorApiError,
   ErrorApiErrorContext,
-  AlertApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Decorates an ErrorApi by also forwarding error messages

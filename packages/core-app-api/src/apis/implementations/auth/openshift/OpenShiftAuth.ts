@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { openshiftAuthApiRef } from '@backstage/core-plugin-api';
+import {
+  openshiftAuthApiRef,
+} from "@backstage/frontend-plugin-api";
 import { OAuth2 } from '../oauth2';
 import { OAuthApiCreateOptions } from '../types';
 

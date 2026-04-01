@@ -31,8 +31,8 @@ jest.mock('../app');
 
 const mocked = (f: Function) => f as jest.Mock;
 
-const plugin = createPlugin({
-  id: 'my-plugin',
+const plugin = createFrontendPlugin({
+  pluginId: 'my-plugin',
 });
 
 describe('extensions', () => {

@@ -18,7 +18,9 @@ import { Grid, type Columns } from '@backstage/ui';
 import { IconLink } from './IconLink';
 import { ColumnBreakpoints } from './types';
 import { useDynamicColumns } from './useDynamicColumns';
-import { IconComponent } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+} from "@backstage/frontend-plugin-api";
 
 export interface LinksGridListItem {
   href: string;

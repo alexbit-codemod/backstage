@@ -24,7 +24,7 @@ import { homePlugin } from '../../plugin';
 import {
   createComponentExtension,
   storageApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import userEvent from '@testing-library/user-event';
 import { ComponentProps } from 'react';
 

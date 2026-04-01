@@ -15,7 +15,10 @@
  */
 
 import { Entity } from '@backstage/catalog-model';
-import { errorApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { assertError } from '@backstage/errors';
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import {

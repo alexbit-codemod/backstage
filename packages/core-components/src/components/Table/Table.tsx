@@ -17,7 +17,7 @@
 import {
   TranslationFunction,
   useTranslationRef,
-} from '@backstage/core-plugin-api/alpha';
+} from "@backstage/frontend-plugin-api";
 import MTable, {
   Column,
   Icons,

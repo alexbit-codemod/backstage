@@ -55,10 +55,10 @@ export async function runCommand(opts: OptionValues) {
 
   print('Creating a Backstage Plugin');
   const pluginId = 'test';
-  await createPlugin({ appDir, pluginId, select: 'frontend-plugin' });
+  await createFrontendPlugin({ appDir, pluginId, select: 'frontend-plugin' });
 
   print('Creating a Backstage Backend Plugin');
-  await createPlugin({ appDir, pluginId, select: 'backend-plugin' });
+  await createFrontendPlugin({ appDir, pluginId, select: 'backend-plugin' });
 
   print(`Running 'yarn test:e2e' in newly created app with new plugin`);
   await runOutput(['yarn', 'test:e2e'], {

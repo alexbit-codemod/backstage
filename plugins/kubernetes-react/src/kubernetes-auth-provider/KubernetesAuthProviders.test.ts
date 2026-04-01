@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { OAuthApi, OpenIdConnectApi } from '@backstage/core-plugin-api';
+import {
+  OAuthApi,
+  OpenIdConnectApi,
+} from "@backstage/frontend-plugin-api";
 import { KubernetesRequestBody } from '@backstage/plugin-kubernetes-common';
 import { KubernetesAuthProviders } from './KubernetesAuthProviders';
 

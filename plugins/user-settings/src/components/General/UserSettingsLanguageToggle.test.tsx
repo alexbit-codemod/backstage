@@ -17,7 +17,9 @@
 import { screen, fireEvent } from '@testing-library/react';
 import { UserSettingsLanguageToggle } from './UserSettingsLanguageToggle';
 import { TestApiProvider, renderInTestApp } from '@backstage/test-utils';
-import { appLanguageApiRef } from '@backstage/core-plugin-api/alpha';
+import {
+  appLanguageApiRef,
+} from "@backstage/frontend-plugin-api";
 
 describe('UserSettingsLanguageToggle', () => {
   beforeEach(() => {

@@ -16,9 +16,9 @@
 
 import {
   BackstageIdentityResponse,
-  bitbucketAuthApiRef,
   ProfileInfo,
-} from '@backstage/core-plugin-api';
+  bitbucketAuthApiRef,
+} from "@backstage/frontend-plugin-api";
 
 import { OAuthApiCreateOptions } from '../types';
 import { OAuth2 } from '../oauth2';

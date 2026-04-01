@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Utility API reference for the {@link CatalogGraphApi}.
  *
  * @public
  */
-export const catalogGraphApiRef = createApiRef<CatalogGraphApi>({
-  id: 'plugin.catalog-graph.service',
-});
+export const catalogGraphApiRef = createApiRef<CatalogGraphApi>().with({ id: 'plugin.catalog-graph.service', pluginId: "catalog-graph" });
 
 /** @public */
 export type DefaultRelationsInclude = { include: string[] };

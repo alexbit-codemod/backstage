@@ -15,13 +15,13 @@
  */
 
 import {
+  ApiBlueprint,
+  OAuthApi,
   bitbucketAuthApiRef,
-  createApiFactory,
   githubAuthApiRef,
   gitlabAuthApiRef,
   microsoftAuthApiRef,
-  OAuthApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   ScmAuthApi,
   scmAuthApiRef,
@@ -91,7 +91,7 @@ export class ScmAuth implements ScmAuthApi {
    * Creates an API factory that enables auth for each of the default SCM providers.
    */
   static createDefaultApiFactory() {
-    return createApiFactory({
+    return ApiBlueprint.make({ params: defineParams => defineParams({
       api: scmAuthApiRef,
       deps: {
         github: githubAuthApiRef,
@@ -106,7 +106,7 @@ export class ScmAuth implements ScmAuthApi {
           ScmAuth.forAzure(azure),
           ScmAuth.forBitbucket(bitbucket),
         ),
-    });
+    }) });
   }
 
   /**

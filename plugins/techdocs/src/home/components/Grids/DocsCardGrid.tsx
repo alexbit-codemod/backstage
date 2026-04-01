@@ -17,7 +17,11 @@
 import { rootDocsRouteRef } from '../../../routes';
 import { toLowerMaybe } from '../../../helpers';
 import { Entity } from '@backstage/catalog-model';
-import { useApi, useRouteRef, configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import {
   LinkButton,
   ItemCardGrid,

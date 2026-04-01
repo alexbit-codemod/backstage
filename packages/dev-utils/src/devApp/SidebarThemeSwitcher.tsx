@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 import { SidebarItem } from '@backstage/core-components';
-import { appThemeApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  appThemeApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';

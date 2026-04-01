@@ -30,7 +30,9 @@ import {
   catalogApiRef,
 } from '@backstage/plugin-catalog-react';
 import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import { ConfigReader } from '@backstage/config';
 import { HomePageSearchBar, searchPlugin } from '@backstage/plugin-search';
 import {

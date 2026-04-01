@@ -27,7 +27,9 @@ import {
 } from '@backstage/plugin-catalog-react';
 import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';
 import { wrapInTestApp, TestApiProvider } from '@backstage/test-utils';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import { ConfigReader } from '@backstage/config';
 import { searchApiRef } from '@backstage/plugin-search-react';
 import { HomePageSearchBar, searchPlugin } from '@backstage/plugin-search';

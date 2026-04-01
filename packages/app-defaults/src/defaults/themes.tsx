@@ -20,7 +20,9 @@ import {
 } from '@backstage/theme';
 import DarkIcon from '@material-ui/icons/Brightness2';
 import LightIcon from '@material-ui/icons/WbSunny';
-import { AppTheme } from '@backstage/core-plugin-api';
+import {
+  AppTheme,
+} from "@backstage/frontend-plugin-api";
 
 export const themes: AppTheme[] = [
   {

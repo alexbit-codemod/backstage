@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-import { ApiRef, createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  ApiRef,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 import { Observable } from '@backstage/types';
 
 /**

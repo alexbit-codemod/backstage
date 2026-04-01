@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { appThemeApiRef } from '@backstage/core-plugin-api';
 import { Box, Card, Container, Flex, Header, Text } from '@backstage/ui';
 import { ThemeContent } from './ThemeContent';

@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   Notification,
   NotificationSettings,
@@ -22,9 +25,7 @@ import {
 } from '@backstage/plugin-notifications-common';
 
 /** @public */
-export const notificationsApiRef = createApiRef<NotificationsApi>({
-  id: 'plugin.notifications.service',
-});
+export const notificationsApiRef = createApiRef<NotificationsApi>().with({ id: 'plugin.notifications.service', pluginId: "notifications" });
 
 /** @public */
 export type GetNotificationsCommonOptions = {

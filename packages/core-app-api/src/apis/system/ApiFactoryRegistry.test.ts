@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 import { ApiFactoryRegistry } from './ApiFactoryRegistry';
 
 const aRef = createApiRef<number>({ id: 'a' });

@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 import { Link, Progress } from '@backstage/core-components';
-import { errorApiRef, IconComponent, useApi } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+  errorApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useEntityList } from '@backstage/plugin-catalog-react';
 import {
   isTemplateEntityV1beta3,

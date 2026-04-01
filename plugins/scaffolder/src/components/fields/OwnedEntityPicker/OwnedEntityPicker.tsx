@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 import { RELATION_OWNED_BY } from '@backstage/catalog-model';
-import { identityApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  identityApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import useAsync from 'react-use/esm/useAsync';

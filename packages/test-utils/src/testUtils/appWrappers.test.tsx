@@ -15,21 +15,21 @@
  */
 
 import {
-  createExternalRouteRef,
   createRouteRef,
   createSubRouteRef,
   errorApiRef,
   useApi,
   useApp,
   useRouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { withLogCollector } from './logCollector';
 import { render } from '@testing-library/react';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { MockErrorApi } from './apis';
 import { renderInTestApp, wrapInTestApp } from './appWrappers';
-import { TestApiProvider } from './TestApiProvider';
+import { TestApiProvider } from './TestApiProvider';import { createExternalRouteRef, createRouteRef, createSubRouteRef } from '@backstage/frontend-plugin-api';
+
 
 describe('wrapInTestApp', () => {
   it('should provide routing and warn about missing act()', async () => {
@@ -126,15 +126,11 @@ describe('wrapInTestApp', () => {
   });
 
   it('should allow route refs to be mounted on specific paths', async () => {
-    const aRouteRef = createRouteRef({ id: 'A' });
-    const bRouteRef = createRouteRef({ id: 'B', params: ['name'] });
-    const subRouteRef = createSubRouteRef({
-      id: 'S',
-      parent: bRouteRef,
-      path: '/:page',
-    });
+    const aRouteRef = createRouteRef();
+    const bRouteRef = createRouteRef({ , params: ['name'] });
+    const subRouteRef = createSubRouteRef({ parent: bRouteRef, path: '/:page' });
     const externalRouteRef = createExternalRouteRef({
-      id: 'E',
+      ,
       params: ['name'],
     });
 
@@ -167,7 +163,7 @@ describe('wrapInTestApp', () => {
   });
 
   it('should not make route mounting elements visible during tests', async () => {
-    const routeRef = createRouteRef({ id: 'foo' });
+    const routeRef = createRouteRef();
 
     const rendered = await renderInTestApp(<span>foo</span>, {
       mountedRoutes: { '/foo': routeRef },

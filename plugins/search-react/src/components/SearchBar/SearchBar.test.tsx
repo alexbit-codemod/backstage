@@ -16,7 +16,9 @@
 
 import { screen, waitFor, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import { ConfigReader } from '@backstage/core-app-api';
 import {
   mockApis,

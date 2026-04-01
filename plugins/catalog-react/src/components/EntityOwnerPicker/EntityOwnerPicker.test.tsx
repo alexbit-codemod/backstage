@@ -29,7 +29,9 @@ import {
   TestApiRegistry,
 } from '@backstage/test-utils';
 import { catalogApiRef } from '../..';
-import { errorApiRef } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+} from "@backstage/frontend-plugin-api";
 import { QueryEntitiesCursorRequest } from '@backstage/catalog-client';
 
 const ownerEntitiesBatch1: Entity[] = [

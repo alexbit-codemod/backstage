@@ -15,18 +15,15 @@
  */
 
 import {
-  createPlugin,
   createRoutableExtension,
-  createRouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";import { createRouteRef , createFrontendPlugin} from '@backstage/frontend-plugin-api';
 
-export const settingsRouteRef = createRouteRef({
-  id: 'user-settings',
-});
+
+export const settingsRouteRef = createRouteRef();
 
 /** @public */
-export const userSettingsPlugin = createPlugin({
-  id: 'user-settings',
+export const userSettingsPlugin = createFrontendPlugin({
+  pluginId: 'user-settings',
   routes: {
     settingsPage: settingsRouteRef,
   },

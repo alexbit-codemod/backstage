@@ -15,7 +15,9 @@
  */
 
 import { Entity } from '@backstage/catalog-model';
-import { useApi as useApiMocked } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { useEntityStore } from './useEntityStore';
 import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';

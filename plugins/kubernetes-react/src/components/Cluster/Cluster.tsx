@@ -44,7 +44,9 @@ import {
 
 import { StatusError, StatusOK } from '@backstage/core-components';
 import { PodMetricsContext } from '../../hooks/usePodMetrics';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesReactTranslationRef } from '../../translation';
 import { SecretsAccordions } from '../SecretsAccordions';
 

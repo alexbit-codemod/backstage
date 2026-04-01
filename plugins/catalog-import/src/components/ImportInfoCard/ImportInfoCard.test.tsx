@@ -15,7 +15,9 @@
  */
 
 import { ApiProvider, ConfigReader } from '@backstage/core-app-api';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   renderInTestApp,
   TestApiProvider,

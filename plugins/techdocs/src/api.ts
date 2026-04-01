@@ -19,7 +19,10 @@ import {
   TechDocsEntityMetadata,
   TechDocsMetadata,
 } from '@backstage/plugin-techdocs-react';
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Utility API reference for the {@link TechDocsStorageApi}.
@@ -27,9 +30,7 @@ import { createApiRef } from '@backstage/core-plugin-api';
  * @public
  * @deprecated Import from `@backstage/plugin-techdocs-react` instead
  */
-export const techdocsStorageApiRef = createApiRef<TechDocsStorageApi>({
-  id: 'plugin.techdocs.storageservice',
-});
+export const techdocsStorageApiRef = createApiRef<TechDocsStorageApi>().with({ id: 'plugin.techdocs.storageservice', pluginId: "techdocs" });
 
 /**
  * Utility API reference for the {@link TechDocsApi}.
@@ -37,9 +38,7 @@ export const techdocsStorageApiRef = createApiRef<TechDocsStorageApi>({
  * @public
  * @deprecated Import from `@backstage/plugin-techdocs-react` instead
  */
-export const techdocsApiRef = createApiRef<TechDocsApi>({
-  id: 'plugin.techdocs.service',
-});
+export const techdocsApiRef = createApiRef<TechDocsApi>().with({ id: 'plugin.techdocs.service', pluginId: "techdocs" });
 
 /**
  * The outcome of a docs sync operation.

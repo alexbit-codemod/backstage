@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { errorApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import CopyIcon from '@material-ui/icons/FileCopy';

@@ -14,30 +14,30 @@
  * limitations under the License.
  */
 import {
-  createApiFactory,
-  createPlugin,
+  ApiBlueprint,
   createRoutableExtension,
   discoveryApiRef,
   fetchApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 import { rootRouteRef } from './routes';
 import { notificationsApiRef } from './api/NotificationsApi';
-import { NotificationsClient } from './api';
+import { NotificationsClient } from './api';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 /** @public */
-export const notificationsPlugin = createPlugin({
-  id: 'notifications',
+export const notificationsPlugin = createFrontendPlugin({
+  pluginId: 'notifications',
   routes: {
     root: rootRouteRef,
   },
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: notificationsApiRef,
       deps: { discoveryApi: discoveryApiRef, fetchApi: fetchApiRef },
       factory: ({ discoveryApi, fetchApi }) =>
         new NotificationsClient({ discoveryApi, fetchApi }),
-    }),
+    }) }),
   ],
 });
 

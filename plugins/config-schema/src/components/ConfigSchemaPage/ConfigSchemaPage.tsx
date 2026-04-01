@@ -20,7 +20,9 @@ import { SchemaViewer } from '../SchemaViewer';
 import Typography from '@material-ui/core/Typography';
 
 import { Header, Page, Content, Progress } from '@backstage/core-components';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 
 export const ConfigSchemaPage = () => {
   const configSchemaApi = useApi(configSchemaApiRef);

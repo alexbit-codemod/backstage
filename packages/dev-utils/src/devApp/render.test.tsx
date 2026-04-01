@@ -16,7 +16,10 @@
 
 import { render } from '@testing-library/react';
 import { createDevApp } from './render';
-import { configApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 
 const anyEnv = (process.env = { ...process.env }) as any;
 

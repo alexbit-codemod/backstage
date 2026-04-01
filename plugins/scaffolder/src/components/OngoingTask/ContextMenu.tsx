@@ -33,7 +33,9 @@ import {
   taskReadPermission,
   taskCreatePermission,
 } from '@backstage/plugin-scaffolder-common/alpha';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { scaffolderTranslationRef } from '../../translation';
 
 type ContextMenuProps = {

@@ -30,7 +30,9 @@ import { Pod } from 'kubernetes-models/v1/Pod';
 import type { V1Pod } from '@kubernetes/client-node';
 import { usePodMetrics } from '../../hooks/usePodMetrics';
 import Typography from '@material-ui/core/Typography';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesReactTranslationRef } from '../../translation';
 
 /**

@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { catalogApiRef } from '../../api';
 import useAsyncFn from 'react-use/esm/useAsyncFn';
 import { Entity } from '@backstage/catalog-model';

@@ -17,7 +17,9 @@
 import { PropsWithChildren } from 'react';
 import { act, renderHook } from '@testing-library/react';
 import { MockErrorApi, TestApiProvider } from '@backstage/test-utils';
-import { errorApiRef } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+} from "@backstage/frontend-plugin-api";
 import { AnsiLine } from './AnsiProcessor';
 import { useLogViewerSelection } from './useLogViewerSelection';
 // eslint-disable-next-line @backstage/no-undeclared-imports

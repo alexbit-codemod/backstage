@@ -16,7 +16,9 @@
 
 import { ReactNode } from 'react';
 import { ErrorPanel } from '@backstage/core-components';
-import { useApp } from '@backstage/core-plugin-api';
+import {
+  useApp,
+} from "@backstage/frontend-plugin-api";
 import Button from '@material-ui/core/Button';
 import { useCookieAuthRefresh } from '../../hooks';
 

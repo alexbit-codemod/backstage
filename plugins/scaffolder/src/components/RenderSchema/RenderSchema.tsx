@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import { MarkdownContent } from '@backstage/core-components';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
 import Collapse from '@material-ui/core/Collapse';

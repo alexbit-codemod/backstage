@@ -15,10 +15,10 @@
  */
 
 import {
-  discoveryApiRef,
   SignInPageProps,
+  discoveryApiRef,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { ComponentType } from 'react';
 import { useAsync, useMountEffect } from '@react-hookz/web';
 import { ErrorPanel } from '../../components/ErrorPanel';

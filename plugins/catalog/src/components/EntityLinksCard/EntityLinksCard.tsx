@@ -19,7 +19,10 @@ import LanguageIcon from '@material-ui/icons/Language';
 import { EntityLinksEmptyState } from './EntityLinksEmptyState';
 import { LinksGridList } from './LinksGridList';
 import { ColumnBreakpoints } from './types';
-import { IconComponent, useApp } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+  useApp,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 import { catalogTranslationRef } from '../../alpha/translation';
 

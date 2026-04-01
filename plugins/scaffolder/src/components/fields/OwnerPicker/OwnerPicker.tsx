@@ -15,7 +15,9 @@
  */
 import { EntityPicker } from '../EntityPicker/EntityPicker';
 import { OwnerPickerProps } from './schema';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { scaffolderTranslationRef } from '../../../translation';
 
 export { OwnerPickerSchema } from './schema';
