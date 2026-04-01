@@ -17,7 +17,9 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 
 import { SearchContextProvider } from '../../context';
 import { SearchFilter } from './SearchFilter';

@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { StorageApi } from '@backstage/core-plugin-api';
+import {
+  StorageApi,
+} from "@backstage/frontend-plugin-api";
 import { mockApis } from '@backstage/test-utils';
 import { performMigrationToTheNewBucket } from './migration';
 

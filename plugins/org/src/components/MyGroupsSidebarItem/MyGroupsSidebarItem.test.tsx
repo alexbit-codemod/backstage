@@ -21,7 +21,9 @@ import {
 } from '@backstage/test-utils';
 import { MyGroupsSidebarItem } from './MyGroupsSidebarItem';
 import GroupIcon from '@material-ui/icons/People';
-import { identityApiRef } from '@backstage/core-plugin-api';
+import {
+  identityApiRef,
+} from "@backstage/frontend-plugin-api";
 import { Entity } from '@backstage/catalog-model';
 import {
   catalogApiRef,

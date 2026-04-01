@@ -17,12 +17,12 @@
 import { render, screen, act, waitFor } from '@testing-library/react';
 import { TestApiProvider } from '@backstage/test-utils';
 import {
-  alertApiRef,
   AlertApi,
   AlertMessage,
-  appThemeApiRef,
   AppThemeApi,
-} from '@backstage/core-plugin-api';
+  alertApiRef,
+  appThemeApiRef,
+} from "@backstage/frontend-plugin-api";
 import { Observable } from '@backstage/types';
 import ObservableImpl from 'zen-observable';
 import { ToastDisplay } from './ToastDisplay';

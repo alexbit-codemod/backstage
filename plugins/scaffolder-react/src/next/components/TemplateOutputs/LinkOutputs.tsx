@@ -13,7 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { IconComponent, useApp, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+  useApp,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { entityRouteRef } from '@backstage/plugin-catalog-react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';

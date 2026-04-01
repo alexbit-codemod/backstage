@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { ApiFactory, ApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiFactory,
+  ApiRef,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * @public

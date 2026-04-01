@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { AppTheme } from '@backstage/core-plugin-api';
+import {
+  AppTheme,
+} from "@backstage/frontend-plugin-api";
 import { AppThemeSelector } from './AppThemeSelector';
 
 describe('AppThemeSelector', () => {

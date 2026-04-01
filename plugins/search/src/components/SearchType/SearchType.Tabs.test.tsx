@@ -27,7 +27,9 @@ import {
   searchApiRef,
 } from '@backstage/plugin-search-react';
 import { SearchType } from './SearchType';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 
 const setTypesMock = jest.fn();
 const setPageCursorMock = jest.fn();

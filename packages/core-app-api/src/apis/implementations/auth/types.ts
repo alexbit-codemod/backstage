@@ -19,7 +19,7 @@ import {
   ConfigApi,
   DiscoveryApi,
   OAuthRequestApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Create options for OAuth APIs.

@@ -19,7 +19,9 @@ import {
   useStarredEntities,
 } from '@backstage/plugin-catalog-react';
 import { Entity, stringifyEntityRef } from '@backstage/catalog-model';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { Progress, ResponseErrorPanel } from '@backstage/core-components';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';

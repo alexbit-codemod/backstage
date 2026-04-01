@@ -16,7 +16,11 @@
 
 import useAsync from 'react-use/esm/useAsync';
 import { Entity, stringifyEntityRef } from '@backstage/catalog-model';
-import { useApi, useRouteRef, configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import {
   ItemCardGrid,
   InfoCard,

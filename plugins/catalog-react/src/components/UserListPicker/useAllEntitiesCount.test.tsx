@@ -19,7 +19,9 @@ import { useAllEntitiesCount } from './useAllEntitiesCount';
 import { renderHook, waitFor } from '@testing-library/react';
 import { EntityListProvider, useEntityList } from '../../hooks';
 import { catalogApiRef } from '../../api';
-import { ApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiRef,
+} from "@backstage/frontend-plugin-api";
 import { MemoryRouter } from 'react-router-dom';
 import { EntityOwnerFilter } from '../../filters';
 import { useMountEffect } from '@react-hookz/web';

@@ -37,7 +37,7 @@ import {
   microsoftAuthApiRef,
   oktaAuthApiRef,
   oneloginAuthApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 export const kubernetesApiExtension = ApiBlueprint.make({
   params: defineParams =>

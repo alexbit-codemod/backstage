@@ -19,7 +19,7 @@ import {
   discoveryApiRef,
   fetchApiRef,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { useAsync, useMountEffect } from '@react-hookz/web';
 import { ResponseError } from '@backstage/errors';
 

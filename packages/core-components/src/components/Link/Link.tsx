@@ -18,7 +18,7 @@ import {
   useAnalytics,
   useApi,
   useApp,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 // eslint-disable-next-line no-restricted-imports
 import MaterialLink, {
   LinkProps as MaterialLinkProps,

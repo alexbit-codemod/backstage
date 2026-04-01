@@ -24,7 +24,9 @@ import {
   wrapInTestApp,
 } from '@backstage/test-utils';
 import { ProxiedSignInPage } from './ProxiedSignInPage';
-import { discoveryApiRef } from '@backstage/core-plugin-api';
+import {
+  discoveryApiRef,
+} from "@backstage/frontend-plugin-api";
 
 describe('ProxiedSignInPage', () => {
   const worker = setupServer();

@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { DiscoveryApi, FetchApi } from '@backstage/core-plugin-api';
+import {
+  DiscoveryApi,
+  FetchApi,
+} from "@backstage/frontend-plugin-api";
 import {
   ConfigInfo,
   DevToolsInfo,

@@ -19,7 +19,9 @@ import Grid from '@material-ui/core/Grid';
 import { LinkProps } from '@material-ui/core/Link';
 import LanguageIcon from '@material-ui/icons/Language';
 
-import { IconComponent } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+} from "@backstage/frontend-plugin-api";
 import { Link } from '@backstage/core-components';
 
 const useStyles = makeStyles({

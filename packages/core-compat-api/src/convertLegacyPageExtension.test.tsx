@@ -15,11 +15,9 @@
  */
 
 import {
-  createPlugin as createLegacyPlugin,
-  createRouteRef as createLegacyRouteRef,
   createRoutableExtension,
-} from '@backstage/core-plugin-api';
-import { coreExtensionData } from '@backstage/frontend-plugin-api';
+} from "@backstage/frontend-plugin-api";
+import { coreExtensionData , createRouteRef, createFrontendPlugin} from '@backstage/frontend-plugin-api';
 import {
   createExtensionTester,
   renderInTestApp,

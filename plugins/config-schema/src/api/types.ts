@@ -15,7 +15,10 @@
  */
 
 import { Schema } from 'jsonschema';
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 import { Observable } from '@backstage/types';
 
 /** @public */

@@ -22,7 +22,10 @@ import {
   entityRouteParams,
   entityRouteRef,
 } from '@backstage/plugin-catalog-react';
-import { useApp, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useApp,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { Entity, stringifyEntityRef } from '@backstage/catalog-model';
 import { scaffolderReactTranslationRef } from '../../../translation';
 import { useTranslationRef } from '@backstage/frontend-plugin-api';

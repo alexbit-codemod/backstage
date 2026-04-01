@@ -36,10 +36,10 @@ import {
 import { JsonObject } from '@backstage/types';
 import {
   AnalyticsContext,
-  useApi,
   configApiRef,
   useAnalytics,
-} from '@backstage/core-plugin-api';
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { SearchResultSet } from '@backstage/plugin-search-common';
 
 import { searchApiRef } from '../api';

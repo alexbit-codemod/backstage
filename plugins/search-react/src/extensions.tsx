@@ -25,12 +25,12 @@ import {
 } from 'react';
 
 import {
-  getComponentData,
-  useElementFilter,
   Extension,
   createReactExtension,
+  getComponentData,
   useAnalytics,
-} from '@backstage/core-plugin-api';
+  useElementFilter,
+} from "@backstage/frontend-plugin-api";
 import { SearchDocument, SearchResult } from '@backstage/plugin-search-common';
 
 import List, { ListProps } from '@material-ui/core/List';

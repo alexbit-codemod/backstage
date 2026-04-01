@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { BackstageUserIdentity, ProfileInfo } from '@backstage/core-plugin-api';
+import {
+  BackstageUserIdentity,
+  ProfileInfo,
+} from "@backstage/frontend-plugin-api";
 import { UserIdentity } from './UserIdentity';
 
 describe('UserIdentity', () => {

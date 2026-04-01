@@ -16,11 +16,10 @@
 
 import {
   AnyRouteRefParams,
-  BackstagePlugin as LegacyBackstagePlugin,
+  BackstagePlugin,
   RouteRef,
-  createPlugin,
   getComponentData,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   FrontendPlugin,
   ExtensionDefinition,
@@ -176,7 +175,7 @@ export function collectLegacyRoutes(
   })();
 
   // Placeholder plugin for any routes that don't belong to a plugin
-  const orphanRoutesPlugin = createPlugin({ id: 'converted-orphan-routes' });
+  const orphanRoutesPlugin = createFrontendPlugin({ pluginId: 'converted-orphan-routes' });
 
   const getPluginExtensions = (plugin: LegacyBackstagePlugin) => {
     let extensions = pluginExtensions.get(plugin);

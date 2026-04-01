@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { AnalyticsApi, AnalyticsEvent } from '@backstage/core-plugin-api';
+import {
+  AnalyticsApi,
+  AnalyticsEvent,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Mock implementation of {@link core-plugin-api#AnalyticsApi} with helpers to ensure that events are sent correctly.

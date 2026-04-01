@@ -15,7 +15,10 @@
  */
 import '@xterm/xterm/css/xterm.css';
 
-import { discoveryApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  discoveryApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { ClusterAttributes } from '@backstage/plugin-kubernetes-common';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { useRef, useEffect, useMemo, useState } from 'react';

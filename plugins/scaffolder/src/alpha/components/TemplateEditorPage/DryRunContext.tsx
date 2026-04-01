@@ -15,7 +15,9 @@
  */
 
 import yaml from 'yaml';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { JsonObject, JsonValue } from '@backstage/types';
 import {
   createContext,

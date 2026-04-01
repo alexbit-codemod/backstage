@@ -13,7 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { errorApiRef, useApi, useApiHolder } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+  useApi,
+  useApiHolder,
+} from "@backstage/frontend-plugin-api";
 import { formDecoratorsApiRef } from '../api/ref';
 import useAsync from 'react-use/esm/useAsync';
 import { useCallback, useMemo } from 'react';

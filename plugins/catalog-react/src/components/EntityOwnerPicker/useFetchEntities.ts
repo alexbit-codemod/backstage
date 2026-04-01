@@ -17,7 +17,9 @@ import { useRef } from 'react';
 import { useFacetsEntities } from './useFacetsEntities';
 import { useQueryEntities } from './useQueryEntities';
 import { Entity, stringifyEntityRef } from '@backstage/catalog-model';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { catalogApiRef } from '../../api';
 import useAsyncFn from 'react-use/esm/useAsyncFn';
 import { useMountEffect } from '@react-hookz/web';

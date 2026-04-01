@@ -19,7 +19,7 @@ import {
   ErrorApi,
   StorageApi,
   StorageValueSnapshot,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { buckets } from './WebStorage';
 import { JsonValue } from '@backstage/types';
 

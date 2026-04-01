@@ -15,13 +15,13 @@
  */
 
 import {
+  BackstageIdentityApi,
+  BackstageUserIdentity,
   IdentityApi,
   ProfileInfo,
   ProfileInfoApi,
-  BackstageUserIdentity,
-  BackstageIdentityApi,
   SessionApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 import { GuestUserIdentity } from './GuestUserIdentity';
 import { LegacyUserIdentity } from './LegacyUserIdentity';

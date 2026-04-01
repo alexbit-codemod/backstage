@@ -44,7 +44,10 @@ import {
   Link,
 } from '@backstage/core-components';
 
-import { useApi, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useApi,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { catalogTranslationRef } from '../../alpha/translation';
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 

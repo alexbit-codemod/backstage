@@ -23,7 +23,9 @@ import {
 import { catalogApiRef, entityRouteRef } from '@backstage/plugin-catalog-react';
 import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';
 import { OwnerEntityColumn } from './OwnerEntityColumn';
-import { identityApiRef } from '@backstage/core-plugin-api';
+import {
+  identityApiRef,
+} from "@backstage/frontend-plugin-api";
 
 describe('<OwnerEntityColumn />', () => {
   const catalogApi = catalogApiMock.mock();

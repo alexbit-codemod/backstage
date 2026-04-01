@@ -23,7 +23,7 @@ import { Entity } from '@backstage/catalog-model';
 import {
   TranslationFunction,
   useTranslationRef,
-} from '@backstage/core-plugin-api/alpha';
+} from "@backstage/frontend-plugin-api";
 import { useEntity } from '../../hooks';
 import { catalogReactTranslationRef } from '../../translation';
 

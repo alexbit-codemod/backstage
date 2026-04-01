@@ -19,7 +19,7 @@ import {
   configApiRef,
   useApi,
   useApp,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';

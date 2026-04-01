@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import { useContent } from '@backstage/core-components';
-import { useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import {
   SearchBar,
   SearchContextProvider,

@@ -18,7 +18,7 @@ import {
   OAuthRequestApi,
   OAuthRequesterOptions,
   PendingOAuthRequest,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { OAuthRequestManager } from './OAuthRequestManager';
 
 export default class MockOAuthApi implements OAuthRequestApi {

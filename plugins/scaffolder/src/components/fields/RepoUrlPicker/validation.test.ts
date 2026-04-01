@@ -18,7 +18,9 @@ import { repoPickerValidation } from './validation';
 import { FieldValidation } from '@rjsf/utils';
 import { ScmIntegrations } from '@backstage/integration';
 import { ConfigReader } from '@backstage/core-app-api';
-import { ApiHolder } from '@backstage/core-plugin-api';
+import {
+  ApiHolder,
+} from "@backstage/frontend-plugin-api";
 
 describe('RepoPicker Validation', () => {
   const fieldValidator = () =>

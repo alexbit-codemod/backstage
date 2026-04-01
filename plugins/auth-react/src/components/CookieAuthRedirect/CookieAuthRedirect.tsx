@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { identityApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  identityApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useAsync, useMountEffect } from '@react-hookz/web';
 
 /**

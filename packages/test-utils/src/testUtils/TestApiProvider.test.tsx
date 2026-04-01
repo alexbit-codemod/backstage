@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-import { createApiRef, useApiHolder } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+  useApiHolder,
+} from "@backstage/frontend-plugin-api";
 import { TestApiProvider, TestApiRegistry } from './TestApiProvider';
 import { render, screen } from '@testing-library/react';
 

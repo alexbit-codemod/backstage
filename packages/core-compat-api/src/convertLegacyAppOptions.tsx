@@ -40,7 +40,7 @@ import {
   BackstagePlugin,
   FeatureFlag,
   IconComponent,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { toLegacyPlugin } from './compatWrapper/BackwardsCompatProvider';
 import { compatWrapper } from './compatWrapper';
 

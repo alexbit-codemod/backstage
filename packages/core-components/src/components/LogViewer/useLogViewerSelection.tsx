@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { errorApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useEffect, useState } from 'react';
 import useCopyToClipboard from 'react-use/esm/useCopyToClipboard';
 import { AnsiLine } from './AnsiProcessor';

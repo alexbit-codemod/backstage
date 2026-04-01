@@ -22,7 +22,7 @@ import {
   attachComponentData,
   useElementFilter,
   useRouteRefParams,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 import {
   Content,

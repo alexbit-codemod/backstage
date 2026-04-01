@@ -19,9 +19,11 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
 import { Select, SelectItem } from '@backstage/core-components';
 import { BaseRepoUrlPickerProps } from './types';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { scaffolderTranslationRef } from '../../../translation';
-import { useApi } from '@backstage/core-plugin-api';
+import { useApi } from '@backstage/frontend-plugin-api';
 import { scaffolderApiRef } from '@backstage/plugin-scaffolder-react';
 import useDebounce from 'react-use/esm/useDebounce';
 import Autocomplete from '@material-ui/lab/Autocomplete';

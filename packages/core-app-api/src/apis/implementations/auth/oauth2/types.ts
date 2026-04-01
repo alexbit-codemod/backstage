@@ -17,7 +17,7 @@
 import {
   BackstageIdentityResponse,
   ProfileInfo,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { OAuthApiCreateOptions } from '../types.ts';
 import { AuthConnector, PopupOptions } from '../../../../lib';
 

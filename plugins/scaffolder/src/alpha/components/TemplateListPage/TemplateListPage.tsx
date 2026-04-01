@@ -17,7 +17,10 @@
 import { ComponentType, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TemplateEntityV1beta3 } from '@backstage/plugin-scaffolder-common';
-import { useApp, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useApp,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 
 import {
   Content,

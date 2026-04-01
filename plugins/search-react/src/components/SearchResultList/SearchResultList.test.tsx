@@ -21,12 +21,15 @@ import {
   renderInTestApp,
   mockApis,
 } from '@backstage/test-utils';
-import { analyticsApiRef, createPlugin } from '@backstage/core-plugin-api';
+import {
+  analyticsApiRef,
+} from "@backstage/frontend-plugin-api";
 
 import { searchApiRef } from '../../api';
 import { createSearchResultListItemExtension } from '../../extensions';
 
-import { SearchResultList } from './SearchResultList';
+import { SearchResultList } from './SearchResultList';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 const query = jest.fn().mockResolvedValue({ results: [] });
 const searchApiMock = { query };
@@ -206,8 +209,8 @@ describe('SearchResultList', () => {
       results,
     });
 
-    const SearchResultListItemExtension = createPlugin({
-      id: 'plugin',
+    const SearchResultListItemExtension = createFrontendPlugin({
+      pluginId: 'plugin',
     }).provide(
       createSearchResultListItemExtension({
         name: 'SearchResultListItemExtension',

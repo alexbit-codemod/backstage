@@ -22,7 +22,9 @@ import {
 import { screen } from '@testing-library/react';
 import { UserSettingsIdentityCard } from './UserSettingsIdentityCard';
 import { ApiProvider } from '@backstage/core-app-api';
-import { identityApiRef } from '@backstage/core-plugin-api';
+import {
+  identityApiRef,
+} from "@backstage/frontend-plugin-api";
 import { catalogApiRef, entityRouteRef } from '@backstage/plugin-catalog-react';
 import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';
 

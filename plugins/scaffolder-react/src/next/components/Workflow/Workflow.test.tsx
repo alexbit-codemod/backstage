@@ -22,7 +22,9 @@ import {
 } from '@backstage/test-utils';
 import { act, fireEvent } from '@testing-library/react';
 import { Workflow } from './Workflow';
-import { analyticsApiRef } from '@backstage/core-plugin-api';
+import {
+  analyticsApiRef,
+} from "@backstage/frontend-plugin-api";
 import { ScaffolderApi, scaffolderApiRef } from '../../../api';
 import { catalogApiRef } from '@backstage/plugin-catalog-react';
 import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';

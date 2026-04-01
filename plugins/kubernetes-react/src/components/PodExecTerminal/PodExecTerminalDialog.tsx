@@ -19,7 +19,9 @@ import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
 import { KubernetesDialog } from '../KubernetesDialog';
 import { useIsPodExecTerminalSupported } from '../../hooks';
 import { PodExecTerminal, PodExecTerminalProps } from './PodExecTerminal';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesReactTranslationRef } from '../../translation';
 
 /**

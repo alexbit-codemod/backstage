@@ -20,7 +20,10 @@ import {
   RELATION_OWNED_BY,
 } from '@backstage/catalog-model';
 import { ApiProvider } from '@backstage/core-app-api';
-import { AlertApi, alertApiRef } from '@backstage/core-plugin-api';
+import {
+  AlertApi,
+  alertApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   AsyncEntityProvider,
   catalogApiRef,

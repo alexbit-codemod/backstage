@@ -22,7 +22,9 @@ import IconButton from '@material-ui/core/IconButton';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
 import { ReactNode, useState } from 'react';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesReactTranslationRef } from '../../translation';
 
 const useStyles = makeStyles((theme: Theme) =>

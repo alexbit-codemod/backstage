@@ -21,7 +21,11 @@ import useAsync from 'react-use/esm/useAsync';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { alertApiRef, useApi, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+  useApi,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import {
   catalogApiRef,
   humanizeEntityRef,

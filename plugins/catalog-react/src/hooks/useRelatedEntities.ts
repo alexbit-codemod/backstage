@@ -15,7 +15,9 @@
  */
 
 import { Entity, parseEntityRef } from '@backstage/catalog-model';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import useAsync from 'react-use/esm/useAsync';
 import { catalogApiRef } from '../api';
 

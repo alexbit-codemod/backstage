@@ -32,21 +32,21 @@ import {
 import {
   AnyApiFactory,
   ApiHolder,
-  IconComponent,
   AppTheme,
+  AppThemeApi,
+  BackstagePlugin,
+  ConfigApi,
+  FeatureFlag,
+  IconComponent,
   appThemeApiRef,
   configApiRef,
-  AppThemeApi,
-  ConfigApi,
-  featureFlagsApiRef,
-  identityApiRef,
-  BackstagePlugin,
-  FeatureFlag,
-  fetchApiRef,
   discoveryApiRef,
   errorApiRef,
+  featureFlagsApiRef,
+  fetchApiRef,
+  identityApiRef,
   useAnalytics,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { BUIProvider } from '@backstage/ui';
 import {
   AppLanguageApi,

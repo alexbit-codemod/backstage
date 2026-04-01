@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { errorApiRef } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+} from "@backstage/frontend-plugin-api";
 import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
 import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

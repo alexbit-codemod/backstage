@@ -30,16 +30,15 @@ import {
 } from '@backstage/core-components';
 import {
   AnyApiFactory,
+  ApiBlueprint,
   ApiFactory,
   AppTheme,
-  attachComponentData,
   BackstagePlugin,
-  configApiRef,
-  createApiFactory,
-  createRouteRef,
   IconComponent,
   RouteRef,
-} from '@backstage/core-plugin-api';
+  attachComponentData,
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import { TranslationResource } from '@backstage/core-plugin-api/alpha';
 import {
   ScmIntegrationsApi,
@@ -51,7 +50,8 @@ import { ComponentType, lazy, PropsWithChildren, ReactNode } from 'react';
 import { createRoutesFromChildren, Route } from 'react-router-dom';
 import { SidebarThemeSwitcher } from './SidebarThemeSwitcher';
 import 'react-dom';
-import { SidebarLanguageSwitcher, SidebarSignOutButton } from '../components';
+import { SidebarLanguageSwitcher, SidebarSignOutButton } from '../components';import { createRouteRef } from '@backstage/frontend-plugin-api';
+
 
 const BuiCss = lazy(() => import('./BuiCss'));
 
@@ -227,18 +227,18 @@ export class DevAppBuilder {
    * Build a DevApp component using the resources registered so far
    */
   build(): ComponentType<PropsWithChildren<{}>> {
-    const fakeRouteRef = createRouteRef({ id: 'fake' });
+    const fakeRouteRef = createRouteRef();
     const FakePage = () => <Box p={3}>Page belonging to another plugin.</Box>;
     attachComponentData(FakePage, 'core.mountPoint', fakeRouteRef);
 
     const apis = [...this.apis];
     if (!apis.some(api => api.api.id === scmIntegrationsApiRef.id)) {
       apis.push(
-        createApiFactory({
+        ApiBlueprint.make({ params: defineParams => defineParams({
           api: scmIntegrationsApiRef,
           deps: { configApi: configApiRef },
           factory: ({ configApi }) => ScmIntegrationsApi.fromConfig(configApi),
-        }),
+        }) }),
       );
     }
 

@@ -26,7 +26,9 @@ import {
   TestApiProvider,
   mockApis,
 } from '@backstage/test-utils';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import { searchApiRef, MockSearchApi } from '@backstage/plugin-search-react';
 
 import { TechDocsReaderEntityCard } from './TechDocsReaderEntityCard';

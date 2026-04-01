@@ -15,14 +15,12 @@
  */
 
 import {
-  createPlugin as createLegacyPlugin,
-  createRouteRef as createLegacyRouteRef,
-  createExternalRouteRef as createLegacyExternalRouteRef,
-  createApiFactory,
+  ApiBlueprint,
   createApiRef,
-} from '@backstage/core-plugin-api';
+  createExternalRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { convertLegacyPlugin } from './convertLegacyPlugin';
-import { PageBlueprint } from '@backstage/frontend-plugin-api';
+import { PageBlueprint , createRouteRef, createExternalRouteRef, createFrontendPlugin} from '@backstage/frontend-plugin-api';
 // TODO(rugvip): this should take into account that this is a test file, so these deps don't need to be in the dependencies
 // eslint-disable-next-line @backstage/no-undeclared-imports
 import { OpaqueFrontendPlugin } from '@internal/frontend';
@@ -56,7 +54,7 @@ describe('convertLegacyPlugin', () => {
   });
 
   it('should convert a legacy plugin with options to a new plugin', () => {
-    const apiRef = createApiRef<string>({ id: 'plugin.test.client' });
+    const apiRef = createApiRef<string>().with({ id: 'plugin.test.client', pluginId: "test" });
 
     const routeRef = createLegacyRouteRef({ id: 'test' });
     const extRouteRef = createLegacyExternalRouteRef({ id: 'testExt' });

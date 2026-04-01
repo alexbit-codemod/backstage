@@ -20,7 +20,9 @@ import {
   DetectedErrorsByCluster,
 } from '@backstage/plugin-kubernetes-common';
 import { Table, TableColumn } from '@backstage/core-components';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesReactTranslationRef } from '../../translation';
 
 /**

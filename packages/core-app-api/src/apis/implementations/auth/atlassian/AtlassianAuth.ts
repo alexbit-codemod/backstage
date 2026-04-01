@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { atlassianAuthApiRef } from '@backstage/core-plugin-api';
+import {
+  atlassianAuthApiRef,
+} from "@backstage/frontend-plugin-api";
 import { OAuth2 } from '../oauth2';
 import { OAuthApiCreateOptions } from '../types';
 

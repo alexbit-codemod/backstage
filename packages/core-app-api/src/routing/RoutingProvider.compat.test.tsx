@@ -21,11 +21,11 @@ import {
   Suspense,
 } from 'react';
 import { render } from '@testing-library/react';
-import type {
+import {
   BackstagePlugin,
-  RouteRef,
   ExternalRouteRef,
-} from '@backstage/core-plugin-api';
+  RouteRef,
+} from "@backstage/frontend-plugin-api";
 import type { AnyRouteRef, RouteFunc } from './types';
 
 const mockContext = {
@@ -123,7 +123,7 @@ describe.each(['beta', 'stable'])('react-router %s', rrVersion => {
       createPlugin,
     } = requireDeps();
 
-    plugin = createPlugin({ id: 'my-plugin' });
+    plugin = createFrontendPlugin({ pluginId: 'my-plugin' });
     refPage1 = createRouteRef({ id: 'refPage1' });
     refSource1 = createRouteRef({ id: 'refSource1' });
     refPage2 = createRouteRef({ id: 'refPage2' });

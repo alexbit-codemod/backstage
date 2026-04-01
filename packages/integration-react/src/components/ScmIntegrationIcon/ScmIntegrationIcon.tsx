@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import CodeIcon from '@material-ui/icons/Code';
-import { useApp } from '@backstage/core-plugin-api';
+import {
+  useApp,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Props for {@link ScmIntegrationIcon}.

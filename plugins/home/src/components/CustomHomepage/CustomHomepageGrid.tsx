@@ -28,7 +28,7 @@ import {
   storageApiRef,
   useApi,
   useElementFilter,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import Dialog from '@material-ui/core/Dialog';

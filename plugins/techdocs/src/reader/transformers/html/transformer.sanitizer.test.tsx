@@ -18,7 +18,10 @@ import { FC, PropsWithChildren } from 'react';
 import { renderHook } from '@testing-library/react';
 
 import { ConfigReader } from '@backstage/core-app-api';
-import { ConfigApi, configApiRef } from '@backstage/core-plugin-api';
+import {
+  ConfigApi,
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import { TestApiProvider } from '@backstage/test-utils';
 
 import { useSanitizerTransformer } from './transformer';

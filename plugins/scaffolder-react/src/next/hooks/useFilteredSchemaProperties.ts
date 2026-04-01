@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 import cloneDeep from 'lodash/cloneDeep';
-import { useApi, featureFlagsApiRef } from '@backstage/core-plugin-api';
+import {
+  featureFlagsApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { TemplateParameterSchema } from '@backstage/plugin-scaffolder-react';
 import { useMemo } from 'react';
 

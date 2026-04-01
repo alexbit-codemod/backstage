@@ -15,11 +15,11 @@
  */
 
 import {
-  createApiFactory,
+  ApiBlueprint,
   errorApiRef,
   fetchApiRef,
   storageApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { translationApiRef } from '@backstage/core-plugin-api/alpha';
 import { MockErrorApi, MockFetchApi, MockStorageApi } from './apis';
 import { MockTranslationApi } from './apis/TranslationApi';

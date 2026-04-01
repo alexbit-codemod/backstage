@@ -25,7 +25,10 @@ import {
   techdocsStorageApiRef,
 } from '../src';
 
-import { configApiRef, discoveryApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  discoveryApiRef,
+} from "@backstage/frontend-plugin-api";
 import { TechDocsReaderPageProvider } from '@backstage/plugin-techdocs-react';
 import { Header, Page, TabbedLayout } from '@backstage/core-components';
 

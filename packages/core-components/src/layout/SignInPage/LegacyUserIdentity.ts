@@ -15,10 +15,10 @@
  */
 
 import {
+  BackstageUserIdentity,
   IdentityApi,
   ProfileInfo,
-  BackstageUserIdentity,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 function parseJwtPayload(token: string) {
   const [_header, payload, _signature] = token.split('.');

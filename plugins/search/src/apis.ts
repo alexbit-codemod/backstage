@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { DiscoveryApi, FetchApi } from '@backstage/core-plugin-api';
+import {
+  DiscoveryApi,
+  FetchApi,
+} from "@backstage/frontend-plugin-api";
 import { ResponseError } from '@backstage/errors';
 import { SearchApi } from '@backstage/plugin-search-react';
 import { SearchQuery, SearchResultSet } from '@backstage/plugin-search-common';

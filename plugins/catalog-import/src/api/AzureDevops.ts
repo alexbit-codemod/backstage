@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import { ScmAuthApi } from '@backstage/integration-react';
-import { ConfigApi } from '@backstage/core-plugin-api';
+import {
+  ConfigApi,
+} from "@backstage/frontend-plugin-api";
 import { getBranchName, getCatalogFilename } from '../components/helpers';
 import { createAzurePullRequest } from './AzureRepoApiClient';
 

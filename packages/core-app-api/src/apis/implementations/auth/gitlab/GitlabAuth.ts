@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { gitlabAuthApiRef } from '@backstage/core-plugin-api';
+import {
+  gitlabAuthApiRef,
+} from "@backstage/frontend-plugin-api";
 import { OAuth2 } from '../oauth2';
 import { OAuthApiCreateOptions } from '../types';
 

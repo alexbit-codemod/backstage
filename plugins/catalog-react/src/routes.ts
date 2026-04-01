@@ -20,7 +20,7 @@ import {
   CompoundEntityRef,
   parseEntityRef,
 } from '@backstage/catalog-model';
-import { createRouteRef } from '@backstage/core-plugin-api';
+import { createRouteRef } from '@backstage/frontend-plugin-api';
 import { getOrCreateGlobalSingleton } from '@backstage/version-bridge';
 
 /**
@@ -37,7 +37,7 @@ export const entityRouteRef = getOrCreateGlobalSingleton(
   'catalog:entity-route-ref',
   () =>
     createRouteRef({
-      id: 'catalog:entity',
+      ,
       params: ['namespace', 'kind', 'name'],
     }),
 );

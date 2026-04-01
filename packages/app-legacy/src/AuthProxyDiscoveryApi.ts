@@ -16,7 +16,9 @@
 
 import { Config } from '@backstage/config';
 import { UrlPatternDiscovery } from '@backstage/core-app-api';
-import { DiscoveryApi } from '@backstage/core-plugin-api';
+import {
+  DiscoveryApi,
+} from "@backstage/frontend-plugin-api";
 
 export class AuthProxyDiscoveryApi implements DiscoveryApi {
   private urlPatternDiscovery: UrlPatternDiscovery;

@@ -16,7 +16,9 @@
 import { useMemo } from 'react';
 
 import { CompoundEntityRef } from '@backstage/catalog-model';
-import { useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 
 import { rootCatalogDocsRouteRef, rootDocsRouteRef } from '../../routes';
 

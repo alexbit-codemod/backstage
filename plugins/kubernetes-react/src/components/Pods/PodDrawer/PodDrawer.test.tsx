@@ -23,7 +23,9 @@ import {
 import '@testing-library/jest-dom';
 
 import { PodDrawer } from './PodDrawer';
-import { discoveryApiRef } from '@backstage/core-plugin-api';
+import {
+  discoveryApiRef,
+} from "@backstage/frontend-plugin-api";
 
 jest.mock('../../../hooks/useIsPodExecTerminalSupported');
 

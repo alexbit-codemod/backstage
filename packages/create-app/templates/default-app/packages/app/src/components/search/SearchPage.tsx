@@ -22,7 +22,9 @@ import {
   Header,
   Page,
 } from '@backstage/core-components';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 
 const useStyles = makeStyles((theme: Theme) => ({
   bar: {

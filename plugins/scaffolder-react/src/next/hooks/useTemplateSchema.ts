@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { featureFlagsApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  featureFlagsApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { TemplatePresentationV1beta3 } from '@backstage/plugin-scaffolder-common';
 import { JsonObject } from '@backstage/types';
 import { UiSchema } from '@rjsf/utils';

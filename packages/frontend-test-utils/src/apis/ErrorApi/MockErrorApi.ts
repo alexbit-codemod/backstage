@@ -18,7 +18,7 @@ import {
   ErrorApi,
   ErrorApiError,
   ErrorApiErrorContext,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { Observable } from '@backstage/types';
 
 /**

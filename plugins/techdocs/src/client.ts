@@ -20,7 +20,7 @@ import {
   DiscoveryApi,
   FetchApi,
   IdentityApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { NotFoundError, ResponseError } from '@backstage/errors';
 import {
   SyncResult,

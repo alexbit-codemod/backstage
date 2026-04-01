@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { ApiFactory } from '@backstage/core-plugin-api';
+import {
+  ApiFactory,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Represents a mocked version of an API, where you automatically have access to

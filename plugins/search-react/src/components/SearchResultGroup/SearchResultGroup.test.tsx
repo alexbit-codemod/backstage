@@ -25,7 +25,9 @@ import {
   TestApiProvider,
   mockApis,
 } from '@backstage/test-utils';
-import { createPlugin, analyticsApiRef } from '@backstage/core-plugin-api';
+import {
+  analyticsApiRef,
+} from "@backstage/frontend-plugin-api";
 
 import { searchApiRef } from '../../api';
 import { SearchContextProvider } from '../../context';
@@ -35,7 +37,8 @@ import {
   SearchResultGroup,
   SearchResultGroupSelectFilterField,
   SearchResultGroupTextFilterField,
-} from './SearchResultGroup';
+} from './SearchResultGroup';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 const query = jest.fn().mockResolvedValue({ results: [] });
 const searchApiMock = { query };
@@ -134,8 +137,8 @@ describe('SearchResultGroup', () => {
       results,
     });
 
-    const SearchResultGroupItemExtension = createPlugin({
-      id: 'plugin',
+    const SearchResultGroupItemExtension = createFrontendPlugin({
+      pluginId: 'plugin',
     }).provide(
       createSearchResultListItemExtension({
         name: 'SearchResultGroupItemExtension',

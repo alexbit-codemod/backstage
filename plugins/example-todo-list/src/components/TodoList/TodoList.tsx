@@ -20,7 +20,7 @@ import {
   discoveryApiRef,
   fetchApiRef,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import Button from '@material-ui/core/Button';
 
 export type Todo = {

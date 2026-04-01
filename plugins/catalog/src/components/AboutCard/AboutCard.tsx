@@ -32,10 +32,10 @@ import { EntityInfoCard } from '@backstage/plugin-catalog-react';
 import {
   alertApiRef,
   errorApiRef,
-  useApp,
   useApi,
+  useApp,
   useRouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 
 import {

@@ -23,7 +23,10 @@ import {
   SignInProvider,
   SignInProviderConfig,
 } from './types';
-import { useApi, errorApiRef } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { GridItem } from './styles';
 import { ForwardedError } from '@backstage/errors';
 import { UserIdentity } from './UserIdentity';

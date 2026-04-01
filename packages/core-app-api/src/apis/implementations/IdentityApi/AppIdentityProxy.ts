@@ -15,13 +15,13 @@
  */
 
 import {
+  BackstageUserIdentity,
+  DiscoveryApi,
+  ErrorApi,
+  FetchApi,
   IdentityApi,
   ProfileInfo,
-  BackstageUserIdentity,
-  ErrorApi,
-  DiscoveryApi,
-  FetchApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { startCookieAuthRefresh } from './startCookieAuthRefresh';
 
 function mkError(thing: string) {

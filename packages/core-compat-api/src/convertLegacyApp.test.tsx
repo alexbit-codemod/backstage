@@ -19,43 +19,40 @@ import { ReactNode } from 'react';
 import { Route } from 'react-router-dom';
 import { convertLegacyAppRoot } from './convertLegacyApp';
 import {
-  createApiFactory,
+  ApiBlueprint,
   createApiRef,
   createComponentExtension,
-  createPlugin,
   createRoutableExtension,
-  createRouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { EntityLayout, EntitySwitch, isKind } from '@backstage/plugin-catalog';
 import { renderTestApp } from '@backstage/frontend-test-utils';
 import { default as catalogPlugin } from '@backstage/plugin-catalog/alpha';
 import { catalogApiRef } from '@backstage/plugin-catalog-react';
-import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';
+import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';import { createRouteRef , createFrontendPlugin} from '@backstage/frontend-plugin-api';
+
 
 const Root = ({ children }: { children: ReactNode }) => <>{children}</>;
 
-const exampleApiRef = createApiRef<string>({
-  id: 'plugin.example.service',
-});
-const examplePlugin1 = createPlugin({
-  id: 'example-1',
+const exampleApiRef = createApiRef<string>().with({ id: 'plugin.example.service', pluginId: "example" });
+const examplePlugin1 = createFrontendPlugin({
+  pluginId: 'example-1',
   apis: [createApiFactory(exampleApiRef, 'example-api-1')],
 });
 const ExamplePage1 = examplePlugin1.provide(
   createRoutableExtension({
     name: 'ExamplePage1',
-    mountPoint: createRouteRef({ id: 'example-1' }),
+    mountPoint: createRouteRef(),
     component: () => Promise.resolve(() => <div>Example Page 1</div>),
   }),
 );
 
-const examplePlugin2 = createPlugin({
-  id: 'example-2',
+const examplePlugin2 = createFrontendPlugin({
+  pluginId: 'example-2',
 });
 const ExamplePage2 = examplePlugin2.provide(
   createRoutableExtension({
     name: 'ExamplePage2',
-    mountPoint: createRouteRef({ id: 'example-2' }),
+    mountPoint: createRouteRef(),
     component: () => Promise.resolve(() => <div>Example Page 2</div>),
   }),
 );
@@ -171,8 +168,8 @@ describe('convertLegacyApp', () => {
   });
 
   it('should convert entity pages', async () => {
-    const fooPlugin = createPlugin({
-      id: 'foo',
+    const fooPlugin = createFrontendPlugin({
+      pluginId: 'foo',
     });
 
     const FooContent = fooPlugin.provide(

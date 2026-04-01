@@ -15,10 +15,10 @@
  */
 
 import {
+  attachComponentData,
   featureFlagsApiRef,
   useApi,
-  attachComponentData,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { ReactNode } from 'react';
 
 /**

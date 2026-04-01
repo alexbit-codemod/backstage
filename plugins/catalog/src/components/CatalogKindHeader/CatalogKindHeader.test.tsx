@@ -29,7 +29,9 @@ import {
   TestApiRegistry,
 } from '@backstage/test-utils';
 import { CatalogKindHeader } from './CatalogKindHeader';
-import { errorApiRef } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+} from "@backstage/frontend-plugin-api";
 import pluralize from 'pluralize';
 
 const entities: Entity[] = [

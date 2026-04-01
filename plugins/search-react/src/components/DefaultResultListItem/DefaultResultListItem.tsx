@@ -15,7 +15,9 @@
  */
 
 import { ReactNode } from 'react';
-import { AnalyticsContext } from '@backstage/core-plugin-api';
+import {
+  AnalyticsContext,
+} from "@backstage/frontend-plugin-api";
 import {
   ResultHighlight,
   SearchDocument,

@@ -16,15 +16,15 @@
 
 import { useState } from 'react';
 import {
-  useTranslationRef,
   appLanguageApiRef,
-} from '@backstage/core-plugin-api/alpha';
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import { makeStyles } from '@material-ui/core/styles';
 import { userSettingsTranslationRef } from '../../translation';
-import { useApi } from '@backstage/core-plugin-api';
+import { useApi } from '@backstage/frontend-plugin-api';
 import useObservable from 'react-use/esm/useObservable';
 import { Select } from '@backstage/core-components';
 

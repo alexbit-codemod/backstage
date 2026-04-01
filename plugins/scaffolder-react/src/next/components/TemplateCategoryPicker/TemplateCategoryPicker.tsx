@@ -15,7 +15,10 @@
  */
 
 import { Progress } from '@backstage/core-components';
-import { alertApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import { useEntityTypeFilter } from '@backstage/plugin-catalog-react';
 import Box from '@material-ui/core/Box';

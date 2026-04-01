@@ -18,7 +18,10 @@ import { KubernetesRequestBody } from '@backstage/plugin-kubernetes-common';
 import { KubernetesAuthProvider, KubernetesAuthProvidersApi } from './types';
 import { GoogleKubernetesAuthProvider } from './GoogleKubernetesAuthProvider';
 import { ServerSideKubernetesAuthProvider } from './ServerSideAuthProvider';
-import { OAuthApi, OpenIdConnectApi } from '@backstage/core-plugin-api';
+import {
+  OAuthApi,
+  OpenIdConnectApi,
+} from "@backstage/frontend-plugin-api";
 import { OidcKubernetesAuthProvider } from './OidcKubernetesAuthProvider';
 import { AksKubernetesAuthProvider } from './AksKubernetesAuthProvider';
 

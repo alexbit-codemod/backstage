@@ -15,11 +15,11 @@
  */
 
 import {
-  ApiRef,
-  ApiHolder,
   AnyApiRef,
+  ApiHolder,
+  ApiRef,
   TypesToApiRefs,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { ApiFactoryHolder } from './types';
 
 /**

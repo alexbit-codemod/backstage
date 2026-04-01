@@ -18,7 +18,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import useAsync from 'react-use/esm/useAsync';
 import isEqual from 'lodash/isEqual';
 import sortBy from 'lodash/sortBy';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { catalogApiRef } from '../api';
 import { useEntityList } from './useEntityListProvider';
 import { EntityTypeFilter } from '../filters';

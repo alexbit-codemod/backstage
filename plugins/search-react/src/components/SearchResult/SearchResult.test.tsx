@@ -16,7 +16,7 @@
 
 import { waitFor } from '@testing-library/react';
 import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
-import { createPlugin } from '@backstage/core-plugin-api';
+import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
 
 import { searchApiRef } from '../../api';
 import { useSearch } from '../../context';
@@ -202,8 +202,8 @@ describe('SearchResult', () => {
 
     expect(getByText('some-title')).toBeInTheDocument();
 
-    const SearchResultExtension = createPlugin({
-      id: 'plugin',
+    const SearchResultExtension = createFrontendPlugin({
+      pluginId: 'plugin',
     }).provide(
       createSearchResultListItemExtension({
         name: 'SearchResultExtension',

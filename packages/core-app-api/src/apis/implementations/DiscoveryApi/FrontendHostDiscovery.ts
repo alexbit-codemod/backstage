@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import { Config } from '@backstage/config';
-import { DiscoveryApi } from '@backstage/core-plugin-api';
+import {
+  DiscoveryApi,
+} from "@backstage/frontend-plugin-api";
 import { UrlPatternDiscovery } from './UrlPatternDiscovery';
 
 /**

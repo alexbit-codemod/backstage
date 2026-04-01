@@ -15,14 +15,15 @@
  */
 
 import { SearchQuery, SearchResultSet } from '@backstage/plugin-search-common';
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * @public
  */
-export const searchApiRef = createApiRef<SearchApi>({
-  id: 'plugin.search.queryservice',
-});
+export const searchApiRef = createApiRef<SearchApi>().with({ id: 'plugin.search.queryservice', pluginId: "search" });
 
 /**
  * @public

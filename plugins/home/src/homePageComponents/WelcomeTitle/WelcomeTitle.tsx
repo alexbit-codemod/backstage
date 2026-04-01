@@ -17,7 +17,7 @@ import {
   alertApiRef,
   identityApiRef,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import { useEffect, useMemo } from 'react';

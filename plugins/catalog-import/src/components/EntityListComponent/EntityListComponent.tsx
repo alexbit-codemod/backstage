@@ -19,7 +19,9 @@ import {
   CompoundEntityRef,
   stringifyEntityRef,
 } from '@backstage/catalog-model';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import {
   EntityDisplayName,
   EntityRefLink,

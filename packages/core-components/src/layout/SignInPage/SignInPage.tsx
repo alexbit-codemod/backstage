@@ -16,11 +16,11 @@
 
 import {
   BackstageIdentityResponse,
-  configApiRef,
   SignInPageProps,
+  configApiRef,
   useAnalytics,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { UserIdentity } from './UserIdentity';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';

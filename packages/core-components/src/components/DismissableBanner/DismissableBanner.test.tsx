@@ -22,7 +22,9 @@ import {
 } from '@backstage/test-utils';
 import { DismissableBanner } from './DismissableBanner';
 import { ApiProvider } from '@backstage/core-app-api';
-import { storageApiRef } from '@backstage/core-plugin-api';
+import {
+  storageApiRef,
+} from "@backstage/frontend-plugin-api";
 import { screen } from '@testing-library/react';
 
 describe('<DismissableBanner />', () => {

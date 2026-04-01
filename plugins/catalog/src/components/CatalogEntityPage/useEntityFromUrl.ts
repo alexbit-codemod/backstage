@@ -18,7 +18,7 @@ import {
   errorApiRef,
   useApi,
   useRouteRefParams,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   catalogApiRef,
   EntityLoadingStatus,

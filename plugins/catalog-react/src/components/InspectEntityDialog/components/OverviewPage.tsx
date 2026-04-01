@@ -36,7 +36,9 @@ import {
 import { stringifyEntityRef } from '@backstage/catalog-model';
 import { CopyTextButton } from '@backstage/core-components';
 import { catalogReactTranslationRef } from '../../../translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 
 const useStyles = makeStyles({
   root: {

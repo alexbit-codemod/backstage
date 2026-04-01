@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { OAuthApi } from '@backstage/core-plugin-api';
+import {
+  OAuthApi,
+} from "@backstage/frontend-plugin-api";
 import { ScmAuth } from './ScmAuth';
 
 class MockOAuthApi implements OAuthApi {

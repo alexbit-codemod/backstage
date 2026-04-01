@@ -1,5 +1,8 @@
 import { useEffect } from 'react';
-import { useApi, alertApiRef } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Shows an example alert.

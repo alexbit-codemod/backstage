@@ -24,7 +24,9 @@ import {
   type TableItem,
 } from '@backstage/ui';
 import { catalogTranslationRef } from '../../alpha/translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { useMemo } from 'react';
 
 /** @public */

@@ -25,7 +25,7 @@ import {
   IdentityApi,
   RouteRef,
   SubRouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { AppConfig } from '@backstage/config';
 
 /**

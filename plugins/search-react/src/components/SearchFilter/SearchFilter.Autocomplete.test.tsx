@@ -21,7 +21,9 @@ import userEvent from '@testing-library/user-event';
 import { searchApiRef } from '../../api';
 import { SearchContextProvider, useSearch } from '../../context';
 import { SearchFilter } from './SearchFilter';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 
 const SearchContextFilterSpy = ({ name }: { name: string }) => {
   const { filters } = useSearch();

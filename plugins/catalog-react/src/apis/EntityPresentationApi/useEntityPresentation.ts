@@ -19,7 +19,9 @@ import {
   Entity,
   stringifyEntityRef,
 } from '@backstage/catalog-model';
-import { useApiHolder } from '@backstage/core-plugin-api';
+import {
+  useApiHolder,
+} from "@backstage/frontend-plugin-api";
 import { useMemo } from 'react';
 import {
   EntityRefPresentation,

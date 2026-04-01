@@ -16,12 +16,13 @@
 
 import { ApiEntity } from '@backstage/catalog-model';
 import { ApiDefinitionWidget } from './components/ApiDefinitionCard/ApiDefinitionWidget';
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 
 /** @public */
-export const apiDocsConfigRef = createApiRef<ApiDocsConfig>({
-  id: 'plugin.api-docs.config',
-});
+export const apiDocsConfigRef = createApiRef<ApiDocsConfig>().with({ id: 'plugin.api-docs.config', pluginId: "api-docs" });
 
 /** @public */
 export interface ApiDocsConfig {

@@ -23,7 +23,10 @@ import {
   AsyncEntityProvider,
 } from './useEntity';
 import { Entity } from '@backstage/catalog-model';
-import { analyticsApiRef, useAnalytics } from '@backstage/core-plugin-api';
+import {
+  analyticsApiRef,
+  useAnalytics,
+} from "@backstage/frontend-plugin-api";
 import {
   mockApis,
   TestApiRegistry,

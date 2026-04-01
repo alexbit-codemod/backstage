@@ -19,7 +19,7 @@ import {
   ErrorApi,
   FetchApi,
   StorageApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   MockFetchApi,
   mockApis,

@@ -15,7 +15,10 @@
  */
 
 import { renderHook, waitFor } from '@testing-library/react';
-import { fetchApiRef, discoveryApiRef } from '@backstage/core-plugin-api';
+import {
+  discoveryApiRef,
+  fetchApiRef,
+} from "@backstage/frontend-plugin-api";
 import { TestApiProvider, mockApis } from '@backstage/test-utils';
 import { useCookieAuthRefresh } from './useCookieAuthRefresh';
 

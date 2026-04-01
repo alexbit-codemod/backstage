@@ -25,20 +25,20 @@ import { CookieAuthRedirect } from '@backstage/plugin-auth-react';
 import ReactDOM from 'react-dom/client';
 import { providers } from '../src/identityProviders';
 import {
+  ApiBlueprint,
   configApiRef,
-  createApiFactory,
   discoveryApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { AuthProxyDiscoveryApi } from '../src/AuthProxyDiscoveryApi';
 import '@backstage/ui/css/styles.css';
 
 const app = createApp({
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: discoveryApiRef,
       deps: { configApi: configApiRef },
       factory: ({ configApi }) => AuthProxyDiscoveryApi.fromConfig(configApi),
-    }),
+    }) }),
   ],
   components: {
     SignInPage: props => {

@@ -18,7 +18,9 @@ import { TemplateBackstageLogo } from '../../assets';
 import { HomePageCompanyLogo } from '../../plugin';
 import { rootRouteRef } from '../../routes';
 import { wrapInTestApp, TestApiProvider } from '@backstage/test-utils';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import { ConfigReader } from '@backstage/core-app-api';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';

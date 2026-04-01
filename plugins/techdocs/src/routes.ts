@@ -14,17 +14,13 @@
  * limitations under the License.
  */
 
-import { createRouteRef } from '@backstage/core-plugin-api';
+import { createRouteRef } from '@backstage/frontend-plugin-api';
 
-export const rootRouteRef = createRouteRef({
-  id: 'techdocs:index-page',
-});
+export const rootRouteRef = createRouteRef();
 
 export const rootDocsRouteRef = createRouteRef({
-  id: 'techdocs:reader-page',
+  ,
   params: ['namespace', 'kind', 'name'],
 });
 
-export const rootCatalogDocsRouteRef = createRouteRef({
-  id: 'techdocs:catalog-reader-view',
-});
+export const rootCatalogDocsRouteRef = createRouteRef();

@@ -13,16 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { createApiFactory, createPlugin } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+} from "@backstage/frontend-plugin-api";
 import { catalogEntityRouteRef, catalogGraphRouteRef } from './routes';
-import { catalogGraphApiRef, DefaultCatalogGraphApi } from './api';
+import { catalogGraphApiRef, DefaultCatalogGraphApi } from './api';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 /**
  * Catalog Graph Plugin instance.
  * @public
  */
-export const catalogGraphPlugin = createPlugin({
-  id: 'catalog-graph',
+export const catalogGraphPlugin = createFrontendPlugin({
+  pluginId: 'catalog-graph',
   routes: {
     catalogGraph: catalogGraphRouteRef,
   },
@@ -30,10 +33,10 @@ export const catalogGraphPlugin = createPlugin({
     catalogEntity: catalogEntityRouteRef,
   },
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: catalogGraphApiRef,
       deps: {},
       factory: () => new DefaultCatalogGraphApi(),
-    }),
+    }) }),
   ],
 });

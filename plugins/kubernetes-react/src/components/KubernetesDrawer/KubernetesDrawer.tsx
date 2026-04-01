@@ -31,7 +31,9 @@ import {
 } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
 import { ManifestYaml } from './ManifestYaml';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesReactTranslationRef } from '../../translation';
 
 const useDrawerContentStyles = makeStyles((_theme: Theme) =>

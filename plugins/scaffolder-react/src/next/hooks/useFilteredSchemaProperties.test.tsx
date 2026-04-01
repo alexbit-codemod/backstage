@@ -19,7 +19,9 @@ import { useFilteredSchemaProperties } from './useFilteredSchemaProperties';
 import { TemplateParameterSchema } from '../../types';
 import { TestApiProvider } from '@backstage/test-utils';
 import { mockApis } from '@backstage/frontend-test-utils';
-import { featureFlagsApiRef } from '@backstage/core-plugin-api';
+import {
+  featureFlagsApiRef,
+} from "@backstage/frontend-plugin-api";
 
 const mockFeatureFlagApi = mockApis.featureFlags.mock();
 
