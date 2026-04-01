@@ -24,11 +24,11 @@ import { EmptyFlags } from './EmptyFlags';
 import { FlagItem } from './FeatureFlagsItem';
 import {
   FeatureFlag,
+  FeatureFlagState,
   FeatureFlagsApi,
   featureFlagsApiRef,
-  FeatureFlagState,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { InfoCard } from '@backstage/core-components';
 import ClearIcon from '@material-ui/icons/Clear';
 import { useTranslationRef } from '@backstage/frontend-plugin-api';

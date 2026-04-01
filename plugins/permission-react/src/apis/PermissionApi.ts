@@ -18,7 +18,11 @@ import {
   EvaluatePermissionRequest,
   EvaluatePermissionResponse,
 } from '@backstage/plugin-permission-common';
-import { ApiRef, createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  ApiRef,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * This API is used by various frontend utilities that allow developers to implement authorization within their frontend
@@ -37,6 +41,4 @@ export type PermissionApi = {
  * Backstage ApiRefs.
  * @public
  */
-export const permissionApiRef: ApiRef<PermissionApi> = createApiRef({
-  id: 'plugin.permission.api',
-});
+export const permissionApiRef: ApiRef<PermissionApi> = createApiRef().with({ id: 'plugin.permission.api', pluginId: "permission" });

@@ -21,11 +21,11 @@ import {
   Suspense,
 } from 'react';
 import { render } from '@testing-library/react';
-import type {
+import {
   BackstagePlugin,
-  RouteRef,
   ExternalRouteRef,
-} from '@backstage/core-plugin-api';
+  RouteRef,
+} from "@backstage/frontend-plugin-api";
 import type { AnyRouteRef, RouteFunc } from './types';
 
 const mockContext = {

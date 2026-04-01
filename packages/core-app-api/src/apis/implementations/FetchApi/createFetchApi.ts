@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { FetchApi } from '@backstage/core-plugin-api';
+import {
+  FetchApi,
+} from "@backstage/frontend-plugin-api";
 import { FetchMiddleware } from './types';
 
 /**

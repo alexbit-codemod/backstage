@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { AppTheme, appThemeApiRef } from '@backstage/core-plugin-api';
+import {
+  AppTheme,
+  appThemeApiRef,
+} from "@backstage/frontend-plugin-api";
 import { TestApiRegistry, renderInTestApp } from '@backstage/test-utils';
 import { lightTheme } from '@backstage/theme';
 import { ThemeProvider } from '@material-ui/core/styles';

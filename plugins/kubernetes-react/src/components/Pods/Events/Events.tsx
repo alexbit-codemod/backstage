@@ -31,7 +31,9 @@ import { useEvents } from './useEvents';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { DismissableBanner } from '@backstage/core-components';
 import { Event } from 'kubernetes-models/v1';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesReactTranslationRef } from '../../../translation';
 
 /**

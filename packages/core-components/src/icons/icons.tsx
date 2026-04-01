@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { IconComponent, useApp } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+  useApp,
+} from "@backstage/frontend-plugin-api";
 import MuiBrokenImageIcon from '@material-ui/icons/BrokenImage';
 import { ComponentProps } from 'react';
 

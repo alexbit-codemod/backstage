@@ -21,11 +21,11 @@ import {
   toInternalFrontendModule,
 } from '../../frontend-plugin-api/src/wiring/createFrontendModule';
 import {
+  ApiBlueprint,
   AppTheme,
-  createApiFactory,
   createApiRef,
   createPlugin,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 function serializeModule(module: FrontendModule) {
   const { extensions } = toInternalFrontendModule(module);

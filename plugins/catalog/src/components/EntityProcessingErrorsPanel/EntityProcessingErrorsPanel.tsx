@@ -26,7 +26,10 @@ import {
   CatalogApi,
   ENTITY_STATUS_CATALOG_PROCESSING_TYPE,
 } from '@backstage/catalog-client';
-import { useApi, ApiHolder } from '@backstage/core-plugin-api';
+import {
+  ApiHolder,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import useAsync from 'react-use/esm/useAsync';
 import { SerializedError } from '@backstage/errors';
 import { catalogTranslationRef } from '../../alpha/translation';

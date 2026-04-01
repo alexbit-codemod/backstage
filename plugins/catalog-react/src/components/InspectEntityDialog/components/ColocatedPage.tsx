@@ -21,7 +21,9 @@ import {
   stringifyEntityRef,
 } from '@backstage/catalog-model';
 import { Progress, ResponseErrorPanel } from '@backstage/core-components';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import DialogContentText from '@material-ui/core/DialogContentText';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';

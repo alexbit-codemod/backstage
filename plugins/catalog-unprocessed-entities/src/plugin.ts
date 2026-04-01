@@ -14,36 +14,36 @@
  * limitations under the License.
  */
 import {
-  createApiFactory,
-  createPlugin,
+  ApiBlueprint,
   createRoutableExtension,
   discoveryApiRef,
   fetchApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 import { rootRouteRef } from './routes';
 import {
   CatalogUnprocessedEntitiesClient,
   catalogUnprocessedEntitiesApiRef,
-} from './api';
+} from './api';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 /**
  * Plugin entry point
  *
  * @public
  */
-export const catalogUnprocessedEntitiesPlugin = createPlugin({
-  id: 'catalog-unprocessed-entities',
+export const catalogUnprocessedEntitiesPlugin = createFrontendPlugin({
+  pluginId: 'catalog-unprocessed-entities',
   routes: {
     root: rootRouteRef,
   },
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: catalogUnprocessedEntitiesApiRef,
       deps: { discoveryApi: discoveryApiRef, fetchApi: fetchApiRef },
       factory: ({ discoveryApi, fetchApi }) =>
         new CatalogUnprocessedEntitiesClient(discoveryApi, fetchApi),
-    }),
+    }) }),
   ],
 });
 

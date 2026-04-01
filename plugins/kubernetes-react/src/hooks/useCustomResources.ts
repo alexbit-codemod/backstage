@@ -21,7 +21,9 @@ import {
   CustomResourceMatcher,
   ObjectsByEntityResponse,
 } from '@backstage/plugin-kubernetes-common';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { KubernetesObjects } from './useKubernetesObjects';
 import { generateAuth } from './auth';
 import useAsyncRetry from 'react-use/esm/useAsyncRetry';

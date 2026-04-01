@@ -19,7 +19,10 @@ import { createFilterByQueryParamFromConfig } from '../../api/config';
 import { VisitedByType } from './VisitedByType';
 import { Visit, visitsApiRef } from '../../api';
 import { ContextValueOnly, useContext } from './Context';
-import { configApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import useAsync from 'react-use/esm/useAsync';
 
 /** @public */

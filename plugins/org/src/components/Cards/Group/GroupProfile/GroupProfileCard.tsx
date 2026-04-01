@@ -37,7 +37,10 @@ import {
   useEntity,
 } from '@backstage/plugin-catalog-react';
 import { useCallback } from 'react';
-import { alertApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import Alert from '@material-ui/lab/Alert';

@@ -25,7 +25,10 @@ import {
   TestApiProvider,
   mockApis,
 } from '@backstage/test-utils';
-import { createPlugin, analyticsApiRef } from '@backstage/core-plugin-api';
+import {
+  analyticsApiRef,
+  createPlugin,
+} from "@backstage/frontend-plugin-api";
 
 import { searchApiRef } from '../../api';
 import { SearchContextProvider } from '../../context';

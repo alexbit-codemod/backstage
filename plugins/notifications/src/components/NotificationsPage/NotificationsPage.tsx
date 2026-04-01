@@ -24,7 +24,9 @@ import {
 import Grid from '@material-ui/core/Grid';
 import { ConfirmProvider } from 'material-ui-confirm';
 import { useSignal } from '@backstage/plugin-signals-react';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { notificationsTranslationRef } from '../../translation';
 
 const TableTitleKeys = {

@@ -20,7 +20,9 @@ import { EntityTypePicker } from './EntityTypePicker';
 import { MockEntityListContextProvider } from '@backstage/plugin-catalog-react/testUtils';
 import { catalogApiRef } from '../../api';
 import { EntityKindFilter, EntityTypeFilter } from '../../filters';
-import { alertApiRef } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+} from "@backstage/frontend-plugin-api";
 import { ApiProvider } from '@backstage/core-app-api';
 import { renderInTestApp, TestApiRegistry } from '@backstage/test-utils';
 import { mockApis } from '@backstage/frontend-test-utils';

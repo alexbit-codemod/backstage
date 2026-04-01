@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import { ConfigReader } from '@backstage/core-app-api';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import { TestApiProvider } from '@backstage/test-utils';
 import { renderHook } from '@testing-library/react';
 import { PropsWithChildren } from 'react';

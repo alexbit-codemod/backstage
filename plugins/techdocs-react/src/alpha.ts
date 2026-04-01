@@ -19,7 +19,7 @@ import { TechDocsAddonOptions } from './types';
 import {
   attachComponentData,
   getComponentData,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { getDataKeyByName, TECHDOCS_ADDONS_KEY } from './addons';
 import {
   createExtensionBlueprint,

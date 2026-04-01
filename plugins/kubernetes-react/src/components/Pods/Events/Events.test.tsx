@@ -18,7 +18,9 @@ import { render } from '@testing-library/react';
 import { Event } from 'kubernetes-models/v1';
 import { DateTime } from 'luxon';
 import { TestApiProvider, mockApis } from '@backstage/test-utils';
-import { translationApiRef } from '@backstage/core-plugin-api/alpha';
+import {
+  translationApiRef,
+} from "@backstage/frontend-plugin-api";
 import { errorApiRef } from '@backstage/core-plugin-api';
 
 describe('EventsContent', () => {

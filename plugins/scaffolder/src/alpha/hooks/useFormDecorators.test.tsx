@@ -15,7 +15,11 @@
  */
 import { DefaultScaffolderFormDecoratorsApi } from '../api/FormDecoratorsApi';
 import { createScaffolderFormDecorator } from '@backstage/plugin-scaffolder-react/alpha';
-import { createApiRef, errorApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+  errorApiRef,
+} from "@backstage/frontend-plugin-api";
 
 import { TestApiProvider } from '@backstage/test-utils';
 import { renderHook, waitFor } from '@testing-library/react';

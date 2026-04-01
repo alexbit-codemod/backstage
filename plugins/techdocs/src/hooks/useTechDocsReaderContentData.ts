@@ -21,7 +21,9 @@ import {
   useShadowRootElements,
   useTechDocsReaderPage,
 } from '@backstage/plugin-techdocs-react';
-import { useApp } from '@backstage/core-plugin-api';
+import {
+  useApp,
+} from "@backstage/frontend-plugin-api";
 import { useTechDocsReaderDom } from '../reader/components/TechDocsReaderPageContent/dom';
 import { useTechDocsReader } from '../reader/components/TechDocsReaderProvider';
 

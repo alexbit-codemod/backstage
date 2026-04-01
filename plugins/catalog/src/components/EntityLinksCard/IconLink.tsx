@@ -19,7 +19,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import LanguageIcon from '@material-ui/icons/Language';
 import { Link } from '@backstage/core-components';
-import { IconComponent } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+} from "@backstage/frontend-plugin-api";
 
 const useStyles = makeStyles({
   svgIcon: {

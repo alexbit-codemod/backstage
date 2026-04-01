@@ -5,15 +5,15 @@ import {
 } from '@backstage/integration-react';
 import {
   AnyApiFactory,
+  ApiBlueprint,
   configApiRef,
-  createApiFactory,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 export const apis: AnyApiFactory[] = [
-  createApiFactory({
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: scmIntegrationsApiRef,
     deps: { configApi: configApiRef },
     factory: ({ configApi }) => ScmIntegrationsApi.fromConfig(configApi),
-  }),
+  }) }),
   ScmAuth.createDefaultApiFactory(),
 ];

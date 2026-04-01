@@ -35,7 +35,9 @@ import {
 import { ClusterContext } from '../../hooks';
 import { ClusterAttributes } from '@backstage/plugin-kubernetes-common';
 import { ManifestYaml } from './ManifestYaml';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesClusterLinkFormatterApiRef } from '../../api';
 import useAsync from 'react-use/esm/useAsync';
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';

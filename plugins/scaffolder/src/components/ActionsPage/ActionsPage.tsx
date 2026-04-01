@@ -29,7 +29,10 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { useApi, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useApi,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import {
   Content,
   EmptyState,

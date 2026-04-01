@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { AnalyticsApi, AnalyticsEvent } from '@backstage/core-plugin-api';
+import {
+  AnalyticsApi,
+  AnalyticsEvent,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * An implementation of the AnalyticsApi that can be used to forward analytics

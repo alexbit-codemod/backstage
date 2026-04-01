@@ -17,7 +17,9 @@ import {
   ClusterLinksFormatter,
   ClusterLinksFormatterOptions,
 } from '../../types';
-import { ProfileInfoApi } from '@backstage/core-plugin-api';
+import {
+  ProfileInfoApi,
+} from "@backstage/frontend-plugin-api";
 
 const kindMappings: Record<string, string> = {
   deployment: 'deployment',

@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { useApi, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useApi,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 
 import {
   actionsRouteRef,

@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { IconComponent, useApp } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+  useApp,
+} from "@backstage/frontend-plugin-api";
 import Button from '@material-ui/core/Button';
 import DescriptionIcon from '@material-ui/icons/Description';
 import { ScaffolderTaskOutput } from '../../../api';

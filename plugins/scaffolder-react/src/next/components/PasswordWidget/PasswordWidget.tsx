@@ -15,7 +15,9 @@
  */
 
 import { MarkdownContent } from '@backstage/core-components';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
 import { WidgetProps } from '@rjsf/utils';

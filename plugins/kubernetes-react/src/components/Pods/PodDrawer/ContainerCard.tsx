@@ -30,7 +30,9 @@ import { bytesToMiB, formatMillicores } from '../../../utils/resources';
 import { PodExecTerminalDialog } from '../../PodExecTerminal/PodExecTerminalDialog';
 import { ResourceUtilization } from '../../ResourceUtilization';
 import { PodLogsDialog, PodScope } from '../PodLogs';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesReactTranslationRef } from '../../../translation';
 
 const getContainerHealthChecks = (

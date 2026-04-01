@@ -15,12 +15,13 @@
  */
 
 import {
-  useApi,
-  createApiRef,
-  withApis,
+  ApiBlueprint,
   ApiHolder,
   ApiRef,
-} from '@backstage/core-plugin-api';
+  createApiRef,
+  useApi,
+  withApis,
+} from "@backstage/frontend-plugin-api";
 import { ApiProvider } from './ApiProvider';
 import { ApiRegistry } from './ApiRegistry';
 import { render } from '@testing-library/react';

@@ -21,7 +21,7 @@ import { collectEntityPageContents } from './collectEntityPageContents';
 import {
   createComponentExtension,
   createPlugin,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 // eslint-disable-next-line @backstage/no-relative-monorepo-imports
 import {
   resolveExtensionDefinition,

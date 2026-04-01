@@ -15,7 +15,10 @@
  */
 
 import { CompoundEntityRef } from '@backstage/catalog-model';
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 import { TechDocsEntityMetadata, TechDocsMetadata } from './types';
 
 /**
@@ -37,9 +40,7 @@ export interface TechDocsApi {
  *
  * @public
  */
-export const techdocsApiRef = createApiRef<TechDocsApi>({
-  id: 'plugin.techdocs.service',
-});
+export const techdocsApiRef = createApiRef<TechDocsApi>().with({ id: 'plugin.techdocs.service', pluginId: "techdocs" });
 
 /**
  * The outcome of a docs sync operation.
@@ -74,6 +75,4 @@ export interface TechDocsStorageApi {
  *
  * @public
  */
-export const techdocsStorageApiRef = createApiRef<TechDocsStorageApi>({
-  id: 'plugin.techdocs.storageservice',
-});
+export const techdocsStorageApiRef = createApiRef<TechDocsStorageApi>().with({ id: 'plugin.techdocs.storageservice', pluginId: "techdocs" });

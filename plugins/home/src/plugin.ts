@@ -15,13 +15,12 @@
  */
 
 import {
-  createApiFactory,
+  ApiBlueprint,
   createComponentExtension,
-  createPlugin,
   createRoutableExtension,
   identityApiRef,
   storageApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { createCardExtension } from '@backstage/plugin-home-react';
 import {
   ToolkitContentProps,
@@ -31,13 +30,14 @@ import {
 } from './homePageComponents';
 import { rootRouteRef } from './routes';
 import { VisitsStorageApi, visitsApiRef } from './api';
-import { StarredEntitiesProps } from './homePageComponents/StarredEntities/Content';
+import { StarredEntitiesProps } from './homePageComponents/StarredEntities/Content';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 /** @public */
-export const homePlugin = createPlugin({
-  id: 'home',
+export const homePlugin = createFrontendPlugin({
+  pluginId: 'home',
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: visitsApiRef,
       deps: {
         storageApi: storageApiRef,
@@ -45,7 +45,7 @@ export const homePlugin = createPlugin({
       },
       factory: ({ storageApi, identityApi }) =>
         VisitsStorageApi.create({ storageApi, identityApi }),
-    }),
+    }) }),
   ],
   routes: {
     root: rootRouteRef,

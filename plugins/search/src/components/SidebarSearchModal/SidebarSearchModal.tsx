@@ -15,7 +15,9 @@
  */
 import SearchIcon from '@material-ui/icons/Search';
 import { SidebarItem } from '@backstage/core-components';
-import { IconComponent } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+} from "@backstage/frontend-plugin-api";
 import {
   SearchModal,
   SearchModalProps,

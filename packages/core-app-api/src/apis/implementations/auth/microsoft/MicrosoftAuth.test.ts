@@ -18,7 +18,9 @@ import MicrosoftAuth from './MicrosoftAuth';
 import MockOAuthApi from '../../OAuthRequestApi/MockOAuthApi';
 import { UrlPatternDiscovery } from '../../DiscoveryApi';
 import { ConfigReader } from '@backstage/config';
-import { microsoftAuthApiRef } from '@backstage/core-plugin-api';
+import {
+  microsoftAuthApiRef,
+} from "@backstage/frontend-plugin-api";
 import { registerMswTestHooks } from '@backstage/test-utils';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';

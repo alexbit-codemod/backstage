@@ -16,7 +16,9 @@
 
 import useAsync from 'react-use/esm/useAsync';
 import { scaffolderApiRef } from '../../api/ref';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { TemplateParameterSchema } from '@backstage/plugin-scaffolder-react';
 
 /**

@@ -17,12 +17,12 @@
 import type { PropsWithChildren } from 'react';
 import {
   RouteRef,
-  createPlugin,
-  createRouteRef,
-  createRoutableExtension,
   attachComponentData,
-} from '@backstage/core-plugin-api';
-import { Collector, Discoverer } from '../extensions/traversal';
+  createPlugin,
+  createRoutableExtension,
+} from "@backstage/frontend-plugin-api";
+import { Collector, Discoverer } from '../extensions/traversal';import { createRouteRef } from '@backstage/frontend-plugin-api';
+
 
 describe.each(['beta', 'stable'])('react-router %s', rrVersion => {
   beforeAll(() => {
@@ -60,11 +60,11 @@ describe.each(['beta', 'stable'])('react-router %s', rrVersion => {
 
   const plugin = createPlugin({ id: 'my-plugin' });
 
-  const ref1 = createRouteRef({ id: 'ref1' });
-  const ref2 = createRouteRef({ id: 'ref2' });
-  const ref3 = createRouteRef({ id: 'ref3' });
-  const ref4 = createRouteRef({ id: 'ref4' });
-  const ref5 = createRouteRef({ id: 'ref5' });
+  const ref1 = createRouteRef();
+  const ref2 = createRouteRef();
+  const ref3 = createRouteRef();
+  const ref4 = createRouteRef();
+  const ref5 = createRouteRef();
   const refOrder = [ref1, ref2, ref3, ref4, ref5];
 
   const Extension1 = plugin.provide(

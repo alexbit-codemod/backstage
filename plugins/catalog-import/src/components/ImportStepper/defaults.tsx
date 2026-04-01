@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { TranslationFunction } from '@backstage/core-plugin-api/alpha';
+import {
+  TranslationFunction,
+} from "@backstage/frontend-plugin-api";
 import { catalogImportTranslationRef } from '@backstage/plugin-catalog-import/alpha';
 import Box from '@material-ui/core/Box';
 import Checkbox from '@material-ui/core/Checkbox';

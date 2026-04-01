@@ -15,7 +15,9 @@
  */
 
 import { InfoCard, InfoCardVariants } from '@backstage/core-components';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { TranslationFunction } from '@backstage/core-plugin-api/alpha';
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import { catalogImportTranslationRef } from '@backstage/plugin-catalog-import/alpha';

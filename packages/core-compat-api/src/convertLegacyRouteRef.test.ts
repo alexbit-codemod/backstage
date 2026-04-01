@@ -15,13 +15,12 @@
  */
 
 import {
-  RouteRef as OldRouteRef,
-  SubRouteRef as OldSubRouteRef,
-  ExternalRouteRef as OldExternalRouteRef,
-  createRouteRef as createOldRouteRef,
-  createSubRouteRef as createOldSubRouteRef,
-  createExternalRouteRef as createOldExternalRouteRef,
-} from '@backstage/core-plugin-api';
+  ExternalRouteRef,
+  RouteRef,
+  SubRouteRef,
+  createExternalRouteRef,
+  createSubRouteRef,
+} from "@backstage/frontend-plugin-api";
 import {
   RouteRef as NewRouteRef,
   SubRouteRef as NewSubRouteRef,

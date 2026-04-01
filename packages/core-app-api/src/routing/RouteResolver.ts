@@ -26,10 +26,10 @@ import {
   isExternalRouteRef,
 } from './types';
 import {
-  RouteRef,
   ExternalRouteRef,
+  RouteRef,
   SubRouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { joinPaths } from './helpers';
 import mapValues from 'lodash/mapValues';
 

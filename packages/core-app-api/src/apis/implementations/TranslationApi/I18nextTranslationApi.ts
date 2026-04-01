@@ -22,7 +22,7 @@ import {
   TranslationRef,
   TranslationResource,
   TranslationSnapshot,
-} from '@backstage/core-plugin-api/alpha';
+} from "@backstage/frontend-plugin-api";
 import {
   createInstance as createI18n,
   FormatFunction,

@@ -23,7 +23,10 @@ import {
   Progress,
   Table,
 } from '@backstage/core-components';
-import { useApi, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useApi,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { CatalogFilterLayout } from '@backstage/plugin-catalog-react';
 import useAsync from 'react-use/esm/useAsync';
 import { useState } from 'react';

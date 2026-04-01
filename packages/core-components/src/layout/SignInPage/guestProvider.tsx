@@ -20,7 +20,10 @@ import { InfoCard } from '../InfoCard/InfoCard';
 import { GridItem } from './styles';
 import { ProviderComponent, ProviderLoader, SignInProvider } from './types';
 import { ProxiedSignInIdentity } from '../ProxiedSignInPage/ProxiedSignInIdentity';
-import { discoveryApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  discoveryApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { GuestUserIdentity } from './GuestUserIdentity';
 import useLocalStorage from 'react-use/esm/useLocalStorage';
 import { ResponseError } from '@backstage/errors';

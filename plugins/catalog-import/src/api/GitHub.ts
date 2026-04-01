@@ -22,7 +22,9 @@ import parseGitUrl from 'git-url-parse';
 import { ScmAuthApi } from '@backstage/integration-react';
 import { Octokit } from '@octokit/rest';
 import { getBranchName, getCatalogFilename } from '../components/helpers';
-import { ConfigApi } from '@backstage/core-plugin-api';
+import {
+  ConfigApi,
+} from "@backstage/frontend-plugin-api";
 import { Base64 } from 'js-base64';
 
 export interface GitHubOptions {

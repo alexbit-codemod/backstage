@@ -16,7 +16,10 @@
 
 import parseGitUrl from 'git-url-parse';
 
-import { configApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import {
   replaceGithubUrlType,
   replaceGitLabUrlType,

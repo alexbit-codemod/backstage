@@ -47,7 +47,9 @@ import { CatalogTableColumnsFunc, CatalogTableRow } from './types';
 import { OffsetPaginatedCatalogTable } from './OffsetPaginatedCatalogTable';
 import { CursorPaginatedCatalogTable } from './CursorPaginatedCatalogTable';
 import { defaultCatalogTableColumnsFunc } from './defaultCatalogTableColumnsFunc';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { catalogTranslationRef } from '../../alpha';
 import { FavoriteToggleIcon } from '@backstage/core-components';
 

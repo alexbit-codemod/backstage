@@ -17,7 +17,10 @@
 import { DismissableBanner, Props } from './DismissableBanner';
 import Typography from '@material-ui/core/Typography';
 import { WebStorage } from '@backstage/core-app-api';
-import { storageApiRef, StorageApi } from '@backstage/core-plugin-api';
+import {
+  StorageApi,
+  storageApiRef,
+} from "@backstage/frontend-plugin-api";
 import { TestApiProvider, MockErrorApi } from '@backstage/test-utils';
 import { Link } from '../Link';
 

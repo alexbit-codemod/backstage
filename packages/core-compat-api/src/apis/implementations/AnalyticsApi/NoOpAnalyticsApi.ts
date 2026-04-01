@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { AnalyticsApi, AnalyticsEvent } from '@backstage/core-plugin-api';
+import {
+  AnalyticsApi,
+  AnalyticsEvent,
+} from "@backstage/frontend-plugin-api";
 import {
   AnalyticsApi as NewAnalyicsApi,
   AnalyticsEvent as NewAnalyicsEvent,

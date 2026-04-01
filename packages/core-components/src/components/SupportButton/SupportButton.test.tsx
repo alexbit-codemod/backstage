@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   mockApis,
   renderInTestApp,

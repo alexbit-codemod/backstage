@@ -19,7 +19,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { catalogTranslationRef } from '../../alpha/translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { forwardRef } from 'react';
 
 type VisibleType = 'visible' | 'hidden' | 'disable';

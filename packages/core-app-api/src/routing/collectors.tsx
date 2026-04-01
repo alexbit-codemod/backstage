@@ -15,10 +15,10 @@
  */
 
 import {
+  BackstagePlugin,
   RouteRef,
   getComponentData,
-  BackstagePlugin,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { isValidElement, ReactNode, Children } from 'react';
 import { BackstageRouteObject } from './types';
 import { createCollector } from '../extensions/traversal';

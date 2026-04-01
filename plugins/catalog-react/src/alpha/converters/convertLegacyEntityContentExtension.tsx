@@ -20,9 +20,9 @@ import {
 } from '@backstage/core-compat-api';
 import {
   BackstagePlugin,
+  RouteRef,
   getComponentData,
-  RouteRef as LegacyRouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { ExtensionDefinition } from '@backstage/frontend-plugin-api';
 import kebabCase from 'lodash/kebabCase';
 import startCase from 'lodash/startCase';

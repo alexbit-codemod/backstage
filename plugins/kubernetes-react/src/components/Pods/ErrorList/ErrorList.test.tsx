@@ -18,7 +18,9 @@ import { render } from '@testing-library/react';
 import { ErrorList } from './ErrorList';
 import { Pod } from 'kubernetes-models/v1';
 import { TestApiProvider, mockApis } from '@backstage/test-utils';
-import { translationApiRef } from '@backstage/core-plugin-api/alpha';
+import {
+  translationApiRef,
+} from "@backstage/frontend-plugin-api";
 import { errorApiRef } from '@backstage/core-plugin-api';
 
 describe('ErrorList', () => {

@@ -15,7 +15,9 @@
  */
 
 import { PropsWithChildren } from 'react';
-import { createPlugin } from '@backstage/core-plugin-api';
+import {
+  createPlugin,
+} from "@backstage/frontend-plugin-api";
 import { wrapInTestApp } from '@backstage/test-utils';
 import { renderHook } from '@testing-library/react';
 import { useCustomFieldExtensions } from './useCustomFieldExtensions';

@@ -27,7 +27,9 @@ import { Sidebar } from './Bar';
 import { SidebarItem, SidebarSearchField, SidebarExpandButton } from './Items';
 import { renderHook } from '@testing-library/react';
 import { makeStyles } from '@material-ui/core/styles';
-import { analyticsApiRef } from '@backstage/core-plugin-api';
+import {
+  analyticsApiRef,
+} from "@backstage/frontend-plugin-api";
 
 const useStyles = makeStyles({
   spotlight: {

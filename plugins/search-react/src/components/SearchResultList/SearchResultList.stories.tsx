@@ -23,7 +23,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 import { CatalogIcon, Link } from '@backstage/core-components';
 import { TestApiProvider, wrapInTestApp } from '@backstage/test-utils';
-import { createPlugin, createRouteRef } from '@backstage/core-plugin-api';
+import {
+  createPlugin,
+} from "@backstage/frontend-plugin-api";
 import { SearchQuery, SearchResultSet } from '@backstage/plugin-search-common';
 
 import { SearchContextProvider } from '../../context';
@@ -31,11 +33,10 @@ import { searchApiRef, MockSearchApi } from '../../api';
 import { createSearchResultListItemExtension } from '../../extensions';
 
 import { SearchResultList } from './SearchResultList';
-import { DefaultResultListItem } from '../DefaultResultListItem';
+import { DefaultResultListItem } from '../DefaultResultListItem';import { createRouteRef } from '@backstage/frontend-plugin-api';
 
-const routeRef = createRouteRef({
-  id: 'storybook.search.results.list.route',
-});
+
+const routeRef = createRouteRef();
 
 const searchApiMock = new MockSearchApi({
   results: [

@@ -19,7 +19,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Switch from '@material-ui/core/Switch';
 import Tooltip from '@material-ui/core/Tooltip';
-import { FeatureFlag } from '@backstage/core-plugin-api';
+import {
+  FeatureFlag,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import { userSettingsTranslationRef } from '../../translation';
 import { TranslationFunction } from '@backstage/core-plugin-api/alpha';

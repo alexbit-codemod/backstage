@@ -15,7 +15,9 @@
  */
 
 import { ReactNode } from 'react';
-import { useApp } from '@backstage/core-plugin-api';
+import {
+  useApp,
+} from "@backstage/frontend-plugin-api";
 import { usePermission } from '../hooks';
 import {
   isResourcePermission,

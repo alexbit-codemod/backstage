@@ -15,13 +15,13 @@
  */
 
 import {
+  AnyExternalRoutes,
+  AnyRoutes,
+  BackstagePlugin,
+  ExternalRouteRef,
   RouteRef,
   SubRouteRef,
-  ExternalRouteRef,
-  BackstagePlugin,
-  AnyRoutes,
-  AnyExternalRoutes,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { AppOptions, AppRouteBinder } from './types';
 import { Config } from '@backstage/config';
 import { JsonObject } from '@backstage/types';

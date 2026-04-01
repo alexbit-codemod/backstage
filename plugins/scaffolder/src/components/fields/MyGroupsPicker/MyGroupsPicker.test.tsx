@@ -31,7 +31,7 @@ import {
   ErrorApi,
   errorApiRef,
   identityApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import userEvent from '@testing-library/user-event';
 import { ScaffolderRJSFFieldProps as FieldProps } from '@backstage/plugin-scaffolder-react';
 import { DefaultEntityPresentationApi } from '@backstage/plugin-catalog';

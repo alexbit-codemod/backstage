@@ -44,13 +44,12 @@ import {
   RepoUrlPickerSchema,
 } from './components/fields/RepoUrlPicker/RepoUrlPicker';
 import {
-  createApiFactory,
-  createPlugin,
+  ApiBlueprint,
   createRoutableExtension,
   discoveryApiRef,
   fetchApiRef,
   identityApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   OwnedEntityPicker,
   OwnedEntityPickerSchema,
@@ -84,16 +83,17 @@ import { DefaultScaffolderFormDecoratorsApi } from './alpha/api/FormDecoratorsAp
 import {
   RepoOwnerPicker,
   RepoOwnerPickerSchema,
-} from './components/fields/RepoOwnerPicker';
+} from './components/fields/RepoOwnerPicker';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 /**
  * The main plugin export for the scaffolder.
  * @public
  */
-export const scaffolderPlugin = createPlugin({
-  id: 'scaffolder',
+export const scaffolderPlugin = createFrontendPlugin({
+  pluginId: 'scaffolder',
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: scaffolderApiRef,
       deps: {
         discoveryApi: discoveryApiRef,
@@ -108,12 +108,12 @@ export const scaffolderPlugin = createPlugin({
           fetchApi,
           identityApi,
         }),
-    }),
-    createApiFactory({
+    }) }),
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: formDecoratorsApiRef,
       deps: {},
       factory: () => DefaultScaffolderFormDecoratorsApi.create(),
-    }),
+    }) }),
   ],
   routes: {
     root: rootRouteRef,

@@ -16,7 +16,7 @@
 import {
   TranslationFunction,
   TranslationRef,
-} from '@backstage/core-plugin-api/alpha';
+} from "@backstage/frontend-plugin-api";
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 export type StyleClasses = ClassNameMap<

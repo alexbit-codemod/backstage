@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { AuthProviderInfo, DiscoveryApi } from '@backstage/core-plugin-api';
+import {
+  AuthProviderInfo,
+  DiscoveryApi,
+} from "@backstage/frontend-plugin-api";
 import { openLoginPopup } from '../loginPopup';
 
 type Options = {

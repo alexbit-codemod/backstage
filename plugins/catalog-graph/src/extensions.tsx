@@ -16,7 +16,7 @@
 import {
   createComponentExtension,
   createRoutableExtension,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { catalogGraphPlugin } from './plugin';
 import { catalogGraphRouteRef } from './routes';
 

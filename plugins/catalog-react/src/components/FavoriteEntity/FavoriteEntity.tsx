@@ -19,7 +19,9 @@ import IconButton from '@material-ui/core/IconButton';
 import { ComponentProps } from 'react';
 import { useStarredEntity } from '../../hooks/useStarredEntity';
 import { catalogReactTranslationRef } from '../../translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { FavoriteToggle } from '@backstage/core-components';
 
 /** @public */

@@ -33,10 +33,10 @@ import {
 } from '@backstage/frontend-plugin-api';
 import {
   AppComponents,
+  BackstagePlugin,
   IconComponent,
-  BackstagePlugin as LegacyBackstagePlugin,
   RouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   VersionedValue,
   createVersionedContext,

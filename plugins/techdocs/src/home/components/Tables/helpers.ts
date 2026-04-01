@@ -20,7 +20,10 @@ import {
   humanizeEntityRef,
 } from '@backstage/plugin-catalog-react';
 import { toLowerMaybe } from '../../../helpers';
-import { ConfigApi, RouteFunc } from '@backstage/core-plugin-api';
+import {
+  ConfigApi,
+  RouteFunc,
+} from "@backstage/frontend-plugin-api";
 
 type getRouteFunc = RouteFunc<{
   namespace: string;

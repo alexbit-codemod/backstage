@@ -15,7 +15,10 @@
  */
 
 import { KubernetesRequestBody } from '@backstage/plugin-kubernetes-common';
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 
 /** @public */
 export interface KubernetesAuthProvider {
@@ -27,9 +30,7 @@ export interface KubernetesAuthProvider {
 
 /** @public */
 export const kubernetesAuthProvidersApiRef =
-  createApiRef<KubernetesAuthProvidersApi>({
-    id: 'plugin.kubernetes-auth-providers.service',
-  });
+  createApiRef<KubernetesAuthProvidersApi>().with({ id: 'plugin.kubernetes-auth-providers.service', pluginId: "kubernetes-auth-providers" });
 
 /** @public */
 export interface KubernetesAuthProvidersApi {

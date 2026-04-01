@@ -20,7 +20,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Illo } from './Illo';
 import { catalogTranslationRef } from '../../alpha/translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 
 const useStyles = makeStyles(theme => ({
   container: {

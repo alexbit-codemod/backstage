@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { BackstagePlugin, getComponentData } from '@backstage/core-plugin-api';
+import {
+  BackstagePlugin,
+  getComponentData,
+} from "@backstage/frontend-plugin-api";
 import { createCollector } from '../extensions/traversal';
 
 export const pluginCollector = createCollector(

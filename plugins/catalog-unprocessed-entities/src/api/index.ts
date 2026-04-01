@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   CatalogUnprocessedEntitiesApiResponse as CommonCatalogUnprocessedEntitiesApiResponse,
   CatalogUnprocessedEntitiesApi as CommonCatalogUnprocessedEntitiesApi,
@@ -26,9 +29,7 @@ import {
  * @public
  */
 export const catalogUnprocessedEntitiesApiRef =
-  createApiRef<CatalogUnprocessedEntitiesApi>({
-    id: 'plugin.catalog-unprocessed-entities.service',
-  });
+  createApiRef<CatalogUnprocessedEntitiesApi>().with({ id: 'plugin.catalog-unprocessed-entities.service', pluginId: "catalog-unprocessed-entities" });
 
 /**
  * Response expected by the {@link CatalogUnprocessedEntitiesApi}

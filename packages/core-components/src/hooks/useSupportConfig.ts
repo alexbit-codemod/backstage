@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { useApiHolder, configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApiHolder,
+} from "@backstage/frontend-plugin-api";
 import { coreComponentsTranslationRef } from '../translation';
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 

@@ -15,7 +15,10 @@
  */
 
 import { DEFAULT_NAMESPACE } from '@backstage/catalog-model';
-import { useApp, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useApp,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { useEntity } from '@backstage/plugin-catalog-react';
 
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';

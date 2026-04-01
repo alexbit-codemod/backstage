@@ -23,7 +23,9 @@ import {
   useDryRun,
 } from './DryRunContext';
 
-import { errorApiRef } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   scaffolderApiRef,
   SecretsContextProvider,

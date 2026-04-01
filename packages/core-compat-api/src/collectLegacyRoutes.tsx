@@ -16,11 +16,11 @@
 
 import {
   AnyRouteRefParams,
-  BackstagePlugin as LegacyBackstagePlugin,
+  BackstagePlugin,
   RouteRef,
   createPlugin,
   getComponentData,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   FrontendPlugin,
   ExtensionDefinition,

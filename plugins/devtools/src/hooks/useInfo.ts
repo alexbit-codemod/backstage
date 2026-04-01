@@ -15,7 +15,9 @@
  */
 
 import { devToolsApiRef } from '../api';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import useAsync from 'react-use/esm/useAsync';
 import { DevToolsInfo } from '@backstage/plugin-devtools-common';
 

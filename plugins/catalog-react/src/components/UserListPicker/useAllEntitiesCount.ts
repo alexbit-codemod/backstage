@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import { QueryEntitiesInitialRequest } from '@backstage/catalog-client';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { compact, isEqual } from 'lodash';
 import { useMemo, useRef } from 'react';
 import useAsync from 'react-use/esm/useAsync';

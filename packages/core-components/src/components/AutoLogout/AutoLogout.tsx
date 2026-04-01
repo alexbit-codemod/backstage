@@ -16,11 +16,11 @@
 
 import {
   ConfigApi,
-  configApiRef,
   IdentityApi,
+  configApiRef,
   identityApiRef,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { useEffect, useMemo, useState } from 'react';
 import {
   EventsType,

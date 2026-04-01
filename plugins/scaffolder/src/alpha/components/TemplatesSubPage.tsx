@@ -22,7 +22,10 @@ import {
   DocsIcon,
   SupportButton,
 } from '@backstage/core-components';
-import { useApp, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useApp,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 import {
   EntityKindPicker,

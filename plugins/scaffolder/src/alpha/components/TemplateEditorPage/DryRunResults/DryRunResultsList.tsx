@@ -27,7 +27,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import DownloadIcon from '@material-ui/icons/GetApp';
 import { useDryRun } from '../DryRunContext';
 import { downloadBlob } from '../../../../lib/download';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { scaffolderTranslationRef } from '../../../../translation';
 
 const useStyles = makeStyles(theme => ({

@@ -17,14 +17,11 @@
 import {
   createExternalRouteRef,
   createRouteRef,
-} from '@backstage/core-plugin-api';
+} from '@backstage/frontend-plugin-api';
 
-export const rootRoute = createRouteRef({
-  id: 'api-docs',
-});
+export const rootRoute = createRouteRef();
 
 export const registerComponentRouteRef = createExternalRouteRef({
-  id: 'register-component',
-  optional: true,
+  ,
   defaultTarget: 'catalog-import.importPage',
 });

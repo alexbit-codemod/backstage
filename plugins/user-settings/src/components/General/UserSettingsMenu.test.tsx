@@ -20,7 +20,10 @@ import {
   renderInTestApp,
   mockApis,
 } from '@backstage/test-utils';
-import { errorApiRef, identityApiRef } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+  identityApiRef,
+} from "@backstage/frontend-plugin-api";
 import { fireEvent, waitFor, screen } from '@testing-library/react';
 import { UserSettingsMenu } from './UserSettingsMenu';
 

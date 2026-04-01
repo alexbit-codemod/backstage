@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { useElementFilter } from '@backstage/core-plugin-api';
+import {
+  useElementFilter,
+} from "@backstage/frontend-plugin-api";
 import { LAYOUTS_KEY, LAYOUTS_WRAPPER_KEY } from '../layouts/keys';
 import { LayoutOptions } from '../layouts';
 

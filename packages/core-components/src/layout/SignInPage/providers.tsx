@@ -16,13 +16,13 @@
 
 import { useLayoutEffect, useState, useMemo, useCallback } from 'react';
 import {
+  IdentityApi,
   SignInPageProps,
+  errorApiRef,
+  useAnalytics,
   useApi,
   useApiHolder,
-  errorApiRef,
-  IdentityApi,
-  useAnalytics,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   IdentityProviders,
   SignInProvider,

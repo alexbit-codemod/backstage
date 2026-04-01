@@ -15,7 +15,10 @@
  */
 
 import { Config } from '@backstage/config';
-import { DiscoveryApi, IdentityApi } from '@backstage/core-plugin-api';
+import {
+  DiscoveryApi,
+  IdentityApi,
+} from "@backstage/frontend-plugin-api";
 import { ClarifyFailuresFetchMiddleware } from './ClarifyFailuresFetchMiddleware';
 import { IdentityAuthInjectorFetchMiddleware } from './IdentityAuthInjectorFetchMiddleware';
 import { PluginProtocolResolverFetchMiddleware } from './PluginProtocolResolverFetchMiddleware';

@@ -22,7 +22,10 @@ import {
   Page,
   SupportButton,
 } from '@backstage/core-components';
-import { useAnalytics, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useAnalytics,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import {
   entityRouteRef,
   humanizeEntityRef,

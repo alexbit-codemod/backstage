@@ -17,7 +17,9 @@
 import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { BuiThemerPage } from './BuiThemerPage';
-import { appThemeApiRef } from '@backstage/core-plugin-api';
+import {
+  appThemeApiRef,
+} from "@backstage/frontend-plugin-api";
 import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 

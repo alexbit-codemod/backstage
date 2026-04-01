@@ -32,13 +32,13 @@ import {
   WarningPanel,
 } from '@backstage/core-components';
 import {
-  attachComponentData,
   IconComponent,
+  attachComponentData,
   useApi,
   useElementFilter,
   useRouteRef,
   useRouteRefParams,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 import {
   catalogApiRef,

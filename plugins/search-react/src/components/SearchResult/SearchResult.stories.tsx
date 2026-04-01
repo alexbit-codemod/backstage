@@ -23,7 +23,9 @@ import CustomIcon from '@material-ui/icons/NoteAdd';
 
 import { Link } from '@backstage/core-components';
 import { TestApiProvider, wrapInTestApp } from '@backstage/test-utils';
-import { createPlugin } from '@backstage/core-plugin-api';
+import {
+  createPlugin,
+} from "@backstage/frontend-plugin-api";
 import { SearchDocument } from '@backstage/plugin-search-common';
 
 import { SearchContextProvider } from '../../context';

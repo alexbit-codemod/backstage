@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 import {
-  createPlugin,
   createRoutableExtension,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
-import { rootRouteRef } from './routes';
+import { rootRouteRef } from './routes';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 /**
  * The todo-list plugin instance
  *
  * @public
  */
-export const todoListPlugin = createPlugin({
-  id: 'todolist',
+export const todoListPlugin = createFrontendPlugin({
+  pluginId: 'todolist',
   routes: {
     root: rootRouteRef,
   },

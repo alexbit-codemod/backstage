@@ -16,7 +16,10 @@
 
 import { ReactNode } from 'react';
 import { ApiProvider } from '@backstage/core-app-api';
-import { ApiRef, ApiHolder } from '@backstage/core-plugin-api';
+import {
+  ApiHolder,
+  ApiRef,
+} from "@backstage/frontend-plugin-api";
 
 /** @ignore */
 type TestApiProviderPropsApiPair<TApi> = TApi extends infer TImpl

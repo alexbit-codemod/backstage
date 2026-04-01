@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { errorApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Grid from '@material-ui/core/Grid';

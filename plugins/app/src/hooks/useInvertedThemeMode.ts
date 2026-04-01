@@ -15,7 +15,10 @@
  */
 
 import { useState, useEffect, useMemo } from 'react';
-import { useApi, appThemeApiRef } from '@backstage/core-plugin-api';
+import {
+  appThemeApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import useObservable from 'react-use/esm/useObservable';
 
 type ThemeMode = 'light' | 'dark';

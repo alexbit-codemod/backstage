@@ -18,7 +18,9 @@ import { useEntityTypeFilter } from '@backstage/plugin-catalog-react';
 import { TemplateCategoryPicker } from './TemplateCategoryPicker';
 import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
 import { mockApis } from '@backstage/frontend-test-utils';
-import { alertApiRef } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+} from "@backstage/frontend-plugin-api";
 import { fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

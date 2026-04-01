@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { analyticsApiRef, configApiRef } from '@backstage/core-plugin-api';
+import {
+  analyticsApiRef,
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   render,
   screen,

@@ -21,7 +21,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { WebFileSystemAccess } from '../../../lib/filesystem';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { scaffolderTranslationRef } from '../../../translation';
 import CreateNewFolderIcon from '@material-ui/icons/CreateNewFolder';
 import ListAltIcon from '@material-ui/icons/ListAlt';

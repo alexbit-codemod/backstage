@@ -21,7 +21,9 @@ import {
   TestApiProvider,
   renderInTestApp,
 } from '@backstage/test-utils';
-import { analyticsApiRef } from '@backstage/core-plugin-api';
+import {
+  analyticsApiRef,
+} from "@backstage/frontend-plugin-api";
 
 jest.mock('@backstage/plugin-techdocs-react', () => {
   const actualModule = jest.requireActual('@backstage/plugin-techdocs-react');

@@ -18,7 +18,9 @@ import useAsync from 'react-use/esm/useAsync';
 import useEffectOnce from 'react-use/esm/useEffectOnce';
 import { GetEntityFacetsRequest } from '@backstage/catalog-client';
 import { makeValidator } from '@backstage/catalog-model';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { catalogApiRef } from '@backstage/plugin-catalog-react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';

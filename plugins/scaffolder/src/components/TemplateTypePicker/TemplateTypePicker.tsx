@@ -26,7 +26,10 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useEntityTypeFilter } from '@backstage/plugin-catalog-react';
-import { alertApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 import { scaffolderTranslationRef } from '../../translation';
 

@@ -16,7 +16,9 @@
 
 import { FieldValidation } from '@rjsf/utils';
 import type { JsonObject, JsonValue } from '@backstage/types';
-import { ApiHolder } from '@backstage/core-plugin-api';
+import {
+  ApiHolder,
+} from "@backstage/frontend-plugin-api";
 import {
   Draft07 as JSONSchema,
   JsonError,

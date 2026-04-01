@@ -26,7 +26,11 @@ import {
   Progress,
   ResponseErrorPanel,
 } from '@backstage/core-components';
-import { useApi, useApp, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useApi,
+  useApp,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import Box from '@material-ui/core/Box';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import { makeStyles } from '@material-ui/core/styles';

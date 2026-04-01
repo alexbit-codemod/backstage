@@ -16,15 +16,15 @@
 
 import { useContext, ReactNode, ComponentType, useState } from 'react';
 import {
-  attachComponentData,
   ConfigApi,
-  configApiRef,
   IdentityApi,
   SignInPageProps,
+  attachComponentData,
+  configApiRef,
+  useAnalytics,
   useApi,
   useApp,
-  useAnalytics,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { BUIProvider } from '@backstage/ui';
 import { InternalAppContext } from './InternalAppContext';
 import { isReactRouterBeta } from './isReactRouterBeta';

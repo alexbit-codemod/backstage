@@ -21,7 +21,10 @@ import {
   renderInTestApp,
   mockApis,
 } from '@backstage/test-utils';
-import { analyticsApiRef, createPlugin } from '@backstage/core-plugin-api';
+import {
+  analyticsApiRef,
+  createPlugin,
+} from "@backstage/frontend-plugin-api";
 
 import { searchApiRef } from '../../api';
 import { createSearchResultListItemExtension } from '../../extensions';

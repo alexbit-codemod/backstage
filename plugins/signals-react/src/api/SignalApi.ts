@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 import { JsonObject } from '@backstage/types';
 
 /** @public */
-export const signalApiRef = createApiRef<SignalApi>({
-  id: 'plugin.signal.service',
-});
+export const signalApiRef = createApiRef<SignalApi>().with({ id: 'plugin.signal.service', pluginId: "signal" });
 
 /** @public */
 export interface SignalSubscriber {

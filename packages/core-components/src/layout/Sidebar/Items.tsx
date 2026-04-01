@@ -18,7 +18,7 @@ import {
   IconComponent,
   useAnalytics,
   useElementFilter,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import Badge from '@material-ui/core/Badge';
 import Box from '@material-ui/core/Box';
 import { makeStyles, styled, Theme } from '@material-ui/core/styles';

@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import { DependencyGraphTypes } from '@backstage/core-components';
-import { IconComponent } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+} from "@backstage/frontend-plugin-api";
 import { useEntityPresentation } from '@backstage/plugin-catalog-react';
 import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';

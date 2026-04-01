@@ -15,10 +15,9 @@
  */
 
 import {
-  createPlugin as createLegacyPlugin,
-  createRouteRef as createLegacyRouteRef,
+  createPlugin,
   createRoutableExtension,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   createExtensionTester,
   renderInTestApp,
@@ -26,7 +25,8 @@ import {
 import { screen } from '@testing-library/react';
 import { convertLegacyEntityCardExtension } from './convertLegacyEntityCardExtension';
 import { convertLegacyRouteRef } from '@backstage/core-compat-api';
-import { EntityCardBlueprint } from '../blueprints';
+import { EntityCardBlueprint } from '../blueprints';import { createRouteRef } from '@backstage/frontend-plugin-api';
+
 
 const routeRef = createLegacyRouteRef({ id: 'test' });
 const legacyPlugin = createLegacyPlugin({

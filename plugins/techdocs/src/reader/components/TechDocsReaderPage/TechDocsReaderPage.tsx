@@ -31,7 +31,7 @@ import { rootDocsRouteRef } from '../../../routes';
 import {
   getComponentData,
   useRouteRefParams,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { CookieAuthRefreshProvider } from '@backstage/plugin-auth-react';
 import {
   createTheme,

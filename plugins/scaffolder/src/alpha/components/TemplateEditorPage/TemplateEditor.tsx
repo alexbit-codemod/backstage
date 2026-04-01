@@ -16,7 +16,9 @@
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import type {
   FormProps,
   LayoutOptions,

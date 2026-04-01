@@ -23,7 +23,10 @@ import {
   useEntityList,
 } from '../../hooks';
 import { catalogApiRef } from '../../api';
-import { ApiRef, identityApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiRef,
+  identityApiRef,
+} from "@backstage/frontend-plugin-api";
 import { MemoryRouter } from 'react-router-dom';
 import { useOwnedEntitiesCount } from './useOwnedEntitiesCount';
 import {

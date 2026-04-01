@@ -31,19 +31,17 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { collectLegacyRoutes } from './collectLegacyRoutes';
 import {
-  createApiFactory,
+  ApiBlueprint,
   createApiRef,
   createPlugin,
   createRoutableExtension,
-  createRouteRef,
   useApp,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { screen } from '@testing-library/react';
-import { renderTestApp } from '@backstage/frontend-test-utils';
+import { renderTestApp } from '@backstage/frontend-test-utils';import { createRouteRef } from '@backstage/frontend-plugin-api';
 
-const exampleApiRef = createApiRef<string>({
-  id: 'plugin.example.service',
-});
+
+const exampleApiRef = createApiRef<string>().with({ id: 'plugin.example.service', pluginId: "example" });
 const examplePlugin1 = createPlugin({
   id: 'example-1',
   apis: [createApiFactory(exampleApiRef, 'example-api-1')],
@@ -51,7 +49,7 @@ const examplePlugin1 = createPlugin({
 const ExamplePage1 = examplePlugin1.provide(
   createRoutableExtension({
     name: 'ExamplePage1',
-    mountPoint: createRouteRef({ id: 'example-1' }),
+    mountPoint: createRouteRef(),
     component: () => Promise.resolve(() => <div>Example Page 1</div>),
   }),
 );
@@ -62,7 +60,7 @@ const examplePlugin2 = createPlugin({
 const ExamplePage2 = examplePlugin2.provide(
   createRoutableExtension({
     name: 'ExamplePage2',
-    mountPoint: createRouteRef({ id: 'example-2' }),
+    mountPoint: createRouteRef(),
     component: () => Promise.resolve(() => <div>Example Page 2</div>),
   }),
 );
@@ -277,7 +275,7 @@ describe('collectLegacyRoutes', () => {
     const plugin = createPlugin({
       id: 'test',
     });
-    const routeRef = createRouteRef({ id: 'test' });
+    const routeRef = createRouteRef();
     const Page = plugin.provide(
       createRoutableExtension({
         name: 'Test',
@@ -315,7 +313,7 @@ describe('collectLegacyRoutes', () => {
     const plugin = createPlugin({
       id: 'test',
     });
-    const routeRef = createRouteRef({ id: 'test' });
+    const routeRef = createRouteRef();
     const Page = plugin.provide(
       createRoutableExtension({
         name: 'Test',
@@ -344,7 +342,7 @@ describe('collectLegacyRoutes', () => {
     const plugin = createPlugin({
       id: 'test',
     });
-    const routeRef = createRouteRef({ id: 'test' });
+    const routeRef = createRouteRef();
     const Page = plugin.provide(
       createRoutableExtension({
         name: 'Test',
@@ -371,7 +369,7 @@ describe('collectLegacyRoutes', () => {
     const plugin = createPlugin({
       id: 'test',
     });
-    const routeRef = createRouteRef({ id: 'test' });
+    const routeRef = createRouteRef();
     const Page = plugin.provide(
       createRoutableExtension({
         name: 'Test',

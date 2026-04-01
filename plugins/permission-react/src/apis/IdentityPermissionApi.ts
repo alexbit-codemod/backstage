@@ -15,7 +15,10 @@
  */
 
 import DataLoader from 'dataloader';
-import { DiscoveryApi, IdentityApi } from '@backstage/core-plugin-api';
+import {
+  DiscoveryApi,
+  IdentityApi,
+} from "@backstage/frontend-plugin-api";
 import { PermissionApi } from './PermissionApi';
 import {
   AuthorizePermissionRequest,

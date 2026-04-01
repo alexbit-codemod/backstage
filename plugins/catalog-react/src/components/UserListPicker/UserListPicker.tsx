@@ -15,10 +15,10 @@
  */
 
 import {
-  configApiRef,
   IconComponent,
+  configApiRef,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';

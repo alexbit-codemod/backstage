@@ -31,7 +31,9 @@ import { Grid } from '@backstage/ui';
 import { MarkdownContent } from '@backstage/core-components';
 import { AboutField } from './AboutField';
 import { LinksGridList } from '../EntityLinksCard/LinksGridList';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { catalogTranslationRef } from '../../alpha/translation';
 
 const useStyles = makeStyles({

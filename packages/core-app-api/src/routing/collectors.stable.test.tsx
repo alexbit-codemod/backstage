@@ -23,14 +23,14 @@ import {
   routeElementDiscoverer,
 } from '../extensions/traversal';
 import {
-  createRoutableExtension,
-  createRouteRef,
-  createPlugin,
+  BackstagePlugin,
   RouteRef,
   attachComponentData,
-  BackstagePlugin,
-} from '@backstage/core-plugin-api';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
+  createPlugin,
+  createRoutableExtension,
+} from "@backstage/frontend-plugin-api";
+import { MemoryRouter, Routes, Route } from 'react-router-dom';import { createRouteRef } from '@backstage/frontend-plugin-api';
+
 
 jest.mock('react-router', () => jest.requireActual('react-router-stable'));
 jest.mock('react-router-dom', () =>
@@ -43,11 +43,11 @@ const MockComponent = ({ children }: PropsWithChildren<{ path?: string }>) => (
 
 const plugin = createPlugin({ id: 'my-plugin' });
 
-const ref1 = createRouteRef({ id: 'ref1' });
-const ref2 = createRouteRef({ id: 'ref2' });
-const ref3 = createRouteRef({ id: 'ref3' });
-const ref4 = createRouteRef({ id: 'ref4' });
-const ref5 = createRouteRef({ id: 'ref5' });
+const ref1 = createRouteRef();
+const ref2 = createRouteRef();
+const ref3 = createRouteRef();
+const ref4 = createRouteRef();
+const ref5 = createRouteRef();
 const refOrder = [ref1, ref2, ref3, ref4, ref5];
 
 const Extension1 = plugin.provide(

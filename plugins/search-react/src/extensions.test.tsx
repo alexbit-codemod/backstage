@@ -25,10 +25,10 @@ import {
   mockApis,
 } from '@backstage/test-utils';
 import {
-  createPlugin,
   BackstagePlugin,
   analyticsApiRef,
-} from '@backstage/core-plugin-api';
+  createPlugin,
+} from "@backstage/frontend-plugin-api";
 import { SearchResult, SearchDocument } from '@backstage/plugin-search-common';
 
 import {

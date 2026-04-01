@@ -18,7 +18,10 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { rootRouteRef } from '../../plugin';
 
-import { useRouteRef, IconComponent } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { SidebarSearchField, useContent } from '@backstage/core-components';
 
 /**

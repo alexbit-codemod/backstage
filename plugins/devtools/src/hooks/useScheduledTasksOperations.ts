@@ -15,7 +15,9 @@
  */
 import { useState, useCallback } from 'react';
 import { devToolsApiRef } from '../api';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 
 export const useScheduledTasksOperations = () => {
   const api = useApi(devToolsApiRef);
