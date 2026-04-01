@@ -30,14 +30,13 @@ import {
   rootRouteRef,
 } from './routes';
 import {
-  createApiFactory,
+  ApiBlueprint,
   createComponentExtension,
-  createPlugin,
   createRoutableExtension,
   discoveryApiRef,
   fetchApiRef,
   storageApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   createSearchResultListItemExtension,
   SearchResultListItemExtensionProps,
@@ -54,13 +53,14 @@ import { HasSubdomainsCardProps } from './components/HasSubdomainsCard';
 import { HasSystemsCardProps } from './components/HasSystemsCard';
 import { RelatedEntitiesCardProps } from './components/RelatedEntitiesCard';
 import { CatalogSearchResultListItemProps } from './components/CatalogSearchResultListItem';
-import { DefaultEntityPresentationApi } from './apis/EntityPresentationApi';
+import { DefaultEntityPresentationApi } from './apis/EntityPresentationApi';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 /** @public */
-export const catalogPlugin = createPlugin({
-  id: 'catalog',
+export const catalogPlugin = createFrontendPlugin({
+  pluginId: 'catalog',
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: catalogApiRef,
       deps: {
         discoveryApi: discoveryApiRef,
@@ -68,19 +68,19 @@ export const catalogPlugin = createPlugin({
       },
       factory: ({ discoveryApi, fetchApi }) =>
         new CatalogClient({ discoveryApi, fetchApi }),
-    }),
-    createApiFactory({
+    }) }),
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: starredEntitiesApiRef,
       deps: { storageApi: storageApiRef },
       factory: ({ storageApi }) =>
         new DefaultStarredEntitiesApi({ storageApi }),
-    }),
-    createApiFactory({
+    }) }),
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: entityPresentationApiRef,
       deps: { catalogApi: catalogApiRef },
       factory: ({ catalogApi }) =>
         DefaultEntityPresentationApi.create({ catalogApi }),
-    }),
+    }) }),
   ],
   routes: {
     catalogIndex: rootRouteRef,

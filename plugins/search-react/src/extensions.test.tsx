@@ -25,17 +25,17 @@ import {
   mockApis,
 } from '@backstage/test-utils';
 import {
-  createPlugin,
   BackstagePlugin,
   analyticsApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { SearchResult, SearchDocument } from '@backstage/plugin-search-common';
 
 import {
   SearchResultListItemExtensions,
   createSearchResultListItemExtension,
   SearchResultListItemExtensionOptions,
-} from './extensions';
+} from './extensions';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 const analyticsApiMock = mockApis.analytics();
 
@@ -126,7 +126,7 @@ describe('extensions', () => {
   });
 
   it('Could be used as simple components', async () => {
-    const plugin = createPlugin({ id: 'plugin' });
+    const plugin = createFrontendPlugin({ pluginId: 'plugin' });
     const DefaultSearchResultListItemExtension = createExtension(plugin);
 
     await renderInTestApp(
@@ -149,7 +149,7 @@ describe('extensions', () => {
   });
 
   it('use default options for rendering results', async () => {
-    const plugin = createPlugin({ id: 'plugin' });
+    const plugin = createFrontendPlugin({ pluginId: 'plugin' });
     const DefaultSearchResultListItemExtension = createExtension(plugin);
 
     await renderInTestApp(
@@ -166,7 +166,7 @@ describe('extensions', () => {
   });
 
   it('use custom options for rendering results', async () => {
-    const plugin = createPlugin({ id: 'plugin' });
+    const plugin = createFrontendPlugin({ pluginId: 'plugin' });
     const DefaultSearchResultListItemExtension = createExtension(plugin);
     const ExploreSearchResultListItemExtension = createExtension(plugin, {
       predicate: (result: SearchResult) => result.type === 'explore',

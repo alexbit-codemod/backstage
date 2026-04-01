@@ -15,10 +15,11 @@
  */
 
 import {
+  ApiBlueprint,
   ApiRef,
-  createApiRef,
   AuthRequestOptions,
-} from '@backstage/core-plugin-api';
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * The options that control a {@link ScmAuthApi.getCredentials} call.

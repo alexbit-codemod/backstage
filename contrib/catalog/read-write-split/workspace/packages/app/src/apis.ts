@@ -1,4 +1,6 @@
-import { AnyApiFactory } from '@backstage/core-plugin-api';
+import {
+  AnyApiFactory,
+} from "@backstage/frontend-plugin-api";
 import { catalogApiFactory } from './catalogApi';
 
 // This file is already present in a typical Backstage app. We are just adding

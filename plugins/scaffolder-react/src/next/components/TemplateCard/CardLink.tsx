@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { IconComponent } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+} from "@backstage/frontend-plugin-api";
 import { Link } from '@backstage/core-components';
 import { makeStyles } from '@material-ui/core/styles';
 

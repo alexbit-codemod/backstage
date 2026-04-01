@@ -19,7 +19,7 @@ import {
   DiscoveryApi,
   OAuthRequestApi,
   OAuthRequester,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { openLoginPopup } from '../loginPopup';
 import {
   AuthConnector,

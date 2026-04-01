@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 import { CatalogIcon, DocsIcon } from '@backstage/core-components';
-import { useApi, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useApi,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import {
   CATALOG_FILTER_EXISTS,
   catalogApiRef,

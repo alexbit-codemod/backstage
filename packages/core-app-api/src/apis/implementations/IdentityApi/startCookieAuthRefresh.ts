@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-import { DiscoveryApi, ErrorApi, FetchApi } from '@backstage/core-plugin-api';
+import {
+  DiscoveryApi,
+  ErrorApi,
+  FetchApi,
+} from "@backstage/frontend-plugin-api";
 
 const PLUGIN_ID = 'app';
 const CHANNEL_ID = `${PLUGIN_ID}-auth-cookie-expires-at`;

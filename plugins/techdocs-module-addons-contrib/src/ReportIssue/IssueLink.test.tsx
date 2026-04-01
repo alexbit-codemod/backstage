@@ -16,7 +16,9 @@
 
 import { screen, fireEvent, waitFor } from '@testing-library/react';
 
-import { analyticsApiRef } from '@backstage/core-plugin-api';
+import {
+  analyticsApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   mockApis,
   TestApiProvider,

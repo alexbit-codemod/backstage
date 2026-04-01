@@ -37,7 +37,7 @@ import {
   discoveryApiRef,
   fetchApiRef,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 export const TodoListPage = () => {
   const discoveryApi = useApi(discoveryApiRef);

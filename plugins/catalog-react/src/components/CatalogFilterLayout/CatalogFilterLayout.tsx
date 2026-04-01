@@ -24,7 +24,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Theme, useTheme } from '@material-ui/core/styles';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { catalogReactTranslationRef } from '../../translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 
 /** @public */
 export const Filters = (props: {

@@ -23,7 +23,9 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import useAsync from 'react-use/esm/useAsync';
 import Popover from '@material-ui/core/Popover';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { ResponseErrorPanel } from '@backstage/core-components';
 import { Entity, GroupEntity } from '@backstage/catalog-model';
 import { GroupListPickerButton } from './GroupListPickerButton';

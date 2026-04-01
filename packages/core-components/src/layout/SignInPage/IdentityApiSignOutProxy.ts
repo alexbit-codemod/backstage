@@ -18,7 +18,7 @@ import {
   BackstageUserIdentity,
   IdentityApi,
   ProfileInfo,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 // Similar to the AppIdentityApi we provide backwards compatibility for a limited time
 type CompatibilityIdentityApi = IdentityApi & {

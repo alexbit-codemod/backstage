@@ -17,7 +17,9 @@
 import tlr, { render, RenderResult } from '@testing-library/react';
 import { default as React, ReactNode } from 'react';
 import { LocalStorageFeatureFlags } from '../apis';
-import { featureFlagsApiRef } from '@backstage/core-plugin-api';
+import {
+  featureFlagsApiRef,
+} from "@backstage/frontend-plugin-api";
 import { AppContext } from '../app';
 import { AppContextProvider } from '../app/AppContext';
 

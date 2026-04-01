@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 import {
-  createApiFactory,
+  ApiBlueprint,
   createComponentExtension,
-  createPlugin,
   discoveryApiRef,
   identityApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { signalApiRef } from '@backstage/plugin-signals-react';
-import { SignalClient } from './api/SignalClient';
+import { SignalClient } from './api/SignalClient';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 /** @public */
-export const signalsPlugin = createPlugin({
-  id: 'signals',
+export const signalsPlugin = createFrontendPlugin({
+  pluginId: 'signals',
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: signalApiRef,
       deps: {
         identity: identityApiRef,
@@ -39,7 +39,7 @@ export const signalsPlugin = createPlugin({
           discoveryApi,
         });
       },
-    }),
+    }) }),
   ],
 });
 

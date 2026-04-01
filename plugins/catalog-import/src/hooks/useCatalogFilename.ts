@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { useApi, configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { getCatalogFilename } from '../components/helpers';
 
 export function useCatalogFilename(): string {

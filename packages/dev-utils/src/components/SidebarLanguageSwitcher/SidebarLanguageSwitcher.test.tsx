@@ -20,7 +20,7 @@ import ObservableImpl from 'zen-observable';
 import {
   AppLanguageApi,
   appLanguageApiRef,
-} from '@backstage/core-plugin-api/alpha';
+} from "@backstage/frontend-plugin-api";
 import { SidebarLanguageSwitcher } from './SidebarLanguageSwitcher';
 
 describe('SidebarLanguageSwitcher', () => {

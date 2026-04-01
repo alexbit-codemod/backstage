@@ -15,11 +15,11 @@
  */
 
 import {
+  FeatureFlag,
   FeatureFlagState,
   FeatureFlagsApi,
-  FeatureFlag,
   FeatureFlagsSaveOptions,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 export function validateFlagName(name: string): void {
   if (name.length < 3) {

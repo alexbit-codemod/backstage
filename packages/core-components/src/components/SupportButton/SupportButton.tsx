@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-import { configApiRef, useApi, useApp } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+  useApp,
+} from "@backstage/frontend-plugin-api";
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';

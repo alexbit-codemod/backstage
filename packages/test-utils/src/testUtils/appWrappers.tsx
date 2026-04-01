@@ -27,17 +27,17 @@ import MockIcon from '@material-ui/icons/AcUnit';
 import { AppIcons, createSpecializedApp } from '@backstage/core-app-api';
 import {
   AppComponents,
-  attachComponentData,
   BootErrorPageProps,
-  createRouteRef,
   ExternalRouteRef,
   IconComponent,
   RouteRef,
-} from '@backstage/core-plugin-api';
+  attachComponentData,
+} from "@backstage/frontend-plugin-api";
 import { MatcherFunction, RenderResult } from '@testing-library/react';
 import { LegacyRootOption, renderWithEffects } from './testingLibrary';
 import { defaultApis } from './defaultApis';
-import { mockApis } from './mockApis';
+import { mockApis } from './mockApis';import { createRouteRef } from '@backstage/frontend-plugin-api';
+
 
 const mockIcons = {
   'kind:api': MockIcon,
@@ -192,7 +192,7 @@ export function createTestAppWrapper(
       // Allow external route refs to be bound to paths as well, for convenience.
       // We work around it by creating and binding an absolute ref to the external one.
       if (isExternalRouteRef(routeRef)) {
-        const absoluteRef = createRouteRef({ id: 'id' });
+        const absoluteRef = createRouteRef();
         boundRoutes.set(routeRef, absoluteRef);
         attachComponentData(Page, 'core.mountPoint', absoluteRef);
       } else {

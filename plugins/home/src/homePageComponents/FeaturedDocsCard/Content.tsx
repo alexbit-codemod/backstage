@@ -27,7 +27,9 @@ import {
   catalogApiRef,
   EntityDisplayName,
 } from '@backstage/plugin-catalog-react';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { EntityFilterQuery } from '@backstage/catalog-client';
 
 import Typography from '@material-ui/core/Typography';

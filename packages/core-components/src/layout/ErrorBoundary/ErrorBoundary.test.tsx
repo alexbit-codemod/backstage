@@ -23,7 +23,9 @@ import {
   TestApiProvider,
   withLogCollector,
 } from '@backstage/test-utils';
-import { errorApiRef } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+} from "@backstage/frontend-plugin-api";
 
 type BombProps = {
   shouldThrow?: boolean;

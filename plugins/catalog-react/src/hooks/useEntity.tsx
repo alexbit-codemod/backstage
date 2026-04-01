@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import { Entity, stringifyEntityRef } from '@backstage/catalog-model';
-import { AnalyticsContext } from '@backstage/core-plugin-api';
+import {
+  AnalyticsContext,
+} from "@backstage/frontend-plugin-api";
 import {
   createVersionedContext,
   createVersionedValueMap,

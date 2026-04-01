@@ -19,7 +19,9 @@ import {
   createExtensionBlueprint,
   ExtensionBoundary,
 } from '@backstage/frontend-plugin-api';
-import { attachComponentData } from '@backstage/core-plugin-api';
+import {
+  attachComponentData,
+} from "@backstage/frontend-plugin-api";
 import {
   CardExtension,
   CardExtensionProps,

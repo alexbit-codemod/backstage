@@ -40,7 +40,9 @@ import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { coreComponentsTranslationRef } from '../../translation';
 
 const useStyles = makeStyles((theme: Theme) => ({

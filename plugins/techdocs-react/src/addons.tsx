@@ -18,12 +18,12 @@ import { PropsWithChildren, ComponentType, useCallback } from 'react';
 import { useOutlet } from 'react-router-dom';
 
 import {
-  attachComponentData,
-  createReactExtension,
   ElementCollection,
   Extension,
+  attachComponentData,
+  createReactExtension,
   useElementFilter,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 import { TechDocsAddonLocations, TechDocsAddonOptions } from './types';
 

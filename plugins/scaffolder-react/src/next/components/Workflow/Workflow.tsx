@@ -21,7 +21,11 @@ import {
   MarkdownContent,
   Progress,
 } from '@backstage/core-components';
-import { errorApiRef, useAnalytics, useApi } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+  useAnalytics,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import { ReviewStepProps } from '@backstage/plugin-scaffolder-react';
 import { JsonValue } from '@backstage/types';

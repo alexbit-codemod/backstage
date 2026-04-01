@@ -22,11 +22,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import SignOutIcon from '@material-ui/icons/MeetingRoom';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {
-  identityApiRef,
   errorApiRef,
-  useApi,
+  identityApiRef,
   useAnalytics,
-} from '@backstage/core-plugin-api';
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import { userSettingsTranslationRef } from '../../translation';
 

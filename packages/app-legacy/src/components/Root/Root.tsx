@@ -43,7 +43,9 @@ import {
 } from '@backstage/core-components';
 import { MyGroupsSidebarItem } from '@backstage/plugin-org';
 import { SearchModal } from '../search/SearchModal';
-import { useApp } from '@backstage/core-plugin-api';
+import {
+  useApp,
+} from "@backstage/frontend-plugin-api";
 import BuildIcon from '@material-ui/icons/Build';
 import { NotificationsSidebarItem } from '@backstage/plugin-notifications';
 import UpdateIcon from '@material-ui/icons/Update';

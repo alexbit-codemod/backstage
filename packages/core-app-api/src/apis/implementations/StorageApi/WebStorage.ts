@@ -15,10 +15,10 @@
  */
 
 import {
+  ErrorApi,
   StorageApi,
   StorageValueSnapshot,
-  ErrorApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { JsonValue, Observable } from '@backstage/types';
 import ObservableImpl from 'zen-observable';
 

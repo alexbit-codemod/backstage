@@ -15,9 +15,9 @@
  */
 
 import {
-  ProfileInfo,
   BackstageIdentityResponse,
-} from '@backstage/core-plugin-api';
+  ProfileInfo,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Session information for Bitbucket auth.

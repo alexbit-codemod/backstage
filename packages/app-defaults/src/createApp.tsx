@@ -19,7 +19,7 @@ import {
   AppTheme,
   BackstagePlugin,
   IconComponent,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   AppComponents,
   AppOptions,

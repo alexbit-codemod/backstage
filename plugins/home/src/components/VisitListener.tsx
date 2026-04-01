@@ -18,7 +18,9 @@ import { ReactNode, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { visitsApiRef } from '../api';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { stringifyEntityRef } from '@backstage/catalog-model';
 
 /**

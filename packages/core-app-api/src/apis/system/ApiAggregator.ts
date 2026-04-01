@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { ApiRef, ApiHolder } from '@backstage/core-plugin-api';
+import {
+  ApiHolder,
+  ApiRef,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * An ApiHolder that queries multiple other holders from for

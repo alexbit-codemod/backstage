@@ -15,16 +15,16 @@
  */
 
 import {
-  googleAuthApiRef,
-  gitlabAuthApiRef,
-  oktaAuthApiRef,
-  githubAuthApiRef,
-  microsoftAuthApiRef,
-  oneloginAuthApiRef,
   bitbucketAuthApiRef,
   bitbucketServerAuthApiRef,
+  githubAuthApiRef,
+  gitlabAuthApiRef,
+  googleAuthApiRef,
+  microsoftAuthApiRef,
+  oktaAuthApiRef,
+  oneloginAuthApiRef,
   openshiftAuthApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 export const providers = [
   {

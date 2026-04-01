@@ -15,17 +15,16 @@
  */
 
 import {
-  createExternalRouteRef,
-  createPlugin,
   createRouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { collectRouteIds, resolveRouteBindings } from './resolveRouteBindings';
-import { mockApis } from '@backstage/test-utils';
+import { mockApis } from '@backstage/test-utils';import { createExternalRouteRef, createRouteRef , createFrontendPlugin} from '@backstage/frontend-plugin-api';
+
 
 describe('resolveRouteBindings', () => {
   it('runs happy path', () => {
-    const external = { myRoute: createExternalRouteRef({ id: '1' }) };
-    const ref = createRouteRef({ id: 'ref-1' });
+    const external = { myRoute: createExternalRouteRef({  }) };
+    const ref = createRouteRef();
     const result = resolveRouteBindings(
       ({ bind }) => {
         bind(external, { myRoute: ref });
@@ -38,8 +37,8 @@ describe('resolveRouteBindings', () => {
   });
 
   it('throws on unknown keys', () => {
-    const external = { myRoute: createExternalRouteRef({ id: '2' }) };
-    const ref = createRouteRef({ id: 'ref-2' });
+    const external = { myRoute: createExternalRouteRef({  }) };
+    const ref = createRouteRef();
     expect(() =>
       resolveRouteBindings(
         ({ bind }) => {
@@ -52,8 +51,8 @@ describe('resolveRouteBindings', () => {
   });
 
   it('reads bindings from config', () => {
-    const mySource = createExternalRouteRef({ id: 'test' });
-    const myTarget = createRouteRef({ id: 'test' });
+    const mySource = createExternalRouteRef({  });
+    const myTarget = createRouteRef();
     const result = resolveRouteBindings(
       () => {},
       mockApis.config({
@@ -62,8 +61,8 @@ describe('resolveRouteBindings', () => {
         },
       }),
       [
-        createPlugin({
-          id: 'test',
+        createFrontendPlugin({
+          pluginId: 'test',
           routes: {
             myTarget,
           },
@@ -78,8 +77,8 @@ describe('resolveRouteBindings', () => {
   });
 
   it('prioritizes callback routes over config', () => {
-    const mySource = createExternalRouteRef({ id: 'test', optional: true });
-    const myTarget = createRouteRef({ id: 'test' });
+    const mySource = createExternalRouteRef({  });
+    const myTarget = createRouteRef();
 
     expect(
       resolveRouteBindings(
@@ -92,8 +91,8 @@ describe('resolveRouteBindings', () => {
           },
         }),
         [
-          createPlugin({
-            id: 'test',
+          createFrontendPlugin({
+            pluginId: 'test',
             routes: {
               myTarget,
             },
@@ -114,8 +113,8 @@ describe('resolveRouteBindings', () => {
           data: { app: { routes: { bindings: { 'test.mySource': false } } } },
         }),
         [
-          createPlugin({
-            id: 'test',
+          createFrontendPlugin({
+            pluginId: 'test',
             routes: {
               myTarget,
             },
@@ -174,10 +173,10 @@ describe('resolveRouteBindings', () => {
           },
         }),
         [
-          createPlugin({
-            id: 'test',
+          createFrontendPlugin({
+            pluginId: 'test',
             externalRoutes: {
-              mySource: createExternalRouteRef({ id: 'test' }),
+              mySource: createExternalRouteRef({  }),
             },
           }),
         ],
@@ -189,13 +188,13 @@ describe('resolveRouteBindings', () => {
 
   it('can have default targets, but at the lowest priority', () => {
     const source = createExternalRouteRef({
-      id: 'test',
+      ,
       defaultTarget: 'test.target1',
     });
-    const target1 = createRouteRef({ id: 'test' });
-    const target2 = createRouteRef({ id: 'test' });
-    const plugin = createPlugin({
-      id: 'test',
+    const target1 = createRouteRef();
+    const target2 = createRouteRef();
+    const plugin = createFrontendPlugin({
+      pluginId: 'test',
       routes: {
         target1,
         target2,
@@ -238,11 +237,11 @@ describe('resolveRouteBindings', () => {
 
 describe('collectRouteIds', () => {
   it('should assign IDs to routes', () => {
-    const ref = createRouteRef({ id: 'ignored' });
-    const extRef = createExternalRouteRef({ id: 'ignored' });
+    const ref = createRouteRef();
+    const extRef = createExternalRouteRef({  });
 
     const collected = collectRouteIds([
-      createPlugin({ id: 'test', routes: { ref }, externalRoutes: { extRef } }),
+      createFrontendPlugin({ pluginId: 'test', routes: { ref }, externalRoutes: { extRef } }),
     ]);
     expect(Object.fromEntries(collected.routes)).toEqual({
       'test.ref': ref,
@@ -254,12 +253,12 @@ describe('collectRouteIds', () => {
 
   it('can disable external routes that have defaults', () => {
     const source = createExternalRouteRef({
-      id: 'test',
+      ,
       defaultTarget: 'test.target1',
     });
-    const target1 = createRouteRef({ id: 'test' });
-    const plugin = createPlugin({
-      id: 'test',
+    const target1 = createRouteRef();
+    const plugin = createFrontendPlugin({
+      pluginId: 'test',
       routes: { target1 },
       externalRoutes: { source },
     });

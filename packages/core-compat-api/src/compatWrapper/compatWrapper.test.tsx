@@ -34,9 +34,8 @@ import { screen } from '@testing-library/react';
 import { compatWrapper } from './compatWrapper';
 import {
   useApp,
-  useRouteRef as useOldRouteRef,
-  createRouteRef as createOldRouteRef,
-} from '@backstage/core-plugin-api';
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { convertLegacyRouteRef } from '../convertLegacyRouteRef';
 import { renderInTestApp as renderInOldTestApp } from '@backstage/test-utils';
 

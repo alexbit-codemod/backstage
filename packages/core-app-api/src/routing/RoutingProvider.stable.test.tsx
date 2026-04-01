@@ -25,20 +25,19 @@ import {
   traverseElementTree,
 } from '../extensions/traversal';
 import {
-  createPlugin,
-  useRouteRef,
-  createRoutableExtension,
-  createRouteRef,
-  createExternalRouteRef,
-  RouteRef,
   ExternalRouteRef,
-} from '@backstage/core-plugin-api';
+  RouteRef,
+  createExternalRouteRef,
+  createRoutableExtension,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { RoutingProvider } from './RoutingProvider';
 import { routingV2Collector } from './collectors';
 import { validateRouteParameters } from './validation';
 import { RouteResolver } from './RouteResolver';
 import { AnyRouteRef, RouteFunc } from './types';
-import { AppContextProvider } from '../app/AppContext';
+import { AppContextProvider } from '../app/AppContext';import { createRouteRef, createExternalRouteRef , createFrontendPlugin} from '@backstage/frontend-plugin-api';
+
 
 jest.mock('react-router', () => jest.requireActual('react-router-stable'));
 jest.mock('react-router-dom', () =>
@@ -52,20 +51,19 @@ const MockComponent = ({ children }: PropsWithChildren<{}>) => (
   </>
 );
 
-const plugin = createPlugin({ id: 'my-plugin' });
+const plugin = createFrontendPlugin({ pluginId: 'my-plugin' });
 
-const refPage1 = createRouteRef({ id: 'refPage1' });
-const refSource1 = createRouteRef({ id: 'refSource1' });
-const refPage2 = createRouteRef({ id: 'refPage2' });
-const refSource2 = createRouteRef({ id: 'refSource2' });
-const refPage3 = createRouteRef({ id: 'refPage3', params: ['x'] });
-const eRefA = createExternalRouteRef({ id: '1' });
-const eRefB = createExternalRouteRef({ id: '2' });
-const eRefC = createExternalRouteRef({ id: '3', params: ['y'] });
-const eRefD = createExternalRouteRef({ id: '4', optional: true });
+const refPage1 = createRouteRef();
+const refSource1 = createRouteRef();
+const refPage2 = createRouteRef();
+const refSource2 = createRouteRef();
+const refPage3 = createRouteRef({ , params: ['x'] });
+const eRefA = createExternalRouteRef({  });
+const eRefB = createExternalRouteRef({  });
+const eRefC = createExternalRouteRef({ , params: ['y'] });
+const eRefD = createExternalRouteRef({  });
 const eRefE = createExternalRouteRef({
-  id: '5',
-  optional: true,
+  ,
   params: ['z'],
 });
 
@@ -375,9 +373,9 @@ describe('v1 consumer', () => {
   }
 
   it('should resolve routes', () => {
-    const routeRef1 = createRouteRef({ id: 'refPage1' });
-    const routeRef2 = createRouteRef({ id: 'refSource1' });
-    const routeRef3 = createRouteRef({ id: 'refPage2', params: ['x'] });
+    const routeRef1 = createRouteRef();
+    const routeRef2 = createRouteRef();
+    const routeRef3 = createRouteRef({ , params: ['x'] });
 
     const renderedHook = renderHook(
       ({ routeRef }) => useMockRouteRefV1(routeRef, '/'),

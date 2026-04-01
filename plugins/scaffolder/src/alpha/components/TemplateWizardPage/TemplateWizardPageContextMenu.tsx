@@ -24,7 +24,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Edit from '@material-ui/icons/Edit';
 import MoreVert from '@material-ui/icons/MoreVert';
 import { SyntheticEvent, useState } from 'react';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { scaffolderTranslationRef } from '../../../translation';
 import { Link } from '@backstage/core-components';
 

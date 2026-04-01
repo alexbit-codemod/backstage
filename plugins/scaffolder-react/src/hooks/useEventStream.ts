@@ -16,7 +16,9 @@
 import { useImmerReducer } from 'use-immer';
 import { useEffect } from 'react';
 
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { Subscription } from '@backstage/types';
 import {
   ScaffolderTaskStatus,

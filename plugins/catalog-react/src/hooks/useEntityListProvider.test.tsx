@@ -22,7 +22,7 @@ import {
   errorApiRef,
   identityApiRef,
   storageApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { translationApiRef } from '@backstage/core-plugin-api/alpha';
 import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';
 import { TestApiProvider } from '@backstage/test-utils';

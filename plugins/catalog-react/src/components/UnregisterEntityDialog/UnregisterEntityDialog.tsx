@@ -23,7 +23,11 @@ import {
   useUnregisterEntityDialogState,
 } from './useUnregisterEntityDialogState';
 
-import { alertApiRef, configApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { Progress, ResponseErrorPanel } from '@backstage/core-components';
 import { assertError } from '@backstage/errors';
 import { catalogReactTranslationRef } from '../../translation';

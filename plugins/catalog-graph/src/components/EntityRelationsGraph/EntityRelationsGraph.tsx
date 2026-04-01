@@ -23,7 +23,10 @@ import {
   DependencyGraph,
   DependencyGraphTypes,
 } from '@backstage/core-components';
-import { errorApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import classNames from 'classnames';

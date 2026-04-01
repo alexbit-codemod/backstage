@@ -24,7 +24,9 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import { useState } from 'react';
 import { useEntityList } from '../../hooks';
 import { catalogReactTranslationRef } from '../../translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { CatalogAutocomplete } from '../CatalogAutocomplete';
 
 /** @public */

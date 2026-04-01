@@ -17,7 +17,10 @@
 import { QueryEntitiesInitialRequest } from '@backstage/catalog-client';
 import { RELATION_OWNED_BY } from '@backstage/catalog-model';
 import { TableColumn, TableProps } from '@backstage/core-components';
-import { identityApiRef, storageApiRef } from '@backstage/core-plugin-api';
+import {
+  identityApiRef,
+  storageApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   catalogApiRef,
   entityRouteRef,

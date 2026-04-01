@@ -15,10 +15,12 @@
  */
 
 import { MouseEvent, useState } from 'react';
-import { appLanguageApiRef } from '@backstage/core-plugin-api/alpha';
+import {
+  appLanguageApiRef,
+} from "@backstage/frontend-plugin-api";
 import TranslateIcon from '@material-ui/icons/Translate';
 import ListItemText from '@material-ui/core/ListItemText';
-import { useApi } from '@backstage/core-plugin-api';
+import { useApi } from '@backstage/frontend-plugin-api';
 import useObservable from 'react-use/esm/useObservable';
 import { SidebarItem } from '@backstage/core-components';
 import Menu from '@material-ui/core/Menu';

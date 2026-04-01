@@ -15,7 +15,10 @@
  */
 
 import { CompoundEntityRef } from '@backstage/catalog-model';
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 import { PartialEntity } from '../types';
 
 /**
@@ -23,9 +26,7 @@ import { PartialEntity } from '../types';
  *
  * @public
  */
-export const catalogImportApiRef = createApiRef<CatalogImportApi>({
-  id: 'plugin.catalog-import.service',
-});
+export const catalogImportApiRef = createApiRef<CatalogImportApi>().with({ id: 'plugin.catalog-import.service', pluginId: "catalog-import" });
 
 /**
  * Result of the analysis.

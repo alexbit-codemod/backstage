@@ -21,7 +21,10 @@ import {
   Page,
   SupportButton,
 } from '@backstage/core-components';
-import { configApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';

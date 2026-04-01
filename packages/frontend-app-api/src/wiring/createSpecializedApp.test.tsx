@@ -40,11 +40,11 @@ import {
 } from './prepareSpecializedApp';
 import { mockApis, TestApiRegistry } from '@backstage/test-utils';
 import {
+  IdentityApi,
   configApiRef,
   featureFlagsApiRef,
-  IdentityApi,
   identityApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { MemoryRouter } from 'react-router-dom';
 import { ApiProvider, ConfigReader } from '@backstage/core-app-api';
 import { ComponentType, Fragment, useEffect, useState } from 'react';

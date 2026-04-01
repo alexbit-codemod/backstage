@@ -19,7 +19,10 @@ import {
   parseEntityRef,
   stringifyEntityRef,
 } from '@backstage/catalog-model';
-import { useAnalytics, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useAnalytics,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import {
   EntityInfoCard,
   humanizeEntityRef,

@@ -25,14 +25,14 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import {
   ApiRef,
+  IconComponent,
+  ProfileInfo,
+  ProfileInfoApi,
   SessionApi,
   SessionState,
-  ProfileInfoApi,
-  ProfileInfo,
-  useApi,
   errorApiRef,
-  IconComponent,
-} from '@backstage/core-plugin-api';
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { IconElement } from '@backstage/frontend-plugin-api';
 import { ProviderSettingsAvatar } from './ProviderSettingsAvatar';
 import { useTranslationRef } from '@backstage/frontend-plugin-api';

@@ -23,7 +23,11 @@ import {
   TableColumn,
   TableProps,
 } from '@backstage/core-components';
-import { configApiRef, useApi, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { HeaderPage } from '@backstage/ui';
 import {
   CatalogFilterLayout,

@@ -25,7 +25,9 @@ jest.mock('../TemplateGroup/TemplateGroup', () => ({
 import { useEntityList } from '@backstage/plugin-catalog-react';
 import { TemplateGroups } from './TemplateGroups';
 import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
-import { errorApiRef } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+} from "@backstage/frontend-plugin-api";
 import { TemplateGroup } from '../TemplateGroup/TemplateGroup';
 
 describe('TemplateGroups', () => {

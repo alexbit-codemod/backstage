@@ -20,7 +20,11 @@ import Box from '@material-ui/core/Box';
 import LanguageIcon from '@material-ui/icons/Language';
 import { ScaffolderTaskOutput } from '@backstage/plugin-scaffolder-react';
 import { IconLink } from './IconLink';
-import { IconComponent, useApp, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+  useApp,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 
 type TaskPageLinksProps = {
   output: ScaffolderTaskOutput;

@@ -15,7 +15,9 @@
  */
 import useAsync from 'react-use/esm/useAsync';
 
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesApiRef } from '@backstage/plugin-kubernetes-react';
 import type { IAPIGroupList } from '@kubernetes-models/apimachinery/apis/meta/v1';
 

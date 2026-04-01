@@ -16,13 +16,13 @@
 import { rootRouteRef } from './routes';
 
 import {
-  createPlugin,
   createRoutableExtension,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 /** @public */
-export const configSchemaPlugin = createPlugin({
-  id: 'config-schema',
+export const configSchemaPlugin = createFrontendPlugin({
+  pluginId: 'config-schema',
   routes: {
     root: rootRouteRef,
   },

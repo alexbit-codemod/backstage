@@ -15,9 +15,9 @@
  */
 
 import {
+  RouteRef,
   getComponentData,
-  RouteRef as LegacyRouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   ExtensionDefinition,
   PageBlueprint,

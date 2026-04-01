@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { AnyApiRef } from '@backstage/core-plugin-api';
+import {
+  AnyApiRef,
+} from "@backstage/frontend-plugin-api";
 import { JsonObject, JsonValue } from '@backstage/types';
 import { OpaqueFormDecorator } from '@internal/scaffolder';
 import { z } from 'zod/v3';

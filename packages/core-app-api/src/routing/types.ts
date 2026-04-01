@@ -15,11 +15,11 @@
  */
 
 import {
+  BackstagePlugin,
+  ExternalRouteRef,
   RouteRef,
   SubRouteRef,
-  ExternalRouteRef,
-  BackstagePlugin,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { getOrCreateGlobalSingleton } from '@backstage/version-bridge';
 
 type RouteRefType = Exclude<

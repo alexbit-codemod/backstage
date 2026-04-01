@@ -39,50 +39,50 @@ import {
 } from '@backstage/core-app-api';
 
 import {
-  createApiFactory,
+  ApiBlueprint,
   alertApiRef,
   analyticsApiRef,
-  errorApiRef,
-  discoveryApiRef,
-  fetchApiRef,
-  identityApiRef,
-  oauthRequestApiRef,
-  googleAuthApiRef,
-  githubAuthApiRef,
-  oktaAuthApiRef,
-  gitlabAuthApiRef,
-  microsoftAuthApiRef,
-  storageApiRef,
-  configApiRef,
-  oneloginAuthApiRef,
+  atlassianAuthApiRef,
   bitbucketAuthApiRef,
   bitbucketServerAuthApiRef,
-  atlassianAuthApiRef,
-  vmwareCloudAuthApiRef,
+  configApiRef,
+  discoveryApiRef,
+  errorApiRef,
+  fetchApiRef,
+  githubAuthApiRef,
+  gitlabAuthApiRef,
+  googleAuthApiRef,
+  identityApiRef,
+  microsoftAuthApiRef,
+  oauthRequestApiRef,
+  oktaAuthApiRef,
+  oneloginAuthApiRef,
   openshiftAuthApiRef,
-} from '@backstage/core-plugin-api';
+  storageApiRef,
+  vmwareCloudAuthApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   permissionApiRef,
   IdentityPermissionApi,
 } from '@backstage/plugin-permission-react';
 
 export const apis = [
-  createApiFactory({
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: discoveryApiRef,
     deps: { configApi: configApiRef },
     factory: ({ configApi }) => FrontendHostDiscovery.fromConfig(configApi),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: alertApiRef,
     deps: {},
     factory: () => new AlertApiForwarder(),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: analyticsApiRef,
     deps: {},
     factory: () => new NoOpAnalyticsApi(),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: errorApiRef,
     deps: { alertApi: alertApiRef },
     factory: ({ alertApi }) => {
@@ -90,13 +90,13 @@ export const apis = [
       UnhandledErrorForwarder.forward(errorApi, { hidden: false });
       return errorApi;
     },
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: storageApiRef,
     deps: { errorApi: errorApiRef },
     factory: ({ errorApi }) => WebStorage.create({ errorApi }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: fetchApiRef,
     deps: {
       configApi: configApiRef,
@@ -117,13 +117,13 @@ export const apis = [
         ],
       });
     },
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: oauthRequestApiRef,
     deps: {},
     factory: () => new OAuthRequestManager(),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: googleAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -137,8 +137,8 @@ export const apis = [
         oauthRequestApi,
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: microsoftAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -152,8 +152,8 @@ export const apis = [
         oauthRequestApi,
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: githubAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -168,8 +168,8 @@ export const apis = [
         defaultScopes: ['read:user'],
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: oktaAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -183,8 +183,8 @@ export const apis = [
         oauthRequestApi,
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: gitlabAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -198,8 +198,8 @@ export const apis = [
         oauthRequestApi,
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: oneloginAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -213,8 +213,8 @@ export const apis = [
         oauthRequestApi,
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: bitbucketAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -229,8 +229,8 @@ export const apis = [
         defaultScopes: ['account'],
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: bitbucketServerAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -245,8 +245,8 @@ export const apis = [
         defaultScopes: ['REPO_READ'],
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: atlassianAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -261,8 +261,8 @@ export const apis = [
         environment: configApi.getOptionalString('auth.environment'),
       });
     },
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: vmwareCloudAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -277,8 +277,8 @@ export const apis = [
         environment: configApi.getOptionalString('auth.environment'),
       });
     },
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: openshiftAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -293,8 +293,8 @@ export const apis = [
         environment: configApi.getOptionalString('auth.environment'),
       });
     },
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: permissionApiRef,
     deps: {
       discovery: discoveryApiRef,
@@ -303,5 +303,5 @@ export const apis = [
     },
     factory: ({ config, discovery, identity }) =>
       IdentityPermissionApi.create({ config, discovery, identity }),
-  }),
+  }) }),
 ];

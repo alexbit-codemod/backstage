@@ -29,7 +29,9 @@ import { DryRunResultsSplitView } from './DryRunResultsSplitView';
 import { FileBrowser } from '../../../../components/FileBrowser';
 import { TaskPageLinks } from './TaskPageLinks';
 import { TaskStatusStepper } from './TaskStatusStepper';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { scaffolderTranslationRef } from '../../../../translation';
 
 const useStyles = makeStyles({

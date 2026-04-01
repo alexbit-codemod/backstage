@@ -16,10 +16,10 @@
 
 import {
   OAuthRequestApi,
-  PendingOAuthRequest,
   OAuthRequester,
   OAuthRequesterOptions,
-} from '@backstage/core-plugin-api';
+  PendingOAuthRequest,
+} from "@backstage/frontend-plugin-api";
 import { Observable } from '@backstage/types';
 import { OAuthPendingRequests, PendingRequest } from './OAuthPendingRequests';
 import { PublishSubject } from '../../../lib/subjects';

@@ -17,7 +17,9 @@
 import { screen, waitFor } from '@testing-library/react';
 import { renderInTestApp, TestApiRegistry } from '@backstage/test-utils';
 import userEvent from '@testing-library/user-event';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import { ApiProvider, ConfigReader } from '@backstage/core-app-api';
 import { rootRouteRef } from '../../plugin';
 import {

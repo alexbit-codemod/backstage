@@ -26,7 +26,7 @@ import {
   AppComponents,
   BootErrorPageProps,
   ErrorBoundaryFallbackProps,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 export function OptionallyWrapInRouter({ children }: { children: ReactNode }) {
   if (useInRouterContext()) {

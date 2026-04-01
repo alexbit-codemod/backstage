@@ -21,7 +21,9 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import { searchApiRef } from '../../api';
 import { SearchContextProvider, useSearch } from '../../context';
 import { useDefaultFilterValue, useAsyncFilterValues } from './hooks';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 
 jest.useFakeTimers();
 

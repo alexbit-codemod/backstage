@@ -19,15 +19,15 @@ import { createPlugin } from './Plugin';
 describe('Plugin Feature Flag', () => {
   it('should be able to register and receive feature flags', () => {
     expect(
-      createPlugin({
-        id: 'test',
+      createFrontendPlugin({
+        pluginId: 'test',
         featureFlags: [{ name: 'test' }],
       }).getFeatureFlags(),
     ).toEqual([{ name: 'test' }]);
 
     expect(
-      createPlugin({
-        id: 'test',
+      createFrontendPlugin({
+        pluginId: 'test',
       }).getFeatureFlags(),
     ).toEqual([]);
   });

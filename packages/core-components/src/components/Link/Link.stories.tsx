@@ -21,12 +21,13 @@ import {
   NavLink as RouterNavLink,
   Routes,
 } from 'react-router-dom';
-import { createRouteRef, useRouteRef } from '@backstage/core-plugin-api';
-import { wrapInTestApp } from '@backstage/test-utils';
+import {
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
+import { wrapInTestApp } from '@backstage/test-utils';import { createRouteRef } from '@backstage/frontend-plugin-api';
 
-const routeRef = createRouteRef({
-  id: 'storybook.test-route',
-});
+
+const routeRef = createRouteRef();
 
 const Location = () => {
   const location = useLocation();

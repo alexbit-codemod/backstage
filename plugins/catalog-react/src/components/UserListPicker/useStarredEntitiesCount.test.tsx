@@ -17,7 +17,9 @@
 import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';
 import { EntityListProvider, useStarredEntities } from '../../hooks';
 import { catalogApiRef } from '../../api';
-import { ApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiRef,
+} from "@backstage/frontend-plugin-api";
 import { MemoryRouter } from 'react-router-dom';
 import { useStarredEntitiesCount } from './useStarredEntitiesCount';
 import { renderHook, waitFor } from '@testing-library/react';

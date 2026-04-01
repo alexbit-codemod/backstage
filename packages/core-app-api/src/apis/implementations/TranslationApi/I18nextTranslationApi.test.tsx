@@ -15,11 +15,11 @@
  */
 
 import {
+  TranslationSnapshot,
   createTranslationMessages,
   createTranslationRef,
   createTranslationResource,
-  TranslationSnapshot,
-} from '@backstage/core-plugin-api/alpha';
+} from "@backstage/frontend-plugin-api";
 import { Observable } from '@backstage/types';
 import { AppLanguageSelector } from '../AppLanguageApi';
 import { I18nextTranslationApi } from './I18nextTranslationApi';

@@ -23,7 +23,9 @@ import {
   EmptyState,
   ResponseErrorPanel,
 } from '@backstage/core-components';
-import { AnalyticsContext } from '@backstage/core-plugin-api';
+import {
+  AnalyticsContext,
+} from "@backstage/frontend-plugin-api";
 import { SearchResult } from '@backstage/plugin-search-common';
 
 import { useSearchResultListItemExtensions } from '../../extensions';

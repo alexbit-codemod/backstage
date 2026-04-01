@@ -23,7 +23,10 @@ import {
   EmptyState,
   ResponseErrorPanel,
 } from '@backstage/core-components';
-import { useApi, AnalyticsContext } from '@backstage/core-plugin-api';
+import {
+  AnalyticsContext,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { SearchQuery, SearchResultSet } from '@backstage/plugin-search-common';
 
 import { searchApiRef } from '../../api';

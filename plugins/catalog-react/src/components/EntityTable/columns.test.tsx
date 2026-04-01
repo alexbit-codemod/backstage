@@ -16,7 +16,9 @@
 import { render, screen } from '@testing-library/react';
 import { columnFactories } from './columns';
 import { mockApis, MockErrorApi, TestApiProvider } from '@backstage/test-utils';
-import { errorApiRef } from '@backstage/core-plugin-api';
+import {
+  errorApiRef,
+} from "@backstage/frontend-plugin-api";
 import { translationApiRef } from '@backstage/core-plugin-api/alpha';
 
 describe('columns', () => {

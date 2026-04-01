@@ -21,7 +21,9 @@ import {
   Progress,
   ResponseErrorPanel,
 } from '@backstage/core-components';
-import { useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';

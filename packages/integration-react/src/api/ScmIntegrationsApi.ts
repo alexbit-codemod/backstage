@@ -19,7 +19,11 @@ import {
   ScmIntegrationRegistry,
   ScmIntegrations,
 } from '@backstage/integration';
-import { ApiRef, createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  ApiRef,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Factory class for creating {@link @backstage/integration#ScmIntegrationRegistry} instances.

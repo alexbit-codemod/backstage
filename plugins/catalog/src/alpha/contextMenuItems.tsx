@@ -22,7 +22,11 @@ import FileCopyTwoToneIcon from '@material-ui/icons/FileCopyTwoTone';
 import BugReportIcon from '@material-ui/icons/BugReport';
 import CancelIcon from '@material-ui/icons/Cancel';
 import useCopyToClipboard from 'react-use/esm/useCopyToClipboard';
-import { alertApiRef, useApi, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+  useApi,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import {
   dialogApiRef,
   useTranslationRef,

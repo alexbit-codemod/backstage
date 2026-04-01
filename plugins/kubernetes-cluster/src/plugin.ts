@@ -14,17 +14,14 @@
  * limitations under the License.
  */
 import {
-  createPlugin,
-  createRouteRef,
   createRoutableExtension,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";import { createRouteRef , createFrontendPlugin} from '@backstage/frontend-plugin-api';
 
-export const rootCatalogKubernetesClusterRouteRef = createRouteRef({
-  id: 'kubernetes-cluster',
-});
 
-export const kubernetesClusterPlugin = createPlugin({
-  id: 'kubernetes-cluster',
+export const rootCatalogKubernetesClusterRouteRef = createRouteRef();
+
+export const kubernetesClusterPlugin = createFrontendPlugin({
+  pluginId: 'kubernetes-cluster',
   apis: [],
   routes: {
     entityContent: rootCatalogKubernetesClusterRouteRef,

@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { BackstagePlugin as LegacyBackstagePlugin } from '@backstage/core-plugin-api';
+import {
+  BackstagePlugin,
+} from "@backstage/frontend-plugin-api";
 import {
   ApiBlueprint,
   ExtensionDefinition,

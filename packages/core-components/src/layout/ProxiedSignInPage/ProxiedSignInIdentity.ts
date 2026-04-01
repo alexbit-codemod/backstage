@@ -16,10 +16,10 @@
 
 import {
   BackstageUserIdentity,
-  discoveryApiRef,
   IdentityApi,
   ProfileInfo,
-} from '@backstage/core-plugin-api';
+  discoveryApiRef,
+} from "@backstage/frontend-plugin-api";
 import { ResponseError } from '@backstage/errors';
 import { ProxiedSession, proxiedSessionSchema } from './types';
 

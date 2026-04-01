@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { scaffolderApiRef } from '@backstage/plugin-scaffolder-react';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';

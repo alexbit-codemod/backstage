@@ -15,7 +15,10 @@
  */
 
 import { TableColumn, TableProps } from '@backstage/core-components';
-import { configApiRef, storageApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  storageApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   CatalogTableRow,
   DefaultStarredEntitiesApi,

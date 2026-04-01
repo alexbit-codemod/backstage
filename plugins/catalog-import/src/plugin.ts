@@ -15,24 +15,21 @@
  */
 
 import {
+  ApiBlueprint,
   configApiRef,
-  createApiFactory,
-  createPlugin,
   createRoutableExtension,
-  createRouteRef,
   discoveryApiRef,
   fetchApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   scmAuthApiRef,
   scmIntegrationsApiRef,
 } from '@backstage/integration-react';
 import { catalogApiRef } from '@backstage/plugin-catalog-react';
-import { catalogImportApiRef, CatalogImportClient } from './api';
+import { catalogImportApiRef, CatalogImportClient } from './api';import { createRouteRef , createFrontendPlugin} from '@backstage/frontend-plugin-api';
 
-export const rootRouteRef = createRouteRef({
-  id: 'catalog-import',
-});
+
+export const rootRouteRef = createRouteRef();
 
 /**
  * A plugin that helps the user in importing projects and YAML files into the
@@ -40,10 +37,10 @@ export const rootRouteRef = createRouteRef({
  *
  * @public
  */
-export const catalogImportPlugin = createPlugin({
-  id: 'catalog-import',
+export const catalogImportPlugin = createFrontendPlugin({
+  pluginId: 'catalog-import',
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: catalogImportApiRef,
       deps: {
         discoveryApi: discoveryApiRef,
@@ -69,7 +66,7 @@ export const catalogImportPlugin = createPlugin({
           catalogApi,
           configApi,
         }),
-    }),
+    }) }),
   ],
   routes: {
     importPage: rootRouteRef,

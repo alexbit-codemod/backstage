@@ -20,7 +20,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import YAML from 'yaml';
 import { sortKeys } from './util';
 import { catalogReactTranslationRef } from '../../../translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 
 export function YamlPage(props: { entity: Entity }) {
   const { t } = useTranslationRef(catalogReactTranslationRef);

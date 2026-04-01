@@ -17,7 +17,9 @@
 import { renderInTestApp } from '@backstage/test-utils';
 import { EntityIcon } from './EntityIcon';
 import MuiMemoryIcon from '@material-ui/icons/Memory';
-import { IconComponent } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+} from "@backstage/frontend-plugin-api";
 
 describe('<EntityKindIcon />', () => {
   it('renders without exploding', async () => {

@@ -28,7 +28,7 @@ import {
   ProfileInfoApi,
   SessionApi,
   SessionState,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { Observable } from '@backstage/types';
 import {
   OAuth2CreateOptions,

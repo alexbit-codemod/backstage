@@ -15,7 +15,9 @@
  */
 
 import { stringifyEntityRef } from '@backstage/catalog-model';
-import { StorageApi } from '@backstage/core-plugin-api';
+import {
+  StorageApi,
+} from "@backstage/frontend-plugin-api";
 import { isArray, isString } from 'lodash';
 
 /**

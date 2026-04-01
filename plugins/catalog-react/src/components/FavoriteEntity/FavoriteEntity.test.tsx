@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { storageApiRef } from '@backstage/core-plugin-api';
+import {
+  storageApiRef,
+} from "@backstage/frontend-plugin-api";
 
 import { MockStarredEntitiesApi, starredEntitiesApiRef } from '../../apis';
 import { FavoriteEntity } from './FavoriteEntity';

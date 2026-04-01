@@ -19,7 +19,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { CodeSnippet } from '@backstage/core-components';
 import { catalogTranslationRef } from '../../alpha/translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 
 const ENTITY_YAML = `metadata:
   name: example

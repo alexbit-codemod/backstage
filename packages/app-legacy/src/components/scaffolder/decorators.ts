@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { githubAuthApiRef } from '@backstage/core-plugin-api';
+import {
+  githubAuthApiRef,
+} from "@backstage/frontend-plugin-api";
 import { createScaffolderFormDecorator } from '@backstage/plugin-scaffolder-react/alpha';
 
 export const mockDecorator = createScaffolderFormDecorator({

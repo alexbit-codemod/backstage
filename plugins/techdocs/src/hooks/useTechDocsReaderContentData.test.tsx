@@ -27,7 +27,9 @@ import {
   TestApiProvider,
   mockApis,
 } from '@backstage/test-utils';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 
 const useTechDocsReaderDom = jest.fn();
 jest.mock('../reader/components/TechDocsReaderPageContent/dom', () => ({

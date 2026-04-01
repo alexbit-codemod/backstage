@@ -16,7 +16,9 @@
 
 import { QueryEntitiesInitialRequest } from '@backstage/catalog-client';
 import { parseEntityRef, stringifyEntityRef } from '@backstage/catalog-model';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { compact, isEqual } from 'lodash';
 import { useMemo, useRef } from 'react';
 import useAsync from 'react-use/esm/useAsync';

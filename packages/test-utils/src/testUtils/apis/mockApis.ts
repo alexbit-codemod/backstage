@@ -17,6 +17,7 @@
 import { ConfigReader } from '@backstage/config';
 import {
   AnalyticsApi,
+  ApiBlueprint,
   ApiFactory,
   ApiRef,
   ConfigApi,
@@ -25,11 +26,10 @@ import {
   StorageApi,
   analyticsApiRef,
   configApiRef,
-  createApiFactory,
   discoveryApiRef,
   identityApiRef,
   storageApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   TranslationApi,
   translationApiRef,
@@ -54,11 +54,11 @@ function simpleFactory<TApi, TArgs extends unknown[]>(
   factory: (...args: TArgs) => TApi,
 ): (...args: TArgs) => ApiFactory<TApi, TApi, {}> {
   return (...args) =>
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: ref,
       deps: {},
       factory: () => factory(...args),
-    });
+    }) });
 }
 
 /** @internal */
@@ -78,11 +78,11 @@ function simpleMock<TApi>(
       }
     }
     return Object.assign(mock, {
-      factory: createApiFactory({
+      factory: ApiBlueprint.make({ params: defineParams => defineParams({
         api: ref,
         deps: {},
         factory: () => mock,
-      }),
+      }) }),
     }) as ApiMock<TApi>;
   };
 }

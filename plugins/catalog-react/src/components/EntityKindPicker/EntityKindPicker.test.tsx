@@ -17,7 +17,9 @@
 import { GetEntityFacetsResponse } from '@backstage/catalog-client';
 import { Entity } from '@backstage/catalog-model';
 import { ApiProvider } from '@backstage/core-app-api';
-import { alertApiRef } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+} from "@backstage/frontend-plugin-api";
 import { renderInTestApp, TestApiRegistry } from '@backstage/test-utils';
 import { mockApis } from '@backstage/frontend-test-utils';
 import { fireEvent, waitFor, screen, within } from '@testing-library/react';

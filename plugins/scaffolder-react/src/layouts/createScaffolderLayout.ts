@@ -15,7 +15,10 @@
  */
 
 import { LAYOUTS_KEY, LAYOUTS_WRAPPER_KEY } from './keys';
-import { attachComponentData, Extension } from '@backstage/core-plugin-api';
+import {
+  Extension,
+  attachComponentData,
+} from "@backstage/frontend-plugin-api";
 import type { FormProps as SchemaFormProps } from '@rjsf/core';
 import { PropsWithChildren, ComponentType } from 'react';
 

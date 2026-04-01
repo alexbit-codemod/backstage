@@ -20,7 +20,7 @@ import {
   IconComponent,
   identityApiRef,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Button for sidebar that signs out user

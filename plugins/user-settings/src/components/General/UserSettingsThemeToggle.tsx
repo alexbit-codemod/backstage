@@ -24,7 +24,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
-import { appThemeApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  appThemeApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 import { userSettingsTranslationRef } from '../../translation';
 

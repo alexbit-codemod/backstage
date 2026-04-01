@@ -15,11 +15,11 @@
  */
 
 import {
-  RouteRef as LegacyRouteRef,
-  SubRouteRef as LegacySubRouteRef,
-  ExternalRouteRef as LegacyExternalRouteRef,
   AnyRouteRefParams,
-} from '@backstage/core-plugin-api';
+  ExternalRouteRef,
+  RouteRef,
+  SubRouteRef,
+} from "@backstage/frontend-plugin-api";
 
 // eslint-disable-next-line @backstage/no-relative-monorepo-imports
 import { routeRefType } from '../../core-plugin-api/src/routing/types';

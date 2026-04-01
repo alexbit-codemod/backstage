@@ -17,7 +17,9 @@ import { CompoundEntityRef } from '@backstage/catalog-model';
 import useAsyncRetry from 'react-use/esm/useAsyncRetry';
 import { AsyncState } from 'react-use/esm/useAsync';
 import { techdocsStorageApiRef } from '../../api';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 
 export type RawPage = {
   content: string;

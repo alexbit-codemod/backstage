@@ -18,7 +18,9 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { rootRouteRef } from '../plugin';
 
-import { useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 
 export const useNavigateToQuery = () => {
   const searchRoute = useRouteRef(rootRouteRef);

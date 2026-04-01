@@ -15,10 +15,10 @@
  */
 
 import {
+  BackstageUserIdentity,
   IdentityApi,
   ProfileInfo,
-  BackstageUserIdentity,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 /**
  * @deprecated Use `@backstage/plugin-auth-backend-module-guest-provider` instead.

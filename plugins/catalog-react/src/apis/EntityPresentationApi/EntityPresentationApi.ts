@@ -16,10 +16,11 @@
 
 import { Entity } from '@backstage/catalog-model';
 import {
+  ApiBlueprint,
   ApiRef,
   IconComponent,
   createApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { Observable } from '@backstage/types';
 
 /**
@@ -28,9 +29,7 @@ import { Observable } from '@backstage/types';
  * @public
  */
 export const entityPresentationApiRef: ApiRef<EntityPresentationApi> =
-  createApiRef({
-    id: 'plugin.catalog.entity-presentation',
-  });
+  createApiRef().with({ id: 'plugin.catalog.entity-presentation', pluginId: "catalog" });
 
 /**
  * The visual presentation of an entity reference at some point in time.

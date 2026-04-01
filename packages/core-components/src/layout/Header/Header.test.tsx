@@ -17,7 +17,9 @@
 import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
 import { Header } from './Header';
 import { ConfigReader } from '@backstage/core-app-api';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 
 jest.mock('react-helmet', () => {
   return {

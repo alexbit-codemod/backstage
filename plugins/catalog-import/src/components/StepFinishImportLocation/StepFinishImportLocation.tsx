@@ -16,7 +16,9 @@
 
 import { CompoundEntityRef, DEFAULT_NAMESPACE } from '@backstage/catalog-model';
 import { Link } from '@backstage/core-components';
-import { useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import { entityRouteRef } from '@backstage/plugin-catalog-react';
 import Grid from '@material-ui/core/Grid';

@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { attachComponentData } from '@backstage/core-plugin-api';
+import {
+  attachComponentData,
+} from "@backstage/frontend-plugin-api";
 import {
   ElementType,
   Children,

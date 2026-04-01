@@ -23,7 +23,7 @@ import {
   DiscoveryApi,
   FetchApi,
   IdentityApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 /**
  * The options given when constructing a {@link MockFetchApi}.
  *

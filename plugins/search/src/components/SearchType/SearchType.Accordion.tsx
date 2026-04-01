@@ -15,7 +15,9 @@
  */
 
 import { cloneElement, Fragment, useEffect, useRef, useState } from 'react';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { searchApiRef, useSearch } from '@backstage/plugin-search-react';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';

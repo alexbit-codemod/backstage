@@ -26,7 +26,7 @@ import {
   analyticsApiRef,
   configApiRef,
   useAnalytics,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 import { techdocsApiRef } from './api';
 import { useTechDocsReaderPage, TechDocsReaderPageProvider } from './context';

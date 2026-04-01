@@ -25,28 +25,28 @@ import {
   rootCatalogDocsRouteRef,
 } from './routes';
 import {
+  ApiBlueprint,
   configApiRef,
-  createApiFactory,
-  createPlugin,
   createRoutableExtension,
   discoveryApiRef,
   fetchApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   createSearchResultListItemExtension,
   SearchResultListItemExtensionProps,
 } from '@backstage/plugin-search-react';
-import { TechDocsSearchResultListItemProps } from './search/components/TechDocsSearchResultListItem';
+import { TechDocsSearchResultListItemProps } from './search/components/TechDocsSearchResultListItem';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 /**
  * The Backstage plugin that renders technical documentation for your components
  *
  * @public
  */
-export const techdocsPlugin = createPlugin({
-  id: 'techdocs',
+export const techdocsPlugin = createFrontendPlugin({
+  pluginId: 'techdocs',
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: techdocsStorageApiRef,
       deps: {
         configApi: configApiRef,
@@ -59,8 +59,8 @@ export const techdocsPlugin = createPlugin({
           discoveryApi,
           fetchApi,
         }),
-    }),
-    createApiFactory({
+    }) }),
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: techdocsApiRef,
       deps: {
         configApi: configApiRef,
@@ -73,7 +73,7 @@ export const techdocsPlugin = createPlugin({
           discoveryApi,
           fetchApi,
         }),
-    }),
+    }) }),
   ],
   routes: {
     root: rootRouteRef,

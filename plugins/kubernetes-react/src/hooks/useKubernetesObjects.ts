@@ -18,7 +18,9 @@ import { Entity } from '@backstage/catalog-model';
 import { useCallback } from 'react';
 import useInterval from 'react-use/esm/useInterval';
 import { ObjectsByEntityResponse } from '@backstage/plugin-kubernetes-common';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { generateAuth } from './auth';
 import useAsyncRetry from 'react-use/esm/useAsyncRetry';
 import { kubernetesAuthProvidersApiRef } from '../kubernetes-auth-provider';

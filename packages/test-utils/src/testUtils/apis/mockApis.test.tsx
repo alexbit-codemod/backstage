@@ -20,7 +20,9 @@ import {
 } from '@backstage/plugin-permission-common';
 import { mockApis } from './mockApis';
 import { JsonValue } from '@backstage/types';
-import { StorageValueSnapshot } from '@backstage/core-plugin-api';
+import {
+  StorageValueSnapshot,
+} from "@backstage/frontend-plugin-api";
 import { createTranslationRef } from '@backstage/core-plugin-api/alpha';
 
 describe('mockApis', () => {

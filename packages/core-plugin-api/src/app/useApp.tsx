@@ -29,9 +29,9 @@ import {
 } from '@backstage/frontend-plugin-api';
 import {
   AppComponents,
-  IconComponent,
   BackstagePlugin,
-} from '@backstage/core-plugin-api';
+  IconComponent,
+} from "@backstage/frontend-plugin-api";
 import { getOrCreateGlobalSingleton } from '@backstage/version-bridge';
 import { AppContext as AppContextV1 } from './types';
 

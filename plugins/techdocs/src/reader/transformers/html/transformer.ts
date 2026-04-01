@@ -17,7 +17,10 @@
 import DOMPurify from 'dompurify';
 import { useCallback, useMemo } from 'react';
 
-import { configApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 
 import { Transformer } from '../transformer';
 import {

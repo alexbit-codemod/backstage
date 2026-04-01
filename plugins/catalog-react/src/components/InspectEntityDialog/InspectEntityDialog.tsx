@@ -31,7 +31,9 @@ import { JsonPage } from './components/JsonPage';
 import { OverviewPage } from './components/OverviewPage';
 import { YamlPage } from './components/YamlPage';
 import { catalogReactTranslationRef } from '../../translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 
 const useStyles = makeStyles(theme => ({
   fullHeightDialog: {

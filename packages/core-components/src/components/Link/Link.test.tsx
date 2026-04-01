@@ -21,7 +21,10 @@ import {
   TestApiProvider,
   renderInTestApp,
 } from '@backstage/test-utils';
-import { analyticsApiRef, configApiRef } from '@backstage/core-plugin-api';
+import {
+  analyticsApiRef,
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import { isExternalUri, Link, useResolvedPath } from './Link';
 import { Route, Routes } from 'react-router-dom';
 import { ConfigReader } from '@backstage/config';

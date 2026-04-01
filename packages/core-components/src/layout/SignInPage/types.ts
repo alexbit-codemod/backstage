@@ -16,14 +16,14 @@
 
 import { ComponentType } from 'react';
 import {
-  SignInPageProps,
   ApiHolder,
   ApiRef,
-  ProfileInfoApi,
   BackstageIdentityApi,
-  SessionApi,
   IdentityApi,
-} from '@backstage/core-plugin-api';
+  ProfileInfoApi,
+  SessionApi,
+  SignInPageProps,
+} from "@backstage/frontend-plugin-api";
 
 export type SignInProviderConfig = {
   id: string;

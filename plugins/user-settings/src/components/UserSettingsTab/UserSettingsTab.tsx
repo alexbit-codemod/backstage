@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import { PropsWithChildren } from 'react';
-import { attachComponentData } from '@backstage/core-plugin-api';
+import {
+  attachComponentData,
+} from "@backstage/frontend-plugin-api";
 import {
   LAYOUT_ROUTE_DATA_KEY,
   SettingsLayout,

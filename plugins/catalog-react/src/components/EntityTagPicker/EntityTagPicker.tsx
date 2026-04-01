@@ -18,7 +18,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { EntityTagFilter } from '../../filters';
 import { EntityAutocompletePicker } from '../EntityAutocompletePicker/EntityAutocompletePicker';
 import { catalogReactTranslationRef } from '../../translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 
 /** @public */
 export type CatalogReactEntityTagPickerClassKey = 'input';

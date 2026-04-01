@@ -15,7 +15,9 @@
  */
 
 import { Entity } from '@backstage/catalog-model';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import { mockApis, TestApiProvider } from '@backstage/test-utils';
 import { makeStyles } from '@material-ui/core/styles';
 import { render, screen } from '@testing-library/react';

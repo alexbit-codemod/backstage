@@ -28,22 +28,20 @@ import { rest } from 'msw';
 import { PropsWithChildren, ReactNode } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import {
+  ApiBlueprint,
+  analyticsApiRef,
   configApiRef,
-  createApiFactory,
-  featureFlagsApiRef,
-  createPlugin,
-  useRouteRef,
-  createExternalRouteRef,
+  createRoutableExtension,
   createRouteRef,
   createSubRouteRef,
-  createRoutableExtension,
-  analyticsApiRef,
-  useApi,
-  errorApiRef,
-  fetchApiRef,
   discoveryApiRef,
+  errorApiRef,
+  featureFlagsApiRef,
+  fetchApiRef,
   identityApiRef,
-} from '@backstage/core-plugin-api';
+  useApi,
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { AppRouter } from './AppRouter';
 import { AppManager } from './AppManager';
 import { AppComponents, AppIcons } from './types';
@@ -51,7 +49,8 @@ import { FeatureFlagged } from '../routing/FeatureFlagged';
 import {
   createTranslationRef,
   useTranslationRef,
-} from '@backstage/core-plugin-api/alpha';
+} from '@backstage/core-plugin-api/alpha';import { createExternalRouteRef, createRouteRef, createSubRouteRef , createFrontendPlugin} from '@backstage/frontend-plugin-api';
+
 
 describe('Integration Test', () => {
   const server = setupServer();
@@ -61,7 +60,7 @@ describe('Integration Test', () => {
     analyticsApiRef,
     mockApis.analytics(),
   );
-  const noopErrorApi = createApiFactory(errorApiRef, {
+  const noopErrorApi = ApiBlueprint.make({ params: defineParams => defineParams({
     error$() {
       return {
         subscribe() {
@@ -73,47 +72,45 @@ describe('Integration Test', () => {
       };
     },
     post() {},
-  });
-  const plugin1RouteRef = createRouteRef({ id: 'ref-1' });
-  const plugin1RouteRef2 = createRouteRef({ id: 'ref-1-2' });
-  const plugin2RouteRef = createRouteRef({ id: 'ref-2', params: ['x'] });
+  }) });
+  const plugin1RouteRef = createRouteRef();
+  const plugin1RouteRef2 = createRouteRef();
+  const plugin2RouteRef = createRouteRef({ , params: ['x'] });
   const subRouteRef1 = createSubRouteRef({
-    id: 'sub1',
+    ,
     path: '/sub1',
     parent: plugin1RouteRef,
   });
   const subRouteRef2 = createSubRouteRef({
-    id: 'sub2',
+    ,
     path: '/sub2/:x',
     parent: plugin1RouteRef,
   });
   const subRouteRef3 = createSubRouteRef({
-    id: 'sub3',
+    ,
     path: '/sub3',
     parent: plugin2RouteRef,
   });
   const subRouteRef4 = createSubRouteRef({
-    id: 'sub4',
+    ,
     path: '/sub4/:y',
     parent: plugin2RouteRef,
   });
-  const extRouteRef1 = createExternalRouteRef({ id: 'extRouteRef1' });
+  const extRouteRef1 = createExternalRouteRef({  });
   const extRouteRef2 = createExternalRouteRef({
-    id: 'extRouteRef2',
+    ,
     params: ['x'],
   });
   const extRouteRef3 = createExternalRouteRef({
-    id: 'extRouteRef3',
-    optional: true,
+    ,
   });
   const extRouteRef4 = createExternalRouteRef({
-    id: 'extRouteRef4',
-    optional: true,
+    ,
     params: ['x'],
   });
 
-  const plugin1 = createPlugin({
-    id: 'blob',
+  const plugin1 = createFrontendPlugin({
+    pluginId: 'blob',
     // Both absolute and sub route refs should be assignable to the plugin routes
     routes: {
       ref1: plugin1RouteRef,
@@ -128,8 +125,8 @@ describe('Integration Test', () => {
     },
   });
 
-  const plugin2 = createPlugin({
-    id: 'plugin2',
+  const plugin2 = createFrontendPlugin({
+    pluginId: 'plugin2',
   });
 
   const HiddenComponent = plugin2.provide(
@@ -353,13 +350,13 @@ describe('Integration Test', () => {
 
     const apis = [
       noOpAnalyticsApi,
-      createApiFactory({
+      ApiBlueprint.make({ params: defineParams => defineParams({
         api: featureFlagsApiRef,
         deps: { configApi: configApiRef },
         factory() {
           return storageFlags;
         },
-      }),
+      }) }),
     ];
 
     const app = new AppManager({
@@ -368,8 +365,8 @@ describe('Integration Test', () => {
       themes,
       icons,
       plugins: [
-        createPlugin({
-          id: 'test',
+        createFrontendPlugin({
+          pluginId: 'test',
           featureFlags: [{ name: 'name' }],
         }),
       ],
@@ -409,13 +406,13 @@ describe('Integration Test', () => {
 
     const apis = [
       noOpAnalyticsApi,
-      createApiFactory({
+      ApiBlueprint.make({ params: defineParams => defineParams({
         api: featureFlagsApiRef,
         deps: { configApi: configApiRef },
         factory() {
           return storageFlags;
         },
-      }),
+      }) }),
     ];
 
     const app = new AppManager({
@@ -424,8 +421,8 @@ describe('Integration Test', () => {
       themes,
       icons,
       plugins: [
-        createPlugin({
-          id: 'test',
+        createFrontendPlugin({
+          pluginId: 'test',
           featureFlags: [
             {
               name: 'foo',
@@ -487,18 +484,18 @@ describe('Integration Test', () => {
   it('feature flags should be available immediately', async () => {
     const app = new AppManager({
       apis: [
-        createApiFactory({
+        ApiBlueprint.make({ params: defineParams => defineParams({
           api: featureFlagsApiRef,
           deps: { configApi: configApiRef },
           factory() {
             return new LocalStorageFeatureFlags();
           },
-        }),
+        }) }),
       ],
       defaultApis: [],
       themes,
       icons,
-      plugins: [createPlugin({ id: 'test', featureFlags: [{ name: 'foo' }] })],
+      plugins: [createFrontendPlugin({ pluginId: 'test', featureFlags: [{ name: 'foo' }] })],
       components,
       configLoader: async () => [],
     });
@@ -523,12 +520,12 @@ describe('Integration Test', () => {
   });
 
   it('should prevent duplicate feature flags from being rendered', async () => {
-    const p1 = createPlugin({
-      id: 'p1',
+    const p1 = createFrontendPlugin({
+      pluginId: 'p1',
       featureFlags: [{ name: 'show-p1-feature' }],
     });
-    const p2 = createPlugin({
-      id: 'p2',
+    const p2 = createFrontendPlugin({
+      pluginId: 'p2',
       featureFlags: [{ name: 'show-p2-feature' }],
     });
 
@@ -881,16 +878,16 @@ describe('Integration Test', () => {
       configLoader: async () => [],
       defaultApis: [
         noopErrorApi,
-        createApiFactory({
+        ApiBlueprint.make({ params: defineParams => defineParams({
           api: fetchApiRef,
           deps: {},
           factory: () => fetchApiMock,
-        }),
-        createApiFactory({
+        }) }),
+        ApiBlueprint.make({ params: defineParams => defineParams({
           api: discoveryApiRef,
           deps: {},
           factory: () => discoveryApiMock,
-        }),
+        }) }),
       ],
     });
 

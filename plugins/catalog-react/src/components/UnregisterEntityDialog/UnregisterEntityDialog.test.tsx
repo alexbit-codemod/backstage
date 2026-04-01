@@ -27,7 +27,9 @@ import { screen, waitFor } from '@testing-library/react';
 import { renderInTestApp, TestApiProvider } from '@backstage/test-utils';
 import { mockApis } from '@backstage/frontend-test-utils';
 import * as state from './useUnregisterEntityDialogState';
-import { alertApiRef } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+} from "@backstage/frontend-plugin-api";
 
 describe('UnregisterEntityDialog', () => {
   const alertApi = mockApis.alert();
