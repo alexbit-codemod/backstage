@@ -18,11 +18,11 @@ import { useNotificationsApi } from '../../hooks';
 import { Link, SidebarItem } from '@backstage/core-components';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import {
-  alertApiRef,
   IconComponent,
+  alertApiRef,
   useApi,
   useRouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { rootRouteRef } from '../../routes';
 import { useSignal } from '@backstage/plugin-signals-react';
 import {

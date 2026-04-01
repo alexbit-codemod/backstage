@@ -19,7 +19,9 @@ import Typography from '@material-ui/core/Typography';
 import { scmIntegrationsApiRef } from '../src/api/ScmIntegrationsApi';
 
 import { Content } from '@backstage/core-components';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 
 const Integrations = (props: {
   group: ScmIntegrationsGroup<ScmIntegration>;

@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { vmwareCloudAuthApiRef } from '@backstage/core-plugin-api';
+import {
+  vmwareCloudAuthApiRef,
+} from "@backstage/frontend-plugin-api";
 import { OAuth2 } from '../oauth2';
 import { OAuthApiCreateOptions } from '../types';
 

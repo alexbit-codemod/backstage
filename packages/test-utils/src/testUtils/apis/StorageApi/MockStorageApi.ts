@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { StorageApi, StorageValueSnapshot } from '@backstage/core-plugin-api';
+import {
+  StorageApi,
+  StorageValueSnapshot,
+} from "@backstage/frontend-plugin-api";
 import { JsonValue, Observable } from '@backstage/types';
 import ObservableImpl from 'zen-observable';
 

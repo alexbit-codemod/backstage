@@ -20,25 +20,22 @@ import {
   WorkloadsByEntityRequest,
   CustomObjectsByEntityRequest,
 } from '@backstage/plugin-kubernetes-common';
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 import { Event } from 'kubernetes-models/v1';
 import { JsonObject } from '@backstage/types';
 
 /** @public */
-export const kubernetesApiRef = createApiRef<KubernetesApi>({
-  id: 'plugin.kubernetes.service',
-});
+export const kubernetesApiRef = createApiRef<KubernetesApi>().with({ id: 'plugin.kubernetes.service', pluginId: "kubernetes" });
 
 /** @public */
-export const kubernetesProxyApiRef = createApiRef<KubernetesProxyApi>({
-  id: 'plugin.kubernetes.proxy-service',
-});
+export const kubernetesProxyApiRef = createApiRef<KubernetesProxyApi>().with({ id: 'plugin.kubernetes.proxy-service', pluginId: "kubernetes" });
 
 /** @public */
 export const kubernetesClusterLinkFormatterApiRef =
-  createApiRef<KubernetesClusterLinkFormatterApi>({
-    id: 'plugin.kubernetes.cluster-link-formatter-service',
-  });
+  createApiRef<KubernetesClusterLinkFormatterApi>().with({ id: 'plugin.kubernetes.cluster-link-formatter-service', pluginId: "kubernetes" });
 
 /** @public */
 export interface KubernetesApi {

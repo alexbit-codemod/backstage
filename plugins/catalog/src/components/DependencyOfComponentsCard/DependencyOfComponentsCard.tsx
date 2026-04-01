@@ -35,7 +35,9 @@ import {
   RelatedEntitiesCard,
 } from '../RelatedEntitiesCard';
 import { catalogTranslationRef } from '../../alpha/translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 
 /** @public */
 export interface DependencyOfComponentsCardProps {

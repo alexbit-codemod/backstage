@@ -22,7 +22,9 @@ import Typography from '@material-ui/core/Typography';
 import { CodeSnippet } from '../CodeSnippet';
 import { Link } from '../Link';
 import { EmptyState } from './EmptyState';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { coreComponentsTranslationRef } from '../../translation';
 
 const COMPONENT_YAML_TEMPLATE = `apiVersion: backstage.io/v1alpha1

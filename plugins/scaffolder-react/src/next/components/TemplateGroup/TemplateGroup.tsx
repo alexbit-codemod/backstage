@@ -22,7 +22,10 @@ import {
 } from '@backstage/core-components';
 import { stringifyEntityRef } from '@backstage/catalog-model';
 import { TemplateCardProps, TemplateCard } from '../TemplateCard';
-import { AnalyticsContext, IconComponent } from '@backstage/core-plugin-api';
+import {
+  AnalyticsContext,
+  IconComponent,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * The props for the {@link TemplateGroup} component.

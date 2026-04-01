@@ -34,38 +34,38 @@ import {
 } from '@backstage/core-app-api';
 
 import {
-  createApiFactory,
+  ApiBlueprint,
   alertApiRef,
   analyticsApiRef,
-  errorApiRef,
-  discoveryApiRef,
-  oauthRequestApiRef,
-  googleAuthApiRef,
-  githubAuthApiRef,
-  oktaAuthApiRef,
-  gitlabAuthApiRef,
-  microsoftAuthApiRef,
-  storageApiRef,
-  configApiRef,
-  oneloginAuthApiRef,
-  bitbucketAuthApiRef,
   atlassianAuthApiRef,
-} from '@backstage/core-plugin-api';
+  bitbucketAuthApiRef,
+  configApiRef,
+  discoveryApiRef,
+  errorApiRef,
+  githubAuthApiRef,
+  gitlabAuthApiRef,
+  googleAuthApiRef,
+  microsoftAuthApiRef,
+  oauthRequestApiRef,
+  oktaAuthApiRef,
+  oneloginAuthApiRef,
+  storageApiRef,
+} from "@backstage/frontend-plugin-api";
 
 // TODO(Rugvip): This is just a copy of the createApp default APIs for now, but
 //               we should clean up this list a bit move more things over to mocks.
 export const defaultApis = [
-  createApiFactory({
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: discoveryApiRef,
     deps: { configApi: configApiRef },
     factory: ({ configApi }) =>
       UrlPatternDiscovery.compile(
         `${configApi.getString('backend.baseUrl')}/api/{{ pluginId }}`,
       ),
-  }),
+  }) }),
   createApiFactory(alertApiRef, new AlertApiForwarder()),
   createApiFactory(analyticsApiRef, new NoOpAnalyticsApi()),
-  createApiFactory({
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: errorApiRef,
     deps: { alertApi: alertApiRef },
     factory: ({ alertApi }) => {
@@ -73,14 +73,14 @@ export const defaultApis = [
       UnhandledErrorForwarder.forward(errorApi, { hidden: false });
       return errorApi;
     },
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: storageApiRef,
     deps: { errorApi: errorApiRef },
     factory: ({ errorApi }) => WebStorage.create({ errorApi }),
-  }),
+  }) }),
   createApiFactory(oauthRequestApiRef, new OAuthRequestManager()),
-  createApiFactory({
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: googleAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -94,8 +94,8 @@ export const defaultApis = [
         oauthRequestApi,
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: microsoftAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -109,8 +109,8 @@ export const defaultApis = [
         oauthRequestApi,
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: githubAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -125,8 +125,8 @@ export const defaultApis = [
         defaultScopes: ['read:user'],
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: oktaAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -140,8 +140,8 @@ export const defaultApis = [
         oauthRequestApi,
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: gitlabAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -155,8 +155,8 @@ export const defaultApis = [
         oauthRequestApi,
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: oneloginAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -170,8 +170,8 @@ export const defaultApis = [
         oauthRequestApi,
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: bitbucketAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -186,8 +186,8 @@ export const defaultApis = [
         defaultScopes: ['account'],
         environment: configApi.getOptionalString('auth.environment'),
       }),
-  }),
-  createApiFactory({
+  }) }),
+  ApiBlueprint.make({ params: defineParams => defineParams({
     api: atlassianAuthApiRef,
     deps: {
       discoveryApi: discoveryApiRef,
@@ -202,5 +202,5 @@ export const defaultApis = [
         environment: configApi.getOptionalString('auth.environment'),
       });
     },
-  }),
+  }) }),
 ];

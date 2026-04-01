@@ -19,7 +19,9 @@ import { FeatureFlagged } from './FeatureFlagged';
 import { render, screen } from '@testing-library/react';
 import { LocalStorageFeatureFlags } from '../apis';
 import { TestApiProvider } from '@backstage/test-utils';
-import { featureFlagsApiRef } from '@backstage/core-plugin-api';
+import {
+  featureFlagsApiRef,
+} from "@backstage/frontend-plugin-api";
 
 const mockFeatureFlagsApi = new LocalStorageFeatureFlags();
 const Wrapper = ({ children }: { children?: ReactNode }) => (

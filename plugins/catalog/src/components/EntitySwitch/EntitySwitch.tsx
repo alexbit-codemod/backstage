@@ -18,11 +18,11 @@ import { Entity } from '@backstage/catalog-model';
 import { useAsyncEntity } from '@backstage/plugin-catalog-react';
 import { ReactNode, ReactElement } from 'react';
 import {
+  ApiHolder,
   attachComponentData,
   useApiHolder,
   useElementFilter,
-  ApiHolder,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import useAsync from 'react-use/esm/useAsync';
 
 const ENTITY_SWITCH_KEY = 'core.backstage.entitySwitch';

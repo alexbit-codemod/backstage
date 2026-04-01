@@ -16,7 +16,9 @@
 
 import { CompoundEntityRef, Entity } from '@backstage/catalog-model';
 import { Link, LinkProps } from '@backstage/core-components';
-import { useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { ReactNode, forwardRef, useCallback } from 'react';
 import { entityRouteParams, entityRouteRef } from '../../routes';
 import { EntityDisplayName } from '../EntityDisplayName';

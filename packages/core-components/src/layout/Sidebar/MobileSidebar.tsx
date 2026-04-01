@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { useElementFilter } from '@backstage/core-plugin-api';
+import {
+  useElementFilter,
+} from "@backstage/frontend-plugin-api";
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';

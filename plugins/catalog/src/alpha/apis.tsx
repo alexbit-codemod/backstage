@@ -18,7 +18,7 @@ import {
   discoveryApiRef,
   fetchApiRef,
   storageApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { CatalogClient } from '@backstage/catalog-client';
 import { ApiBlueprint } from '@backstage/frontend-plugin-api';
 import {

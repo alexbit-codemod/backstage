@@ -15,13 +15,13 @@
  */
 
 import {
-  microsoftAuthApiRef,
-  AuthRequestOptions,
   AuthProviderInfo,
+  AuthRequestOptions,
   ConfigApi,
   DiscoveryApi,
   OAuthRequestApi,
-} from '@backstage/core-plugin-api';
+  microsoftAuthApiRef,
+} from "@backstage/frontend-plugin-api";
 import { OAuth2, OAuth2CreateOptions } from '../oauth2';
 
 const DEFAULT_PROVIDER = {

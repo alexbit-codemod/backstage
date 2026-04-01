@@ -16,7 +16,10 @@
 
 import { renderHook, act } from '@testing-library/react';
 import { TestApiProvider } from '@backstage/test-utils';
-import { appThemeApiRef, AppThemeApi } from '@backstage/core-plugin-api';
+import {
+  AppThemeApi,
+  appThemeApiRef,
+} from "@backstage/frontend-plugin-api";
 import { Observable } from '@backstage/types';
 import ObservableImpl from 'zen-observable';
 import { createElement, type ReactNode } from 'react';

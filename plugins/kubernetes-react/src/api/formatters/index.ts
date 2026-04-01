@@ -22,7 +22,9 @@ import { StandardClusterLinksFormatter } from './StandardClusterLinksFormatter';
 import { OpenshiftClusterLinksFormatter } from './OpenshiftClusterLinksFormatter';
 import { RancherClusterLinksFormatter } from './RancherClusterLinksFormatter';
 import { HeadlampClusterLinksFormatter } from './HeadlampClusterLinksFormatter';
-import { ProfileInfoApi } from '@backstage/core-plugin-api';
+import {
+  ProfileInfoApi,
+} from "@backstage/frontend-plugin-api";
 
 export {
   StandardClusterLinksFormatter,

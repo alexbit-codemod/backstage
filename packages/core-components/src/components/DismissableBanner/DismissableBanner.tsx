@@ -15,7 +15,10 @@
  */
 
 import { ReactNode, useMemo } from 'react';
-import { useApi, storageApiRef } from '@backstage/core-plugin-api';
+import {
+  storageApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import useObservable from 'react-use/esm/useObservable';
 import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';

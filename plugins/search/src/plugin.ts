@@ -17,33 +17,30 @@
 import { SearchClient } from './apis';
 import { searchApiRef } from '@backstage/plugin-search-react';
 import {
-  createApiFactory,
-  createPlugin,
-  createRouteRef,
+  ApiBlueprint,
+  createComponentExtension,
   createRoutableExtension,
   discoveryApiRef,
-  createComponentExtension,
   fetchApiRef,
-} from '@backstage/core-plugin-api';
-import { SidebarSearchModalProps } from './components/SidebarSearchModal';
+} from "@backstage/frontend-plugin-api";
+import { SidebarSearchModalProps } from './components/SidebarSearchModal';import { createRouteRef , createFrontendPlugin} from '@backstage/frontend-plugin-api';
 
-export const rootRouteRef = createRouteRef({
-  id: 'search',
-});
+
+export const rootRouteRef = createRouteRef();
 
 /**
  * @public
  */
-export const searchPlugin = createPlugin({
-  id: 'search',
+export const searchPlugin = createFrontendPlugin({
+  pluginId: 'search',
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: searchApiRef,
       deps: { discoveryApi: discoveryApiRef, fetchApi: fetchApiRef },
       factory: ({ discoveryApi, fetchApi }) => {
         return new SearchClient({ discoveryApi, fetchApi });
       },
-    }),
+    }) }),
   ],
   routes: {
     root: rootRouteRef,

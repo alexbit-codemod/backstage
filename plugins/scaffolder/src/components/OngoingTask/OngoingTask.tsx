@@ -38,7 +38,7 @@ import {
   useAnalytics,
   useApi,
   useRouteRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import qs from 'qs';
 import { ContextMenu } from './ContextMenu';
 import {

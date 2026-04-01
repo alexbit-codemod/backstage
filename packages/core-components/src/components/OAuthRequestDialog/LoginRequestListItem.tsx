@@ -23,11 +23,11 @@ import Button from '@material-ui/core/Button';
 import { createElement, isValidElement, useState } from 'react';
 import { isError } from '@backstage/errors';
 import {
-  configApiRef,
   IconComponent,
   PendingOAuthRequest,
+  configApiRef,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { coreComponentsTranslationRef } from '../../translation';
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 import Box from '@material-ui/core/Box';

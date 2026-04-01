@@ -15,7 +15,10 @@
  */
 import { SignalApi, SignalSubscriber } from '@backstage/plugin-signals-react';
 import { JsonObject } from '@backstage/types';
-import { DiscoveryApi, IdentityApi } from '@backstage/core-plugin-api';
+import {
+  DiscoveryApi,
+  IdentityApi,
+} from "@backstage/frontend-plugin-api";
 import { v4 as uuid } from 'uuid';
 
 type Subscription = {

@@ -23,7 +23,10 @@ import {
   OAuth2CreateOptionsWithAuthConnector,
 } from '../../../../index';
 import { waitFor } from '@testing-library/react';
-import { BackstageUserIdentity, ProfileInfo } from '@backstage/core-plugin-api';
+import {
+  BackstageUserIdentity,
+  ProfileInfo,
+} from "@backstage/frontend-plugin-api";
 
 const scopeTransform = (x: string[]) => x;
 

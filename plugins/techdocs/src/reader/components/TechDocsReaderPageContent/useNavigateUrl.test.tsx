@@ -20,7 +20,9 @@ import {
   TestApiProvider,
 } from '@backstage/test-utils';
 import { resolveUrlToRelative, useNavigateUrl } from './useNavigateUrl';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 
 const navigate = jest.fn();
 jest.mock('react-router-dom', () => ({

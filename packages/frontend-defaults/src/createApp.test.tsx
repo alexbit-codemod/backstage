@@ -36,10 +36,10 @@ import { act, screen, waitFor } from '@testing-library/react';
 import { createApp } from './createApp';
 import { mockApis, renderWithEffects } from '@backstage/test-utils';
 import {
-  featureFlagsApiRef,
   IdentityApi,
+  featureFlagsApiRef,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { default as appPluginOriginal } from '@backstage/plugin-app';
 import { ComponentType, useState, useEffect } from 'react';
 import { permissionApiRef } from '@backstage/plugin-permission-react';

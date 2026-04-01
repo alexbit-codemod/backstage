@@ -15,7 +15,7 @@
  */
 
 import { PropsWithChildren } from 'react';
-import { createPlugin } from '@backstage/core-plugin-api';
+import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
 import { wrapInTestApp } from '@backstage/test-utils';
 import { renderHook } from '@testing-library/react';
 import { useCustomFieldExtensions } from './useCustomFieldExtensions';
@@ -24,8 +24,8 @@ import {
   createScaffolderFieldExtension,
 } from '../extensions';
 
-const plugin = createPlugin({
-  id: 'scaffolder',
+const plugin = createFrontendPlugin({
+  pluginId: 'scaffolder',
   apis: [],
   routes: {},
   externalRoutes: {},

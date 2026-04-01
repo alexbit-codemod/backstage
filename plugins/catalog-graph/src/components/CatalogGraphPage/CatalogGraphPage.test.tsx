@@ -19,7 +19,9 @@ import {
   RELATION_HAS_PART,
   RELATION_PART_OF,
 } from '@backstage/catalog-model';
-import { analyticsApiRef } from '@backstage/core-plugin-api';
+import {
+  analyticsApiRef,
+} from "@backstage/frontend-plugin-api";
 import { catalogApiRef, entityRouteRef } from '@backstage/plugin-catalog-react';
 import { catalogApiMock } from '@backstage/plugin-catalog-react/testUtils';
 import {

@@ -25,7 +25,9 @@ import Skeleton from '@material-ui/lab/Skeleton';
 
 import { ContainerScope } from './types';
 import { usePodLogs } from './usePodLogs';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesReactTranslationRef } from '../../../translation';
 
 /**

@@ -31,7 +31,11 @@ import {
 import Alert from '@material-ui/lab/Alert';
 import { useScheduledTasks, useScheduledTasksOperations } from '../../../hooks';
 import { TaskApiTasksResponse } from '@backstage/plugin-devtools-common/alpha';
-import { alertApiRef, configApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  alertApiRef,
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import RefreshIcon from '@material-ui/icons/Refresh';
 import StopIcon from '@material-ui/icons/Stop';
 import NightsStay from '@material-ui/icons/NightsStay';

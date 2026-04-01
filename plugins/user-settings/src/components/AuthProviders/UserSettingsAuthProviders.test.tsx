@@ -19,7 +19,10 @@ import { fireEvent, screen } from '@testing-library/react';
 import { UserSettingsAuthProviders } from './UserSettingsAuthProviders';
 
 import { ApiProvider, ConfigReader } from '@backstage/core-app-api';
-import { configApiRef, googleAuthApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  googleAuthApiRef,
+} from "@backstage/frontend-plugin-api";
 
 const mockSignInHandler = jest.fn().mockReturnValue(Promise.resolve());
 const mockGoogleAuth = {

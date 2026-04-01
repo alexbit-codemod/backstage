@@ -33,7 +33,9 @@ import {
 } from '@backstage/plugin-catalog-react';
 import { RELATION_OWNED_BY, CompoundEntityRef } from '@backstage/catalog-model';
 import { Header, HeaderLabel } from '@backstage/core-components';
-import { useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 
 import capitalize from 'lodash/capitalize';
 

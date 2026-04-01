@@ -15,9 +15,8 @@
  */
 
 import {
-  createPlugin,
   createRoutableExtension,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   createFrontendPlugin,
   PageBlueprint,
@@ -26,8 +25,8 @@ import { rootRouteRef } from './routes';
 
 // Old system
 /** @public */
-export const buiThemerPlugin = createPlugin({
-  id: 'mui-to-bui',
+export const buiThemerPlugin = createFrontendPlugin({
+  pluginId: 'mui-to-bui',
   routes: {
     root: rootRouteRef,
   },

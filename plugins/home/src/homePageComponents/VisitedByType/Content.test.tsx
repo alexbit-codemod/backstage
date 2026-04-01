@@ -23,7 +23,9 @@ import {
 import { visitsApiRef } from '../../api';
 import { ContextProvider } from './Context';
 import { waitFor } from '@testing-library/react';
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 
 const visits = [
   {

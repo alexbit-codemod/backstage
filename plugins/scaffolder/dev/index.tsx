@@ -27,7 +27,7 @@ import {
   discoveryApiRef,
   fetchApiRef,
   identityApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { CatalogEntityPage, catalogPlugin } from '@backstage/plugin-catalog';
 
 createDevApp()

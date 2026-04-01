@@ -26,7 +26,7 @@ import {
   discoveryApiRef,
   fetchApiRef,
   storageApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 describe('CookieAuthRefreshProvider', () => {
   const discoveryApiMock = mockApis.discovery();

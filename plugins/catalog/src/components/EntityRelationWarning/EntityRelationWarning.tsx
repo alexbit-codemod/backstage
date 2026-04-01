@@ -22,7 +22,10 @@ import {
 } from '@backstage/plugin-catalog-react';
 import useAsync from 'react-use/esm/useAsync';
 import { ResponseErrorPanel } from '@backstage/core-components';
-import { useApi, ApiHolder } from '@backstage/core-plugin-api';
+import {
+  ApiHolder,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { catalogTranslationRef } from '../../alpha/translation';
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 import { Alert, Box } from '@backstage/ui';

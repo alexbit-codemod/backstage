@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { discoveryApiRef } from '@backstage/core-plugin-api';
+import {
+  discoveryApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   mockApis,
   renderInTestApp,

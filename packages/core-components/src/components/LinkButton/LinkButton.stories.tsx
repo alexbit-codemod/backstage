@@ -16,7 +16,9 @@
 import { ComponentType, PropsWithChildren } from 'react';
 import { LinkButton } from './LinkButton';
 import { useLocation } from 'react-router-dom';
-import { createRouteRef, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -24,11 +26,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import MaterialButton from '@material-ui/core/Button';
 import { wrapInTestApp } from '@backstage/test-utils';
-import { Link } from '../Link';
+import { Link } from '../Link';import { createRouteRef } from '@backstage/frontend-plugin-api';
 
-const routeRef = createRouteRef({
-  id: 'storybook.test-route',
-});
+
+const routeRef = createRouteRef();
 
 const Location = () => {
   const location = useLocation();

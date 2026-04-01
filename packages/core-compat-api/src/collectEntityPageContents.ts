@@ -16,9 +16,9 @@
 
 import {
   ApiHolder,
+  BackstagePlugin,
   getComponentData,
-  BackstagePlugin as LegacyBackstagePlugin,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { ExtensionDefinition } from '@backstage/frontend-plugin-api';
 import { JSX, ReactNode, isValidElement, Children } from 'react';
 import {

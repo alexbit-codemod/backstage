@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { createPlugin } from '@backstage/core-plugin-api';
+import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
 import {
   createTechDocsAddonExtension,
   TechDocsAddonLocations,
@@ -30,8 +30,8 @@ import { LightBoxAddon } from './LightBox';
  * @public
  */
 
-export const techdocsModuleAddonsContribPlugin = createPlugin({
-  id: 'techdocsModuleAddonsContrib',
+export const techdocsModuleAddonsContribPlugin = createFrontendPlugin({
+  pluginId: 'techdocsModuleAddonsContrib',
 });
 
 /**

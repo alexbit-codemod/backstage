@@ -15,7 +15,11 @@
  */
 
 import { CatalogApi } from '@backstage/catalog-client';
-import { ConfigApi, DiscoveryApi, FetchApi } from '@backstage/core-plugin-api';
+import {
+  ConfigApi,
+  DiscoveryApi,
+  FetchApi,
+} from "@backstage/frontend-plugin-api";
 import {
   GithubIntegration,
   ScmIntegrationRegistry,

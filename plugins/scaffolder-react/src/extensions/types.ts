@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ApiHolder } from '@backstage/core-plugin-api';
+import {
+  ApiHolder,
+} from "@backstage/frontend-plugin-api";
 import { PropsWithChildren } from 'react';
 import { JsonObject } from '@backstage/types';
 import { JSONSchema7 } from 'json-schema';

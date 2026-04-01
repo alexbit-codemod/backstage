@@ -16,7 +16,11 @@
 
 import { stringifyEntityRef } from '@backstage/catalog-model';
 import { Link } from '@backstage/core-components';
-import { configApiRef, useAnalytics, useApi } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useAnalytics,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { assertError } from '@backstage/errors';
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import { catalogApiRef } from '@backstage/plugin-catalog-react';

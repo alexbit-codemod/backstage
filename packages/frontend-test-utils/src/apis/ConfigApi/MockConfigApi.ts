@@ -16,7 +16,9 @@
 
 import { Config, ConfigReader } from '@backstage/config';
 import { JsonObject, JsonValue } from '@backstage/types';
-import { ConfigApi } from '@backstage/core-plugin-api';
+import {
+  ConfigApi,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * MockConfigApi is a thin wrapper around {@link @backstage/config#ConfigReader}

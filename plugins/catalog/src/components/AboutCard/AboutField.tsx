@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { useElementFilter } from '@backstage/core-plugin-api';
+import {
+  useElementFilter,
+} from "@backstage/frontend-plugin-api";
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { ReactNode } from 'react';

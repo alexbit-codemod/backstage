@@ -15,7 +15,10 @@
  */
 
 import { RELATION_OWNED_BY } from '@backstage/catalog-model';
-import { IconComponent, useAnalytics } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+  useAnalytics,
+} from "@backstage/frontend-plugin-api";
 import { getEntityRelations } from '@backstage/plugin-catalog-react';
 import { TemplateEntityV1beta3 } from '@backstage/plugin-scaffolder-common';
 import Card from '@material-ui/core/Card';

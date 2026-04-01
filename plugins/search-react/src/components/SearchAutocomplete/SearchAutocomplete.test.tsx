@@ -19,7 +19,9 @@ import userEvent from '@testing-library/user-event';
 
 import LabelIcon from '@material-ui/icons/Label';
 
-import { configApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 import { ConfigReader } from '@backstage/core-app-api';
 import { TestApiProvider, renderInTestApp } from '@backstage/test-utils';
 

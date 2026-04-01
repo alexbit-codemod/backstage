@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { IconComponent } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+} from "@backstage/frontend-plugin-api";
 import MuiApartmentIcon from '@material-ui/icons/Apartment';
 import MuiBrokenImageIcon from '@material-ui/icons/BrokenImage';
 import MuiCategoryIcon from '@material-ui/icons/Category';

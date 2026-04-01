@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-import { createExternalRouteRef } from '@backstage/core-plugin-api';
+import { createExternalRouteRef } from '@backstage/frontend-plugin-api';
 
 export const catalogIndexRouteRef = createExternalRouteRef({
-  id: 'catalog-index',
-  optional: true,
+  ,
   defaultTarget: 'catalog.catalogIndex',
 });

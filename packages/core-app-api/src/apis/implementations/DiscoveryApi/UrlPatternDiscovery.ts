@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { DiscoveryApi } from '@backstage/core-plugin-api';
+import {
+  DiscoveryApi,
+} from "@backstage/frontend-plugin-api";
 
 const ERROR_PREFIX = 'Invalid discovery URL pattern,';
 

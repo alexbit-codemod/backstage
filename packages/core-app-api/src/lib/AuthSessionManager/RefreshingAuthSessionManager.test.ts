@@ -15,7 +15,9 @@
  */
 
 import { RefreshingAuthSessionManager } from './RefreshingAuthSessionManager';
-import { SessionState } from '@backstage/core-plugin-api';
+import {
+  SessionState,
+} from "@backstage/frontend-plugin-api";
 import { AuthConnectorRefreshSessionOptions } from '../AuthConnector';
 
 const defaultOptions = {

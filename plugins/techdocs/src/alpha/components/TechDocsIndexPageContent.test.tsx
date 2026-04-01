@@ -15,7 +15,10 @@
  */
 
 import { ApiProvider } from '@backstage/core-app-api';
-import { configApiRef, storageApiRef } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  storageApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   MockStarredEntitiesApi,
   catalogApiRef,

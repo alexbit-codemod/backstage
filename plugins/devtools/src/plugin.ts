@@ -15,21 +15,21 @@
  */
 
 import {
-  createApiFactory,
-  createPlugin,
+  ApiBlueprint,
   createRoutableExtension,
   discoveryApiRef,
   fetchApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { devToolsApiRef, DevToolsClient } from './api';
 
-import { rootRouteRef } from './routes';
+import { rootRouteRef } from './routes';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 /** @public */
-export const devToolsPlugin = createPlugin({
-  id: 'devtools',
+export const devToolsPlugin = createFrontendPlugin({
+  pluginId: 'devtools',
   apis: [
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: devToolsApiRef,
       deps: {
         discoveryApi: discoveryApiRef,
@@ -37,7 +37,7 @@ export const devToolsPlugin = createPlugin({
       },
       factory: ({ discoveryApi, fetchApi }) =>
         new DevToolsClient({ discoveryApi, fetchApi }),
-    }),
+    }) }),
   ],
   routes: {
     root: rootRouteRef,

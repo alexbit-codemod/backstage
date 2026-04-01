@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { createApiRef } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  createApiRef,
+} from "@backstage/frontend-plugin-api";
 import { ApiResolver } from './ApiResolver';
 import { ApiFactoryRegistry } from './ApiFactoryRegistry';
 

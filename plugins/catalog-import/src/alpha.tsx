@@ -20,7 +20,7 @@ import {
   configApiRef,
   discoveryApiRef,
   fetchApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   createFrontendPlugin,
   PageBlueprint,

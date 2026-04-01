@@ -15,7 +15,9 @@
  */
 
 import { FieldValidation } from '@rjsf/utils';
-import { ApiHolder } from '@backstage/core-plugin-api';
+import {
+  ApiHolder,
+} from "@backstage/frontend-plugin-api";
 import { scmIntegrationsApiRef } from '@backstage/integration-react';
 
 /**

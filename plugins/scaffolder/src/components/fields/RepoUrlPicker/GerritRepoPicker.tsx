@@ -16,7 +16,9 @@
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import { BaseRepoUrlPickerProps } from './types';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { scaffolderTranslationRef } from '../../../translation';
 
 export const GerritRepoPicker = (props: BaseRepoUrlPickerProps) => {

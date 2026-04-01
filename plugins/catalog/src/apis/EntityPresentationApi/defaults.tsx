@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { IconComponent } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+} from "@backstage/frontend-plugin-api";
 import { defaultEntityPresentation } from '@backstage/plugin-catalog-react';
 import { HumanDuration } from '@backstage/types';
 import ApartmentIcon from '@material-ui/icons/Apartment';

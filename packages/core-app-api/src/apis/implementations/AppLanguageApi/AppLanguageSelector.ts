@@ -16,7 +16,9 @@
 
 // Internal import to avoid code duplication, this will lead to duplication in build output
 // eslint-disable-next-line @backstage/no-relative-monorepo-imports
-import { AppLanguageApi } from '@backstage/core-plugin-api/alpha';
+import {
+  AppLanguageApi,
+} from "@backstage/frontend-plugin-api";
 import { Observable } from '@backstage/types';
 import { BehaviorSubject } from '../../../lib';
 

@@ -25,7 +25,7 @@ import {
   useApi,
   useRouteRef,
   useRouteRefParams,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import {
   scaffolderApiRef,
   useTemplateSecrets,

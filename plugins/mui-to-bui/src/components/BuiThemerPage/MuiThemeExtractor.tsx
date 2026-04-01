@@ -15,7 +15,9 @@
  */
 
 import { useEffect, useState, JSX } from 'react';
-import { AppTheme } from '@backstage/core-plugin-api';
+import {
+  AppTheme,
+} from "@backstage/frontend-plugin-api";
 import { Theme, useTheme } from '@mui/material/styles';
 
 export function MuiThemeExtractor(props: {

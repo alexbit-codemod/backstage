@@ -15,7 +15,9 @@
  */
 import { useOutlet } from 'react-router-dom';
 import { DefaultSettingsPage } from '../DefaultSettingsPage';
-import { useElementFilter } from '@backstage/core-plugin-api';
+import {
+  useElementFilter,
+} from "@backstage/frontend-plugin-api";
 import {
   SettingsLayoutProps,
   SettingsLayoutRouteProps,

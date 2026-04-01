@@ -16,16 +16,14 @@
 import {
   createExternalRouteRef,
   createRouteRef,
-} from '@backstage/core-plugin-api';
+} from '@backstage/frontend-plugin-api';
 
 /**
  * Route pointing to the standalone catalog graph page.
  *
  * @public
  */
-export const catalogGraphRouteRef = createRouteRef({
-  id: 'catalog-graph',
-});
+export const catalogGraphRouteRef = createRouteRef();
 
 /**
  * Route pointing to the entity page.
@@ -35,8 +33,7 @@ export const catalogGraphRouteRef = createRouteRef({
  * @deprecated This route is no longer used and can be removed
  */
 export const catalogEntityRouteRef = createExternalRouteRef({
-  id: 'catalog-entity',
+  ,
   params: ['namespace', 'kind', 'name'],
-  optional: true,
   defaultTarget: 'catalog.catalogEntity',
 });

@@ -32,7 +32,9 @@ import { usePodMetrics } from '../../../hooks/usePodMetrics';
 import { ResourceUtilization } from '../../ResourceUtilization';
 import { bytesToMiB, formatMillicores } from '../../../utils/resources';
 import { useIsPodDeleteEnabled } from '../../../hooks';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesReactTranslationRef } from '../../../translation';
 
 const useDrawerContentStyles = makeStyles((_theme: Theme) =>

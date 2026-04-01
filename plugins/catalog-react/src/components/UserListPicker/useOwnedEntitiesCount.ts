@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { identityApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  identityApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { compact, intersection } from 'lodash';
 import { useMemo } from 'react';
 import useAsync from 'react-use/esm/useAsync';

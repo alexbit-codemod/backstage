@@ -20,7 +20,7 @@ import {
   attachComponentData,
   useApp,
   useElementFilter,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { isReactRouterBeta } from '../app/isReactRouterBeta';
 
 let warned = false;

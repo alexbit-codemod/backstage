@@ -18,7 +18,9 @@ import { ReactElement, useMemo } from 'react';
 import Box from '@material-ui/core/Box';
 import Tabs from '@material-ui/core/Tabs';
 import { makeStyles } from '@material-ui/core/styles';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { EntityContentGroupDefinitions } from '@backstage/plugin-catalog-react/alpha';
 
 import { EntityTabsGroup } from './EntityTabsGroup';

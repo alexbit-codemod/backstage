@@ -16,11 +16,11 @@
 
 import {
   AppComponents,
+  SignInPageProps,
   configApiRef,
   identityApiRef,
-  SignInPageProps,
   useApi,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { InternalAppContext } from './InternalAppContext';
 import { MemoryRouter } from 'react-router-dom';
 import { AppIdentityProxy } from '../apis/implementations/IdentityApi/AppIdentityProxy';

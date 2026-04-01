@@ -14,22 +14,21 @@
  * limitations under the License.
  */
 
-import { ExtensionAttachTo } from '@backstage/frontend-plugin-api';
+import { ExtensionAttachTo , createFrontendPlugin} from '@backstage/frontend-plugin-api';
 import { EntityLayout, EntitySwitch, isKind } from '@backstage/plugin-catalog';
 import { JSX } from 'react';
 import { collectEntityPageContents } from './collectEntityPageContents';
 import {
   createComponentExtension,
-  createPlugin,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 // eslint-disable-next-line @backstage/no-relative-monorepo-imports
 import {
   resolveExtensionDefinition,
   toInternalExtension,
 } from '../../frontend-plugin-api/src/wiring/resolveExtensionDefinition';
 
-const fooPlugin = createPlugin({
-  id: 'foo',
+const fooPlugin = createFrontendPlugin({
+  pluginId: 'foo',
 });
 
 const FooContent = fooPlugin.provide(

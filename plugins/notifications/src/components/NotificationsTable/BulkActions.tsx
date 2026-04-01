@@ -22,7 +22,9 @@ import MarkAsReadIcon from '@material-ui/icons/CheckCircle';
 import MarkAsUnsavedIcon from '@material-ui/icons/LabelOff' /* TODO: use BookmarkRemove and BookmarkAdd once we have mui 5 icons */;
 import MarkAsSavedIcon from '@material-ui/icons/Label';
 import MarkAllReadIcon from '@material-ui/icons/DoneAll';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { notificationsTranslationRef } from '../../translation';
 
 export const BulkActions = ({

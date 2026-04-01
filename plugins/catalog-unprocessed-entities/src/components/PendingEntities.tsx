@@ -27,7 +27,9 @@ import { Theme, makeStyles } from '@material-ui/core/styles';
 import { UnprocessedEntity } from '../types';
 
 import { EntityDialog } from './EntityDialog';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import useAsync from 'react-use/esm/useAsync';
 import { catalogUnprocessedEntitiesApiRef } from '../api';
 

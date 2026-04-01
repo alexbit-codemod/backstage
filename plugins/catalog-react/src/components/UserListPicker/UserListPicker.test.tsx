@@ -42,7 +42,7 @@ import {
   configApiRef,
   identityApiRef,
   storageApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { MockStarredEntitiesApi, starredEntitiesApiRef } from '../../apis';
 import { DefaultEntityFilters } from '../../hooks';
 import { NewEntityListContext } from '../../hooks/useEntityListProvider';

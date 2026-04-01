@@ -20,7 +20,9 @@ import {
 } from '@backstage/plugin-kubernetes-common';
 import { usePermission } from '@backstage/plugin-permission-react';
 import { WarningPanel } from '@backstage/core-components';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesTranslationRef } from './alpha/translation';
 
 export type RequireKubernetesPermissionProps = {

@@ -15,13 +15,13 @@
  */
 import {
   createComponentExtension,
-  createPlugin,
-} from '@backstage/core-plugin-api';
-import { catalogIndexRouteRef } from './routes';
+} from "@backstage/frontend-plugin-api";
+import { catalogIndexRouteRef } from './routes';import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
+
 
 /** @public */
-export const orgPlugin = createPlugin({
-  id: 'org',
+export const orgPlugin = createFrontendPlugin({
+  pluginId: 'org',
   externalRoutes: {
     catalogIndex: catalogIndexRouteRef,
   },

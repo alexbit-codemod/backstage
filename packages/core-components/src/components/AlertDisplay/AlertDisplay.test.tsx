@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { AlertMessage, alertApiRef } from '@backstage/core-plugin-api';
+import {
+  AlertMessage,
+  alertApiRef,
+} from "@backstage/frontend-plugin-api";
 import { TestApiProvider, renderInTestApp } from '@backstage/test-utils';
 import { fireEvent, screen } from '@testing-library/react';
 

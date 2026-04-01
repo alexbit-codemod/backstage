@@ -24,10 +24,9 @@ import {
 } from '@backstage/frontend-plugin-api';
 import {
   BackstagePlugin,
-  createRouteRef as createLegacyRouteRef,
-  createSubRouteRef as createLegacySubRouteRef,
-  createExternalRouteRef as createLegacyExternalRouteRef,
-} from '@backstage/core-plugin-api';
+  createExternalRouteRef,
+  createSubRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { RouteResolver } from './RouteResolver';
 import { MATCH_ALL_ROUTE } from './extractRouteInfoFromAppNode';
 import {

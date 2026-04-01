@@ -16,7 +16,9 @@
 
 import { Entity } from '@backstage/catalog-model';
 import { ApiProvider } from '@backstage/core-app-api';
-import { analyticsApiRef } from '@backstage/core-plugin-api';
+import {
+  analyticsApiRef,
+} from "@backstage/frontend-plugin-api";
 import {
   catalogApiRef,
   EntityProvider,

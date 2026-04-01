@@ -15,7 +15,9 @@
  */
 import { Notification } from '@backstage/plugin-notifications-common';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import { useApp } from '@backstage/core-plugin-api';
+import {
+  useApp,
+} from "@backstage/frontend-plugin-api";
 import { SeverityIcon } from './SeverityIcon';
 
 export const NotificationIcon = ({

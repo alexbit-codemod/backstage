@@ -20,12 +20,12 @@ import {
 } from '@backstage/catalog-client';
 import { CompoundEntityRef, Entity } from '@backstage/catalog-model';
 import {
-  createApiFactory,
+  ApiBlueprint,
   DiscoveryApi,
-  discoveryApiRef,
   FetchApi,
+  discoveryApiRef,
   fetchApiRef,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { catalogApiRef } from '@backstage/plugin-catalog-react';
 import {
   AnalyzeLocationRequest,
@@ -173,7 +173,7 @@ export class ReadWriteSplitCatalogClient implements CatalogApi {
 }
 
 // You should pass this to createApp.
-export const catalogApiFactory = createApiFactory({
+export const catalogApiFactory = ApiBlueprint.make({ params: defineParams => defineParams({
   api: catalogApiRef,
   deps: { discoveryApi: discoveryApiRef, fetchApi: fetchApiRef },
   factory: ({ discoveryApi, fetchApi }) => {
@@ -182,4 +182,4 @@ export const catalogApiFactory = createApiFactory({
       fetchApi,
     });
   },
-});
+}) });

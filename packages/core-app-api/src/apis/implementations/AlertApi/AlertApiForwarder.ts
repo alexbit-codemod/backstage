@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { AlertApi, AlertMessage } from '@backstage/core-plugin-api';
+import {
+  AlertApi,
+  AlertMessage,
+} from "@backstage/frontend-plugin-api";
 import { Observable } from '@backstage/types';
 import { PublishSubject } from '../../../lib/subjects';
 import ObservableImpl from 'zen-observable';

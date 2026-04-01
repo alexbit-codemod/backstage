@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { IconComponent, useApp } from '@backstage/core-plugin-api';
+import {
+  IconComponent,
+  useApp,
+} from "@backstage/frontend-plugin-api";
 import { TemplateEntityV1beta3 } from '@backstage/plugin-scaffolder-common';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';

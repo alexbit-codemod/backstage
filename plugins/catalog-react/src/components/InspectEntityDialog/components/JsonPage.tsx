@@ -19,7 +19,9 @@ import { CodeSnippet } from '@backstage/core-components';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import { sortKeys } from './util';
 import { catalogReactTranslationRef } from '../../../translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 
 export function JsonPage(props: { entity: Entity }) {
   const { t } = useTranslationRef(catalogReactTranslationRef);

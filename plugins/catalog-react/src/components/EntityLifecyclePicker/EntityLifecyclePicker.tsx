@@ -18,7 +18,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { EntityLifecycleFilter } from '../../filters';
 import { EntityAutocompletePicker } from '../EntityAutocompletePicker';
 import { catalogReactTranslationRef } from '../../translation';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 
 /** @public */
 export type CatalogReactEntityLifecyclePickerClassKey = 'input';

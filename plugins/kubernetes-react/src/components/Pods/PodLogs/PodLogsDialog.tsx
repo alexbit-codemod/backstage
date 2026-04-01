@@ -18,7 +18,9 @@ import SubjectIcon from '@material-ui/icons/Subject';
 import { KubernetesDialog } from '../../KubernetesDialog';
 import { PodLogs } from './PodLogs';
 import { ContainerScope } from './types';
-import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  useTranslationRef,
+} from "@backstage/frontend-plugin-api";
 import { kubernetesReactTranslationRef } from '../../../translation';
 
 /**

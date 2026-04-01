@@ -18,7 +18,7 @@ import {
   ErrorApi,
   ErrorApiError,
   ErrorApiErrorContext,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Utility class that helps with error forwarding.

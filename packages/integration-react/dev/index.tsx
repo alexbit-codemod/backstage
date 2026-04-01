@@ -17,15 +17,18 @@ import { createDevApp } from '@backstage/dev-utils';
 import { ScmIntegrations } from '@backstage/integration';
 import { scmIntegrationsApiRef } from '../src/api/ScmIntegrationsApi';
 import { DevPage } from './DevPage';
-import { configApiRef, createApiFactory } from '@backstage/core-plugin-api';
+import {
+  ApiBlueprint,
+  configApiRef,
+} from "@backstage/frontend-plugin-api";
 
 createDevApp()
   .registerApi(
-    createApiFactory({
+    ApiBlueprint.make({ params: defineParams => defineParams({
       api: scmIntegrationsApiRef,
       deps: { configApi: configApiRef },
       factory: ({ configApi }) => ScmIntegrations.fromConfig(configApi),
-    }),
+    }) }),
   )
   .addPage({
     element: <DevPage />,

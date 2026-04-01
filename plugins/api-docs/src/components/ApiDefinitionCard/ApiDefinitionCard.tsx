@@ -17,7 +17,9 @@
 import { ApiEntity } from '@backstage/catalog-model';
 import { useEntity } from '@backstage/plugin-catalog-react';
 import { CardTab, TabbedCard } from '@backstage/core-components';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import Alert from '@material-ui/lab/Alert';
 import { apiDocsConfigRef } from '../../config';

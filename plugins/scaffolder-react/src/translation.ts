@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { createTranslationRef } from '@backstage/core-plugin-api/alpha';
+import {
+  createTranslationRef,
+} from "@backstage/frontend-plugin-api";
 
 /** @public */
 export const scaffolderReactTranslationRef = createTranslationRef({

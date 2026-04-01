@@ -15,7 +15,9 @@
  */
 import { makeStyles } from '@material-ui/core/styles';
 import { Content, Header, Page } from '@backstage/core-components';
-import { useRouteRef } from '@backstage/core-plugin-api';
+import {
+  useRouteRef,
+} from "@backstage/frontend-plugin-api";
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 import {
   FormProps,

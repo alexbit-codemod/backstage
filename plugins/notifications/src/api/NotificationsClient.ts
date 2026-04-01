@@ -22,7 +22,10 @@ import {
   NotificationsApi,
   UpdateNotificationsOptions,
 } from './NotificationsApi';
-import { DiscoveryApi, FetchApi } from '@backstage/core-plugin-api';
+import {
+  DiscoveryApi,
+  FetchApi,
+} from "@backstage/frontend-plugin-api";
 import { ResponseError } from '@backstage/errors';
 import {
   Notification,

@@ -40,7 +40,9 @@ import {
   ContentHeader,
   TableOptions,
 } from '@backstage/core-components';
-import { useApi } from '@backstage/core-plugin-api';
+import {
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import { TECHDOCS_ANNOTATION } from '@backstage/plugin-techdocs-common';
 import { EntityFilterQuery } from '@backstage/catalog-client';
 

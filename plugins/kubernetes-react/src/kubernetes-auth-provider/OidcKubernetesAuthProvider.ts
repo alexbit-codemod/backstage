@@ -16,7 +16,9 @@
 
 import { JsonObject } from '@backstage/types';
 import { KubernetesRequestBody } from '@backstage/plugin-kubernetes-common';
-import { OpenIdConnectApi } from '@backstage/core-plugin-api';
+import {
+  OpenIdConnectApi,
+} from "@backstage/frontend-plugin-api";
 import { KubernetesAuthProvider } from './types';
 
 /** @public */

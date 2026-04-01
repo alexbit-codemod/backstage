@@ -17,7 +17,10 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { stringifyEntityRef } from '@backstage/catalog-model';
-import { configApiRef, useApi } from '@backstage/core-plugin-api';
+import {
+  configApiRef,
+  useApi,
+} from "@backstage/frontend-plugin-api";
 import {
   useTechDocsAddons,
   useTechDocsReaderPage,

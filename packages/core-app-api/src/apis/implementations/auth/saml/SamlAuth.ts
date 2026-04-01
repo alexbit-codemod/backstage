@@ -17,12 +17,12 @@
 import {
   AuthRequestOptions,
   BackstageIdentityApi,
+  BackstageIdentityResponse,
   ProfileInfo,
   ProfileInfoApi,
   SessionApi,
   SessionState,
-  BackstageIdentityResponse,
-} from '@backstage/core-plugin-api';
+} from "@backstage/frontend-plugin-api";
 import { Observable } from '@backstage/types';
 import { DirectAuthConnector } from '../../../../lib/AuthConnector';
 import {

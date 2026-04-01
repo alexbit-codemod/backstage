@@ -16,11 +16,11 @@
 
 import { ApiFactoryHolder } from './types';
 import {
-  ApiRef,
-  ApiFactory,
-  AnyApiRef,
   AnyApiFactory,
-} from '@backstage/core-plugin-api';
+  AnyApiRef,
+  ApiFactory,
+  ApiRef,
+} from "@backstage/frontend-plugin-api";
 
 /**
  * Scope type when registering API factories.

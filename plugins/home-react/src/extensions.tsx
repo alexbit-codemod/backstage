@@ -19,7 +19,10 @@ import IconButton from '@material-ui/core/IconButton';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { InfoCard } from '@backstage/core-components';
 import { SettingsModal } from './components';
-import { createReactExtension, useApp } from '@backstage/core-plugin-api';
+import {
+  createReactExtension,
+  useApp,
+} from "@backstage/frontend-plugin-api";
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
 import { homeReactTranslationRef } from './translation';
