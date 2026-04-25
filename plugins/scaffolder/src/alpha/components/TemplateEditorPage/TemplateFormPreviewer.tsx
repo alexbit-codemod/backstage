@@ -22,10 +22,7 @@ import useAsync from 'react-use/esm/useAsync';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { alertApiRef, useApi, useRouteRef } from '@backstage/core-plugin-api';
-import {
-  catalogApiRef,
-  humanizeEntityRef,
-} from '@backstage/plugin-catalog-react';
+import { catalogApiRef, entityPresentationSnapshot } from '@backstage/plugin-catalog-react';
 import {
   LayoutOptions,
   FieldExtensionOptions,
@@ -171,7 +168,7 @@ export const TemplateFormPreviewer = ({
             items.map(template => ({
               label:
                 template.metadata.title ??
-                humanizeEntityRef(template, { defaultKind: 'template' }),
+                entityPresentationSnapshot(template, { defaultKind: 'template' }).primaryTitle,
               value: template,
             })),
           ),

@@ -97,7 +97,8 @@ describe('<UserListPicker />', () => {
         )['relations.ownedBy']
       ) {
         // owned entities
-        return { items: [], totalItems: 3, pageInfo: {} };
+        return { items: [], totalItems: 3, pageInfo: {},
+                                           updateLocation: async () => { throw new Error('updateLocation not implemented'); }, };
       }
       if (
         (
@@ -123,10 +124,12 @@ describe('<UserListPicker />', () => {
           ],
           totalItems: 2,
           pageInfo: {},
+          updateLocation: async () => { throw new Error('updateLocation not implemented'); },
         };
       }
       // all items
-      return { items: [], totalItems: 10, pageInfo: {} };
+      return { items: [], totalItems: 10, pageInfo: {},
+                                          updateLocation: async () => { throw new Error('updateLocation not implemented'); }, };
     };
 
   beforeAll(() => {
@@ -469,7 +472,8 @@ describe('<UserListPicker />', () => {
               >
             )['relations.ownedBy']
           ) {
-            return { items: [], totalItems: 0, pageInfo: {} };
+            return { items: [], totalItems: 0, pageInfo: {},
+                                               updateLocation: async () => { throw new Error('updateLocation not implemented'); }, };
           }
           return mockQueryEntitiesImplementation(request);
         });
@@ -533,7 +537,8 @@ describe('<UserListPicker />', () => {
               >
             )['metadata.name']
           ) {
-            return { items: [], totalItems: 0, pageInfo: {} };
+            return { items: [], totalItems: 0, pageInfo: {},
+                                               updateLocation: async () => { throw new Error('updateLocation not implemented'); }, };
           }
           return mockQueryEntitiesImplementation(request);
         });
@@ -558,7 +563,8 @@ describe('<UserListPicker />', () => {
             >
           )['metadata.name']
         ) {
-          return { items: [], totalItems: 0, pageInfo: {} };
+          return { items: [], totalItems: 0, pageInfo: {},
+                                             updateLocation: async () => { throw new Error('updateLocation not implemented'); }, };
         }
         return mockQueryEntitiesImplementation(request);
       });
@@ -731,7 +737,8 @@ describe('<UserListPicker />', () => {
 
         return (
           <NewEntityListContext.Provider
-            value={createVersionedValueMap({ 1: value })}
+            value={createVersionedValueMap({ 1: value,
+                                             updateLocation: async () => { throw new Error('updateLocation not implemented'); }, })}
           >
             {children}
           </NewEntityListContext.Provider>

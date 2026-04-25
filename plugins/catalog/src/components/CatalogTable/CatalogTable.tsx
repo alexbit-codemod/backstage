@@ -30,9 +30,9 @@ import {
 } from '@backstage/core-components';
 import {
   getEntityRelations,
-  humanizeEntityRef,
   useEntityList,
   useStarredEntities,
+  entityPresentationSnapshot,
 } from '@backstage/plugin-catalog-react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
@@ -72,9 +72,9 @@ export interface CatalogTableProps {
 const refCompare = (a: Entity, b: Entity) => {
   const toRef = (entity: Entity) =>
     entity.metadata.title ||
-    humanizeEntityRef(entity, {
+    entityPresentationSnapshot(entity, {
       defaultKind: 'Component',
-    });
+    }).primaryTitle;
 
   return toRef(a).localeCompare(toRef(b));
 };
@@ -292,19 +292,19 @@ function toEntityRow(entity: Entity) {
       // This name is here for backwards compatibility mostly; the
       // presentation of refs in the table should in general be handled with
       // EntityRefLink / EntityName components
-      name: humanizeEntityRef(entity, {
+      name: entityPresentationSnapshot(entity, {
         defaultKind: 'Component',
-      }),
+      }).primaryTitle,
       entityRef: stringifyEntityRef(entity),
       ownedByRelationsTitle: ownedByRelations
-        .map(r => humanizeEntityRef(r, { defaultKind: 'group' }))
+        .map(r => entityPresentationSnapshot(r, { defaultKind: 'group' }).primaryTitle)
         .join(', '),
       ownedByRelations,
       partOfSystemRelationTitle: partOfSystemRelations
         .map(r =>
-          humanizeEntityRef(r, {
+          entityPresentationSnapshot(r, {
             defaultKind: 'system',
-          }),
+          }).primaryTitle,
         )
         .join(', '),
       partOfSystemRelations,

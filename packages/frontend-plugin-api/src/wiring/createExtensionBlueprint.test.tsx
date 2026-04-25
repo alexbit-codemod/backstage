@@ -35,6 +35,7 @@ import {
   createExtensionDataContainer,
   OpaqueExtensionDefinition,
 } from '@internal/frontend';
+import { z } from 'zod/v4';
 
 function unused(..._any: any[]) {}
 
@@ -180,10 +181,8 @@ describe('createExtensionBlueprint', () => {
       kind: 'test-extension',
       attachTo: { id: 'test', input: 'default' },
       output: [coreExtensionData.reactElement],
-      config: {
-        schema: {
-          text: z => z.string(),
-        },
+      configSchema: {
+        text: z.string(),
       },
       factory(_, { config }) {
         // @ts-expect-error
@@ -238,10 +237,8 @@ describe('createExtensionBlueprint', () => {
       kind: 'test-extension',
       attachTo: { id: 'test', input: 'default' },
       output: [coreExtensionData.reactElement],
-      config: {
-        schema: {
-          text: z => z.string(),
-        },
+      configSchema: {
+        text: z.string(),
       },
       factory(params: { text: string }) {
         return [coreExtensionData.reactElement(<div>{params.text}</div>)];

@@ -807,7 +807,7 @@ describe('createRouter readonly disabled', () => {
   describe('GET /locations', () => {
     it('happy path: lists locations', async () => {
       const locations: Location[] = [
-        { id: 'foo', type: 'url', target: 'example.com' },
+        { id: 'foo', type: 'url', target: 'example.com', entityRef: 'location:default/example' /* TODO(backstage-codemod): replace with actual entityRef */ },
       ];
       locationService.listLocations.mockResolvedValueOnce(locations);
 
@@ -829,6 +829,7 @@ describe('createRouter readonly disabled', () => {
         id: 'foo',
         type: 'url',
         target: 'example.com',
+        entityRef: 'location:default/example', // TODO(backstage-codemod): replace with actual entityRef
       };
       locationService.getLocation.mockResolvedValueOnce(location);
 
@@ -950,8 +951,8 @@ describe('createRouter readonly disabled', () => {
 
     it('happy path: queries locations without pagination', async () => {
       const locations: Location[] = [
-        { id: 'loc1', type: 'url', target: 'https://example.com/a' },
-        { id: 'loc2', type: 'url', target: 'https://example.com/b' },
+        { id: 'loc1', type: 'url', target: 'https://example.com/a', entityRef: 'location:default/example' /* TODO(backstage-codemod): replace with actual entityRef */ },
+        { id: 'loc2', type: 'url', target: 'https://example.com/b', entityRef: 'location:default/example' /* TODO(backstage-codemod): replace with actual entityRef */ },
       ];
       locationService.queryLocations.mockResolvedValueOnce({
         items: locations,
@@ -977,7 +978,7 @@ describe('createRouter readonly disabled', () => {
 
     it('happy path: queries locations with filter', async () => {
       const locations: Location[] = [
-        { id: 'loc1', type: 'url', target: 'https://example.com/a' },
+        { id: 'loc1', type: 'url', target: 'https://example.com/a', entityRef: 'location:default/example' /* TODO(backstage-codemod): replace with actual entityRef */ },
       ];
       locationService.queryLocations.mockResolvedValueOnce({
         items: locations,
@@ -1004,9 +1005,9 @@ describe('createRouter readonly disabled', () => {
 
     it('returns nextCursor when more results exist', async () => {
       const locations: Location[] = [
-        { id: 'loc1', type: 'url', target: 'https://example.com/a' },
-        { id: 'loc2', type: 'url', target: 'https://example.com/b' },
-        { id: 'loc3', type: 'url', target: 'https://example.com/c' },
+        { id: 'loc1', type: 'url', target: 'https://example.com/a', entityRef: 'location:default/example' /* TODO(backstage-codemod): replace with actual entityRef */ },
+        { id: 'loc2', type: 'url', target: 'https://example.com/b', entityRef: 'location:default/example' /* TODO(backstage-codemod): replace with actual entityRef */ },
+        { id: 'loc3', type: 'url', target: 'https://example.com/c', entityRef: 'location:default/example' /* TODO(backstage-codemod): replace with actual entityRef */ },
       ];
       locationService.queryLocations.mockResolvedValueOnce({
         items: locations,
@@ -1039,7 +1040,7 @@ describe('createRouter readonly disabled', () => {
 
     it('uses cursor for pagination', async () => {
       const locations: Location[] = [
-        { id: 'loc3', type: 'url', target: 'https://example.com/c' },
+        { id: 'loc3', type: 'url', target: 'https://example.com/c', entityRef: 'location:default/example' /* TODO(backstage-codemod): replace with actual entityRef */ },
       ];
       locationService.queryLocations.mockResolvedValueOnce({
         items: locations,
@@ -1122,6 +1123,7 @@ describe('createRouter readonly disabled', () => {
         id: 'foo',
         type: 'url',
         target: 'example.com',
+        entityRef: 'location:default/example', // TODO(backstage-codemod): replace with actual entityRef
       };
       locationService.getLocationByEntity.mockResolvedValueOnce(location);
 
@@ -1435,7 +1437,7 @@ describe('createRouter readonly and raw json enabled', () => {
   describe('GET /locations', () => {
     it('happy path: lists locations', async () => {
       const locations: Location[] = [
-        { id: 'foo', type: 'url', target: 'example.com' },
+        { id: 'foo', type: 'url', target: 'example.com', entityRef: 'location:default/example' /* TODO(backstage-codemod): replace with actual entityRef */ },
       ];
       locationService.listLocations.mockResolvedValueOnce(locations);
 
@@ -1458,6 +1460,7 @@ describe('createRouter readonly and raw json enabled', () => {
         id: 'foo',
         type: 'url',
         target: 'example.com',
+        entityRef: 'location:default/example', // TODO(backstage-codemod): replace with actual entityRef
       };
       locationService.getLocation.mockResolvedValueOnce(location);
 
@@ -1536,6 +1539,7 @@ describe('createRouter readonly and raw json enabled', () => {
         id: 'foo',
         type: 'url',
         target: 'example.com',
+        entityRef: 'location:default/example', // TODO(backstage-codemod): replace with actual entityRef
       };
       locationService.getLocationByEntity.mockResolvedValueOnce(location);
 

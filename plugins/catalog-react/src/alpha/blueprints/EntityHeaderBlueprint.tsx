@@ -29,6 +29,7 @@ import {
   entityFilterExpressionDataRef,
   entityFilterFunctionDataRef,
 } from './extensionData';
+import { z } from 'zod/v4';
 
 /** @alpha */
 export const EntityHeaderBlueprint = createExtensionBlueprint({
@@ -38,10 +39,8 @@ export const EntityHeaderBlueprint = createExtensionBlueprint({
     filterFunction: entityFilterFunctionDataRef,
     element: coreExtensionData.reactElement,
   },
-  config: {
-    schema: {
-      filter: z => createZodV3FilterPredicateSchema(z).optional(),
-    },
+  configSchema: {
+    filter: createZodV3FilterPredicateSchema(z).optional(),
   },
   output: [
     entityFilterFunctionDataRef.optional(),

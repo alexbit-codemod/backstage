@@ -21,6 +21,7 @@ import {
   NotFoundErrorPage,
 } from '@backstage/frontend-plugin-api';
 import { Navigate, useRoutes } from 'react-router-dom';
+import { z } from 'zod/v4';
 
 export const AppRoutes = createExtension({
   name: 'routes',
@@ -32,10 +33,8 @@ export const AppRoutes = createExtension({
       coreExtensionData.reactElement,
     ]),
   },
-  config: {
-    schema: {
-      redirects: z =>
-        z
+  configSchema: {
+    redirects: z
           .array(
             z.object({
               from: z.string(),
@@ -43,7 +42,6 @@ export const AppRoutes = createExtension({
             }),
           )
           .optional(),
-    },
   },
   output: [coreExtensionData.reactElement],
   factory({ inputs, config }) {

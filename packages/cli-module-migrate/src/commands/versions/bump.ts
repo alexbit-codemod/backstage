@@ -13,13 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {
-  BACKSTAGE_JSON,
-  bootstrapEnvProxyAgents,
-  targetPaths,
-} from '@backstage/cli-common';
+// TODO(backstage-codemod): Set NODE_USE_ENV_PROXY=1 in your environment alongside HTTP_PROXY/HTTPS_PROXY
+import { BACKSTAGE_JSON, targetPaths } from '@backstage/cli-common';
 
-bootstrapEnvProxyAgents();
 
 import { env } from 'node:process';
 import fs from 'fs-extra';

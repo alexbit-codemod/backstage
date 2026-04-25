@@ -38,14 +38,14 @@ import {
   QueryLocationsResponse,
   StreamEntitiesRequest,
   ValidateEntityResponse,
-} from '@backstage/catalog-client';
+, CatalogRequestOptions} from '@backstage/catalog-client';
 import {
   CompoundEntityRef,
   DEFAULT_NAMESPACE,
   Entity,
   parseEntityRef,
   stringifyEntityRef,
-} from '@backstage/catalog-model';
+, Location} from '@backstage/catalog-model';
 import {
   InputError,
   NotFoundError,
@@ -621,5 +621,13 @@ export class InMemoryCatalogClient implements CatalogApi {
 
   #createEntityRefMap() {
     return new Map(this.#entities.map(e => [stringifyEntityRef(e), e]));
+  }
+
+  async updateLocation(
+    id: string,
+    location: { type?: string; target: string },
+    options?: CatalogRequestOptions,
+  ): Promise<Location> {
+    throw new Error('updateLocation not implemented'); // TODO(backstage-codemod): implement updateLocation
   }
 }

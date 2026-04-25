@@ -109,11 +109,7 @@ import { DefaultEntitiesCatalog } from './DefaultEntitiesCatalog';
 import { DefaultLocationService } from './DefaultLocationService';
 import { DefaultRefreshService } from './DefaultRefreshService';
 import { entitiesResponseToObjects } from './response';
-import {
-  catalogEntityPermissionResourceRef,
-  CatalogPermissionRuleInput,
-  CatalogScmEventsService,
-} from '@backstage/plugin-catalog-node/alpha';
+import { catalogEntityPermissionResourceRef, CatalogScmEventsService } from '@backstage/plugin-catalog-node/alpha';
 import { filterAndSortProcessors, filterProviders } from './util';
 import { GenericScmEventRefreshProvider } from '../providers/GenericScmEventRefreshProvider';
 import { readScmEventHandlingConfig } from '../util/readScmEventHandlingConfig';

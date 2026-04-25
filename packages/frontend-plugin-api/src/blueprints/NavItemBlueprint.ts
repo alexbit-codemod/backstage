@@ -17,6 +17,7 @@
 import { IconComponent } from '../icons/types';
 import { RouteRef } from '../routing';
 import { createExtensionBlueprint, createExtensionDataRef } from '../wiring';
+import { z } from 'zod/v4';
 
 // TODO(Rugvip): Should this be broken apart into separate refs? title/icon/routeRef
 const targetDataRef = createExtensionDataRef<{
@@ -59,9 +60,7 @@ export const NavItemBlueprint = createExtensionBlueprint({
       routeRef,
     }),
   ],
-  config: {
-    schema: {
-      title: z => z.string().optional(),
-    },
+  configSchema: {
+    title: z.string().optional(),
   },
 });

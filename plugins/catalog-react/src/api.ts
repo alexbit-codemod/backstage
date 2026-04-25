@@ -23,4 +23,5 @@ import { createApiRef } from '@backstage/core-plugin-api';
  */
 export const catalogApiRef = createApiRef<CatalogApi>({
   id: 'plugin.catalog.service',
+  updateLocation: async () => { throw new Error('updateLocation not implemented'); },
 });

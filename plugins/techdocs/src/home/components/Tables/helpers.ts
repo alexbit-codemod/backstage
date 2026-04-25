@@ -15,10 +15,7 @@
  */
 
 import { RELATION_OWNED_BY, Entity } from '@backstage/catalog-model';
-import {
-  getEntityRelations,
-  humanizeEntityRef,
-} from '@backstage/plugin-catalog-react';
+import { getEntityRelations, entityPresentationSnapshot } from '@backstage/plugin-catalog-react';
 import { toLowerMaybe } from '../../../helpers';
 import { ConfigApi, RouteFunc } from '@backstage/core-plugin-api';
 
@@ -48,7 +45,7 @@ export function entitiesToDocsMapper(
         }),
         ownedByRelations,
         ownedByRelationsTitle: ownedByRelations
-          .map(r => humanizeEntityRef(r, { defaultKind: 'group' }))
+          .map(r => entityPresentationSnapshot(r, { defaultKind: 'group' }).primaryTitle)
           .join(', '),
       },
     };

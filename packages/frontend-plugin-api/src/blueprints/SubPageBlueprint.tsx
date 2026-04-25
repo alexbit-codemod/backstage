@@ -18,6 +18,7 @@ import { IconElement } from '../icons/types';
 import { RouteRef } from '../routing';
 import { coreExtensionData, createExtensionBlueprint } from '../wiring';
 import { ExtensionBoundary } from '../components';
+import { z } from 'zod/v4';
 
 /**
  * Creates extensions that are sub-page React components attached to a parent page.
@@ -50,11 +51,9 @@ export const SubPageBlueprint = createExtensionBlueprint({
     coreExtensionData.routeRef.optional(),
     coreExtensionData.icon.optional(),
   ],
-  config: {
-    schema: {
-      path: z => z.string().optional(),
-      title: z => z.string().optional(),
-    },
+  configSchema: {
+    path: z.string().optional(),
+    title: z.string().optional(),
   },
   *factory(
     params: {

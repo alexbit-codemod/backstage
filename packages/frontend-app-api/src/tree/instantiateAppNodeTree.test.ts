@@ -43,6 +43,7 @@ import {
 import { createSchemaFromZod } from '../../../frontend-plugin-api/src/schema/createSchemaFromZod';
 import { TestApiRegistry, withLogCollector } from '@backstage/test-utils';
 import { createErrorCollector } from '../wiring/createErrorCollector';
+import { z } from 'zod/v4';
 
 const testApis = TestApiRegistry.from();
 const testDataRef = createExtensionDataRef<string>().with({ id: 'test' });
@@ -850,11 +851,9 @@ describe('instantiateAppNodeTree', () => {
         name: 'test',
         attachTo: { id: 'ignored', input: 'ignored' },
         output: [testDataRef, otherDataRef.optional()],
-        config: {
-          schema: {
-            output: z => z.string().default('test'),
-            other: z => z.number().optional(),
-          },
+        configSchema: {
+          output: z.string().default('test'),
+          other: z.number().optional(),
         },
         factory({ config }) {
           return [

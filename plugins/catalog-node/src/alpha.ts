@@ -46,11 +46,15 @@ export const catalogServiceRef = createServiceRef<CatalogApi>({
       service,
       deps: {
         discoveryApi: coreServices.discovery,
+        updateLocation: async () => { throw new Error('updateLocation not implemented'); },
       },
       async factory({ discoveryApi }) {
-        return new CatalogClient({ discoveryApi });
+        return new CatalogClient({ discoveryApi,
+                                   updateLocation: async () => { throw new Error('updateLocation not implemented'); },,
+                                   updateLocation: async () => { throw new Error('updateLocation not implemented'); }, });
       },
     }),
+  updateLocation: async () => { throw new Error('updateLocation not implemented'); },
 });
 
 import {

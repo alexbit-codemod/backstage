@@ -19,14 +19,14 @@ import {
   coreServices,
   createBackendPlugin,
 } from '@backstage/backend-plugin-api';
-import { signalService } from '@backstage/plugin-signals-node';
+import { signalsServiceRef } from '@backstage/plugin-signals-node';
 
 const signalDebug = createBackendPlugin({
   pluginId: 'signals-debug',
   register(env) {
     env.registerInit({
       deps: {
-        signals: signalService,
+        signals: signalsServiceRef,
         lifecycle: coreServices.lifecycle,
       },
       async init({ signals, lifecycle }) {

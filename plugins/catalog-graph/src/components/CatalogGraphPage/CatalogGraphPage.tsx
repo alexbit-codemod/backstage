@@ -23,10 +23,7 @@ import {
   SupportButton,
 } from '@backstage/core-components';
 import { useAnalytics, useRouteRef } from '@backstage/core-plugin-api';
-import {
-  entityRouteRef,
-  humanizeEntityRef,
-} from '@backstage/plugin-catalog-react';
+import { entityRouteRef, entityPresentationSnapshot } from '@backstage/plugin-catalog-react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -170,14 +167,14 @@ export const CatalogGraphPage = (
 
         analytics.captureEvent(
           'click',
-          node.entity.metadata.title ?? humanizeEntityRef(nodeEntityName),
+          node.entity.metadata.title ?? entityPresentationSnapshot(nodeEntityName).primaryTitle,
           { attributes: { to: path } },
         );
         navigate(path);
       } else {
         analytics.captureEvent(
           'click',
-          node.entity.metadata.title ?? humanizeEntityRef(nodeEntityName),
+          node.entity.metadata.title ?? entityPresentationSnapshot(nodeEntityName).primaryTitle,
         );
         setRootEntityNames([nodeEntityName]);
       }
@@ -189,7 +186,7 @@ export const CatalogGraphPage = (
     <Page themeId="home">
       <Header
         title={t('catalogGraphPage.title')}
-        subtitle={rootEntityNames.map(e => humanizeEntityRef(e)).join(', ')}
+        subtitle={rootEntityNames.map(e => entityPresentationSnapshot(e).primaryTitle).join(', ')}
       />
       <Content stretch className={classes.content}>
         <ContentHeader

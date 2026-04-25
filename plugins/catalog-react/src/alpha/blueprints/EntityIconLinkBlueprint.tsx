@@ -31,6 +31,7 @@ import {
 } from './extensionData';
 import { Entity } from '@backstage/catalog-model';
 import { resolveEntityFilterData } from './resolveEntityFilterData';
+import { z } from 'zod/v4';
 
 const entityIconLinkPropsDataRef = createExtensionDataRef<
   () => IconLinkVerticalProps
@@ -52,12 +53,10 @@ export const EntityIconLinkBlueprint = createExtensionBlueprint({
     filterFunction: entityFilterFunctionDataRef,
     filterExpression: entityFilterExpressionDataRef,
   },
-  config: {
-    schema: {
-      label: z => z.string().optional(),
-      title: z => z.string().optional(),
-      filter: z => createZodV3FilterPredicateSchema(z).optional(),
-    },
+  configSchema: {
+    label: z.string().optional(),
+    title: z.string().optional(),
+    filter: createZodV3FilterPredicateSchema(z).optional(),
   },
   *factory(
     params: {

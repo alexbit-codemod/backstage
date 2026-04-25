@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { bootstrapEnvProxyAgents } from '@backstage/cli-common';
-
-bootstrapEnvProxyAgents();
+// TODO(backstage-codemod): Set NODE_USE_ENV_PROXY=1 in your environment alongside HTTP_PROXY/HTTPS_PROXY
 
 import chalk from 'chalk';
 import fs from 'fs-extra';

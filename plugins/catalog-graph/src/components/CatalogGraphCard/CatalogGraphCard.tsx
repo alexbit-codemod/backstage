@@ -22,9 +22,9 @@ import {
 import { useAnalytics, useRouteRef } from '@backstage/core-plugin-api';
 import {
   EntityInfoCard,
-  humanizeEntityRef,
   useEntity,
   entityRouteRef,
+  entityPresentationSnapshot,
 } from '@backstage/plugin-catalog-react';
 import { ButtonLink } from '@backstage/ui';
 import { RiArrowRightLine } from '@remixicon/react';
@@ -99,7 +99,7 @@ export const CatalogGraphCard = (
       });
       analytics.captureEvent(
         'click',
-        node.entity.metadata.title ?? humanizeEntityRef(nodeEntityName),
+        node.entity.metadata.title ?? entityPresentationSnapshot(nodeEntityName).primaryTitle,
         { attributes: { to: path } },
       );
       navigate(path);
