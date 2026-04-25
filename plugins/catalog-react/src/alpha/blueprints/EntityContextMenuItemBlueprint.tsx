@@ -31,6 +31,7 @@ import {
 } from '@backstage/filter-predicates';
 import type { Entity } from '@backstage/catalog-model';
 import { entityFilterFunctionDataRef } from './extensionData';
+import { z } from 'zod/v4';
 /** @alpha */
 export type UseProps = () =>
   | {
@@ -62,10 +63,8 @@ export const EntityContextMenuItemBlueprint = createExtensionBlueprint({
   dataRefs: {
     filterFunction: entityFilterFunctionDataRef,
   },
-  config: {
-    schema: {
-      filter: z => createZodV3FilterPredicateSchema(z).optional(),
-    },
+  configSchema: {
+    filter: createZodV3FilterPredicateSchema(z).optional(),
   },
   *factory(params: EntityContextMenuItemParams, { node, config }) {
     const loader = async () => {

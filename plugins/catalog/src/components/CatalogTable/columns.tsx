@@ -13,11 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {
-  humanizeEntityRef,
-  EntityRefLink,
-  EntityRefLinks,
-} from '@backstage/plugin-catalog-react';
+import { EntityRefLink, EntityRefLinks, entityPresentationSnapshot } from '@backstage/plugin-catalog-react';
 import Chip from '@material-ui/core/Chip';
 import { CatalogTableRow } from './types';
 import { OverflowTooltip, TableColumn } from '@backstage/core-components';
@@ -35,9 +31,9 @@ export const columnFactories = Object.freeze({
     function formatContent(entity: Entity): string {
       return (
         entity.metadata?.title ||
-        humanizeEntityRef(entity, {
+        entityPresentationSnapshot(entity, {
           defaultKind: options?.defaultKind,
-        })
+        }).primaryTitle
       );
     }
 

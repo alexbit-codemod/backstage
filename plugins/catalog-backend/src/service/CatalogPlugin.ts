@@ -36,9 +36,6 @@ import {
 import {
   CatalogModelExtensionPoint,
   catalogModelExtensionPoint,
-  CatalogPermissionExtensionPoint,
-  catalogPermissionExtensionPoint,
-  CatalogPermissionRuleInput,
   catalogScmEventsServiceRef,
 } from '@backstage/plugin-catalog-node/alpha';
 import { eventsServiceRef } from '@backstage/plugin-events-node';
@@ -191,7 +188,7 @@ export const catalogPlugin = createBackendPlugin({
 
     const permissionExtensions = new CatalogPermissionExtensionPointImpl();
     env.registerExtensionPoint(
-      catalogPermissionExtensionPoint,
+      coreServices.permissionsRegistry,
       permissionExtensions,
     );
 

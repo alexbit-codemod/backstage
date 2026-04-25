@@ -15,10 +15,7 @@
  */
 
 import { MouseEvent, useState, useCallback } from 'react';
-import {
-  catalogApiRef,
-  humanizeEntityRef,
-} from '@backstage/plugin-catalog-react';
+import { catalogApiRef, entityPresentationSnapshot } from '@backstage/plugin-catalog-react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import useAsync from 'react-use/esm/useAsync';
@@ -85,7 +82,7 @@ export const GroupListPicker = (props: GroupListPickerProps) => {
     return <ResponseErrorPanel error={error} />;
   }
 
-  const getHumanEntityRef = (entity: Entity) => humanizeEntityRef(entity);
+  const getHumanEntityRef = (entity: Entity) => entityPresentationSnapshot(entity).primaryTitle;
 
   return (
     <>

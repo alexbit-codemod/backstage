@@ -18,7 +18,7 @@ import {
   QueryEntitiesResponse,
   ValidateEntityResponse,
 } from '@backstage/catalog-client';
-import { CompoundEntityRef, Entity } from '@backstage/catalog-model';
+import { CompoundEntityRef, Entity , Location} from '@backstage/catalog-model';
 import {
   createApiFactory,
   DiscoveryApi,
@@ -169,6 +169,14 @@ export class ReadWriteSplitCatalogClient implements CatalogApi {
     options?: CatalogRequestOptions,
   ): Promise<AnalyzeLocationResponse> {
     return this.#write.analyzeLocation(location, options);
+  }
+
+  async updateLocation(
+    id: string,
+    location: { type?: string; target: string },
+    options?: CatalogRequestOptions,
+  ): Promise<Location> {
+    throw new Error('updateLocation not implemented'); // TODO(backstage-codemod): implement updateLocation
   }
 }
 

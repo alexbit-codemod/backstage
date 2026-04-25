@@ -28,6 +28,7 @@ import { useApi } from '../apis/system';
 import { routeResolutionApiRef } from '../apis/definitions/RouteResolutionApi';
 import { pluginHeaderActionsApiRef } from '../apis/definitions/PluginHeaderActionsApi';
 import { RouteResolutionApi } from '../apis/definitions/RouteResolutionApi';
+import { z } from 'zod/v4';
 
 function resolveTitleLink(
   routeResolutionApi: RouteResolutionApi,
@@ -68,11 +69,9 @@ export const PageBlueprint = createExtensionBlueprint({
     coreExtensionData.title.optional(),
     coreExtensionData.icon.optional(),
   ],
-  config: {
-    schema: {
-      path: z => z.string().optional(),
-      title: z => z.string().optional(),
-    },
+  configSchema: {
+    path: z.string().optional(),
+    title: z.string().optional(),
   },
   *factory(
     params: {

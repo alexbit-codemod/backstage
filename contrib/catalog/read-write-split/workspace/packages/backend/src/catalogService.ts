@@ -24,7 +24,7 @@ import {
   QueryEntitiesResponse,
   ValidateEntityResponse,
 } from '@backstage/catalog-client';
-import { CompoundEntityRef, Entity } from '@backstage/catalog-model';
+import { CompoundEntityRef, Entity , Location} from '@backstage/catalog-model';
 import {
   AnalyzeLocationRequest,
   AnalyzeLocationResponse,
@@ -230,6 +230,14 @@ export class ReadWriteSplitCatalogService implements CatalogService {
       onBehalfOf: options.credentials,
       targetPluginId: 'catalog',
     });
+  }
+
+  async updateLocation(
+    id: string,
+    location: { type?: string; target: string },
+    options: CatalogServiceRequestOptions,
+  ): Promise<Location> {
+    throw new Error('updateLocation not implemented'); // TODO(backstage-codemod): implement updateLocation
   }
 }
 

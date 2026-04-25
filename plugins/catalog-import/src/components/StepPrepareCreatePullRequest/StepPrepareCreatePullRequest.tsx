@@ -18,10 +18,7 @@ import { Entity } from '@backstage/catalog-model';
 import { errorApiRef, useApi } from '@backstage/core-plugin-api';
 import { assertError } from '@backstage/errors';
 import { useTranslationRef } from '@backstage/frontend-plugin-api';
-import {
-  catalogApiRef,
-  humanizeEntityRef,
-} from '@backstage/plugin-catalog-react';
+import { catalogApiRef, entityPresentationSnapshot } from '@backstage/plugin-catalog-react';
 import Box from '@material-ui/core/Box';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Grid from '@material-ui/core/Grid';
@@ -162,7 +159,7 @@ export const StepPrepareCreatePullRequest = (
     });
 
     return groupEntities.items
-      .map(e => humanizeEntityRef(e, { defaultKind: 'group' }))
+      .map(e => entityPresentationSnapshot(e, { defaultKind: 'group' }).primaryTitle)
       .sort();
   });
 

@@ -66,7 +66,8 @@ describe('DialogDisplay', () => {
 
   it('should render a simple dialog', async () => {
     const result = await withDialogApi(async dialogApi => {
-      const dialog = await act(() => dialogApi.show<string>(<div>Test</div>));
+      // TODO(backstage-codemod): open() returns TResult (not TResult | undefined). Add your own dialog chrome and dismissal handling.
+      const dialog = await act(() => dialogApi.open<string>(<div>Test</div>));
       dialog.close('test');
       return dialog.result();
     });
@@ -75,7 +76,8 @@ describe('DialogDisplay', () => {
 
   it('should allow dialog to be updated', async () => {
     const result = await withDialogApi(async dialogApi => {
-      const dialog = await act(() => dialogApi.show(AutoDialog));
+      // TODO(backstage-codemod): open() returns TResult (not TResult | undefined). Add your own dialog chrome and dismissal handling.
+      const dialog = await act(() => dialogApi.open(AutoDialog));
 
       setTimeout(async () => {
         await act(async () => {
@@ -91,7 +93,8 @@ describe('DialogDisplay', () => {
 
   it('should allow dialog to be closed by pressing escape', async () => {
     const result = await withDialogApi(async dialogApi => {
-      const dialog = await act(() => dialogApi.show(AutoDialog));
+      // TODO(backstage-codemod): open() returns TResult (not TResult | undefined). Add your own dialog chrome and dismissal handling.
+      const dialog = await act(() => dialogApi.open(AutoDialog));
 
       setTimeout(async () => {
         await userEvent.keyboard('{Escape}');
@@ -105,9 +108,12 @@ describe('DialogDisplay', () => {
 
   it('should allow a stack of dialogs', async () => {
     const result = await withDialogApi(async dialogApi => {
-      const dialog1 = await act(() => dialogApi.show(AutoDialog));
-      const dialog2 = await act(() => dialogApi.show(AutoDialog));
-      const dialog3 = await act(() => dialogApi.show(AutoDialog));
+      // TODO(backstage-codemod): open() returns TResult (not TResult | undefined). Add your own dialog chrome and dismissal handling.
+      const dialog1 = await act(() => dialogApi.open(AutoDialog));
+      // TODO(backstage-codemod): open() returns TResult (not TResult | undefined). Add your own dialog chrome and dismissal handling.
+      const dialog2 = await act(() => dialogApi.open(AutoDialog));
+      // TODO(backstage-codemod): open() returns TResult (not TResult | undefined). Add your own dialog chrome and dismissal handling.
+      const dialog3 = await act(() => dialogApi.open(AutoDialog));
 
       setTimeout(async () => {
         await act(async () => {
@@ -129,9 +135,12 @@ describe('DialogDisplay', () => {
 
   it('should only cancel one dialog at a time', async () => {
     const result = await withDialogApi(async dialogApi => {
-      const dialog1 = await act(() => dialogApi.show(AutoDialog));
-      const dialog2 = await act(() => dialogApi.show(AutoDialog));
-      const dialog3 = await act(() => dialogApi.show(AutoDialog));
+      // TODO(backstage-codemod): open() returns TResult (not TResult | undefined). Add your own dialog chrome and dismissal handling.
+      const dialog1 = await act(() => dialogApi.open(AutoDialog));
+      // TODO(backstage-codemod): open() returns TResult (not TResult | undefined). Add your own dialog chrome and dismissal handling.
+      const dialog2 = await act(() => dialogApi.open(AutoDialog));
+      // TODO(backstage-codemod): open() returns TResult (not TResult | undefined). Add your own dialog chrome and dismissal handling.
+      const dialog3 = await act(() => dialogApi.open(AutoDialog));
 
       setTimeout(async () => {
         await userEvent.keyboard('{Escape}');
@@ -155,7 +164,8 @@ describe('DialogDisplay', () => {
 
   it('should not allow modal dialog to be closed by pressing escape', async () => {
     const result = await withDialogApi(async dialogApi => {
-      const dialog = await act(() => dialogApi.showModal(AutoDialog));
+      // TODO(backstage-codemod): open() renders without built-in dialog chrome. Wrap your content in a dialog component.
+      const dialog = await act(() => dialogApi.open(AutoDialog));
 
       setTimeout(async () => {
         await userEvent.keyboard('{Escape}');

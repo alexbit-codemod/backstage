@@ -110,7 +110,8 @@ export const unregisterEntityContextMenuItem =
           title: t('entityContextMenu.unregisterMenuTitle'),
           disabled: !unregisterPermission.allowed,
           onClick: async () => {
-            dialogApi.showModal(({ dialog }: { dialog: DialogApiDialog }) => (
+            // TODO(backstage-codemod): open() renders without built-in dialog chrome. Wrap your content in a dialog component.
+            dialogApi.open(({ dialog }: { dialog: DialogApiDialog }) => (
               <UnregisterEntityDialog
                 open
                 entity={entity}
