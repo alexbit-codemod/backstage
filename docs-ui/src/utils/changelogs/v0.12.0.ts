@@ -225,7 +225,7 @@ Remove any references to \`--bui-border-hover\`, \`--bui-border-pressed\`, and \
 
   The \`HeaderTab\` type is unchanged as it is shared with \`HeaderPage\`.
 
-  CSS class names have been updated from \`bui-Header*\` to \`bui-PluginHeader*\`.`,
+  CSS class names have been updated from \`bui-HeaderContent*\` to \`bui-PluginHeader*\`.`,
     migration: `\`\`\`diff
 -import { Header, HeaderDefinition } from '@backstage/ui';
 +import { PluginHeader, PluginHeaderDefinition } from '@backstage/ui';

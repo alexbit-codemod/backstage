@@ -21,7 +21,6 @@ import {
   fetchApiRef,
   ApiBlueprint,
   PageBlueprint,
-  NavItemBlueprint,
   SubPageBlueprint,
 } from '@backstage/frontend-plugin-api';
 
@@ -69,6 +68,7 @@ export const devToolsPage = PageBlueprint.makeWithOverrides({
 
     return originalFactory(
       {
+        icon: <BuildIcon fontSize="inherit" />,
         path: '/devtools',
         routeRef: rootRouteRef,
         title: 'DevTools',
@@ -134,13 +134,6 @@ export const devToolsScheduledTasksPage = SubPageBlueprint.make({
 });
 
 /** @alpha */
-export const devToolsNavItem = NavItemBlueprint.make({
-  params: {
-    title: 'DevTools',
-    routeRef: rootRouteRef,
-    icon: BuildIcon,
-  },
-});
 
 /** @alpha */
 export default createFrontendPlugin({
@@ -151,12 +144,5 @@ export default createFrontendPlugin({
   routes: {
     root: rootRouteRef,
   },
-  extensions: [
-    devToolsApi,
-    devToolsPage,
-    devToolsInfoPage,
-    devToolsConfigPage,
-    devToolsScheduledTasksPage,
-    devToolsNavItem,
-  ],
+  extensions: [devToolsApi, devToolsPage, devToolsInfoPage, devToolsConfigPage, devToolsScheduledTasksPage],
 });

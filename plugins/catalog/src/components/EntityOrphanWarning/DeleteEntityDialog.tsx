@@ -58,7 +58,7 @@ export function DeleteEntityDialog(props: DeleteEntityDialogProps) {
         <Button variant="secondary" onPress={onClose}>
           {t('deleteEntity.cancelButtonTitle')}
         </Button>
-        <Button variant="primary" destructive loading={busy} onPress={onDelete}>
+        <Button variant="primary" destructive isPending={busy} onPress={onDelete}>
           {t('deleteEntity.deleteButtonTitle')}
         </Button>
       </DialogFooter>

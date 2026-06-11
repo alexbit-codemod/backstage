@@ -68,7 +68,7 @@ export const ConsentPage = () => {
   if (state.status === 'loading') {
     return (
       <ConsentPageLayout>
-        <Alert loading title="Loading authorization request..." />
+        <Alert isPending title="Loading authorization request..." />
       </ConsentPageLayout>
     );
   }

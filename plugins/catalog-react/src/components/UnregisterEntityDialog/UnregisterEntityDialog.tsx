@@ -132,7 +132,7 @@ function AdvancedDeleteAccordion({
             <Button
               variant="primary"
               destructive
-              loading={busyAction === 'delete'}
+              isPending={busyAction === 'delete'}
               isDisabled={busyAction !== null && busyAction !== 'delete'}
               onPress={onDelete}
             >
@@ -268,7 +268,7 @@ function useDialogContent(
           <Button
             variant="primary"
             destructive
-            loading={busyAction === 'delete'}
+            isPending={busyAction === 'delete'}
             isDisabled={busyAction !== null && busyAction !== 'delete'}
             onPress={onDelete}
           >
@@ -290,7 +290,7 @@ function useDialogContent(
           <Button
             variant="primary"
             destructive
-            loading={busyAction === 'unregister'}
+            isPending={busyAction === 'unregister'}
             isDisabled={busyAction !== null && busyAction !== 'unregister'}
             onPress={onUnregister}
           >

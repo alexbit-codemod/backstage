@@ -68,7 +68,7 @@ export function EntityDataTable(props: EntityDataTableProps) {
     <Table
       columnConfig={columnConfig}
       {...tableProps}
-      loading={loading}
+      isPending={loading}
       error={error}
       emptyState={emptyState}
     />

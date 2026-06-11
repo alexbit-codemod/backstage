@@ -25,7 +25,7 @@ import styles from './Header.module.css';
 export const HeaderDefinition = defineComponent<HeaderOwnProps>()({
   styles,
   classNames: {
-    root: 'bui-Header',
+    content: 'bui-HeaderContent',
     content: 'bui-HeaderContent',
     breadcrumbs: 'bui-HeaderBreadcrumbs',
     tabsWrapper: 'bui-HeaderTabsWrapper',

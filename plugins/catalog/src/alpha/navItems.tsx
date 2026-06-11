@@ -18,6 +18,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import { NavItemBlueprint } from '@backstage/frontend-plugin-api';
 import { rootRouteRef } from '../routes';
 
+// TODO(backstage-codemod): Migrate NavItemBlueprint — no matching PageBlueprint with the same routeRef found
 export const catalogNavItem = NavItemBlueprint.make({
   params: {
     routeRef: rootRouteRef,

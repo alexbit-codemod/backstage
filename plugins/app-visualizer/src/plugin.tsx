@@ -17,7 +17,6 @@
 import {
   createFrontendPlugin,
   createRouteRef,
-  NavItemBlueprint,
   PageBlueprint,
   PluginHeaderActionBlueprint,
   SubPageBlueprint,
@@ -26,8 +25,10 @@ import { RiEyeLine } from '@remixicon/react';
 
 const rootRouteRef = createRouteRef();
 
+// TODO(backstage-codemod): Convert nav icon to IconElement JSX manually
 const appVisualizerPage = PageBlueprint.make({
   params: {
+    icon: () => <RiEyeLine />,
     path: '/visualizer',
     routeRef: rootRouteRef,
     title: 'Visualizer',
@@ -82,26 +83,11 @@ const copyTreeAsJson = PluginHeaderActionBlueprint.make({
   },
 });
 
-export const appVisualizerNavItem = NavItemBlueprint.make({
-  params: {
-    title: 'Visualizer',
-    icon: () => <RiEyeLine />,
-    routeRef: rootRouteRef,
-  },
-});
-
 /** @public */
 export const visualizerPlugin = createFrontendPlugin({
   pluginId: 'app-visualizer',
   title: 'App Visualizer',
   icon: <RiEyeLine />,
   info: { packageJson: () => import('../package.json') },
-  extensions: [
-    appVisualizerPage,
-    appVisualizerTreePage,
-    appVisualizerDetailedPage,
-    appVisualizerTextPage,
-    appVisualizerNavItem,
-    copyTreeAsJson,
-  ],
+  extensions: [appVisualizerPage, appVisualizerTreePage, appVisualizerDetailedPage, appVisualizerTextPage, copyTreeAsJson],
 });
