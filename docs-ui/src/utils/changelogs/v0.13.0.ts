@@ -102,7 +102,7 @@ If you cannot upgrade all packages together, or if you have a custom app shell, 
 
   **Migration:** If you are targeting these classes directly in your styles, update the following:
 
-  - \`bui-HeaderPage\` → \`bui-Header\`
+  - \`bui-HeaderPage\` → \`bui-HeaderContent\`
   - \`bui-HeaderPageContent\` → \`bui-HeaderContent\`
   - \`bui-HeaderPageBreadcrumbs\` → \`bui-HeaderBreadcrumbs\`
   - \`bui-HeaderPageTabsWrapper\` → \`bui-HeaderTabsWrapper\`

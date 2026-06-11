@@ -28,7 +28,6 @@ import { lazy as reactLazy } from 'react';
 import {
   createExtensionInput,
   PageBlueprint,
-  NavItemBlueprint,
   createFrontendPlugin,
   createRouteRef,
   AppRootElementBlueprint,
@@ -62,6 +61,8 @@ const homePage = PageBlueprint.makeWithOverrides({
   },
   factory(originalFactory, { node, inputs }) {
     return originalFactory({
+      title: 'Home',
+      icon: <HomeIcon fontSize="inherit" />,
       path: '/home',
       noHeader: true,
       routeRef: rootRouteRef,
@@ -120,14 +121,6 @@ const visitsApi = ApiBlueprint.make({
         return VisitsWebStorageApi.create({ identityApi, errorApi });
       },
     }),
-});
-
-const homeNavItem = NavItemBlueprint.make({
-  params: {
-    title: 'Home',
-    routeRef: rootRouteRef,
-    icon: HomeIcon,
-  },
 });
 
 const homePageToolkitWidget = HomePageWidgetBlueprint.make({
@@ -211,15 +204,7 @@ export default createFrontendPlugin({
   title: 'Home',
   icon: <HomeIcon />,
   info: { packageJson: () => import('../package.json') },
-  extensions: [
-    homePage,
-    homeNavItem,
-    visitsApi,
-    visitListenerAppRootElement,
-    homePageToolkitWidget,
-    homePageStarredEntitiesWidget,
-    homePageRandomJokeWidget,
-  ],
+  extensions: [homePage, visitsApi, visitListenerAppRootElement, homePageToolkitWidget, homePageStarredEntitiesWidget, homePageRandomJokeWidget],
   routes: {
     root: rootRouteRef,
   },

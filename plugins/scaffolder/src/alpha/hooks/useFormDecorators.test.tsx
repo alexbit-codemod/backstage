@@ -44,7 +44,7 @@ describe('useFormDecorators', () => {
   });
 
   const manifest: TemplateParameterSchema = {
-    EXPERIMENTAL_formDecorators: [{ id: 'test', input: { test: 'hello' } }],
+    formDecorators: [{ id: 'test', input: { test: 'hello' } }],
     steps: [],
     title: 'test',
   };

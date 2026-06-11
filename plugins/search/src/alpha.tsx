@@ -36,7 +36,6 @@ import {
   ApiBlueprint,
   createExtensionInput,
   PageBlueprint,
-  NavItemBlueprint,
   configApiRef,
 } from '@backstage/frontend-plugin-api';
 
@@ -109,6 +108,7 @@ export const searchPage = PageBlueprint.makeWithOverrides({
   },
   factory(originalFactory, { config, inputs }) {
     return originalFactory({
+      title: 'Search',
       path: '/search',
       routeRef: rootRouteRef,
       loader: async () => {
@@ -260,13 +260,6 @@ export const searchPage = PageBlueprint.makeWithOverrides({
 });
 
 /** @alpha */
-export const searchNavItem = NavItemBlueprint.make({
-  params: {
-    routeRef: rootRouteRef,
-    title: 'Search',
-    icon: SearchIcon,
-  },
-});
 
 /** @alpha */
 export default createFrontendPlugin({
@@ -274,7 +267,7 @@ export default createFrontendPlugin({
   title: 'Search',
   icon: <SearchIcon fontSize="inherit" />,
   info: { packageJson: () => import('../package.json') },
-  extensions: [searchApi, searchPage, searchNavItem],
+  extensions: [searchApi, searchPage],
   routes: {
     root: rootRouteRef,
   },

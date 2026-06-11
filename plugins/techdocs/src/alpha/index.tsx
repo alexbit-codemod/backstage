@@ -20,7 +20,6 @@ import {
   createFrontendPlugin,
   ApiBlueprint,
   PageBlueprint,
-  NavItemBlueprint,
   PluginHeaderActionBlueprint,
   createExtensionInput,
   coreExtensionData,
@@ -136,8 +135,11 @@ export const techDocsSearchResultListItemExtension =
  *
  * @alpha
  */
+// TODO(backstage-codemod): Convert nav icon to IconElement JSX manually
 const techDocsPage = PageBlueprint.make({
   params: {
+    title: 'Docs',
+    icon: () => <RiArticleLine />,
     path: '/docs',
     routeRef: rootRouteRef,
     loader: () =>
@@ -269,13 +271,6 @@ const techDocsEntityContentEmptyState = createExtension({
 });
 
 /** @alpha */
-const techDocsNavItem = NavItemBlueprint.make({
-  params: {
-    icon: () => <RiArticleLine />,
-    title: 'Docs',
-    routeRef: rootRouteRef,
-  },
-});
 
 const techDocsSupportAction = PluginHeaderActionBlueprint.make({
   params: defineParams =>
@@ -292,19 +287,7 @@ export default createFrontendPlugin({
   title: 'Documentation',
   icon: <RiArticleLine />,
   info: { packageJson: () => import('../../package.json') },
-  extensions: [
-    techDocsClientApi,
-    techDocsStorageApi,
-    TechDocsAddonsApiExtension,
-    techDocsNavItem,
-    techDocsSupportAction,
-    techDocsPage,
-    techDocsReaderPage,
-    techdocsEntityIconLink,
-    techDocsEntityContent,
-    techDocsEntityContentEmptyState,
-    techDocsSearchResultListItemExtension,
-  ],
+  extensions: [techDocsClientApi, techDocsStorageApi, TechDocsAddonsApiExtension, techDocsSupportAction, techDocsPage, techDocsReaderPage, techdocsEntityIconLink, techDocsEntityContent, techDocsEntityContentEmptyState, techDocsSearchResultListItemExtension],
   routes: {
     root: rootRouteRef,
     docRoot: rootDocsRouteRef,

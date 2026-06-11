@@ -17,7 +17,7 @@
 @layer tokens, base, components, utilities;
 
 @layer components {
-  .bui-Header {
+  .bui-HeaderContent {
     display: flex;
     flex-direction: column;
     gap: var(--bui-space-1);

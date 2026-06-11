@@ -18,7 +18,6 @@ import Grid from '@material-ui/core/Grid';
 
 import {
   ApiBlueprint,
-  NavItemBlueprint,
   PageBlueprint,
   createFrontendPlugin,
 } from '@backstage/frontend-plugin-api';
@@ -39,14 +38,6 @@ import {
   EntityContentBlueprint,
 } from '@backstage/plugin-catalog-react/alpha';
 
-const apiDocsNavItem = NavItemBlueprint.make({
-  params: {
-    title: 'APIs',
-    routeRef: rootRoute,
-    icon: () => <AppIcon fontSize="inherit" id="kind:api" />,
-  },
-});
-
 const apiDocsConfigApi = ApiBlueprint.make({
   name: 'config',
   params: defineParams =>
@@ -64,6 +55,7 @@ const apiDocsConfigApi = ApiBlueprint.make({
     }),
 });
 
+// TODO(backstage-codemod): Convert nav icon to IconElement JSX manually
 const apiDocsExplorerPage = PageBlueprint.makeWithOverrides({
   config: {
     schema: {
@@ -74,6 +66,8 @@ const apiDocsExplorerPage = PageBlueprint.makeWithOverrides({
   },
   factory(originalFactory, { config }) {
     return originalFactory({
+      title: 'APIs',
+      icon: () => <AppIcon fontSize="inherit" id="kind:api" />,
       path: '/api-docs',
       routeRef: rootRoute,
       loader: () =>
@@ -221,19 +215,7 @@ export default createFrontendPlugin({
   externalRoutes: {
     registerApi: registerComponentRouteRef,
   },
-  extensions: [
-    apiDocsNavItem,
-    apiDocsConfigApi,
-    apiDocsExplorerPage,
-    apiDocsHasApisEntityCard,
-    apiDocsDefinitionEntityCard,
-    apiDocsProvidedApisEntityCard,
-    apiDocsConsumedApisEntityCard,
-    apiDocsConsumingComponentsEntityCard,
-    apiDocsProvidingComponentsEntityCard,
-    apiDocsDefinitionEntityContent,
-    apiDocsApisEntityContent,
-  ],
+  extensions: [apiDocsConfigApi, apiDocsExplorerPage, apiDocsHasApisEntityCard, apiDocsDefinitionEntityCard, apiDocsProvidedApisEntityCard, apiDocsConsumedApisEntityCard, apiDocsConsumingComponentsEntityCard, apiDocsProvidingComponentsEntityCard, apiDocsDefinitionEntityContent, apiDocsApisEntityContent],
 });
 
 import { apiDocsTranslationRef as _apiDocsTranslationRef } from './translation';
